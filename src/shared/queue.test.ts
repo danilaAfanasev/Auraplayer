@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { nextIndex, prevIndex, shuffleOrder, type QueueState } from './queue';
+import { insertNext, nextIndex, prevIndex, shuffleOrder, type QueueState } from './queue';
 
 const base: QueueState = { length: 4, index: 0, repeat: 'off', shuffle: false, order: [] };
 
@@ -69,5 +69,62 @@ describe('shuffleOrder', () => {
   });
   it('пустая очередь — пустой порядок', () => {
     expect(shuffleOrder(0, 0, Math.random)).toEqual([]);
+  });
+});
+
+describe('insertNext («Играть следующим»)', () => {
+  const t = (id: string) => ({ id });
+  const ids = (q: { id: string }[]) => q.map((x) => x.id).join('');
+
+  it('без перемешивания — сразу за текущим', () => {
+    const r = insertNext({ queue: [t('a'), t('b'), t('c')], index: 0, order: [], shuffle: false }, t('x'))!;
+    expect(ids(r.queue)).toBe('axbc');
+    expect(r.index).toBe(0);
+  });
+
+  it('уже в будущей части — переезжает тем же объектом, без повтора', () => {
+    const c = t('c');
+    const r = insertNext({ queue: [t('a'), t('b'), c, t('d')], index: 0, order: [], shuffle: false }, t('c'))!;
+    expect(ids(r.queue)).toBe('acbd');
+    expect(r.queue[1]).toBe(c);
+  });
+
+  it('уже сыгранный — ставится ещё раз; текущий или уже следующий — ничего не меняется', () => {
+    const r = insertNext({ queue: [t('a'), t('b'), t('c')], index: 1, order: [], shuffle: false }, t('a'))!;
+    expect(ids(r.queue)).toBe('abac');
+    expect(r.index).toBe(1);
+    expect(insertNext({ queue: [t('a'), t('b')], index: 0, order: [], shuffle: false }, t('a'))).toBeNull();
+    expect(insertNext({ queue: [t('a'), t('b')], index: 0, order: [], shuffle: false }, t('b'))).toBeNull();
+  });
+
+  it('с перемешиванием — следующим по порядку проигрывания', () => {
+    const queue = [t('a'), t('b'), t('c'), t('d')];
+    const r = insertNext({ queue, index: 2, order: [2, 0, 3, 1], shuffle: true }, t('x'))!;
+    const play = r.order.map((i) => r.queue[i].id).join('');
+    expect(play).toBe('cxadb');
+    expect(r.queue[r.index].id).toBe('c');
+    expect(nextIndex({ length: r.queue.length, index: r.index, repeat: 'off', shuffle: true, order: r.order })).toBe(r.order[1]);
+  });
+
+  it('две копии трека в очереди — переезжает та строка, по которой кликнули (по индексу), а не первая', () => {
+    const c1 = t('c');
+    const c2 = t('c');
+    const queue = [t('a'), t('b'), c1, t('d'), c2, t('e')];
+    const r = insertNext({ queue, index: 0, order: [], shuffle: false }, c2, 4)!;
+    expect(ids(r.queue)).toBe('acbcde');
+    expect(r.queue[1]).toBe(c2);
+    expect(r.queue[3]).toBe(c1);
+    // Строка уже следующая — менять нечего; сыгранная копия — ставится ещё раз.
+    expect(insertNext({ queue: [t('a'), c1, c2], index: 0, order: [], shuffle: false }, c1, 1)).toBeNull();
+    const played = insertNext({ queue: [c1, t('b'), t('x'), c2], index: 1, order: [], shuffle: false }, c1, 0)!;
+    expect(ids(played.queue)).toBe('cbcxc');
+  });
+
+  it('с перемешиванием — переезд будущего трека', () => {
+    const queue = [t('a'), t('b'), t('c'), t('d')];
+    const r = insertNext({ queue, index: 2, order: [2, 0, 3, 1], shuffle: true }, t('b'))!;
+    expect(r.order.map((i) => r.queue[i].id).join('')).toBe('cbad');
+    expect(r.queue).toHaveLength(4);
+    expect(r.queue[r.index].id).toBe('c');
   });
 });

@@ -5,7 +5,7 @@
 import { create } from 'zustand';
 import { isBlocked } from '../../shared/blacklist';
 import { isRetiredTrack } from '../../shared/library';
-import { nextIndex, prevIndex, shuffleOrder, type QueueState } from '../../shared/queue';
+import { insertNext, nextIndex, prevIndex, shuffleOrder, type QueueState } from '../../shared/queue';
 import { CATALOG_NEEDS_YOUTUBE_MESSAGE, type RepeatMode, type SourceId, type Track } from '../../shared/types';
 import { errorMessage } from '../app/errors';
 import { audioEngine } from '../audioEngine';
@@ -78,6 +78,16 @@ export interface PlayerState {
   appendTracks(tracks: Track[]): void;
   /** Убрать из ещё не сыгранной части очереди треки, подходящие под условие (волна: «Не нравится»). */
   removeUpcoming(match: (track: Track) => boolean): void;
+  /**
+   * «Играть следующим»: трек встаёт сразу за текущим (и при перемешивании). Уже стоит в будущей части очереди —
+   * переезжает, а не повторяется; owIndex — строка очереди, по которой кликнули (переезжает именно она). Волну не выключает.
+   */
+  playNext(track: Track, rowIndex?: number): void;
+  /**
+   * Текущий трек скрыли («Не нравится»): следующий не скрытый; его нет — продолжение (волна дописывает),
+   * а нет и его — стоп: скрытый трек не доигрывает.
+   */
+  leaveCurrent(): void;
   /**
    * Подписка на уход с трека: текущий трек перестал быть текущим (или доиграл — в том числе при повторе одного).
    * Возвращает отписку.
@@ -575,6 +585,36 @@ export const usePlayer = create<PlayerState>((set, get) => {
       });
       const order = s.order.length === s.queue.length ? s.order.filter((i) => !drop.has(i)).map((i) => newIndex[i]) : s.order;
       set({ queue, order, index: newIndex[s.index] });
+    },
+
+    playNext(track, rowIndex) {
+      const s = get();
+      if (s.index < 0 || !s.queue[s.index]) {
+        get().playList([track], 0);
+        return;
+      }
+      const next = insertNext({ queue: s.queue, index: s.index, order: s.order, shuffle: s.shuffle }, track, rowIndex);
+      if (!next) return;
+      set(next);
+    },
+
+    leaveCurrent() {
+      const s = get();
+      const n = nextPlayable(s, true);
+      if (n !== null && n !== s.index) {
+        failuresInRow = 0;
+        startTrack(n, { autoplay: true, cause: 'user' });
+        return;
+      }
+      pendingCause = 'user';
+      if (waitForMore()) return;
+      // Продолжения нет: скрытый трек замолкает (тост «Трек скрыт» с «Вернуть» остаётся).
+      pendingCause = 'replace';
+      wantPlay = false;
+      awaitingMore = false;
+      clearLoadTimer();
+      audioEngine.pause();
+      set({ isPlaying: false, isLoading: false });
     },
 
     onTrackLeave(cb) {

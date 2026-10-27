@@ -47,7 +47,18 @@ export interface ChartsServiceDeps {
   intervalMs?: number;
   /** Лента артистов — по тому же расписанию. */
   feed?: ArtistFeedDeps;
+  /** Сборка ленты дольше этого — сбой (по умолчанию `FEED_BUILD_TIMEOUT_MS`). */
+  feedTimeoutMs?: number;
+  /** Сбой сборки ленты — повтор через столько (по умолчанию `FEED_RETRY_MS`). */
+  feedRetryMs?: number;
 }
+
+/** Сборка ленты не держит следующие пересборки дольше этого: каждый её шаг со своим сроком, а это — общий. */
+export const FEED_BUILD_TIMEOUT_MS = 12 * 60_000;
+/** Сборка ленты сорвалась — сама повторяется через столько (не через 6 часов), подряд — не больше `FEED_RETRIES`. */
+export const FEED_RETRY_MS = 2 * 60_000;
+export const FEED_RETRIES = 3;
+export const FEED_TIMEOUT_MESSAGE = 'Лента собиралась слишком долго';
 
 const isObject = (v: unknown): v is Record<string, unknown> => typeof v === 'object' && v !== null && !Array.isArray(v);
 const nonEmpty = (v: unknown): v is string => typeof v === 'string' && v.trim().length > 0;
@@ -146,20 +157,30 @@ export function createChartsService(deps: ChartsServiceDeps): ChartsService {
     error,
   });
 
-  async function doRefresh(): Promise<ChartsSnapshot> {
-    await ensureLoaded();
-    deps.emit(current());
+  /** Рассылка снимка не должна обрывать обновление (иначе `inflight` остался бы навсегда). */
+  const safeEmit = (emit: (s: never) => void, s: unknown) => {
     try {
+      (emit as (s: unknown) => void)(s);
+    } catch {
+      // окно закрылось посреди рассылки — снимок получит следующее
+    }
+  };
+
+  async function doRefresh(): Promise<ChartsSnapshot> {
+    try {
+      await ensureLoaded();
+      safeEmit(deps.emit, current());
       const { chart, country } = await deps.load();
       cache = { version: 1, updatedAt: now(), chart, ...(country ? { country } : {}) };
       error = null;
       await deps.write(cache).catch(() => undefined);
     } catch (err) {
       error = toError(err);
+    } finally {
+      inflight = null;
     }
-    inflight = null;
     const snap = current();
-    deps.emit(snap);
+    safeEmit(deps.emit, snap);
     return snap;
   }
 
@@ -177,6 +198,8 @@ export function createChartsService(deps: ChartsServiceDeps): ChartsService {
   let feedInflight: Promise<ArtistFeedSnapshot> | null = null;
   let feedAgain: Promise<ArtistFeedSnapshot> | null = null;
   let feedError: ArtistFeedSnapshot['error'] = null;
+  /** Номер сборки: релизы подписок от брошенной (зависшей) сборки не показываются. */
+  let feedGeneration = 0;
 
   const ensureFeedLoaded = () =>
     (feedLoaded ??= (feed ? feed.read() : Promise.resolve(null))
@@ -194,39 +217,80 @@ export function createChartsService(deps: ChartsServiceDeps): ChartsService {
     error: feedError,
   });
 
+  const feedTimeoutMs = deps.feedTimeoutMs ?? FEED_BUILD_TIMEOUT_MS;
+  const feedRetryMs = deps.feedRetryMs ?? FEED_RETRY_MS;
+  let feedRetryTimer: ReturnType<typeof setTimeout> | null = null;
+  let feedFailures = 0;
+
+  /**
+   * Одна сборка ленты. Что бы ни случилось — сбой, зависший шаг, ошибка рассылки — `feedInflight` снимается:
+   * иначе все следующие пересборки (подписка, «Обновить», расписание) ждали бы за ней вечно.
+   */
   async function doRefreshFeed(): Promise<ArtistFeedSnapshot> {
-    await ensureFeedLoaded();
-    if (!feed) {
-      feedInflight = null;
-      return currentFeed();
-    }
-    feed.emit(currentFeed());
     try {
-      const data = await feed.load((followed) => {
+      await ensureFeedLoaded();
+      if (!feed) return currentFeed();
+      const generation = ++feedGeneration;
+      safeEmit(feed.emit, currentFeed());
+      const load = feed.load((followed) => {
+        if (generation !== feedGeneration) return;
         feedPartial = followed;
-        feed.emit(currentFeed());
+        safeEmit(feed.emit, currentFeed());
       });
+      let deadlineTimer: ReturnType<typeof setTimeout> | undefined;
+      const deadline = new Promise<never>((_, reject) => {
+        deadlineTimer = setTimeout(() => reject(new SourceError('unavailable', FEED_TIMEOUT_MESSAGE)), feedTimeoutMs);
+      });
+      const data = await Promise.race([load, deadline]).finally(() => clearTimeout(deadlineTimer));
       feedCache = { version: 1, updatedAt: now(), followed: data.followed, similar: data.similar, followedIds: data.followedIds };
       feedError = null;
+      feedFailures = 0;
       await feed.write(feedCache).catch(() => undefined);
     } catch (err) {
       feedError = toError(err);
+      scheduleFeedRetry();
+    } finally {
+      // Зависшая сборка дорабатывает в фоне, но её «релизы подписок» уже не показываются.
+      feedGeneration++;
+      feedPartial = null;
+      feedInflight = null;
     }
-    feedPartial = null;
-    feedInflight = null;
     const snap = currentFeed();
-    feed.emit(snap);
+    if (feed) safeEmit(feed.emit, snap);
     return snap;
   }
 
-  function refreshFeed(): Promise<ArtistFeedSnapshot> {
+  /** Сбой — ещё попытка через пару минут (подряд — не больше `FEED_RETRIES`), пока сервис запущен. */
+  function scheduleFeedRetry(): void {
+    if (!timer || feedRetryTimer || ++feedFailures > FEED_RETRIES) return;
+    feedRetryTimer = setTimeout(() => {
+      feedRetryTimer = null;
+      void runFeed();
+    }, feedRetryMs);
+  }
+
+  /** Сборка (или ещё один проход после идущей). Автоповтор зовёт её напрямую — его серия сбоев продолжается. */
+  function runFeed(): Promise<ArtistFeedSnapshot> {
+    if (feedRetryTimer) {
+      clearTimeout(feedRetryTimer);
+      feedRetryTimer = null;
+    }
     if (!feedInflight) return (feedInflight = doRefreshFeed());
     // Уже собирается — по старым подпискам. Ещё один проход после текущего (один на все такие вызовы).
     feedAgain ??= feedInflight.then(() => {
       feedAgain = null;
-      return refreshFeed();
+      return runFeed();
     });
     return feedAgain;
+  }
+
+  /**
+   * Сборка по просьбе: «Повторить»/«Обновить», смена подписок, расписание. Это новая серия — лимит автоповторов
+   * (`FEED_RETRIES`) считается заново: прошлые сбои процесса его не исчерпывают.
+   */
+  function refreshFeed(): Promise<ArtistFeedSnapshot> {
+    feedFailures = 0;
+    return runFeed();
   }
 
   return {
@@ -259,6 +323,8 @@ export function createChartsService(deps: ChartsServiceDeps): ChartsService {
     stop() {
       if (timer) clearInterval(timer);
       timer = null;
+      if (feedRetryTimer) clearTimeout(feedRetryTimer);
+      feedRetryTimer = null;
     },
   };
 }

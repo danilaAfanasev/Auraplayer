@@ -2,7 +2,7 @@
 import { ChevronRight, LoaderCircle, RefreshCw, Sparkles, UserRoundCheck, WifiOff, type LucideIcon } from 'lucide-react';
 import { useMemo, type ReactNode } from 'react';
 import { timeAgo } from '../../../shared/format';
-import { IconButton } from '../../components/Button/Button';
+import { Button, IconButton } from '../../components/Button/Button';
 import { useNow } from '../../components/useNow';
 import { useBlacklist } from '../../stores/blacklistActions';
 import { useFeed, useFeedInit } from '../../stores/useFeed';
@@ -11,7 +11,7 @@ import { useUi, type ScreenName } from '../../stores/useUi';
 import { ReleaseGrid } from '../artist/ReleaseGrid';
 import styles from './CatalogBlocks.module.css';
 import feedStyles from './FeedBlocks.module.css';
-import { visibleFeed, type FeedView } from './feedView';
+import { feedBlockState, isFeedOutdated, visibleFeed, type FeedBlockState, type FeedView } from './feedView';
 
 /** Лента без отписанных и без чёрного списка (до пересборки в main): скрыл — пропадает сразу, пока главная открыта. */
 export function useFeedView(): FeedView {
@@ -91,13 +91,40 @@ function SkeletonCards() {
   );
 }
 
-/** «Новое от моих артистов»: релизы подписок за ~90 дней, новые сверху. */
-export function FollowedFeedBlock({ limit, linkTitle = true }: { limit?: number; linkTitle?: boolean }) {
+/** Состояние блока ленты: сбой и лента по старым подпискам — не «ничего не выходило». */
+function useFeedBlockState(count: number): FeedBlockState {
+  const loading = useFeed((s) => s.loading);
+  const refreshing = useFeed((s) => s.refreshing);
+  const error = useFeed((s) => s.error);
+  const builtFor = useFeed((s) => s.followedIds);
+  const artists = useLibrary((s) => s.lib.followedArtists);
+  const outdated = useMemo(() => isFeedOutdated(builtFor, artists.map((a) => a.id)), [builtFor, artists]);
+  return feedBlockState({ count, loading, refreshing, error, outdated });
+}
+
+/** «Собираю…», «Нет соединения» или «Не удалось обновить ленту» — с «Повторить». */
+function FeedNotice({ state }: { state: Exclude<FeedBlockState, 'items' | 'empty'> }) {
+  const refresh = useFeed((s) => s.refresh);
+  const message = useFeed((s) => s.error?.message);
+  if (state === 'loading') return <SkeletonCards />;
+  return (
+    <Placeholder>
+      <WifiOff size={18} />
+      <span title={message}>
+        {state === 'offline' ? 'Нет соединения — лента обновится, когда вернётся интернет' : 'Не удалось обновить ленту'}
+      </span>
+      <Button variant="outline" icon={RefreshCw} onClick={() => void refresh()}>
+        Повторить
+      </Button>
+    </Placeholder>
+  );
+}
+
+/** «Новое от моих артистов»: релизы подписок за ~90 дней, новые сверху. */export function FollowedFeedBlock({ limit, linkTitle = true }: { limit?: number; linkTitle?: boolean }) {
   useFeedInit();
   const { followed } = useFeedView();
-  const loading = useFeed((s) => s.loading || (s.refreshing && s.updatedAt === null));
-  const error = useFeed((s) => s.error);
   const items = limit ? followed.slice(0, limit) : followed;
+  const state = useFeedBlockState(items.length);
 
   return (
     <section className={styles.block}>
@@ -108,19 +135,14 @@ export function FollowedFeedBlock({ limit, linkTitle = true }: { limit?: number;
         target={linkTitle ? 'following' : undefined}
         aside={<FeedStatus />}
       />
-      {items.length > 0 ? (
+      {state === 'items' ? (
         <ReleaseGrid releases={items} />
-      ) : loading ? (
-        <SkeletonCards />
-      ) : error?.kind === 'offline' ? (
-        <Placeholder>
-          <WifiOff size={18} />
-          <span>Нет соединения — лента появится, когда вернётся интернет</span>
-        </Placeholder>
-      ) : (
+      ) : state === 'empty' ? (
         <Placeholder>
           <span>У твоих артистов за последние месяцы ничего не выходило — загляни позже или подпишись на кого-нибудь ещё.</span>
         </Placeholder>
+      ) : (
+        <FeedNotice state={state} />
       )}
     </section>
   );
@@ -130,14 +152,15 @@ export function FollowedFeedBlock({ limit, linkTitle = true }: { limit?: number;
 export function SimilarFeedBlock({ limit }: { limit?: number }) {
   useFeedInit();
   const { similar } = useFeedView();
-  const refreshing = useFeed((s) => s.refreshing);
   const items = limit ? similar.slice(0, limit) : similar;
-  if (items.length === 0 && !refreshing) return null;
+  const state = useFeedBlockState(items.length);
+  // Пусто без сбоя — блока нет (у похожих правда ничего свежего); сбой и сборка — видны.
+  if (state === 'empty') return null;
 
   return (
     <section className={styles.block}>
       <BlockHeader icon={Sparkles} title="Свежее от похожих" subtitle="Новые релизы артистов того же круга за последние два месяца" />
-      {items.length > 0 ? <ReleaseGrid releases={items} /> : <SkeletonCards />}
+      {state === 'items' ? <ReleaseGrid releases={items} /> : <FeedNotice state={state} />}
     </section>
   );
 }

@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { create } from 'zustand';
 import type { ArtistFeedSnapshot } from '../../shared/api';
 import { errorMessage } from '../app/errors';
+import { isFeedOutdated } from '../screens/home/feedView';
 import { flushLibrary, useLibrary } from './useLibrary';
 import { useUi } from './useUi';
 
@@ -39,12 +40,8 @@ export const useFeed = create<FeedState>((set) => ({
 let started = false;
 let timer: ReturnType<typeof setTimeout> | null = null;
 
-const followKey = () =>
-  useLibrary
-    .getState()
-    .lib.followedArtists.map((a) => a.id)
-    .sort()
-    .join(',');
+const currentFollowIds = () => useLibrary.getState().lib.followedArtists.map((a) => a.id);
+const followKey = () => currentFollowIds().sort().join(',');
 
 /** Подписка на снимки main, первый запрос и пересборка ленты при смене подписок; повторные вызовы ничего не делают. */
 export function initFeed(): void {
@@ -53,7 +50,11 @@ export function initFeed(): void {
   window.aura.artists.onFeed((snap) => useFeed.setState({ ...snap, loading: false }));
   window.aura.artists
     .feed()
-    .then((snap) => useFeed.setState({ ...snap, loading: false }))
+    .then((snap) => {
+      useFeed.setState({ ...snap, loading: false });
+      // Сохранённая лента собрана по другим подпискам (прошлая пересборка сорвалась) — собрать заново сейчас.
+      if (!snap.refreshing && isFeedOutdated(snap.followedIds, currentFollowIds())) void useFeed.getState().refresh();
+    })
     .catch(() => useFeed.setState({ loading: false }));
 
   let key = followKey();

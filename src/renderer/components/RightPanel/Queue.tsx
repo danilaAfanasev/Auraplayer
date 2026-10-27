@@ -1,12 +1,11 @@
-import { ListMusic, Music, ThumbsDown, X } from 'lucide-react';
+import { ListMusic, Music } from 'lucide-react';
 import { memo, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { formatDuration } from '../../../shared/format';
-import type { Track } from '../../../shared/types';
-import { dislikeTrack } from '../../stores/blacklistActions';
 import { usePlayer } from '../../stores/usePlayer';
 import { useWave } from '../../stores/useWave';
 import { ArtistLinks } from '../ArtistLinks/ArtistLinks';
 import { EmptyState } from '../EmptyState/EmptyState';
+import { openTrackMenu, openTrackMenuByKey } from '../TrackMenu/TrackMenu';
 import { queueView, rowWindow, type QueueRow } from './queueView';
 import styles from './RightPanel.module.css';
 
@@ -17,19 +16,10 @@ const WINDOW_STEP = 40;
 /** Сколько строк добавляет кнопка «показать ещё». */
 const EXPAND_ROWS = 100;
 
-/** «Убрать из очереди»: именно этот будущий трек (одинаковые объекты — по одному за раз). Волну не выключает. */
-function removeFromQueue(track: Track): void {
-  let done = false;
-  usePlayer.getState().removeUpcoming((t) => {
-    if (done || t !== track) return false;
-    done = true;
-    return true;
-  });
-}
-
 const QueueItem = memo(function QueueItem({ row }: { row: QueueRow }) {
   const { track, index, state } = row;
   const duration = track.durationSec ? formatDuration(track.durationSec) : '';
+  const extra = { upcoming: state === 'next', current: state === 'current', queueIndex: index };
   return (
     <li
       className={[styles.queueRow, styles[`queue_${state}`]].join(' ')}
@@ -41,9 +31,14 @@ const QueueItem = memo(function QueueItem({ row }: { row: QueueRow }) {
         tabIndex={0}
         className={styles.queueMain}
         title={`Играть «${track.title}»`}
+        aria-haspopup="menu"
         onClick={() => usePlayer.getState().playAt(index)}
+        // Правый клик, клавиша меню, Shift+F10 — меню трека («Не нравится», «Убрать из очереди»…).
+        onContextMenu={(e) => openTrackMenu(e, track, 'queue', extra)}
         onKeyDown={(e) => {
-          if (e.target !== e.currentTarget || (e.key !== 'Enter' && e.key !== ' ')) return;
+          if (e.target !== e.currentTarget) return;
+          if (openTrackMenuByKey(e, track, 'queue', extra)) return;
+          if (e.key !== 'Enter' && e.key !== ' ') return;
           e.preventDefault();
           usePlayer.getState().playAt(index);
         }}
@@ -57,28 +52,6 @@ const QueueItem = memo(function QueueItem({ row }: { row: QueueRow }) {
         </span>
         {duration && <span className={styles.queueTime}>{duration}</span>}
       </div>
-      <span className={styles.queueActions}>
-        <button
-          type="button"
-          className={styles.queueAction}
-          title="Не нравится — скрыть этот трек"
-          aria-label={`Не нравится: «${track.title}»`}
-          onClick={() => dislikeTrack(track)}
-        >
-          <ThumbsDown size={14} />
-        </button>
-        {state === 'next' && (
-          <button
-            type="button"
-            className={styles.queueAction}
-            title="Убрать из очереди"
-            aria-label={`Убрать из очереди: «${track.title}»`}
-            onClick={() => removeFromQueue(track)}
-          >
-            <X size={15} />
-          </button>
-        )}
-      </span>
     </li>
   );
 });

@@ -4,8 +4,10 @@
 // Модуль не импортирует electron; кэш id артистов — artists-cache.json в userData.
 import { CATALOG_ARTIST_NOT_FOUND, type ArtistQuery } from '../../shared/api';
 import { artistKey, splitArtists } from '../../shared/artistNames';
+import { ARTIST_CARDS, matchesArtistQuery, rankArtistCards, type OwnArtist } from '../../shared/artistSearch';
 import type {
   AlbumPage,
+  ArtistCard,
   ArtistPage,
   ArtistRef,
   ArtistRelease,
@@ -53,7 +55,7 @@ const PAGE_SIMILAR_LIMIT = 12;
 const TOP_TRACKS = 10;
 /** Меньше — популярные добираются свежими песнями артиста. */
 const TOP_TRACKS_MIN = 8;
-const SEARCH_CARDS = 3;
+const SEARCH_CARDS = ARTIST_CARDS;
 const LOOKUP_CHUNK = 10;
 const LOOKUP_LIMIT = 200;
 const LOOKUP_TIMEOUT_MS = 25_000;
@@ -76,7 +78,6 @@ const str = (v: unknown): string => (typeof v === 'string' ? v.trim() : '');
 const idStr = (v: unknown): string => (typeof v === 'number' && Number.isFinite(v) ? String(v) : /^\d+$/.test(str(v)) ? str(v) : '');
 const num = (v: unknown): number => (typeof v === 'number' && Number.isFinite(v) ? v : 0);
 const dateOnly = (v: unknown): string => /^(\d{4}-\d{2}-\d{2})/.exec(str(v))?.[1] ?? '';
-const hasPhrase = (text: string, phrase: string): boolean => !!phrase && ` ${text} `.includes(` ${phrase} `);
 const results = (json: unknown): unknown[] => (isObject(json) && Array.isArray(json.results) ? json.results : []);
 
 // ---------- Разбор ответов каталога ----------
@@ -107,29 +108,6 @@ function toCatalogArtist(r: unknown): CatalogArtist | null {
   const a: CatalogArtist = { id, name };
   if (str(r.primaryGenreName)) a.genre = str(r.primaryGenreName);
   return a;
-}
-
-/**
- * Карточки артистов над результатами поиска: имя совпадает с запросом или содержит его целиком
- * (на «juice wrld» — не «Juice»); тёзки с тем же именем — одна карточка (первая — самая известная у каталога).
- * Есть точное совпадение — только оно.
- */
-export function pickArtistCards(artists: CatalogArtist[], query: string, max = SEARCH_CARDS): CatalogArtist[] {
-  const q = normalizeText(query);
-  if (!q) return [];
-  const exact: CatalogArtist[] = [];
-  const partial: CatalogArtist[] = [];
-  const seen = new Set<string>();
-  for (const a of artists) {
-    const n = normalizeText(a.name);
-    if (!n || seen.has(n)) continue;
-    if (n === q) exact.push(a);
-    else if (hasPhrase(n, q) || n.startsWith(q)) partial.push(a);
-    else continue;
-    seen.add(n);
-  }
-  // Есть артист ровно с этим именем — однофамильцы («Felipe Saluki» на «SALUKI») только мешают.
-  return (exact.length > 0 ? exact : partial).slice(0, max);
 }
 
 /** Релиз (коллекция) из lookup `entity=album`. */
@@ -462,10 +440,85 @@ export interface ArtistsServiceDeps {
   limiter?: RateLimiter;
   /** Страна каталога (по умолчанию — из настроек). */
   country?: () => CountryCode;
+  /** Сроки шагов сборки ленты (тесты задают короткие). */
+  feedTimeouts?: Partial<FeedTimeouts>;
 }
 
+/** Сроки шагов сборки ленты: ни один шаг не держит её дольше своего срока. */
+export interface FeedTimeouts {
+  /** Релизы подписок (запросы ждут своей очереди у ограничителя каталога). */
+  followedMs: number;
+  /** Похожие одной подписки (поиск артиста и его похожих в открытом API). */
+  relatedMs: number;
+  /** Все поиски id похожих в каталоге (фон — 15 запросов в минуту): не успели — берём найденное. */
+  idsBudgetMs: number;
+  /** Релизы похожих. */
+  similarMs: number;
+}
+
+export const FEED_TIMEOUTS: FeedTimeouts = {
+  followedMs: 3 * 60_000,
+  relatedMs: 40_000,
+  idsBudgetMs: 4 * 60_000,
+  similarMs: 2 * 60_000,
+};
+
+/** Сколько подписок спрашивают похожих разом. */
+const RELATED_AT_ONCE = 5;
+
+/** Обещание с отказом по сроку: шаг ленты не должен висеть вечно (сам запрос дорабатывает в фоне). */
+export function withTimeout<T>(promise: Promise<T>, ms: number, message: string): Promise<T> {
+  return new Promise<T>((resolve, reject) => {
+    const timer = setTimeout(() => reject(new SourceError('unavailable', message)), ms);
+    promise.then(
+      (v) => {
+        clearTimeout(timer);
+        resolve(v);
+      },
+      (err: unknown) => {
+        clearTimeout(timer);
+        reject(err);
+      },
+    );
+  });
+}
+
+/**
+ * Поровну на каждую подписку: по кругу — первый похожий каждой, затем второй… Не больше `perEach` на подписку и
+ * `max` всего. Списки — в порядке подписок (свежие первыми), дубли (тот же ключ) берутся один раз.
+ */
+export function roundRobin<T>(lists: readonly (readonly T[])[], key: (item: T) => string, perEach: number, max: number): T[] {
+  const out: T[] = [];
+  const seen = new Set<string>();
+  const pos = lists.map(() => 0);
+  const taken = lists.map(() => 0);
+  for (let progress = true; progress && out.length < max; ) {
+    progress = false;
+    for (let i = 0; i < lists.length && out.length < max; i++) {
+      if (taken[i] >= perEach) continue;
+      const list = lists[i];
+      while (pos[i] < list.length) {
+        const item = list[pos[i]++];
+        const k = key(item);
+        if (!k || seen.has(k)) continue;
+        seen.add(k);
+        out.push(item);
+        taken[i]++;
+        progress = true;
+        break;
+      }
+    }
+  }
+  return out;
+}
+
+/** Похожих на одну подписку: поровну между всеми, но не больше `SIMILAR_PER_FOLLOWED`. */
+export const similarPerFollowed = (followedCount: number): number =>
+  Math.max(1, Math.min(SIMILAR_PER_FOLLOWED, Math.ceil(SIMILAR_MAX_ARTISTS / Math.max(1, followedCount))));
+
 export interface ArtistsService {
-  search(query: string): Promise<ArtistRef[]>;
+  /** Карточки артистов поиска; own — свои артисты пользователя (идут первыми). */
+  search(query: string, own?: readonly OwnArtist[]): Promise<ArtistCard[]>;
   page(query: ArtistQuery): Promise<ArtistPage>;
   release(releaseId: string): Promise<Track[]>;
   /** Страница альбома — тот же lookup, что у `release`, с метаданными из обёртки коллекции. */
@@ -520,7 +573,9 @@ const topSongsUrl = (name: string, country: string) =>
 const songsUrl = (id: string, country: string) => `${ITUNES_BASE}/lookup?id=${id}&entity=song&limit=100&sort=recent&country=${country}`;
 const releaseUrl = (id: string, country: string) => `${ITUNES_BASE}/lookup?id=${id}&entity=song&country=${country}`;
 const popularUrl = (country: CountryCode) => `${appleRssBase(country)}/songs.json`;
-const deezerSearchUrl =(name: string) => `${DEEZER_BASE}/search/artist?q=${enc(name)}&limit=10`;
+const deezerSearchUrl = (name: string) => `${DEEZER_BASE}/search/artist?q=${enc(name)}&limit=10`;
+/** Поиск артистов по запросу — нечёткий: совпадение проверяет `matchesArtistQuery`. */
+const deezerQueryUrl = (query: string) => `${DEEZER_BASE}/search/artist?q=${enc(query)}&limit=25`;
 const deezerRelatedUrl = (id: string) => `${DEEZER_BASE}/artist/${id}/related?limit=20`;
 
 const isOffline = (err: unknown) => err instanceof SourceError && err.kind === 'offline';
@@ -534,6 +589,7 @@ export function createArtistsService(deps: ArtistsServiceDeps = {}): ArtistsServ
   const now = deps.now ?? Date.now;
   const limiter = deps.limiter ?? catalogLimiter;
   const countries = (): CountryCode[] => countriesOf((deps.country ?? currentCountry)());
+  const feedTimeouts: FeedTimeouts = { ...FEED_TIMEOUTS, ...deps.feedTimeouts };
 
   let cache: Promise<ArtistsCache> | null = null;
   let dirty = false;
@@ -647,18 +703,43 @@ export function createArtistsService(deps: ArtistsServiceDeps = {}): ArtistsServ
     return null;
   }
 
-  async function search(query: string): Promise<ArtistRef[]> {
+  /** Артисты каталога по запросу: своя страна, ничего подходящего — зарубежный каталог. */
+  async function catalogArtistsFor(q: string): Promise<CatalogArtist[]> {
+    let list: CatalogArtist[] = [];
+    for (const country of countries()) {
+      list = parseItunesArtists(await get(artistSearchUrl(q, country)));
+      if (list.some((a) => matchesArtistQuery(a.name, q))) break;
+    }
+    return list;
+  }
+
+  /**
+   * Карточки артистов: свои (`own`) первыми, затем по популярности (фанаты в открытом API), остальные — ниже;
+   * каталог и открытый API вместе, без дублей. У карточки без id каталога страница найдётся по имени при клике.
+   * Не ответил ни каталог, ни открытый API — ошибка (первая).
+   */
+  async function search(query: string, own: readonly OwnArtist[] = []): Promise<ArtistCard[]> {
     const q = query.trim();
     if (!q) return [];
-    let cards: CatalogArtist[] = [];
-    for (const country of countries()) {
-      cards = pickArtistCards(parseItunesArtists(await get(artistSearchUrl(q, country))), q);
-      if (cards.length > 0) break;
-    }
+    const [catalogRes, popularRes] = await Promise.allSettled([catalogArtistsFor(q), get(deezerQueryUrl(q)).then(parseDeezerArtists)]);
+    if (catalogRes.status === 'rejected' && popularRes.status === 'rejected') throw catalogRes.reason;
+    const c = await loadCache();
+    const knownIds = new Map<string, string>();
+    for (const [key, e] of c.catalog) if (e.id && fresh(e) && (!e.name || artistKey(e.name) === key)) knownIds.set(key, e.id);
+    const cards = rankArtistCards({
+      query: q,
+      own,
+      catalog: catalogRes.status === 'fulfilled' ? catalogRes.value : [],
+      popular:
+        popularRes.status === 'fulfilled' ? popularRes.value.map((a) => ({ name: a.name, fans: a.fans, ...(a.imageUrl ? { imageUrl: a.imageUrl } : {}) })) : [],
+      knownIds,
+      max: SEARCH_CARDS,
+    });
     const withPictures = await Promise.all(
-      cards.map(async ({ id, name }) => {
-        const imageUrl = await pictureOf(name);
-        return imageUrl ? { id, name, imageUrl } : { id, name };
+      cards.map(async (card) => {
+        if (card.imageUrl) return card;
+        const imageUrl = await pictureOf(card.name);
+        return imageUrl ? { ...card, imageUrl } : card;
       }),
     );
     await saveCache();
@@ -760,9 +841,10 @@ export function createArtistsService(deps: ArtistsServiceDeps = {}): ArtistsServ
    * id похожих артистов в каталоге по именам (кэш). Фоновые запросы ждут своей очереди в ограничителе частоты;
    * не нашёлся один — следующий; каталог перестал отвечать совсем — берём то, что нашлось.
    */
-  async function catalogIds(names: { name: string; genre?: string }[]): Promise<Map<string, string>> {
+  async function catalogIds(names: { name: string; genre?: string }[], budgetMs = Infinity): Promise<Map<string, string>> {
     const c = await loadCache();
     const out = new Map<string, string>();
+    const deadline = Date.now() + budgetMs;
     let failuresInRow = 0;
     for (const { name, genre } of names) {
       const key = normalizeText(name);
@@ -772,13 +854,16 @@ export function createArtistsService(deps: ArtistsServiceDeps = {}): ArtistsServ
         if (known.id) out.set(key, known.id);
         continue;
       }
+      // Срок вышел — остальные спросит следующая сборка (найденные уже в кэше).
+      const left = deadline - Date.now();
+      if (left <= 0) break;
       let found: CatalogArtist | null;
       try {
-        found = await catalogArtistByName(name, genre, countries().slice(0, 1), 'background');
+        found = await withTimeout(catalogArtistByName(name, genre, countries().slice(0, 1), 'background'), left, 'Каталог не ответил вовремя');
         failuresInRow = 0;
       } catch (err) {
         if (isOffline(err)) throw err;
-        if (++failuresInRow >= CATALOG_FAILURES_IN_ROW) break;
+        if (Date.now() >= deadline || ++failuresInRow >= CATALOG_FAILURES_IN_ROW) break;
         continue; // не запоминаем: следующая сборка спросит снова
       }
       c.catalog.set(key, found ? { id: found.id, name: found.name, at: now() } : { id: null, at: now() });
@@ -797,7 +882,7 @@ export function createArtistsService(deps: ArtistsServiceDeps = {}): ArtistsServ
     const similarSince = sinceDate(t, FEED_SIMILAR_DAYS);
 
     // 1. Релизы подписок.
-    const groups = await albumsOf(followedIds, 'background');
+    const groups = await withTimeout(albumsOf(followedIds, 'background'), feedTimeouts.followedMs, 'Каталог не отдал релизы подписок вовремя');
     const followedReleases: ArtistRelease[] = [];
     const taken = new Set<string>();
     const genres = new Map<string, string | undefined>();
@@ -818,43 +903,50 @@ export function createArtistsService(deps: ArtistsServiceDeps = {}): ArtistsServ
     const followedFeed = followedReleases.sort(byDate).slice(0, FEED_FOLLOWED_LIMIT);
     onFollowed?.(followedFeed);
 
-    // 2. Похожие на подписки (сами подписки исключены): не больше 5 на подписку и 40 всего.
+    // 2. Похожие на подписки (сами подписки исключены): поровну на каждую подписку (свежие подписки — первыми,
+    // лимит их не отрезает), не больше 5 на подписку и 40 всего.
     const followedNames = new Set(followed.map((a) => normalizeText(a.name)));
-    const candidates: { name: string; genre?: string; to: ArtistRef }[] = [];
-    const picked = new Set<string>();
-    for (const a of followed) {
-      if (candidates.length >= SIMILAR_MAX_ARTISTS) break;
-      let list: DeezerArtist[] = [];
-      try {
-        const dz = await deezerArtist(a.name);
-        if (dz?.id) list = await relatedOf(dz.id);
-      } catch (err) {
-        if (isOffline(err)) throw err;
-        continue;
-      }
-      let n = 0;
-      for (const s of list) {
-        const key = normalizeText(s.name);
-        if (!key || followedNames.has(key) || picked.has(key)) continue;
-        picked.add(key);
-        candidates.push({ name: s.name, genre: genres.get(a.id), to: { id: a.id, name: a.name } });
-        if (++n >= SIMILAR_PER_FOLLOWED || candidates.length >= SIMILAR_MAX_ARTISTS) break;
-      }
+    const order = [...followed].sort((a, b) => (b.followedAt ?? 0) - (a.followedAt ?? 0)).slice(0, SIMILAR_MAX_ARTISTS);
+    type Candidate = { name: string; genre?: string; to: ArtistRef };
+    const perFollowed: Candidate[][] = [];
+    for (const part of chunks(order, RELATED_AT_ONCE)) {
+      const lists = await Promise.all(
+        part.map(async (a): Promise<Candidate[]> => {
+          let list: DeezerArtist[] = [];
+          try {
+            list = await withTimeout(
+              deezerArtist(a.name).then((dz) => (dz?.id ? relatedOf(dz.id) : [])),
+              feedTimeouts.relatedMs,
+              'Похожие не нашлись вовремя',
+            );
+          } catch (err) {
+            if (isOffline(err)) throw err;
+          }
+          return list
+            .filter((s) => !followedNames.has(normalizeText(s.name)))
+            .map((s) => ({ name: s.name, genre: genres.get(a.id), to: { id: a.id, name: a.name } }));
+        }),
+      );
+      perFollowed.push(...lists);
     }
+    const candidates = roundRobin(perFollowed, (c) => normalizeText(c.name), similarPerFollowed(order.length), SIMILAR_MAX_ARTISTS);
 
-    const ids = await catalogIds(candidates);
+    const ids = await catalogIds(candidates, feedTimeouts.idsBudgetMs);
     const similarTo = new Map<string, { id: string; name: string }>();
     for (const c of candidates) {
       const id = ids.get(normalizeText(c.name));
       if (id && !followedIds.includes(id) && !similarTo.has(id)) similarTo.set(id, c.to);
     }
 
-    const similar: ArtistRelease[] = [];
+    // Релизы похожих — по подпискам, к которым они похожи: «Свежее от похожих» тоже делится поровну.
+    const byFollowed = new Map<string, ArtistRelease[]>();
     if (similarTo.size > 0) {
-      const similarGroups = await albumsOf([...similarTo.keys()], 'background').catch((err: unknown) => {
-        if (isOffline(err)) throw err;
-        return new Map<string, ArtistAlbums>();
-      });
+      const similarGroups = await withTimeout(albumsOf([...similarTo.keys()], 'background'), feedTimeouts.similarMs, 'Каталог не отдал релизы похожих вовремя').catch(
+        (err: unknown) => {
+          if (isOffline(err)) throw err;
+          return new Map<string, ArtistAlbums>();
+        },
+      );
       for (const [id, to] of similarTo) {
         const g = similarGroups.get(id);
         if (!g) continue;
@@ -862,15 +954,19 @@ export function createArtistsService(deps: ArtistsServiceDeps = {}): ArtistsServ
           .filter((r) => r.releaseDate >= similarSince && !taken.has(r.id))
           .filter((r) => !g.collections.some((c) => c.id === r.id && followedIds.includes(c.artistId)))
           .slice(0, SIMILAR_RELEASES_PER_ARTIST);
+        const list = byFollowed.get(to.id) ?? [];
         for (const r of fresh) {
           taken.add(r.id);
-          similar.push({ ...r, similarTo: to });
+          list.push({ ...r, similarTo: to });
         }
+        byFollowed.set(to.id, list);
       }
     }
     await saveCache();
 
-    return { followed: followedFeed, similar: similar.sort(byDate).slice(0, FEED_SIMILAR_LIMIT), followedIds };
+    const fairLists = order.map((a) => (byFollowed.get(a.id) ?? []).sort(byDate));
+    const similar = roundRobin(fairLists, (r) => r.id, FEED_SIMILAR_LIMIT, FEED_SIMILAR_LIMIT);
+    return { followed: followedFeed, similar: similar.sort(byDate), followedIds };
   }
 
   return { search, page, release, album, popular, buildFeed };

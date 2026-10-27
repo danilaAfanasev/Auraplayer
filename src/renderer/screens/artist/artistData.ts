@@ -5,7 +5,7 @@ import { create } from 'zustand';
 import { CATALOG_ARTIST_NOT_FOUND, type ArtistQuery } from '../../../shared/api';
 import { artistKey, splitArtists } from '../../../shared/artistNames';
 import { isArtistBlocked, withoutBlocked, type Blacklist } from '../../../shared/blacklist';
-import type { AlbumPage, ArtistPage, ArtistRef, ArtistRelease, PopularArtist, Track } from '../../../shared/types';
+import type { AlbumPage, ArtistCard, ArtistPage, ArtistRef, ArtistRelease, PopularArtist, Track } from '../../../shared/types';
 import { errorMessage } from '../../app/errors';
 import { useBlacklist } from '../../stores/blacklistActions';
 import { useLibrary } from '../../stores/useLibrary';
@@ -55,7 +55,7 @@ function createLoadableStore<A, T>(fetcher: (arg: A) => Promise<T>) {
 }
 
 export const useArtistPages = createLoadableStore<ArtistQuery, ArtistPage>((q) => window.aura.artists.page(q));
-export const useArtistSearch = createLoadableStore<string, ArtistRef[]>((q) => window.aura.artists.search(q));
+export const useArtistSearch = createLoadableStore<string, ArtistCard[]>((q) => window.aura.artists.search(q));
 export const usePopularArtists = createLoadableStore<void, PopularArtist[]>(() => window.aura.artists.popular());
 export const useReleaseTracks = createLoadableStore<string, Track[]>((id) => window.aura.artists.release(id));
 /** Страницы альбомов по id релиза (экран `album`). */

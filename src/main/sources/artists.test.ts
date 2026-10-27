@@ -22,7 +22,6 @@ import {
   parseDeezerArtists,
   parseItunesArtists,
   parsePopularArtists,
-  pickArtistCards,
   pickDeezerArtist,
   selectReleases,
 } from './artists';
@@ -45,20 +44,69 @@ describe('поиск артистов в каталоге', () => {
     expect(list[0]).toEqual({ id: '1368733420', name: 'Juice WRLD', genre: 'Хип-хоп' });
   });
 
-  it('pickArtistCards: только артисты с этим именем, тёзки-дубли и «Juice» на запрос «juice wrld» не попадают', () => {
-    const cards = pickArtistCards(parseItunesArtists(artistSearch), 'juice wrld');
-    expect(cards.map((c) => [c.id, c.name])).toEqual([['1368733420', 'Juice WRLD']]);
-    expect(pickArtistCards(parseItunesArtists(artistSearch), 'Нет такого')).toEqual([]);
+  it('поиск: каталог и открытый API вместе — «kanye» даёт Kanye West первым (фанаты), тёзка «Kanye» ниже, без дублей', async () => {
+    const { fetchJson } = fakeFetch([
+      [
+        /entity=musicArtist/,
+        {
+          results: [
+            { wrapperType: 'artist', artistId: 2715720, artistName: 'Kanye West' },
+            { wrapperType: 'artist', artistId: 111, artistName: 'Kanye' },
+            { wrapperType: 'artist', artistId: 112, artistName: 'Kanye Soul' },
+          ],
+        },
+      ],
+      [
+        /api\.deezer\.com\/search\/artist\?q=kanye&limit=25/,
+        {
+          data: [
+            { id: 230, name: 'Kanye West', nb_fan: 4_500_000, picture_xl: 'https://img.example/kw.jpg' },
+            { id: 9, name: 'Kanye', nb_fan: 121 },
+            { id: 10, name: 'Kanye Westside Beats', nb_fan: 0 },
+          ],
+        },
+      ],
+    ]);
+    const service = createArtistsService({ country: () => 'ru', fetchJson, ...memoryCache(), sleep: async () => undefined, limiter: NO_LIMIT });
+    const cards = await service.search('kanye');
+    expect(cards.map((c) => c.name)).toEqual(['Kanye West', 'Kanye', 'Kanye Soul', 'Kanye Westside Beats']);
+    expect(cards[0]).toMatchObject({ id: '2715720', imageUrl: 'https://img.example/kw.jpg' });
+    expect(cards.find((c) => c.name === 'Kanye Westside Beats')?.id).toBeUndefined(); // id — при клике, по точному имени
   });
 
-  it('pickArtistCards: есть артист ровно с этим именем — однофамильцы «Felipe Saluki» не показываются; нет — показываются', () => {
-    const list = [
-      { id: '1', name: 'SALUKI' },
-      { id: '2', name: 'Felipe Saluki' },
-      { id: '3', name: 'Zayan The Saluki' },
-    ];
-    expect(pickArtistCards(list, 'saluki').map((a) => a.id)).toEqual(['1']);
-    expect(pickArtistCards(list.slice(1), 'saluki').map((a) => a.id)).toEqual(['2', '3']);
+  it('поиск: свои артисты первыми — madk1d на «mad», хотя каталог и открытый API его не дают', async () => {
+    const { fetchJson } = fakeFetch([
+      [/entity=musicArtist/, { results: [{ wrapperType: 'artist', artistId: 5, artistName: 'MAD' }] }],
+      [/api\.deezer\.com\/search\/artist\?q=mad&limit=25/, { data: [{ id: 1, name: 'Madonna', nb_fan: 3_000_000 }, { id: 2, name: 'MAD', nb_fan: 900 }] }],
+    ]);
+    const service = createArtistsService({ country: () => 'ru', fetchJson, ...memoryCache(), sleep: async () => undefined, limiter: NO_LIMIT });
+    const cards = await service.search('mad', [{ name: 'madk1d', id: '1598190372', score: 1000 }]);
+    expect(cards.map((c) => c.name)).toEqual(['madk1d', 'Madonna', 'MAD']);
+    expect(cards[0].id).toBe('1598190372');
+  });
+
+  it('поиск: каталог не ответил — карточки из открытого API; не ответил никто — ошибка', async () => {
+    const half = createArtistsService({
+      country: () => 'ru',
+      fetchJson: async (url) => {
+        if (url.includes('itunes')) throw new SourceError('unavailable');
+        return { data: [{ id: 1, name: 'villian', nb_fan: 343 }] };
+      },
+      ...memoryCache(),
+      sleep: async () => undefined,
+      limiter: NO_LIMIT,
+    });
+    expect((await half.search('villi')).map((c) => c.name)).toEqual(['villian']);
+    const none = createArtistsService({
+      country: () => 'ru',
+      fetchJson: async () => {
+        throw new SourceError('offline');
+      },
+      ...memoryCache(),
+      sleep: async () => undefined,
+      limiter: NO_LIMIT,
+    });
+    await expect(none.search('villi')).rejects.toMatchObject({ kind: 'offline' });
   });
 });
 
@@ -302,7 +350,8 @@ describe('createArtistsService', () => {
     expect(feed.followed.every((r) => Date.parse(r.releaseDate) >= now - 90 * DAY)).toBe(true);
 
     expect(feed.similar).toEqual([
-      expect.objectContaining({ title: 'Свежак', artist: 'CUPSIZE', artistId: '111', similarTo: { id: '1598190372', name: 'madk1d' } }),
+      // CUPSIZE похож на обоих — подпись у более свежей подписки (VILLIAN).
+      expect.objectContaining({ title: 'Свежак', artist: 'CUPSIZE', artistId: '111', similarTo: { id: '1818347359', name: 'VILLIAN' } }),
     ]);
     // Подписки сами в «похожих» не ищутся.
     expect(calls.some((u) => /search\?term=(madk1d|VILLIAN)&entity=musicArtist/i.test(u))).toBe(false);
@@ -320,7 +369,7 @@ describe('createArtistsService', () => {
     expect(feed.followed.every((r) => Date.parse(r.releaseDate) >= now - 180 * DAY)).toBe(true);
   });
 
-  it('лента: не больше 5 похожих на подписку и 40 артистов всего; id похожих в каталоге кэшируются между запусками', async () => {
+  it('лента: похожих поровну на каждую подписку (10 подписок — по 4) и 40 артистов всего; id похожих в каталоге кэшируются между запусками', async () => {
     const followed = Array.from({ length: 10 }, (_, i) => ({ id: String(500 + i), name: `Подписка ${i}`, followedAt: i }));
     const { fetchJson, calls } = fakeFetch([
       [/api\.deezer\.com\/search\/artist/, (u: string) => ({ data: [{ id: 100 + Number(/%20(\d+)/.exec(u)![1]), name: decodeURIComponent(/q=([^&]+)/.exec(u)![1]) }] })],
@@ -331,7 +380,7 @@ describe('createArtistsService', () => {
     await createArtistsService({ country: () => 'ru', fetchJson, ...cache, sleep: async () => undefined, limiter: NO_LIMIT }).buildFeed(followed);
     const searched = calls.filter((u) => u.includes('entity=musicArtist')).map((u) => decodeURIComponent(/term=([^&]+)/.exec(u)![1]));
     expect(searched).toHaveLength(40);
-    expect(searched.filter((n) => n.startsWith('Похожий 100-'))).toHaveLength(5);
+    for (let i = 0; i < 10; i++) expect(searched.filter((n) => n.startsWith(`Похожий ${100 + i}-`))).toHaveLength(4);
 
     const before = calls.length;
     await createArtistsService({ country: () => 'ru', fetchJson, ...cache, sleep: async () => undefined, limiter: NO_LIMIT }).buildFeed(followed);
@@ -576,5 +625,93 @@ describe('страница альбома и переход по имени', ()
       [/lookup\?id=1368733420&entity=album.*country=ru/, artistAlbums],
     ]);
     expect((await s.page({ name: 'JUICE wrld' })).artist.id).toBe('1368733420');
+  });
+});
+
+describe('лента: каждая подписка даёт своих похожих, шаги — со сроком', () => {
+  const related = (u: string) => ({ data: Array.from({ length: 20 }, (_, i) => ({ id: i, name: `Похожий ${/artist\/(\d+)/.exec(u)![1]}-${i}` })) });
+  const deezerSearchRoute: Route = [
+    /api\.deezer\.com\/search\/artist/,
+    (u: string) => ({ data: [{ id: 100 + Number(/%20(\d+)/.exec(u)![1]), name: decodeURIComponent(/q=([^&]+)/.exec(u)![1]) }] }),
+  ];
+
+  it('12 подписок: у каждой не меньше трёх похожих, свежие подписки лимит 40 не отрезает', async () => {
+    const followed = Array.from({ length: 12 }, (_, i) => ({ id: String(500 + i), name: `Подписка ${i}`, followedAt: i }));
+    const { fetchJson, calls } = fakeFetch([
+      deezerSearchRoute,
+      [/api\.deezer\.com\/artist\/\d+\/related/, related],
+      [/entity=musicArtist/, (u: string) => ({ results: [{ wrapperType: 'artist', artistId: calls.length, artistName: decodeURIComponent(/term=([^&]+)/.exec(u)![1]) }] })],
+    ]);
+    await createArtistsService({ country: () => 'ru', fetchJson, ...memoryCache(), sleep: async () => undefined, limiter: NO_LIMIT }).buildFeed(followed);
+    const searched = calls.filter((u) => u.includes('entity=musicArtist')).map((u) => decodeURIComponent(/term=([^&]+)/.exec(u)![1]));
+    expect(searched).toHaveLength(40);
+    for (let i = 0; i < 12; i++) expect(searched.filter((n) => n.startsWith(`Похожий ${100 + i}-`)).length, `подписка ${i}`).toBeGreaterThanOrEqual(3);
+    // Самая свежая подписка (followedAt 11) — среди первых, кого ищут.
+    expect(searched[0]).toMatch(/^Похожий 111-/);
+  });
+
+  it('«Свежее от похожих» тоже поровну: у одной подписки много свежих релизов — другие не вытеснены', async () => {
+    const now = Date.parse('2026-10-25T12:00:00Z');
+    const followed = [
+      { id: '500', name: 'Подписка 0', followedAt: 1 },
+      { id: '501', name: 'Подписка 1', followedAt: 2 },
+    ];
+    // У похожих на «Подписку 0» по два свежих релиза, у похожих на «Подписку 1» — по одному, но старше.
+    const albums = (u: string) => {
+      const ids = /lookup\?id=([\d,]+)&entity=album/.exec(u)![1].split(',');
+      return {
+        results: ids.flatMap((id) => {
+          const n = Number(id);
+          if (n < 1000) return [];
+          const of0 = n < 2000;
+          const dates = of0 ? ['2026-10-20', '2026-10-21'] : ['2026-09-01'];
+          return [
+            { wrapperType: 'artist', artistId: n, artistName: `A${n}` },
+            ...dates.map((d, k) => ({ wrapperType: 'collection', collectionType: 'Album', collectionId: n * 10 + k, artistId: n, artistName: `A${n}`, collectionName: `R${n}-${k} - Single`, trackCount: 1, releaseDate: `${d}T07:00:00Z` })),
+          ];
+        }),
+      };
+    };
+    let next0 = 1000;
+    let next1 = 2000;
+    const { fetchJson } = fakeFetch([
+      deezerSearchRoute,
+      [/api\.deezer\.com\/artist\/\d+\/related/, related],
+      [/entity=musicArtist/, (u: string) => {
+        const name = decodeURIComponent(/term=([^&]+)/.exec(u)![1]);
+        const id = name.startsWith('Похожий 100-') ? next0++ : next1++;
+        return { results: [{ wrapperType: 'artist', artistId: id, artistName: name }] };
+      }],
+      [/entity=album/, albums],
+    ]);
+    const feed = await createArtistsService({ country: () => 'ru', fetchJson, ...memoryCache(), sleep: async () => undefined, limiter: NO_LIMIT, now: () => now }).buildFeed(followed);
+    const to = feed.similar.map((r) => r.similarTo?.id);
+    expect(to.filter((id) => id === '501').length).toBeGreaterThan(0);
+    expect(feed.similar.length).toBeLessThanOrEqual(40);
+  });
+
+  it('похожие одной подписки не отвечают — её срок выходит, лента собирается из остальных', async () => {
+    const followed = [
+      { id: '500', name: 'Подписка 0', followedAt: 1 },
+      { id: '501', name: 'Подписка 1', followedAt: 2 },
+    ];
+    const { fetchJson, calls } = fakeFetch([
+      [/api\.deezer\.com\/search\/artist\?q=%D0%9F%D0%BE%D0%B4%D0%BF%D0%B8%D1%81%D0%BA%D0%B0%201/, () => new Promise(() => undefined)],
+      deezerSearchRoute,
+      [/api\.deezer\.com\/artist\/\d+\/related/, related],
+      [/entity=musicArtist/, (u: string) => ({ results: [{ wrapperType: 'artist', artistId: calls.length, artistName: decodeURIComponent(/term=([^&]+)/.exec(u)![1]) }] })],
+    ]);
+    const service = createArtistsService({ country: () => 'ru', fetchJson, ...memoryCache(), sleep: async () => undefined, limiter: NO_LIMIT, feedTimeouts: { relatedMs: 30 } });
+    const feed = await service.buildFeed(followed);
+    expect(feed.followedIds).toEqual(['500', '501']);
+    const searched = calls.filter((u) => u.includes('entity=musicArtist')).map((u) => decodeURIComponent(/term=([^&]+)/.exec(u)![1]));
+    expect(searched.length).toBeGreaterThan(0);
+    expect(searched.every((n) => n.startsWith('Похожий 100-'))).toBe(true);
+  });
+
+  it('каталог не отдал релизы подписок — сборка падает по сроку, а не висит', async () => {
+    const { fetchJson } = fakeFetch([[/entity=album/, () => new Promise(() => undefined)]]);
+    const service = createArtistsService({ country: () => 'ru', fetchJson, ...memoryCache(), sleep: async () => undefined, limiter: NO_LIMIT, feedTimeouts: { followedMs: 30 } });
+    await expect(service.buildFeed([{ id: '500', name: 'Подписка 0', followedAt: 1 }])).rejects.toMatchObject({ kind: 'unavailable' });
   });
 });

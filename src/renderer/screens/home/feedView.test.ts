@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import type { ArtistFeedSnapshot } from '../../../shared/api';
 import type { ArtistRelease } from '../../../shared/types';
 import { blockArtist, blockTrack, emptyBlacklist } from '../../../shared/blacklist';
-import { visibleFeed } from './feedView';
+import { feedBlockState, isFeedOutdated, visibleFeed } from './feedView';
 
 const r = (id: string, artistId: string, date: string, similarTo?: string): ArtistRelease => ({
   id,
@@ -61,5 +61,33 @@ describe('visibleFeed: чёрный список', () => {
     const view = visibleFeed({ followed: [...feed.followed, album], similar: [] }, ['a', 'b'], bl([], [{ artist: 'Артист a', title: 'Релиз 1' }]));
     expect(view.followed.map((x) => x.id)).toEqual(['2', '7']);
     expect(view.hero?.id).toBe('2');
+  });
+});
+
+describe('состояние блока ленты: сбой — не «ничего не выходило»', () => {
+  const base = { count: 0, loading: false, refreshing: false, error: null, outdated: false };
+
+  it('лента собрана по старым подпискам (5 подписок, в кэше — ни одной)', () => {
+    expect(isFeedOutdated([], ['1', '2', '3', '4', '5'])).toBe(true);
+    expect(isFeedOutdated(['1', '2'], ['2'])).toBe(false); // отписка — не повод
+    expect(isFeedOutdated(['1', '2'], ['1', '2'])).toBe(false);
+  });
+
+  it('пусто по нынешним подпискам без сбоя — «ничего не выходило»', () => {
+    expect(feedBlockState(base)).toBe('empty');
+    expect(feedBlockState({ ...base, count: 3 })).toBe('items');
+  });
+
+  it('сбой сборки — «Не удалось обновить ленту», без сети — «Нет соединения»', () => {
+    expect(feedBlockState({ ...base, error: { kind: 'unavailable', message: 'x' } })).toBe('error');
+    expect(feedBlockState({ ...base, error: { kind: 'offline', message: 'x' } })).toBe('offline');
+  });
+
+  it('лента по старым подпискам и пустая — не «ничего не выходило»; идёт сборка — «Собираю…»', () => {
+    // Без ошибки (1,2 с до пересборки после подписки) — «Собираю…», а не «Не удалось обновить ленту».
+    expect(feedBlockState({ ...base, outdated: true })).toBe('loading');
+    expect(feedBlockState({ ...base, outdated: true, error: { kind: 'unavailable', message: 'x' } })).toBe('error');
+    expect(feedBlockState({ ...base, outdated: true, refreshing: true })).toBe('loading');
+    expect(feedBlockState({ ...base, refreshing: true })).toBe('loading');
   });
 });

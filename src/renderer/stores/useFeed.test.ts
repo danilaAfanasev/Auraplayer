@@ -59,3 +59,33 @@ describe('лента после подписки', () => {
     expect(events.filter((e) => e === 'refreshFeed')).toHaveLength(2);
   });
 });
+
+describe('лента при запуске', () => {
+  it('сохранённая лента собрана без нынешних подписок (прошлая пересборка сорвалась) — пересобирается сразу', async () => {
+    vi.resetModules();
+    const { emptyLibrary } = await import('../../shared/library');
+    vi.stubGlobal('window', {
+      aura: {
+        library: {
+          load: async () => ({ ...emptyLibrary(), followedArtists: [{ id: '1598190372', name: 'madk1d', followedAt: 1 }] }),
+          save: async () => undefined,
+        },
+        artists: {
+          feed: async () => ({ ...EMPTY_FEED, updatedAt: 1, followedIds: [] }),
+          refreshFeed: async () => {
+            events.push('startup-refresh');
+            return { ...EMPTY_FEED, updatedAt: 2, followedIds: ['1598190372'] };
+          },
+          onFeed: () => () => undefined,
+        },
+      },
+    });
+    const lib = await import('./useLibrary');
+    const feed = await import('./useFeed');
+    await lib.useLibrary.getState().load();
+    feed.initFeed();
+    await vi.advanceTimersByTimeAsync(10);
+    expect(events).toContain('startup-refresh');
+    expect(feed.useFeed.getState().followedIds).toEqual(['1598190372']);
+  });
+});

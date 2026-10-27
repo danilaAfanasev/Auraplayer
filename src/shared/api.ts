@@ -1,7 +1,7 @@
 import type {
   AlbumPage,
+  ArtistCard,
   ArtistPage,
-  ArtistRef,
   ArtistRelease,
   CountryCode,
   DownloadRecord,
@@ -167,8 +167,11 @@ export interface AuraApi {
     onUpdate(cb: (s: ChartsSnapshot) => void): () => void;
   };
   artists: {
-    /** Артисты по имени — карточки над результатами поиска (лучший первым). */
-    search(query: string): Promise<ArtistRef[]>;
+    /**
+     * Карточки артистов над результатами поиска (6–8): свои первыми, затем по популярности. `id` каталога может не быть —
+     * тогда страница ищется по точному имени при клике.
+     */
+    search(query: string): Promise<ArtistCard[]>;
     page(query: ArtistQuery): Promise<ArtistPage>;
     /** Треки релиза по порядку (звук — как у каталога, с YouTube). */
     release(releaseId: string): Promise<Track[]>;

@@ -45,6 +45,16 @@ export interface ArtistRef {
   imageUrl?: string;
 }
 
+/**
+ * Карточка артиста в поиске. `id` каталога может быть ещё не известен (артист нашёлся по популярности, а не в каталоге):
+ * тогда страница ищется по точному имени при клике.
+ */
+export interface ArtistCard {
+  id?: string;
+  name: string;
+  imageUrl?: string;
+}
+
 /** Исполнитель «Популярного сейчас» своей страны — подсказки подписок и первый запуск. */
 export interface PopularArtist extends ArtistRef {
   /** Жанры его песен в чарте — теги `GENRES` (`hiphop`, `pop`…). */

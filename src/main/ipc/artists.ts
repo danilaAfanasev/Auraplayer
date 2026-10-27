@@ -2,8 +2,10 @@
 // Лента живёт в сервисе чартов (то же расписание и кэш), здесь — только её IPC.
 import type { ArtistFeedSnapshot, ArtistQuery } from '../../shared/api';
 import { IPC } from '../../shared/ipc';
-import type { AlbumPage, ArtistPage, ArtistRef, PopularArtist, Track } from '../../shared/types';
+import { ownArtistsOf } from '../../shared/artistSearch';
+import type { AlbumPage, ArtistCard, ArtistPage, PopularArtist, Track } from '../../shared/types';
 import { artists } from '../sources/artists';
+import { loadLibrary } from './library';
 import { SourceError } from '../sources/types';
 import { chartsService } from './charts';
 import { assertString, handle, UserError } from './handle';
@@ -24,9 +26,13 @@ function asUserError<T>(p: Promise<T>): Promise<T> {
 }
 
 export function registerArtistsIpc(): void {
-  handle(IPC.artists.search, (query: unknown): Promise<ArtistRef[]> => {
+  handle(IPC.artists.search, async (query: unknown): Promise<ArtistCard[]> => {
     assertString(query, 'запрос');
-    return asUserError(artists.search(query));
+    // Свои артисты (подписки, вкус, лайки, история) — из library.json: идут первыми.
+    const own = await loadLibrary()
+      .then((lib) => ownArtistsOf(lib, Date.now()))
+      .catch(() => []);
+    return asUserError(artists.search(query, own));
   });
   handle(IPC.artists.page, (query: unknown): Promise<ArtistPage> => {
     assertQuery(query);

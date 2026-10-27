@@ -84,7 +84,8 @@ export function Onboarding() {
 
   const searching = text.trim() !== '';
   const entry = searching ? found : popular;
-  const list: readonly ArtistRef[] = searching ? (found?.status === 'done' ? found.value : []) : popularList;
+  // Подписка — по id каталога: карточки поиска без id (нашлись только по популярности) здесь не показываются.
+  const list: readonly ArtistRef[] = searching ? (found?.status === 'done' ? found.value.filter((a): a is ArtistRef => !!a.id) : []) : popularList;
   const waiting = searching ? query !== text.trim() || !found || found.status === 'loading' : !popular || popular.status === 'loading';
 
   let artists;

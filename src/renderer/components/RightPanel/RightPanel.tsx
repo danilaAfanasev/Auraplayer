@@ -8,12 +8,12 @@ import { useUi } from '../../stores/useUi';
 import { ArtistLinks } from '../ArtistLinks/ArtistLinks';
 import { EmptyState } from '../EmptyState/EmptyState';
 import { useNow } from '../useNow';
+import { openTrackMenu, openTrackMenuByKey } from '../TrackMenu/TrackMenu';
 import { Queue } from './Queue';
+import { RECENT_BLOCK_TITLE, RECENT_QUEUE_TITLE } from './queueView';
 import styles from './RightPanel.module.css';
 
 const RECENT_COUNT = 5;
-/** Заголовок очереди, которую включили из «Недавно». */
-const RECENT_TITLE = 'Недавно';
 
 function Recent() {
   const navigate = useUi((s) => s.navigate);
@@ -28,7 +28,7 @@ function Recent() {
   return (
     <section className={styles.block}>
       <header className={styles.blockHeader}>
-        <h2>Недавно</h2>
+        <h2>{RECENT_BLOCK_TITLE}</h2>
         <button type="button" className={styles.more} onClick={() => navigate({ name: 'history' })}>
           Все <ChevronRight size={14} />
         </button>
@@ -46,11 +46,14 @@ function Recent() {
                   tabIndex={0}
                   className={[styles.recentItem, t.id === currentId ? styles.recentCurrent : ''].join(' ')}
                   title={`Играть «${t.title}»`}
-                  onClick={() => usePlayer.getState().playList(queue, index, RECENT_TITLE)}
+                  aria-haspopup="menu"
+                  onClick={() => usePlayer.getState().playList(queue, index, RECENT_QUEUE_TITLE)}
+                  onContextMenu={(e) => openTrackMenu(e, t, 'recent')}
                   onKeyDown={(e) => {
-                    if (e.target !== e.currentTarget || (e.key !== 'Enter' && e.key !== ' ')) return;
+                    if (e.target !== e.currentTarget || openTrackMenuByKey(e, t, 'recent')) return;
+                    if (e.key !== 'Enter' && e.key !== ' ') return;
                     e.preventDefault();
-                    usePlayer.getState().playList(queue, index, RECENT_TITLE);
+                    usePlayer.getState().playList(queue, index, RECENT_QUEUE_TITLE);
                   }}
                 >
                   <div className={styles.thumb}>

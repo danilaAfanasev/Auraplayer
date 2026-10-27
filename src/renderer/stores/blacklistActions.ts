@@ -33,7 +33,8 @@ export function dislikeTrack(track: Track): void {
   const player = usePlayer.getState();
   player.removeUpcoming((t) => isTrackBlocked(t, only));
   const current = selectCurrentTrack(usePlayer.getState());
-  if (current && isTrackBlocked(current, only)) usePlayer.getState().next();
+  // Играющий скрытый — дальше; дальше нечего и продолжения нет — он замолкает, а не доигрывает.
+  if (current && isTrackBlocked(current, only)) usePlayer.getState().leaveCurrent();
 
   useUi.getState().toast('Трек скрыт', {
     label: 'Вернуть',

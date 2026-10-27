@@ -209,10 +209,56 @@
 }
 
 /*
- * Узкая панель (окно 1100–1400 px с раскрытым сайдбаром и правой колонкой): в один ряд всё не помещается —
- * кнопки трека уходят во второй ряд, к прогрессу; трек, транспорт и громкость остаются наверху целиком.
+ * Средняя панель (окно ~1250–1550 px с раскрытым сайдбаром и правой колонкой, панель 600–800 px): в один ряд всё
+ * не помещается — громкость уходит во второй ряд, к прогрессу; кнопки трека остаются в одном ряду с управлением.
  */
 @container player (max-width: 800px) {
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    grid-template-areas:
+      'track actions transport'
+      'progress progress volume';
+    align-items: center;
+    gap: 10px 12px;
+  }
+
+  .top {
+    display: contents;
+  }
+
+  .track {
+    grid-area: track;
+  }
+
+  .cover {
+    width: 56px;
+    height: 56px;
+  }
+
+  .actions {
+    grid-area: actions;
+  }
+
+  .transport {
+    grid-area: transport;
+    gap: 4px;
+  }
+
+  .volume {
+    grid-area: volume;
+  }
+
+  .progress {
+    grid-area: progress;
+  }
+}
+
+/*
+ * Узкая панель (окно уже ~1250 px): кнопки трека уходят во второй ряд, к прогрессу; трек, транспорт и громкость
+ * остаются наверху целиком.
+ */
+@container player (max-width: 600px) {
   .layout {
     display: grid;
     grid-template-columns: minmax(auto, 1fr) auto auto;

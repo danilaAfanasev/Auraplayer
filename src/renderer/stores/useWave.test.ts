@@ -305,6 +305,21 @@ describe('useWave: удаление будущих треков снаружи',
     expect(ids(p().queue)).toEqual(['archive:c0', 'archive:c2', 'archive:c4', 'archive:m0', 'archive:m1']);
     expect(w().active).toEqual({ title: 'Фонк' });
   });
+
+  it('«Играть следующим» во время волны — трек встаёт за текущим, волна не выключается; переезд будущего — тоже', async () => {
+    void w().start({ title: 'Фонк', queries: ['phonk'] });
+    startCalls[0].resolve(tracks('c', 5));
+    await tick();
+    await current();
+    p().playNext(track('x'));
+    expect(ids(p().queue)).toEqual(['archive:c0', 'archive:x', 'archive:c1', 'archive:c2', 'archive:c3', 'archive:c4']);
+    expect(w().active).toEqual({ title: 'Фонк' });
+    p().playNext(track('c3'));
+    expect(ids(p().queue)).toEqual(['archive:c0', 'archive:c3', 'archive:x', 'archive:c1', 'archive:c2', 'archive:c4']);
+    expect(w().active).toEqual({ title: 'Фонк' });
+    // Правка очереди перезапускает подготовку следующих через 300 мс — дожидаемся её здесь, а не в чужом тесте.
+    await new Promise((r) => setTimeout(r, 350));
+  });
 });
 
 describe('useWave: чёрный список', () => {

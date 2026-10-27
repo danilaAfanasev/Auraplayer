@@ -7,6 +7,7 @@ import { Sidebar } from '../components/Sidebar/Sidebar';
 import { useSidebarCollapsed } from '../components/Sidebar/useSidebar';
 import { TitleBar } from '../components/TitleBar/TitleBar';
 import { Toasts } from '../components/Toast/Toast';
+import { TrackMenuHost } from '../components/TrackMenu/TrackMenu';
 import { initHistoryTracking } from '../screens/history/historyTracking';
 import { initTasteTracking } from '../stores/tasteTracking';
 import { useLibrary } from '../stores/useLibrary';
@@ -41,6 +42,7 @@ export function App() {
           <PlayerBar />
           <Toasts />
         </main>
+        <TrackMenuHost />
         <div className={styles.right}>
           <RightPanel />
         </div>

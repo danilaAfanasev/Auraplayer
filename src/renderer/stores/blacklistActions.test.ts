@@ -8,7 +8,7 @@ vi.mock('../audioEngine', () => ({
     preload: () => undefined,
     cancelPreload: () => undefined,
     play: () => undefined,
-    pause: () => undefined,
+    pause: vi.fn(),
     stop: () => undefined,
     seek: () => undefined,
     setVolume: () => undefined,
@@ -112,5 +112,31 @@ describe('blockArtistEverywhere / restoreArtist', () => {
     actions.blockArtistEverywhere({ name: 'Bad' });
     actions.restoreArtist('bad');
     expect(lib().blacklist.artists).toEqual([]);
+  });
+});
+
+describe('«Не нравится» на последнем треке без продолжения', () => {
+  it('скрытый трек замолкает (стоп), тост «Трек скрыт» с «Вернуть» остаётся', async () => {
+    const { audioEngine } = await import('../audioEngine');
+    const pause = audioEngine.pause as unknown as ReturnType<typeof vi.fn>;
+    const [a, b] = [track('a'), track('b')];
+    p().playList([a, b], 1);
+    expect(p().isLoading).toBe(true);
+    pause.mockClear();
+
+    actions.dislikeTrack(b);
+    expect(p().queue[p().index].id).toBe(b.id);
+    expect(p().isLoading).toBe(false);
+    expect(p().isPlaying).toBe(false);
+    expect(pause).toHaveBeenCalled();
+    expect(lastToast()).toMatchObject({ text: 'Трек скрыт', action: { label: 'Вернуть' } });
+  });
+
+  it('следующий есть — играет он, а не стоп', () => {
+    const [a, b] = [track('a'), track('b')];
+    p().playList([a, b], 0);
+    actions.dislikeTrack(a);
+    expect(p().queue[p().index].id).toBe(b.id);
+    expect(p().isLoading).toBe(true);
   });
 });

@@ -243,6 +243,40 @@ export function AddToPlaylistMenu({ tracks, renderTrigger }: MenuProps) {
   );
 }
 
+/**
+ * То же меню плейлистов у точки — пункт «В плейлист…» контекстного меню трека. Закрывается по Esc, клику мимо,
+ * прокрутке и смене размера окна.
+ */
+export function AddToPlaylistPopupAt({ tracks, x, y, onClose }: { tracks: Track[]; x: number; y: number; onClose(): void }) {
+  const position = computePosition(new DOMRect(x, y, MENU_WIDTH, 0));
+  useEffect(() => {
+    const onPointerDown = (e: PointerEvent) => {
+      if (!insideMenu(e.target)) onClose();
+    };
+    const onKey = (e: globalThis.KeyboardEvent) => {
+      if (e.key !== 'Escape') return;
+      e.stopPropagation();
+      onClose();
+    };
+    const onScroll = (e: Event) => {
+      if (!insideMenu(e.target)) onClose();
+    };
+    document.addEventListener('pointerdown', onPointerDown, true);
+    document.addEventListener('keydown', onKey, true);
+    document.addEventListener('scroll', onScroll, true);
+    window.addEventListener('resize', onClose);
+    window.addEventListener('blur', onClose);
+    return () => {
+      document.removeEventListener('pointerdown', onPointerDown, true);
+      document.removeEventListener('keydown', onKey, true);
+      document.removeEventListener('scroll', onScroll, true);
+      window.removeEventListener('resize', onClose);
+      window.removeEventListener('blur', onClose);
+    };
+  }, [onClose]);
+  return <Menu tracks={tracks} position={position} onClose={onClose} />;
+}
+
 interface ButtonProps {
   track: Track | null;
   size?: 'small' | 'medium' | 'large';

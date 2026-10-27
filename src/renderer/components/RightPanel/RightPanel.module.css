@@ -259,43 +259,6 @@
   color: var(--accent-text);
 }
 
-/* Кнопки строки — поверх времени, при наведении или фокусе */
-.queueActions {
-  position: absolute;
-  top: 50%;
-  right: 4px;
-  display: none;
-  align-items: center;
-  gap: 2px;
-  padding: 2px;
-  border-radius: var(--radius-pill);
-  background: var(--surface-hover);
-  transform: translateY(-50%);
-}
-
-.queueRow:hover .queueActions,
-.queueRow:focus-within .queueActions {
-  display: inline-flex;
-}
-
-.queueAction {
-  display: grid;
-  place-items: center;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  color: var(--text-muted);
-  transition:
-    color var(--dur) var(--ease),
-    background-color var(--dur) var(--ease);
-}
-
-.queueAction:hover,
-.queueAction:focus-visible {
-  color: var(--text);
-  background: var(--surface-2);
-}
-
 .queueMore {
   width: 100%;
   padding: 7px 0;

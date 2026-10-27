@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import type { ArtistFeedSnapshot, ChartsSnapshot } from '../shared/api';
 import type { ArtistRelease, Track } from '../shared/types';
-import { CHARTS_REFRESH_MS, createChartsService } from './charts';
+import { CHARTS_REFRESH_MS, createChartsService, FEED_RETRIES, FEED_TIMEOUT_MESSAGE } from './charts';
 import type { ArtistFeedData } from './sources/artists';
 import type { CatalogLists } from './sources/catalog';
 import { SourceError } from './sources/types';
@@ -139,7 +139,12 @@ const savedFeed = {
   followedIds: ['1598190372'],
 };
 
-function setupFeed(load: (onFollowed: (f: ArtistRelease[]) => void) => Promise<ArtistFeedData>, stored: unknown = savedFeed, now = 5_000) {
+function setupFeed(
+  load: (onFollowed: (f: ArtistRelease[]) => void) => Promise<ArtistFeedData>,
+  stored: unknown = savedFeed,
+  now = 5_000,
+  extra: { feedTimeoutMs?: number; feedRetryMs?: number; feedEmit?: (s: ArtistFeedSnapshot) => void } = {},
+) {
   let file: unknown = stored;
   const emitted: ArtistFeedSnapshot[] = [];
   const service = createChartsService({
@@ -148,13 +153,18 @@ function setupFeed(load: (onFollowed: (f: ArtistRelease[]) => void) => Promise<A
     write: async () => undefined,
     emit: () => undefined,
     now: () => now,
+    feedTimeoutMs: extra.feedTimeoutMs,
+    feedRetryMs: extra.feedRetryMs,
     feed: {
       load,
       read: async () => file,
       write: async (data) => {
         file = data;
       },
-      emit: (s) => emitted.push(s),
+      emit: (s) => {
+        emitted.push(s);
+        extra.feedEmit?.(s);
+      },
     },
   });
   return { service, emitted, file: () => file };
@@ -231,6 +241,97 @@ describe('лента «Новое от моих артистов»', () => {
       expect(load).toHaveBeenCalledTimes(1);
       await vi.advanceTimersByTimeAsync(CHARTS_REFRESH_MS);
       expect(load).toHaveBeenCalledTimes(2);
+      service.stop();
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+});
+
+describe('лента: сбой и зависание сборки не держат следующие пересборки', () => {
+  const empty: ArtistFeedData = { followed: [], similar: [], followedIds: [] };
+
+  it('сборка зависла — через срок «Не удалось», следующая пересборка идёт сразу', async () => {
+    let calls = 0;
+    const { service } = setupFeed(
+      () => {
+        calls++;
+        return calls === 1 ? new Promise<ArtistFeedData>(() => undefined) : Promise.resolve({ ...empty, followedIds: ['1', '2'] });
+      },
+      savedFeed,
+      5_000,
+      { feedTimeoutMs: 30 },
+    );
+    const first = await service.refreshFeed();
+    expect(first.refreshing).toBe(false);
+    expect(first.error).toMatchObject({ kind: 'unavailable', message: FEED_TIMEOUT_MESSAGE });
+    expect(first.followedIds).toEqual(['1598190372']); // сохранённая лента остаётся
+    const second = await service.refreshFeed();
+    expect(calls).toBe(2);
+    expect(second).toMatchObject({ error: null, followedIds: ['1', '2'], refreshing: false });
+  });
+
+  it('рассылка снимка бросила посреди сборки — сборка всё равно сохраняется, следующая не ждёт вечно', async () => {
+    let throwOnce = true;
+    let calls = 0;
+    const { service, file } = setupFeed(
+      async () => ({ ...empty, followedIds: [String(++calls)] }),
+      savedFeed,
+      5_000,
+      {
+        feedEmit: () => {
+          if (throwOnce) {
+            throwOnce = false;
+            throw new Error('Render frame was disposed');
+          }
+        },
+      },
+    );
+    const first = await service.refreshFeed();
+    expect(first.followedIds).toEqual(['1']);
+    expect((file() as ArtistFeedData).followedIds).toEqual(['1']);
+    expect((await service.refreshFeed()).followedIds).toEqual(['2']);
+  });
+
+  it('сбой при запуске — повтор через пару минут, а не через 6 часов', async () => {
+    vi.useFakeTimers();
+    try {
+      let calls = 0;
+      const load = vi.fn(async () => {
+        if (++calls === 1) throw new SourceError('unavailable');
+        return { ...empty, followedIds: ['1'] };
+      });
+      const { service } = setupFeed(load, savedFeed, 5_000, { feedRetryMs: 120_000 });
+      service.start();
+      await vi.advanceTimersByTimeAsync(10);
+      expect(load).toHaveBeenCalledTimes(1);
+      expect((await service.feedSnapshot()).error).not.toBeNull();
+      await vi.advanceTimersByTimeAsync(120_000);
+      expect(load).toHaveBeenCalledTimes(2);
+      expect((await service.feedSnapshot())).toMatchObject({ error: null, followedIds: ['1'] });
+      service.stop();
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it('лимит автоповторов — на одну серию: после трёх сбоев «Повторить» начинает новую серию с автоповтором', async () => {
+    vi.useFakeTimers();
+    try {
+      const load = vi.fn(async (): Promise<ArtistFeedData> => {
+        throw new SourceError('unavailable');
+      });
+      const { service } = setupFeed(load, savedFeed, 5_000, { feedRetryMs: 1_000 });
+      service.start();
+      await vi.advanceTimersByTimeAsync(10_000);
+      expect(load).toHaveBeenCalledTimes(1 + FEED_RETRIES); // первая сборка и три повтора, дальше — тишина
+      await vi.advanceTimersByTimeAsync(10_000);
+      expect(load).toHaveBeenCalledTimes(1 + FEED_RETRIES);
+
+      await service.refreshFeed(); // «Повторить» от пользователя (или смена подписок)
+      expect(load).toHaveBeenCalledTimes(2 + FEED_RETRIES);
+      await vi.advanceTimersByTimeAsync(1_000);
+      expect(load).toHaveBeenCalledTimes(3 + FEED_RETRIES); // автоповтор снова работает
       service.stop();
     } finally {
       vi.useRealTimers();

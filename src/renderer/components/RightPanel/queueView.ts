@@ -28,6 +28,10 @@ export interface QueueView {
 }
 
 export const QUEUE_TITLE = 'Очередь';
+/** Заголовок блока недавних треков в правой колонке (над очередью). */
+export const RECENT_BLOCK_TITLE = 'Недавно';
+/** Заголовок очереди, включённой из «Недавно». */
+export const RECENT_QUEUE_TITLE = 'Из недавнего';
 
 /** Порядок воспроизведения: при перемешивании — `order` (если он про эту очередь), иначе 0..n-1. */
 function playOrder(input: QueueViewInput): readonly number[] {
@@ -50,7 +54,9 @@ export function queueView(input: QueueViewInput): QueueView {
   );
   const wave = input.waveTitle?.trim();
   const own = input.queueTitle?.trim();
-  return { rows, title: wave ? `Волна: ${wave}` : own || QUEUE_TITLE, currentPos };
+  // Включили из «Недавно» — над очередью уже стоит блок «Недавно»: второй такой же заголовок не нужен.
+  const title = own && own.toLowerCase() === RECENT_BLOCK_TITLE.toLowerCase() ? RECENT_QUEUE_TITLE : own;
+  return { rows, title: wave ? `Волна: ${wave}` : title || QUEUE_TITLE, currentPos };
 }
 
 export interface RowWindow {

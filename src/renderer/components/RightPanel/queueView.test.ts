@@ -86,3 +86,11 @@ describe('rowWindow', () => {
     expect(rowWindow(600, -1, 120)).toEqual({ from: 0, to: 120 });
   });
 });
+
+describe('заголовок очереди из «Недавно»', () => {
+  it('включили из «Недавно» — у очереди «Из недавнего», а не второй «Недавно»', () => {
+    const queue = [t(1), t(2)];
+    expect(queueView({ queue, index: 0, shuffle: false, order: [], queueTitle: 'Недавно' }).title).toBe('Из недавнего');
+    expect(queueView({ queue, index: 0, shuffle: false, order: [], queueTitle: 'Мне нравится' }).title).toBe('Мне нравится');
+  });
+});

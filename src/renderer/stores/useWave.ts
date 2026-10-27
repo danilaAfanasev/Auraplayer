@@ -145,6 +145,27 @@ export function withBlacklist(memory: WaveMemory, bl: Blacklist): WaveMemory {
 }
 
 /** Очередь `next` — это `prev` без некоторых треков (те же объекты в том же порядке): удаление, а не другой список. */
+/**
+ * «Играть следующим» в волне: один трек вставлен (прежняя очередь — подпоследовательность новой) или переехал
+ * (те же объекты, тот же размер). Это всё ещё волна.
+ */
+function isInsertOrMoveOf(next: readonly Track[], prev: readonly Track[]): boolean {
+  if (next.length === prev.length + 1) {
+    let j = 0;
+    for (const t of next) if (j < prev.length && prev[j] === t) j++;
+    return j === prev.length;
+  }
+  if (next.length !== prev.length || next.length === 0) return false;
+  const count = new Map<Track, number>();
+  for (const t of prev) count.set(t, (count.get(t) ?? 0) + 1);
+  for (const t of next) {
+    const c = count.get(t);
+    if (!c) return false;
+    count.set(t, c - 1);
+  }
+  return true;
+}
+
 function isRemovalOf(next: readonly Track[], prev: readonly Track[]): boolean {
   if (next.length === 0 || next.length >= prev.length) return false;
   let j = 0;
@@ -345,7 +366,7 @@ export const useWave = create<WaveState>((set, get) => {
     if (!get().active) return;
     if (s.queue !== ownQueue) {
       // Убрали будущие треки снаружи («Убрать из очереди», «Не нравится», чёрный список) — это всё ещё волна.
-      if (ownQueue && isRemovalOf(s.queue, ownQueue)) {
+      if (ownQueue && (isRemovalOf(s.queue, ownQueue) || isInsertOrMoveOf(s.queue, ownQueue))) {
         ownQueue = s.queue;
       } else {
         reset();
@@ -386,7 +407,10 @@ export const useWave = create<WaveState>((set, get) => {
     const { settings } = useSettings.getState();
     if (!settings.waveAfterQueue || s.repeat !== 'off') return false;
     if (seed || startPending || s.queue === declinedQueue) return false;
-    const last = s.queue[s.index];
+    // Сид — последний не скрытый трек: только что скрытый («Не нравится» на последнем) похожих не задаёт.
+    let at = s.index;
+    while (at >= 0 && s.queue[at] && isBlocked(s.queue[at], blacklist())) at--;
+    const last = s.queue[at];
     if (!last) return false;
     // Похожие на трек SoundCloud — рекомендации SoundCloud, остальным нужен YouTube.
     if (last.source === 'soundcloud' ? !settings.soundcloudEnabled : !settings.youtubeEnabled) return false;

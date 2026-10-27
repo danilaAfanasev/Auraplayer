@@ -1,4 +1,4 @@
-// Общее всплывающее меню действий: «⋯» в строке таблицы треков, на странице артиста.
+// Общее всплывающее меню действий: «⋯» на странице артиста, контекстное меню трека (у курсора — menuPositionAt).
 // Портал поверх интерфейса, позиция от кнопки; закрывается по Esc, клику снаружи, прокрутке и смене размера окна;
 // стрелки переходят по пунктам. Образец — меню плейлистов (`AddToPlaylistMenu`).
 import { MoreHorizontal, type LucideIcon } from 'lucide-react';
@@ -8,6 +8,8 @@ import { IconButton } from '../Button/Button';
 import styles from './Menu.module.css';
 
 export interface MenuItem {
+  /** Ключ пункта (по умолчанию — подпись). */
+  key?: string;
   label: string;
   icon?: LucideIcon;
   /** «Отрицательное» действие — красным. */
@@ -50,7 +52,57 @@ function computePosition(anchor: DOMRect, width: number, count: number): Positio
   return { left, top: anchor.bottom + ANCHOR_GAP };
 }
 
+/** Меню у точки (правый клик): справа-снизу от курсора, у края окна — влево/вверх, чтобы не вылезать. */
+export function menuPositionAt(x: number, y: number, width: number, count: number): Position {
+  const height = count * ITEM_HEIGHT + 12;
+  const left = Math.max(EDGE_GAP, Math.min(x, window.innerWidth - width - EDGE_GAP));
+  if (y + height > window.innerHeight - EDGE_GAP && y - height > EDGE_GAP) return { left, bottom: window.innerHeight - y };
+  return { left, top: Math.max(EDGE_GAP, Math.min(y, window.innerHeight - height - EDGE_GAP)) };
+}
+
+/** Позиция меню под (или над) элементом — для «⋯» и клавиши меню. */
+export function menuPositionBelow(anchor: DOMRect, width: number, count: number): Position {
+  return computePosition(anchor, width, count);
+}
+
+export type MenuPosition = Position;
+
 const insideMenu = (target: EventTarget | null): boolean => target instanceof Element && target.closest(`[${MENU_ATTR}]`) !== null;
+
+/**
+ * Закрытие открытого меню: Esc, клик мимо, прокрутка снаружи, смена размера и уход из окна.
+ * `keep` — элемент, клик по которому не считается «мимо» (кнопка-якорь).
+ */
+export function useMenuDismiss(open: boolean, close: () => void, keep?: { current: Element | null }, onEscape?: () => void): void {
+  useEffect(() => {
+    if (!open) return;
+    const onPointerDown = (e: PointerEvent) => {
+      if (insideMenu(e.target) || keep?.current?.contains(e.target as Node)) return;
+      close();
+    };
+    const onKey = (e: globalThis.KeyboardEvent) => {
+      if (e.key !== 'Escape') return;
+      e.stopPropagation();
+      close();
+      onEscape?.();
+    };
+    const onScroll = (e: Event) => {
+      if (!insideMenu(e.target)) close();
+    };
+    document.addEventListener('pointerdown', onPointerDown, true);
+    document.addEventListener('keydown', onKey, true);
+    document.addEventListener('scroll', onScroll, true);
+    window.addEventListener('resize', close);
+    window.addEventListener('blur', close);
+    return () => {
+      document.removeEventListener('pointerdown', onPointerDown, true);
+      document.removeEventListener('keydown', onKey, true);
+      document.removeEventListener('scroll', onScroll, true);
+      window.removeEventListener('resize', close);
+      window.removeEventListener('blur', close);
+    };
+  }, [open, close, keep, onEscape]);
+}
 
 interface PopupProps {
   label: string;
@@ -58,6 +110,11 @@ interface PopupProps {
   position: Position;
   width: number;
   onClose(): void;
+}
+
+/** Само меню (портал): пункты с иконкой и текстом, стрелки — по пунктам, первый получает фокус. */
+export function MenuPopup(props: PopupProps) {
+  return <Popup {...props} />;
 }
 
 function Popup({ label, items, position, width, onClose }: PopupProps) {
@@ -98,7 +155,7 @@ function Popup({ label, items, position, width, onClose }: PopupProps) {
         const Icon = item.icon;
         return (
           <button
-            key={item.label}
+            key={item.key ?? item.label}
             type="button"
             role="menuitem"
             disabled={item.disabled}
@@ -133,34 +190,8 @@ export function Menu({ label, items, renderTrigger, width = 248 }: MenuProps) {
     });
   }, [width, count]);
 
-  useEffect(() => {
-    if (!open) return;
-    const onPointerDown = (e: PointerEvent) => {
-      if (insideMenu(e.target) || anchorRef.current?.contains(e.target as Node)) return;
-      close();
-    };
-    const onKey = (e: globalThis.KeyboardEvent) => {
-      if (e.key !== 'Escape') return;
-      e.stopPropagation();
-      close();
-      anchorRef.current?.querySelector('button')?.focus();
-    };
-    const onScroll = (e: Event) => {
-      if (!insideMenu(e.target)) close();
-    };
-    document.addEventListener('pointerdown', onPointerDown, true);
-    document.addEventListener('keydown', onKey, true);
-    document.addEventListener('scroll', onScroll, true);
-    window.addEventListener('resize', close);
-    window.addEventListener('blur', close);
-    return () => {
-      document.removeEventListener('pointerdown', onPointerDown, true);
-      document.removeEventListener('keydown', onKey, true);
-      document.removeEventListener('scroll', onScroll, true);
-      window.removeEventListener('resize', close);
-      window.removeEventListener('blur', close);
-    };
-  }, [open, close]);
+  const refocus = useCallback(() => anchorRef.current?.querySelector('button')?.focus(), []);
+  useMenuDismiss(open, close, anchorRef, refocus);
 
   return (
     <>

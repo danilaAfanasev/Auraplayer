@@ -34,3 +34,38 @@ export function visibleFeed(
   const similar = feed.similar.filter((r) => !ids.has(r.artistId) && (!r.similarTo || ids.has(r.similarTo.id)) && shown(r));
   return { followed, similar, hero: followed[0] ?? null };
 }
+
+/**
+ * Лента собрана не по нынешним подпискам (подписался, а пересборка сорвалась или ещё не дошла):
+ * её «пусто» — не «у артистов ничего не выходило». Отписка не в счёт — лишнее и так отфильтровано.
+ */
+export function isFeedOutdated(feedFollowedIds: readonly string[], currentFollowIds: readonly string[]): boolean {
+  const built = new Set(feedFollowedIds);
+  return currentFollowIds.some((id) => !built.has(id));
+}
+
+/** Что показать в блоке ленты. */
+export type FeedBlockState = 'items' | 'loading' | 'offline' | 'error' | 'empty';
+
+export interface FeedBlockInput {
+  count: number;
+  /** Первый снимок ещё не пришёл. */
+  loading: boolean;
+  refreshing: boolean;
+  error: ArtistFeedSnapshot['error'];
+  /** `isFeedOutdated`. */
+  outdated: boolean;
+}
+
+/**
+ * Пусто — это «ничего не выходило», только если лента собрана по нынешним подпискам и без сбоя.
+ * Идёт сборка, а показать нечего — «Собираю…»; сбой — честно: «Не удалось обновить ленту — Повторить».
+ */
+export function feedBlockState({ count, loading, refreshing, error, outdated }: FeedBlockInput): FeedBlockState {
+  if (count > 0) return 'items';
+  if (loading || refreshing) return 'loading';
+  if (error) return error.kind === 'offline' ? 'offline' : 'error';
+  // Собрана для других подписок, но без сбоя: пересборка вот-вот начнётся (пауза после подписки) — «Собираю…».
+  if (outdated) return 'loading';
+  return 'empty';
+}

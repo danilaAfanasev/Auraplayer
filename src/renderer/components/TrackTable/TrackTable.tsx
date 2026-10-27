@@ -1,9 +1,9 @@
-import { Music, Play, ThumbsDown, X } from 'lucide-react';
+import { MoreHorizontal, Music, Play, X } from 'lucide-react';
 import { memo, useCallback, useState, type CSSProperties, type DragEvent, type KeyboardEvent, type ReactNode } from 'react';
 import { formatDuration } from '../../../shared/format';
 import { reorderTarget } from '../../../shared/library';
 import type { Track } from '../../../shared/types';
-import { dislikeTrack, restoreArtist, restoreTrack, useBlacklist } from '../../stores/blacklistActions';
+import { restoreArtist, restoreTrack, useBlacklist } from '../../stores/blacklistActions';
 import { useLibrary } from '../../stores/useLibrary';
 import { usePlayer } from '../../stores/usePlayer';
 import { useUi } from '../../stores/useUi';
@@ -12,8 +12,8 @@ import { ArtistLinks } from '../ArtistLinks/ArtistLinks';
 import { IconButton } from '../Button/Button';
 import { DownloadButton } from '../DownloadButton/DownloadButton';
 import { LikeButton } from '../LikeButton/LikeButton';
-import { MoreMenuButton } from '../Menu/Menu';
 import { SourceBadge } from '../SourceBadge/SourceBadge';
+import { openTrackMenu, openTrackMenuBelow, openTrackMenuByKey } from '../TrackMenu/TrackMenu';
 import { WaveButton } from '../WaveButton/WaveButton';
 import { blockedBy, type BlockedBy } from './blockedRow';
 import styles from './TrackTable.module.css';
@@ -119,6 +119,8 @@ const Row = memo(function Row({
   };
   const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.target !== e.currentTarget) return;
+    // Клавиша меню / Shift+F10 — меню трека у строки.
+    if (openTrackMenuByKey(e, track, 'table')) return;
     if (e.key === 'Enter') onPlay(index);
     // Alt + стрелка — сдвинуть строку плейлиста без мыши.
     if (reorderable && e.altKey && (e.key === 'ArrowUp' || e.key === 'ArrowDown')) {
@@ -142,6 +144,7 @@ const Row = memo(function Row({
       aria-current={current ? 'true' : undefined}
       draggable={reorderable || undefined}
       onDoubleClick={() => onPlay(index)}
+      onContextMenu={(e) => openTrackMenu(e, track, 'table')}
       onKeyDown={onKeyDown}
       onDragStart={reorderable ? (e) => onDragStart(index, e) : undefined}
       onDragOver={reorderable ? (e) => onDragOver(index, e) : undefined}
@@ -200,9 +203,16 @@ const Row = memo(function Row({
             <DownloadButton track={track} hideWhenLocal />
             <WaveButton track={track} />
             {actions}
-            <MoreMenuButton
+            <IconButton
+              icon={MoreHorizontal}
+              size="small"
               label="Ещё"
-              items={[{ label: 'Не нравится', icon: ThumbsDown, onSelect: () => dislikeTrack(track) }]}
+              title="Ещё: «Не нравится», «Играть следующим», исполнитель…"
+              aria-haspopup="menu"
+              onClick={(e) => {
+                e.stopPropagation();
+                openTrackMenuBelow(e.currentTarget, track, 'table');
+              }}
             />
           </>
         )}
@@ -214,7 +224,8 @@ const Row = memo(function Row({
 
 /**
  * Единственная таблица треков приложения: №, название и исполнитель с обложкой, альбом/источник, длительность.
- * В каждой строке уже есть ♥, «+», «Скачать», «Волна по треку» и «⋯» («Не нравится»); `rowActions` добавляет остальное.
+ * В каждой строке уже есть ♥, «+», «Скачать», «Волна по треку» и «⋯» — то же меню трека, что по правому клику;
+ * `rowActions` добавляет остальное.
  * С `playlistId` строки перетаскиваются. Скрытые треки — см. `blockedMode`.
  */
 export function TrackTable({ tracks, onPlay, showSource = true, playlistId, rowActions, hideHeader = false, blockedMode = 'mute' }: TrackTableProps) {
