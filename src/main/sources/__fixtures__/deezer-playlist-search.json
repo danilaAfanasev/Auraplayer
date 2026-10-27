@@ -1,0 +1,66 @@
+{
+ "data": [
+  {
+   "id": 10805667442,
+   "title": "hyperpop",
+   "nb_tracks": 50,
+   "picture_xl": "https://cdn-images.dzcdn.net/images/playlist/88ba046848b9673a3a5af8be72186838/1000x1000-000000-80-0-0.jpg",
+   "user": {
+    "id": 753543485,
+    "name": "Georges - Deezer Alternative Editor"
+   },
+   "type": "playlist",
+   "tracklist": "https://api.deezer.com/playlist/10805667442/tracks"
+  },
+  {
+   "id": 14710257021,
+   "title": "party 4 u",
+   "nb_tracks": 81,
+   "picture_xl": "https://cdn-images.dzcdn.net/images/playlist/f1b8529e9f9487614ed1d4013f3a7fad/1000x1000-000000-80-0-0.jpg",
+   "user": {
+    "id": 846571671,
+    "name": "Rudy - Deezer Moods Editor"
+   },
+   "type": "playlist",
+   "tracklist": "https://api.deezer.com/playlist/14710257021/tracks"
+  },
+  {
+   "id": 10944198282,
+   "title": "sound von morgen",
+   "nb_tracks": 81,
+   "picture_xl": "https://cdn-images.dzcdn.net/images/playlist/ba438bcaa63ebb5f5ad4d0f2a812e12a/1000x1000-000000-80-0-0.jpg",
+   "user": {
+    "id": 374224155,
+    "name": "Yannick - Deezer Deutschland Editor"
+   },
+   "type": "playlist",
+   "tracklist": "https://api.deezer.com/playlist/10944198282/tracks"
+  },
+  {
+   "id": 1676772471,
+   "title": "Vision",
+   "nb_tracks": 55,
+   "picture_xl": "https://cdn-images.dzcdn.net/images/playlist/a9059b9efb5f67eb7ed3a3579e2429b3/1000x1000-000000-80-0-0.jpg",
+   "user": {
+    "id": 2960047984,
+    "name": "Narjes - Deezer Rap & R&B Editrice France"
+   },
+   "type": "playlist",
+   "tracklist": "https://api.deezer.com/playlist/1676772471/tracks"
+  },
+  {
+   "id": 10882298942,
+   "title": "bedroom rave",
+   "nb_tracks": 50,
+   "picture_xl": "https://cdn-images.dzcdn.net/images/playlist/320eff008a2ba85dac0f17d7d17ebcc0/1000x1000-000000-80-0-0.jpg",
+   "user": {
+    "id": 752926945,
+    "name": "Georges - Deezer Electronic Editor"
+   },
+   "type": "playlist",
+   "tracklist": "https://api.deezer.com/playlist/10882298942/tracks"
+  }
+ ],
+ "total": 150,
+ "next": "https://api.deezer.com/search/playlist?q=hyperpop&limit=5&index=5"
+}

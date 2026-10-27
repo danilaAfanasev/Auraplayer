@@ -1,0 +1,50 @@
+{
+ "resultCount": 5,
+ "results": [
+  {
+   "wrapperType": "artist",
+   "artistType": "Artist",
+   "artistName": "Juice WRLD",
+   "artistLinkUrl": "https://music.apple.com/ru/artist/juice-wrld/1368733420?uo=4",
+   "artistId": 1368733420,
+   "primaryGenreName": "Хип-хоп",
+   "primaryGenreId": 18
+  },
+  {
+   "wrapperType": "artist",
+   "artistType": "Artist",
+   "artistName": "Juice WRLD",
+   "artistLinkUrl": "https://music.apple.com/ru/artist/juice-wrld/1500879976?uo=4",
+   "artistId": 1500879976,
+   "primaryGenreName": "Хип-хоп",
+   "primaryGenreId": 18
+  },
+  {
+   "wrapperType": "artist",
+   "artistType": "Artist",
+   "artistName": "benny blanco",
+   "artistLinkUrl": "https://music.apple.com/ru/artist/benny-blanco/1410841257?uo=4",
+   "artistId": 1410841257,
+   "primaryGenreName": "Поп",
+   "primaryGenreId": 14
+  },
+  {
+   "wrapperType": "artist",
+   "artistType": "Artist",
+   "artistName": "Juice",
+   "artistLinkUrl": "https://music.apple.com/ru/artist/juice/1355913665?uo=4",
+   "artistId": 1355913665,
+   "primaryGenreName": "Альтернатива",
+   "primaryGenreId": 20
+  },
+  {
+   "wrapperType": "artist",
+   "artistType": "Artist",
+   "artistName": "Juice",
+   "artistLinkUrl": "https://music.apple.com/ru/artist/juice/1511165554?uo=4",
+   "artistId": 1511165554,
+   "primaryGenreName": "Хип-хоп",
+   "primaryGenreId": 18
+  }
+ ]
+}

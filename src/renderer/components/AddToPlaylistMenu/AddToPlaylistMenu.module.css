@@ -1,0 +1,146 @@
+.anchor {
+  display: inline-flex;
+}
+
+.menu {
+  position: fixed;
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  padding: 6px;
+  border-radius: var(--radius-m);
+  background: var(--popover);
+  border: 1px solid var(--border-strong);
+  box-shadow: 0 18px 48px var(--shadow);
+  animation: menu-in var(--dur) var(--ease) both;
+}
+
+.head {
+  flex: none;
+  padding: 8px 10px 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.list {
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: none;
+  width: 100%;
+  min-height: 40px;
+  padding: 0 10px;
+  border-radius: var(--radius-xs);
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  color: var(--text);
+  transition: background-color var(--dur-fast) var(--ease);
+}
+
+.item:hover,
+.item:focus-visible {
+  background: var(--surface-hover);
+  outline: none;
+}
+
+.itemIcon {
+  flex: none;
+  color: var(--text-muted);
+}
+
+.itemName {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.count {
+  flex: none;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-faint);
+}
+
+.has {
+  flex: none;
+  color: var(--accent-text);
+}
+
+.footer {
+  flex: none;
+  margin-top: 4px;
+  padding-top: 4px;
+  border-top: 1px solid var(--border);
+}
+
+.plus {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.create {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px;
+}
+
+.create input {
+  flex: 1;
+  min-width: 0;
+  height: 38px;
+  padding: 0 12px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border-strong);
+  background: var(--surface-2);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.create input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.createButton {
+  flex: none;
+  height: 38px;
+  padding: 0 14px;
+  border-radius: var(--radius-xs);
+  background: var(--accent);
+  color: var(--accent-contrast);
+  font-size: 13px;
+  font-weight: 700;
+  transition: background-color var(--dur-fast) var(--ease);
+}
+
+.createButton:hover {
+  background: var(--accent-hover);
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.98);
+  }
+}

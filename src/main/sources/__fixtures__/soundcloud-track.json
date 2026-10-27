@@ -1,0 +1,33 @@
+{
+  "id": "2420080329",
+  "title": "Tate McRae - Housewife",
+  "uploader": "RAP MUSIC",
+  "duration": 195.047,
+  "webpage_url": "https://soundcloud.com/22511409/tate-mcrae-housewife-1",
+  "format_id": "hls_aac_160k",
+  "url": "https://playback.media-streaming.soundcloud.cloud/fuCcPiXPHypI/aac_160k/1acd7ceb-5930-42b6-b598-cfe65c7d718e/playlist.m3u8?expires=1792881118",
+  "ext": "m4a",
+  "acodec": "mp4a.40.2",
+  "vcodec": "none",
+  "protocol": "m3u8_native",
+  "formats": [
+    {
+      "format_id": "hls_aac_96k",
+      "url": "https://playback.media-streaming.soundcloud.cloud/fuCcPiXPHypI/aac_96k/ef0d34ef-4347-495e-98ad-d75e2c535196/playlist.m3u8?expires=1792881118",
+      "ext": "m4a",
+      "acodec": "mp4a.40.2",
+      "vcodec": "none",
+      "abr": 96,
+      "protocol": "m3u8_native"
+    },
+    {
+      "format_id": "hls_aac_160k",
+      "url": "https://playback.media-streaming.soundcloud.cloud/fuCcPiXPHypI/aac_160k/1acd7ceb-5930-42b6-b598-cfe65c7d718e/playlist.m3u8?expires=1792881118",
+      "ext": "m4a",
+      "acodec": "mp4a.40.2",
+      "vcodec": "none",
+      "abr": 160,
+      "protocol": "m3u8_native"
+    }
+  ]
+}

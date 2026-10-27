@@ -1,0 +1,223 @@
+/* «Волна SoundCloud» — крупная кнопка */
+.wave {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 560px;
+  min-height: 104px;
+  margin-bottom: 32px;
+  padding: 18px 22px;
+  border-radius: var(--radius-l);
+  border: 1px solid var(--border);
+  text-align: left;
+  background:
+    radial-gradient(120% 140% at 0% 0%, var(--accent-glow), transparent 60%),
+    var(--surface-2);
+  animation: rise var(--dur-slow) var(--ease) both;
+  transition:
+    transform var(--dur-fast) var(--ease),
+    border-color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+
+.wave:hover:not(:disabled) {
+  border-color: var(--border-strong);
+  box-shadow: 0 14px 36px var(--shadow);
+}
+
+.wave:active:not(:disabled) {
+  transform: scale(0.985);
+}
+
+.wave:disabled {
+  cursor: default;
+}
+
+.wavePlaying {
+  border-color: var(--accent);
+}
+
+.waveIcon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  box-shadow: 0 8px 24px var(--accent-soft);
+}
+
+.waveText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.waveTitle {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.waveSub {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* Блоки «Популярное» и «Свежее» */
+.block {
+  margin-bottom: 36px;
+  animation: rise var(--dur-slow) var(--ease) both;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-m);
+  color: var(--accent-contrast);
+  background: linear-gradient(140deg, var(--accent-hover), var(--accent));
+  box-shadow: 0 8px 22px var(--accent-glow);
+}
+
+.heading {
+  flex: 1;
+  min-width: 0;
+}
+
+.heading h2 {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  margin-top: 2px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.aside {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  margin-bottom: 14px;
+}
+
+/* Переключатели жанра и региона */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  height: 34px;
+  padding: 0 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: var(--surface-2);
+  transition:
+    background-color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    color var(--dur) var(--ease),
+    transform var(--dur-fast) var(--ease);
+}
+
+.chip:hover {
+  color: var(--text);
+  background: var(--surface-hover);
+}
+
+.chip:active {
+  transform: scale(0.96);
+}
+
+.chipOn,
+.chipOn:hover {
+  color: var(--text);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+/* Статус обновления */
+.status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.updated {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.offline {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 24px;
+  padding: 0 10px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--danger);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+
+.more {
+  display: block;
+  margin: 12px auto 0;
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: var(--surface-2);
+  transition:
+    color var(--dur) var(--ease),
+    background-color var(--dur) var(--ease);
+}
+
+.more:hover {
+  color: var(--text);
+  background: var(--surface-hover);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}

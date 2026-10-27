@@ -1,0 +1,199 @@
+{
+ "id": "кино группа крови",
+ "title": "кино группа крови",
+ "_type": "playlist",
+ "extractor": "youtube:search",
+ "entries": [
+  {
+   "_type": "url",
+   "ie_key": "Youtube",
+   "id": "xtxjm7ciwmc",
+   "url": "https://www.youtube.com/watch?v=xtxjm7ciwmc",
+   "title": "Группа крови",
+   "description": "Provided to YouTube by Цой В.Р. (наследники), Каспарян Ю.Д.,",
+   "duration": 285,
+   "channel_id": "UCX2Zz28HLCAO5NCSd5Y-Dgw",
+   "channel": "Группа КИНО",
+   "channel_url": "https://www.youtube.com/channel/UCX2Zz28HLCAO5NCSd5Y-Dgw",
+   "uploader": "Группа КИНО",
+   "uploader_id": null,
+   "uploader_url": null,
+   "thumbnails": [
+    {
+     "url": "https://i.ytimg.com/vi/xtxjm7ciwmc/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBqy6r8esLGtSBdcLJEsqEAMlkaVg",
+     "height": 202,
+     "width": 360
+    },
+    {
+     "url": "https://i.ytimg.com/vi/xtxjm7ciwmc/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAu3nUtGfiV6XsJEq2bFXtqxSmuBg",
+     "height": 404,
+     "width": 720
+    }
+   ],
+   "timestamp": null,
+   "release_timestamp": null,
+   "availability": null,
+   "view_count": 71202039,
+   "live_status": null,
+   "channel_is_verified": true
+  },
+  {
+   "_type": "url",
+   "ie_key": "Youtube",
+   "id": "xKpzH5bxYsk",
+   "url": "https://www.youtube.com/watch?v=xKpzH5bxYsk",
+   "title": "Виктор Цой - Группа Крови",
+   "description": "Виктор Цой - Группа Крови.",
+   "duration": 291,
+   "channel_id": "UCUlwHAxJEFWmYpqZbBDhwxg",
+   "channel": "foleywarlocks",
+   "channel_url": "https://www.youtube.com/channel/UCUlwHAxJEFWmYpqZbBDhwxg",
+   "uploader": "foleywarlocks",
+   "uploader_id": "@foleywarlocks",
+   "uploader_url": "https://www.youtube.com/@foleywarlocks",
+   "thumbnails": [
+    {
+     "url": "https://i.ytimg.com/vi/xKpzH5bxYsk/hqdefault.jpg?sqp=-oaymwE2COADEI4CSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gSAAuADigIMCAAQARhlIGUoZTAP&rs=AOn4CLDy4EdrVyP1SS8yAHnJMve-vdRHPA",
+     "height": 270,
+     "width": 480
+    }
+   ],
+   "timestamp": null,
+   "release_timestamp": null,
+   "availability": null,
+   "view_count": 25548594,
+   "live_status": null,
+   "channel_is_verified": null
+  },
+  {
+   "_type": "url",
+   "ie_key": "Youtube",
+   "id": "RcQuuvMHbOM",
+   "url": "https://www.youtube.com/watch?v=RcQuuvMHbOM",
+   "title": "Виктор Цой - Группа Крови",
+   "description": "Его не забудут.",
+   "duration": 233,
+   "channel_id": "UCB8ODktRSicQGEIJYEZe25w",
+   "channel": "Sergei Dmitrijev",
+   "channel_url": "https://www.youtube.com/channel/UCB8ODktRSicQGEIJYEZe25w",
+   "uploader": "Sergei Dmitrijev",
+   "uploader_id": "@Zloiscuko",
+   "uploader_url": "https://www.youtube.com/@Zloiscuko",
+   "thumbnails": [
+    {
+     "url": "https://i.ytimg.com/vi/RcQuuvMHbOM/hqdefault.jpg?sqp=-oaymwE2COADEI4CSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgBvgKAAvABigIMCAAQARg8IFkocjAP&rs=AOn4CLC2cvWq-DQWCrxKZHBxpJaGzG2vdQ",
+     "height": 270,
+     "width": 480
+    }
+   ],
+   "timestamp": null,
+   "release_timestamp": null,
+   "availability": null,
+   "view_count": 55853775,
+   "live_status": null,
+   "channel_is_verified": null
+  },
+  {
+   "_type": "url",
+   "ie_key": "Youtube",
+   "id": "K69_m4gtZDk",
+   "url": "https://www.youtube.com/watch?v=K69_m4gtZDk",
+   "title": "Кино - Группа Крови (Альбом)",
+   "description": "Kino - Blood Type (Album) 00:00 ~ Группа крови 04:43 ~ Закро",
+   "duration": 2832,
+   "channel_id": "UCoWTjc-LOaAn5oGeHMBkwkA",
+   "channel": "Sasha Arrabi",
+   "channel_url": "https://www.youtube.com/channel/UCoWTjc-LOaAn5oGeHMBkwkA",
+   "uploader": "Sasha Arrabi",
+   "uploader_id": "@sashaarrabi91",
+   "uploader_url": "https://www.youtube.com/@sashaarrabi91",
+   "thumbnails": [
+    {
+     "url": "https://i.ytimg.com/vi/K69_m4gtZDk/hq720.jpg?sqp=-oaymwE2COgCEMoBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARh_IBwoEzAP&rs=AOn4CLD8bdQ0vD7WqStMc2pzZpIlp-vnLw",
+     "height": 202,
+     "width": 360
+    },
+    {
+     "url": "https://i.ytimg.com/vi/K69_m4gtZDk/hq720.jpg?sqp=-oaymwE2CNAFEJQDSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARh_IBwoEzAP&rs=AOn4CLAwieW-GGOvRgvMoJwy0J2e7TPq0A",
+     "height": 404,
+     "width": 720
+    }
+   ],
+   "timestamp": null,
+   "release_timestamp": null,
+   "availability": null,
+   "view_count": 4502403,
+   "live_status": null,
+   "channel_is_verified": null
+  },
+  {
+   "_type": "url",
+   "ie_key": "Youtube",
+   "id": "MTJhfySLSCQ",
+   "url": "https://www.youtube.com/watch?v=MTJhfySLSCQ",
+   "title": "КИНО - Группа Крови (rare) | (VIKTOR TSOI CAM) eng/france SUBTITLES May 05 | 1990",
+   "description": "Задай мне вопрос - https://fantalks.io/r/timo2009 Редкие зап",
+   "duration": 306,
+   "channel_id": "UCk1eGdi3pKvnmdxuzu_Ez6A",
+   "channel": "Тимур Баширов ",
+   "channel_url": "https://www.youtube.com/channel/UCk1eGdi3pKvnmdxuzu_Ez6A",
+   "uploader": "Тимур Баширов ",
+   "uploader_id": "@1995-2009",
+   "uploader_url": "https://www.youtube.com/@1995-2009",
+   "thumbnails": [
+    {
+     "url": "https://i.ytimg.com/vi/MTJhfySLSCQ/hq720.jpg?sqp=-oaymwE2COgCEMoBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARhTIBMofzAP&rs=AOn4CLDO4YxZ13XJgzDnfYhMdsUj339s5g",
+     "height": 202,
+     "width": 360
+    },
+    {
+     "url": "https://i.ytimg.com/vi/MTJhfySLSCQ/hq720.jpg?sqp=-oaymwE2CNAFEJQDSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARhTIBMofzAP&rs=AOn4CLDi4WyH7mHFpAHCdQ7JzHNNN3G38A",
+     "height": 404,
+     "width": 720
+    }
+   ],
+   "timestamp": null,
+   "release_timestamp": null,
+   "availability": null,
+   "view_count": 3727769,
+   "live_status": null,
+   "channel_is_verified": null
+  },
+  {
+   "_type": "url",
+   "ie_key": "Youtube",
+   "id": "rFZHOHl-L8A",
+   "url": "https://www.youtube.com/watch?v=rFZHOHl-L8A",
+   "title": "lofi hip hop radio 📚 beats to relax/study to",
+   "description": "Spooky season is officially upon us 2026 Halloween playlist ",
+   "duration": null,
+   "channel_id": "UCSJ4gkVC6NrvII8umztf0Ow",
+   "channel": "Lofi Girl",
+   "channel_url": "https://www.youtube.com/channel/UCSJ4gkVC6NrvII8umztf0Ow",
+   "uploader": "Lofi Girl",
+   "uploader_id": null,
+   "uploader_url": null,
+   "thumbnails": [
+    {
+     "url": "https://i.ytimg.com/vi/rFZHOHl-L8A/hq720.jpg?v=6ad62bed&sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDN3Yy-Dw3B9x_HYcTaGXq7gEVppA",
+     "height": 202,
+     "width": 360
+    },
+    {
+     "url": "https://i.ytimg.com/vi/rFZHOHl-L8A/hq720.jpg?v=6ad62bed&sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCdekX1ygqqUJynjbliA5ayfR7tlw",
+     "height": 404,
+     "width": 720
+    }
+   ],
+   "timestamp": null,
+   "release_timestamp": null,
+   "availability": null,
+   "concurrent_view_count": 10204,
+   "live_status": "is_live",
+   "channel_is_verified": true
+  }
+ ],
+ "_version": {
+  "version": "2026.10.21"
+ }
+}

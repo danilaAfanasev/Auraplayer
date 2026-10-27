@@ -1,0 +1,85 @@
+{
+ "data": [
+  {
+   "id": 126239552,
+   "name": "shadowraze",
+   "picture_xl": "https://cdn-images.dzcdn.net/images/artist/653a58dfcda1765e728a6bcb00f1953f/1000x1000-000000-80-0-0.jpg",
+   "nb_album": 25,
+   "nb_fan": 6882,
+   "type": "artist"
+  },
+  {
+   "id": 265698332,
+   "name": "Shadow Rays",
+   "picture_xl": "https://cdn-images.dzcdn.net/images/artist/783d0c2dbb68e5f949dc90c62d1492fe/1000x1000-000000-80-0-0.jpg",
+   "nb_album": 1,
+   "nb_fan": 8823,
+   "type": "artist"
+  },
+  {
+   "id": 105591772,
+   "name": "Shadowave",
+   "picture_xl": "https://cdn-images.dzcdn.net/images/artist/e880823743afb58669a25122f592cdc6/1000x1000-000000-80-0-0.jpg",
+   "nb_album": 142,
+   "nb_fan": 72,
+   "type": "artist"
+  },
+  {
+   "id": 7614404,
+   "name": "Shadow Age",
+   "picture_xl": "https://cdn-images.dzcdn.net/images/artist/d99cad28be13d7c75a399a62c74b4f43/1000x1000-000000-80-0-0.jpg",
+   "nb_album": 11,
+   "nb_fan": 201,
+   "type": "artist"
+  },
+  {
+   "id": 358357562,
+   "name": "ShadowBrake",
+   "picture_xl": "https://cdn-images.dzcdn.net/images/artist/964315a59da9c137e231f6a34ac24629/1000x1000-000000-80-0-0.jpg",
+   "nb_album": 2,
+   "nb_fan": 4,
+   "type": "artist"
+  },
+  {
+   "id": 254154602,
+   "name": "Shadow Ace",
+   "picture_xl": "https://cdn-images.dzcdn.net/images/artist/ae4a3547506a3fcb11ac64f1f3ab967d/1000x1000-000000-80-0-0.jpg",
+   "nb_album": 9,
+   "nb_fan": 1,
+   "type": "artist"
+  },
+  {
+   "id": 126011032,
+   "name": "Shadow Sage",
+   "picture_xl": "https://cdn-images.dzcdn.net/images/artist/2df488459d21abd6037d2bc819a3b52f/1000x1000-000000-80-0-0.jpg",
+   "nb_album": 9,
+   "nb_fan": 78,
+   "type": "artist"
+  },
+  {
+   "id": 60233872,
+   "name": "Shadowmare",
+   "picture_xl": "https://cdn-images.dzcdn.net/images/artist/ca7dc58c3b55f6c645963451b3077049/1000x1000-000000-80-0-0.jpg",
+   "nb_album": 4,
+   "nb_fan": 4,
+   "type": "artist"
+  },
+  {
+   "id": 7362126,
+   "name": "Shadowbane",
+   "picture_xl": "https://cdn-images.dzcdn.net/images/artist/6dfc0369018f9b249f647c8fb5b54ce9/1000x1000-000000-80-0-0.jpg",
+   "nb_album": 1,
+   "nb_fan": 56,
+   "type": "artist"
+  },
+  {
+   "id": 9126496,
+   "name": "Shadow Grave",
+   "picture_xl": "https://cdn-images.dzcdn.net/images/artist/281a97d0bc428298441b3f03e350edde/1000x1000-000000-80-0-0.jpg",
+   "nb_album": 9,
+   "nb_fan": 7,
+   "type": "artist"
+  }
+ ],
+ "total": 18
+}

@@ -1,0 +1,142 @@
+{
+ "result": [
+  {
+   "name": "01-NS050-Multi-Panel_Christmas-With-Mr-Rice.mp3",
+   "source": "original",
+   "format": "VBR MP3",
+   "length": "240.9",
+   "size": "3854504",
+   "title": "Christmas with Mr. Rice",
+   "creator": "Multi-Panel",
+   "album": "Another Day, Another Way",
+   "track": "1/15",
+   "height": "250",
+   "width": "250",
+   "artist": "Multi-Panel",
+   "genre": "folktronic"
+  },
+  {
+   "name": "01-NS050-Multi-Panel_Christmas-With-Mr-Rice.ogg",
+   "source": "derivative",
+   "format": "Ogg Vorbis",
+   "original": "01-NS050-Multi-Panel_Christmas-With-Mr-Rice.mp3",
+   "size": "2129962",
+   "length": "228.41",
+   "height": "0",
+   "width": "0"
+  },
+  {
+   "name": "01-NS050-Multi-Panel_Christmas-With-Mr-Rice.png",
+   "source": "derivative",
+   "format": "PNG",
+   "original": "01-NS050-Multi-Panel_Christmas-With-Mr-Rice.mp3",
+   "size": "10114"
+  },
+  {
+   "name": "01-NS050-Multi-Panel_Christmas-With-Mr-Rice_spectrogram.png",
+   "source": "derivative",
+   "format": "Spectrogram",
+   "original": "01-NS050-Multi-Panel_Christmas-With-Mr-Rice.mp3",
+   "size": "250146"
+  },
+  {
+   "name": "02-NS050-Full-Source_Prior-To-alt-ver.mp3",
+   "source": "original",
+   "format": "VBR MP3",
+   "length": "167.97",
+   "size": "4031288",
+   "title": "Prior To (alt. ver.)",
+   "creator": "Full-Source",
+   "album": "Another Day, Another Way",
+   "track": "2/15",
+   "height": "250",
+   "width": "250",
+   "artist": "Full-Source",
+   "genre": "folktronic"
+  },
+  {
+   "name": "02-NS050-Full-Source_Prior-To-alt-ver.ogg",
+   "source": "derivative",
+   "format": "Ogg Vorbis",
+   "original": "02-NS050-Full-Source_Prior-To-alt-ver.mp3",
+   "size": "1790705",
+   "length": "160.11",
+   "height": "0",
+   "width": "0"
+  },
+  {
+   "name": "02-NS050-Full-Source_Prior-To-alt-ver.png",
+   "source": "derivative",
+   "format": "PNG",
+   "original": "02-NS050-Full-Source_Prior-To-alt-ver.mp3",
+   "size": "12761"
+  },
+  {
+   "name": "02-NS050-Full-Source_Prior-To-alt-ver_spectrogram.png",
+   "source": "derivative",
+   "format": "Spectrogram",
+   "original": "02-NS050-Full-Source_Prior-To-alt-ver.mp3",
+   "size": "270902"
+  },
+  {
+   "name": "03-NS050-Cocolixe_Swing-Low.mp3",
+   "source": "original",
+   "format": "VBR MP3",
+   "length": "200.43",
+   "size": "8017210",
+   "title": "Swing Low",
+   "creator": "Cocolixe",
+   "album": "Another Day, Another Way",
+   "track": "3/15",
+   "height": "250",
+   "width": "250",
+   "artist": "Cocolixe",
+   "genre": "Downtempo"
+  },
+  {
+   "name": "03-NS050-Cocolixe_Swing-Low.ogg",
+   "source": "derivative",
+   "format": "Ogg Vorbis",
+   "original": "03-NS050-Cocolixe_Swing-Low.mp3",
+   "size": "2285563",
+   "length": "194.36",
+   "height": "0",
+   "width": "0"
+  },
+  {
+   "name": "03-NS050-Cocolixe_Swing-Low.png",
+   "source": "derivative",
+   "format": "PNG",
+   "original": "03-NS050-Cocolixe_Swing-Low.mp3",
+   "size": "10615"
+  },
+  {
+   "name": "03-NS050-Cocolixe_Swing-Low_spectrogram.png",
+   "source": "derivative",
+   "format": "Spectrogram",
+   "original": "03-NS050-Cocolixe_Swing-Low.mp3",
+   "size": "324652"
+  },
+  {
+   "name": "NS050_Back.jpg",
+   "source": "original",
+   "format": "JPEG",
+   "size": "1221526",
+   "rotation": "0"
+  },
+  {
+   "name": "NS050_Back_thumb.jpg",
+   "source": "derivative",
+   "format": "JPEG Thumb",
+   "original": "NS050_Back.jpg",
+   "size": "10158"
+  },
+  {
+   "name": "NS050_Cover.jpg",
+   "source": "original",
+   "format": "Book Cover",
+   "size": "2662637",
+   "rotation": "0"
+  }
+ ]
+}

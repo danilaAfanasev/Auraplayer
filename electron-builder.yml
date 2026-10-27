@@ -1,0 +1,39 @@
+# Сборка Windows-установщика Aura: `npm run dist` → release/Aura-Setup-<версия>.exe
+# Ярлык «Aura» с иконкой — на рабочем столе и в меню «Пуск».
+appId: com.aura.player
+productName: Aura
+copyright: Aura
+directories:
+  output: release
+files:
+  - out/**
+  - resources/**
+  - package.json
+  - '!**/*.map'
+  # Всё нужное (React, lucide, music-metadata, nanoid) уже собрано в out/ — node_modules в пакете не нужны.
+  - '!node_modules/**'
+# Иконка окна (resources/icon.png) читается с диска, не из asar.
+asarUnpack:
+  - resources/**
+npmRebuild: false
+win:
+  executableName: Aura
+  icon: resources/icon.ico
+  target:
+    - target: nsis
+      arch:
+        - x64
+nsis:
+  artifactName: ${productName}-Setup-${version}.${ext}
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: always
+  createStartMenuShortcut: true
+  shortcutName: Aura
+  uninstallDisplayName: Aura
+  installerIcon: resources/icon.ico
+  uninstallerIcon: resources/icon.ico
+  installerHeaderIcon: resources/icon.ico
+  # Плейлисты, настройки и yt-dlp в userData остаются при удалении программы.
+  deleteAppDataOnUninstall: false

@@ -1,0 +1,529 @@
+{
+ "data": [
+  {
+   "id": 2786166682,
+   "readable": true,
+   "title": "44",
+   "title_short": "44",
+   "title_version": "",
+   "duration": 140,
+   "rank": 120655,
+   "artist": {
+    "id": 126239552,
+    "name": "shadowraze",
+    "type": "artist"
+   },
+   "album": {
+    "id": 583005572,
+    "title": "44",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/6d1464ebe00b73cb74c9817a91774180/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/6d1464ebe00b73cb74c9817a91774180/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 3402100881,
+   "readable": true,
+   "title": "вклубе",
+   "title_short": "вклубе",
+   "title_version": "",
+   "duration": 99,
+   "rank": 301505,
+   "artist": {
+    "id": 290803481,
+    "name": "тёмный принц",
+    "type": "artist"
+   },
+   "album": {
+    "id": 768377741,
+    "title": "мрачные треды",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/44d9b0ca12109eb52e88be613997e9f0/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/44d9b0ca12109eb52e88be613997e9f0/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 1508059272,
+   "readable": true,
+   "title": "shadowfiend",
+   "title_short": "shadowfiend",
+   "title_version": "",
+   "duration": 143,
+   "rank": 114687,
+   "artist": {
+    "id": 126239552,
+    "name": "shadowraze",
+    "type": "artist"
+   },
+   "album": {
+    "id": 262204622,
+    "title": "shadowfiend",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/4daea36ba65d8d3825c9885af1ad73cc/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/4daea36ba65d8d3825c9885af1ad73cc/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 3201361321,
+   "readable": true,
+   "title": "цена",
+   "title_short": "цена",
+   "title_version": "",
+   "duration": 138,
+   "rank": 190038,
+   "artist": {
+    "id": 153072532,
+    "name": "madk1d",
+    "type": "artist"
+   },
+   "album": {
+    "id": 702545381,
+    "title": "цена",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/68a8b1d1b1249da86bc1fd1aca00921f/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/68a8b1d1b1249da86bc1fd1aca00921f/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 1464462712,
+   "readable": true,
+   "title": "juggernaut (Prod. by PLVSTIC)",
+   "title_short": "juggernaut (Prod. by PLVSTIC)",
+   "title_version": "",
+   "duration": 136,
+   "rank": 137495,
+   "artist": {
+    "id": 126239552,
+    "name": "shadowraze",
+    "type": "artist"
+   },
+   "album": {
+    "id": 251795552,
+    "title": "juggernaut (Prod. by PLVSTIC)",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/f8288c2b4570eb7714f030e30093b023/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/f8288c2b4570eb7714f030e30093b023/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 3079039961,
+   "readable": true,
+   "title": "ParisLove",
+   "title_short": "ParisLove",
+   "title_version": "",
+   "duration": 109,
+   "rank": 347991,
+   "artist": {
+    "id": 246673262,
+    "name": "FORTUNA 812",
+    "type": "artist"
+   },
+   "album": {
+    "id": 666776071,
+    "title": "ParisLove",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/bfd813568070f7433616fd27daeabb60/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/bfd813568070f7433616fd27daeabb60/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 1591939911,
+   "readable": true,
+   "title": "Слышу как ты дышишь",
+   "title_short": "Слышу как ты дышишь",
+   "title_version": "",
+   "duration": 122,
+   "rank": 1796,
+   "artist": {
+    "id": 8914556,
+    "name": "MIDIX",
+    "type": "artist"
+   },
+   "album": {
+    "id": 280638781,
+    "title": "HYPERPOP ATTACK",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/3107a31cc9cab88bc6e3649f2d343db6/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/3107a31cc9cab88bc6e3649f2d343db6/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 2345197835,
+   "readable": true,
+   "title": "FALLEN",
+   "title_short": "FALLEN",
+   "title_version": "",
+   "duration": 218,
+   "rank": 164023,
+   "artist": {
+    "id": 9653012,
+    "name": "JEEMBO",
+    "type": "artist"
+   },
+   "album": {
+    "id": 458386905,
+    "title": "GRAVEWALKER",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/5ed023989bb88af93510c463114db2c8/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/5ed023989bb88af93510c463114db2c8/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 3104419931,
+   "readable": true,
+   "title": "ПАПА",
+   "title_short": "ПАПА",
+   "title_version": "",
+   "duration": 102,
+   "rank": 302454,
+   "artist": {
+    "id": 290803481,
+    "name": "тёмный принц",
+    "type": "artist"
+   },
+   "album": {
+    "id": 673386851,
+    "title": "ПАПА",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/a8887d52ff8e0be75e71bbcae21ac0c0/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/a8887d52ff8e0be75e71bbcae21ac0c0/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 1637743402,
+   "readable": true,
+   "title": "Крышу сносит",
+   "title_short": "Крышу сносит",
+   "title_version": "",
+   "duration": 174,
+   "rank": 2481,
+   "artist": {
+    "id": 55542172,
+    "name": "Lxner",
+    "type": "artist"
+   },
+   "album": {
+    "id": 291297222,
+    "title": "Крышу сносит",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/7173598fc703d130f8d490e65e02739e/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/7173598fc703d130f8d490e65e02739e/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 1996104677,
+   "readable": true,
+   "title": "Диибо",
+   "title_short": "Диибо",
+   "title_version": "",
+   "duration": 203,
+   "rank": 94835,
+   "artist": {
+    "id": 15037981,
+    "name": "OG Buda",
+    "type": "artist"
+   },
+   "album": {
+    "id": 372171207,
+    "title": "SEXY DRILL",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/a339281830b9715726a1ced2c3ad82e0/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/a339281830b9715726a1ced2c3ad82e0/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 4158726152,
+   "readable": true,
+   "title": "скажи завтра",
+   "title_short": "скажи завтра",
+   "title_version": "",
+   "duration": 154,
+   "rank": 100000,
+   "artist": {
+    "id": 49894302,
+    "name": "AILIE",
+    "type": "artist"
+   },
+   "album": {
+    "id": 1030940562,
+    "title": "скажи завтра",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/84b2c760a94f7498d0c3b39e53758685/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/84b2c760a94f7498d0c3b39e53758685/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 1977486417,
+   "readable": true,
+   "title": "я сохраню (speed up)",
+   "title_short": "я сохраню (speed up)",
+   "title_version": "",
+   "duration": 99,
+   "rank": 64826,
+   "artist": {
+    "id": 54996422,
+    "name": "Cold Carti",
+    "type": "artist"
+   },
+   "album": {
+    "id": 368560497,
+    "title": "я сохраню (speed up)",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/2e1c0ea4424299ebc0ea88bee84c8ffe/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/2e1c0ea4424299ebc0ea88bee84c8ffe/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 614843822,
+   "readable": true,
+   "title": "Представьте",
+   "title_short": "Представьте",
+   "title_version": "",
+   "duration": 132,
+   "rank": 161695,
+   "artist": {
+    "id": 16779,
+    "name": "Кровосток",
+    "type": "artist"
+   },
+   "album": {
+    "id": 83821582,
+    "title": "Студень",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/d66f67682c6a0417b5eba7378e1fec30/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/d66f67682c6a0417b5eba7378e1fec30/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 3050021401,
+   "readable": true,
+   "title": "double rr",
+   "title_short": "double rr",
+   "title_version": "",
+   "duration": 122,
+   "rank": 25312,
+   "artist": {
+    "id": 263665501,
+    "name": "doxxxelll",
+    "type": "artist"
+   },
+   "album": {
+    "id": 658190511,
+    "title": "double rr",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/d8d805b5e7e62e3237b039fd053da012/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/d8d805b5e7e62e3237b039fd053da012/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 3364864181,
+   "readable": true,
+   "title": "Посетитель снов",
+   "title_short": "Посетитель снов",
+   "title_version": "",
+   "duration": 113,
+   "rank": 234976,
+   "artist": {
+    "id": 148731202,
+    "name": "whylovly",
+    "type": "artist"
+   },
+   "album": {
+    "id": 756100111,
+    "title": "Посетитель снов",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/11e3b3b44431eb43837954e9a9c93c32/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/11e3b3b44431eb43837954e9a9c93c32/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 3125971291,
+   "readable": true,
+   "title": "ДЫРБУЛЩИЩ",
+   "title_short": "ДЫРБУЛЩИЩ",
+   "title_version": "",
+   "duration": 139,
+   "rank": 78348,
+   "artist": {
+    "id": 10292790,
+    "name": "BOULEVARD DEPO",
+    "type": "artist"
+   },
+   "album": {
+    "id": 679365801,
+    "title": "ФУТУРОАРХАИКА",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/7a4ace93f895dc6224320495bab36093/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/7a4ace93f895dc6224320495bab36093/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 1703317547,
+   "readable": true,
+   "title": "Never Broke Again",
+   "title_short": "Never Broke Again",
+   "title_version": "",
+   "duration": 108,
+   "rank": 219138,
+   "artist": {
+    "id": 81884332,
+    "name": "xxxmanera",
+    "type": "artist"
+   },
+   "album": {
+    "id": 307047347,
+    "title": "Never Broke Again",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/59a7610352dea2f630a7920e54773b3c/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/59a7610352dea2f630a7920e54773b3c/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 2199331977,
+   "readable": true,
+   "title": "Красавица",
+   "title_short": "Красавица",
+   "title_version": "",
+   "duration": 210,
+   "rank": 231886,
+   "artist": {
+    "id": 126551942,
+    "name": "ЯРЧЕ СОЛНЦА",
+    "type": "artist"
+   },
+   "album": {
+    "id": 419456957,
+    "title": "Красавица",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/ce0f9f2fea1c04240ddad4c110825c66/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/ce0f9f2fea1c04240ddad4c110825c66/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 1972433237,
+   "readable": true,
+   "title": "Тени Хиросимы",
+   "title_short": "Тени Хиросимы",
+   "title_version": "",
+   "duration": 134,
+   "rank": 143184,
+   "artist": {
+    "id": 8778868,
+    "name": "GONE.Fludd",
+    "type": "artist"
+   },
+   "album": {
+    "id": 367423437,
+    "title": "DIGITAL FANTAZY",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/24d40776d52f81dc81f30ae184659a54/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/24d40776d52f81dc81f30ae184659a54/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 2433385265,
+   "readable": true,
+   "title": "Только Ты",
+   "title_short": "Только Ты",
+   "title_version": "",
+   "duration": 130,
+   "rank": 107157,
+   "artist": {
+    "id": 83409632,
+    "name": "Килджо",
+    "type": "artist"
+   },
+   "album": {
+    "id": 482386365,
+    "title": "Только Ты",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/67419e0c9d8255cd324a0032cae2ee3d/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/67419e0c9d8255cd324a0032cae2ee3d/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 2036009647,
+   "readable": true,
+   "title": "Грязь",
+   "title_short": "Грязь",
+   "title_version": "",
+   "duration": 141,
+   "rank": 83734,
+   "artist": {
+    "id": 98846202,
+    "name": "Кишлак",
+    "type": "artist"
+   },
+   "album": {
+    "id": 380192817,
+    "title": "11:11",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/89d7f41b6d8b7b5bc0385c626cf0f1dc/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/89d7f41b6d8b7b5bc0385c626cf0f1dc/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 1076806192,
+   "readable": true,
+   "title": "Бесконечный магазин",
+   "title_short": "Бесконечный магазин",
+   "title_version": "",
+   "duration": 157,
+   "rank": 72020,
+   "artist": {
+    "id": 6363110,
+    "name": "Хаски",
+    "type": "artist"
+   },
+   "album": {
+    "id": 172609722,
+    "title": "Бесконечный магазин",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/2c72e0218fbd41c8bf7b1407db6a17c9/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/2c72e0218fbd41c8bf7b1407db6a17c9/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 2444798445,
+   "readable": true,
+   "title": "F*CK OFF",
+   "title_short": "F*CK OFF",
+   "title_version": "",
+   "duration": 103,
+   "rank": 280455,
+   "artist": {
+    "id": 111036372,
+    "name": "NEWLIGHTCHILD",
+    "type": "artist"
+   },
+   "album": {
+    "id": 485432145,
+    "title": "F*CK OFF",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/a4569a54cf2cfef87bcd377d9b98219b/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/a4569a54cf2cfef87bcd377d9b98219b/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 3058481841,
+   "readable": true,
+   "title": "Страшный сон 2",
+   "title_short": "Страшный сон 2",
+   "title_version": "",
+   "duration": 110,
+   "rank": 7903,
+   "artist": {
+    "id": 258720592,
+    "name": "Раковая Выхухоль",
+    "type": "artist"
+   },
+   "album": {
+    "id": 660925381,
+    "title": "Страшный сон 2",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/780941c3888a875369acb8d569ab1be7/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/780941c3888a875369acb8d569ab1be7/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  }
+ ]
+}

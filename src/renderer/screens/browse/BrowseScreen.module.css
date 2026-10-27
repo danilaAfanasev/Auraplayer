@@ -1,0 +1,73 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  height: 132px;
+  padding: 18px 20px;
+  overflow: hidden;
+  border-radius: var(--radius-l);
+  text-align: left;
+  color: var(--text);
+  /* Оттенок акцента темы с собственным сдвигом и глубиной у каждой карточки */
+  background:
+    radial-gradient(120% 120% at 100% 100%, oklch(from var(--accent) l c calc(h + var(--hue-shift)) / 0.85), transparent 70%),
+    linear-gradient(
+      150deg,
+      color-mix(in oklch, oklch(from var(--accent) l c calc(h + var(--hue-shift))) var(--depth), var(--bg-deep)),
+      color-mix(in oklch, var(--accent) 35%, var(--bg-deep))
+    );
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 30px var(--shadow);
+  animation: card-in var(--dur-slow) var(--ease) both;
+  animation-delay: calc(var(--i, 0) * 20ms);
+  transition:
+    transform var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px var(--shadow);
+}
+
+.card:active {
+  transform: scale(0.98);
+}
+
+.name {
+  position: relative;
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.icon {
+  position: absolute;
+  right: -6px;
+  bottom: -8px;
+  color: var(--text);
+  opacity: 0.35;
+  transform: rotate(-12deg);
+  transition:
+    transform var(--dur-slow) var(--ease),
+    opacity var(--dur) var(--ease);
+}
+
+.card:hover .icon {
+  opacity: 0.55;
+  transform: rotate(-4deg) scale(1.06);
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+}

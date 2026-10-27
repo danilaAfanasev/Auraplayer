@@ -1,0 +1,81 @@
+{
+ "data": [
+  {
+   "id": 153072532,
+   "name": "madk1d",
+   "link": "https://www.deezer.com/artist/153072532",
+   "picture": "https://api.deezer.com/artist/153072532/image",
+   "picture_small": "https://cdn-images.dzcdn.net/images/artist/9d710ff7ef2045519a0b1835966e684c/56x56-000000-80-0-0.jpg",
+   "picture_medium": "https://cdn-images.dzcdn.net/images/artist/9d710ff7ef2045519a0b1835966e684c/250x250-000000-80-0-0.jpg",
+   "picture_big": "https://cdn-images.dzcdn.net/images/artist/9d710ff7ef2045519a0b1835966e684c/500x500-000000-80-0-0.jpg",
+   "picture_xl": "https://cdn-images.dzcdn.net/images/artist/9d710ff7ef2045519a0b1835966e684c/1000x1000-000000-80-0-0.jpg",
+   "nb_album": 24,
+   "nb_fan": 5980,
+   "radio": true,
+   "tracklist": "https://api.deezer.com/artist/153072532/top?limit=50",
+   "type": "artist"
+  },
+  {
+   "id": 13658563,
+   "name": "Masked Wolf",
+   "link": "https://www.deezer.com/artist/13658563",
+   "picture": "https://api.deezer.com/artist/13658563/image",
+   "picture_small": "https://cdn-images.dzcdn.net/images/artist/caf626d37efbae40449c914cb35c12eb/56x56-000000-80-0-0.jpg",
+   "picture_medium": "https://cdn-images.dzcdn.net/images/artist/caf626d37efbae40449c914cb35c12eb/250x250-000000-80-0-0.jpg",
+   "picture_big": "https://cdn-images.dzcdn.net/images/artist/caf626d37efbae40449c914cb35c12eb/500x500-000000-80-0-0.jpg",
+   "picture_xl": "https://cdn-images.dzcdn.net/images/artist/caf626d37efbae40449c914cb35c12eb/1000x1000-000000-80-0-0.jpg",
+   "nb_album": 49,
+   "nb_fan": 76526,
+   "radio": true,
+   "tracklist": "https://api.deezer.com/artist/13658563/top?limit=50",
+   "type": "artist"
+  },
+  {
+   "id": 5072859,
+   "name": "Majid Jordan",
+   "link": "https://www.deezer.com/artist/5072859",
+   "picture": "https://api.deezer.com/artist/5072859/image",
+   "picture_small": "https://cdn-images.dzcdn.net/images/artist/0de1402dbf226e3c9788ed4c30d8cdf0/56x56-000000-80-0-0.jpg",
+   "picture_medium": "https://cdn-images.dzcdn.net/images/artist/0de1402dbf226e3c9788ed4c30d8cdf0/250x250-000000-80-0-0.jpg",
+   "picture_big": "https://cdn-images.dzcdn.net/images/artist/0de1402dbf226e3c9788ed4c30d8cdf0/500x500-000000-80-0-0.jpg",
+   "picture_xl": "https://cdn-images.dzcdn.net/images/artist/0de1402dbf226e3c9788ed4c30d8cdf0/1000x1000-000000-80-0-0.jpg",
+   "nb_album": 11,
+   "nb_fan": 35447,
+   "radio": true,
+   "tracklist": "https://api.deezer.com/artist/5072859/top?limit=50",
+   "type": "artist"
+  },
+  {
+   "id": 14353,
+   "name": "Mack 10",
+   "link": "https://www.deezer.com/artist/14353",
+   "picture": "https://api.deezer.com/artist/14353/image",
+   "picture_small": "https://cdn-images.dzcdn.net/images/artist/5d43634c1537aeb7ec38b9bc79275e44/56x56-000000-80-0-0.jpg",
+   "picture_medium": "https://cdn-images.dzcdn.net/images/artist/5d43634c1537aeb7ec38b9bc79275e44/250x250-000000-80-0-0.jpg",
+   "picture_big": "https://cdn-images.dzcdn.net/images/artist/5d43634c1537aeb7ec38b9bc79275e44/500x500-000000-80-0-0.jpg",
+   "picture_xl": "https://cdn-images.dzcdn.net/images/artist/5d43634c1537aeb7ec38b9bc79275e44/1000x1000-000000-80-0-0.jpg",
+   "nb_album": 13,
+   "nb_fan": 57093,
+   "radio": true,
+   "tracklist": "https://api.deezer.com/artist/14353/top?limit=50",
+   "type": "artist"
+  },
+  {
+   "id": 49746472,
+   "name": "Mack H.D",
+   "link": "https://www.deezer.com/artist/49746472",
+   "picture": "https://api.deezer.com/artist/49746472/image",
+   "picture_small": "https://cdn-images.dzcdn.net/images/artist/f6ffa66ac2862d4b1d8009bc27430e04/56x56-000000-80-0-0.jpg",
+   "picture_medium": "https://cdn-images.dzcdn.net/images/artist/f6ffa66ac2862d4b1d8009bc27430e04/250x250-000000-80-0-0.jpg",
+   "picture_big": "https://cdn-images.dzcdn.net/images/artist/f6ffa66ac2862d4b1d8009bc27430e04/500x500-000000-80-0-0.jpg",
+   "picture_xl": "https://cdn-images.dzcdn.net/images/artist/f6ffa66ac2862d4b1d8009bc27430e04/1000x1000-000000-80-0-0.jpg",
+   "nb_album": 46,
+   "nb_fan": 1741,
+   "radio": true,
+   "tracklist": "https://api.deezer.com/artist/49746472/top?limit=50",
+   "type": "artist"
+  }
+ ],
+ "total": 108,
+ "next": "https://api.deezer.com/search/artist?q=madk1d&limit=5&index=5"
+}

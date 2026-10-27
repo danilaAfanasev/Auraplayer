@@ -1,0 +1,903 @@
+{
+ "artwork_url": "https://i1.sndcdn.com/artworks-0aunHx793XGmgUY8-fvM2Ww-large.jpg",
+ "created_at": "2023-11-01T08:43:20Z",
+ "description": "Top 50 Hip Hop songs on SoundCloud in the US. Updates weekly.",
+ "duration": 8445588,
+ "embeddable_by": "all",
+ "genre": "Hip Hop",
+ "id": 1714689219,
+ "kind": "playlist",
+ "label_name": "",
+ "last_modified": "2026-10-22T14:02:48Z",
+ "license": "all-rights-reserved",
+ "likes_count": 19059,
+ "managed_by_feeds": false,
+ "permalink": "hip-hop",
+ "permalink_url": "https://soundcloud.com/music-charts-us/sets/hip-hop",
+ "public": true,
+ "purchase_title": null,
+ "purchase_url": null,
+ "release_date": null,
+ "reposts_count": 513,
+ "secret_token": null,
+ "sharing": "public",
+ "tag_list": "Charts Rap \"Hip Hop\" US \"Top 50\"",
+ "title": "Hip Hop",
+ "uri": "https://api.soundcloud.com/playlists/soundcloud%3Aplaylists%3A1714689219",
+ "user_id": 1319568996,
+ "set_type": "",
+ "is_album": false,
+ "published_at": "2023-11-01T08:43:20Z",
+ "display_date": "2023-11-01T08:43:20Z",
+ "user": {
+  "avatar_url": "https://i1.sndcdn.com/avatars-UJJPPK1OkBLl9LzJ-wSZKdg-large.jpg",
+  "first_name": "",
+  "followers_count": 10129,
+  "full_name": "",
+  "id": 1319568996,
+  "kind": "user",
+  "last_modified": "2024-11-04T00:00:05Z",
+  "last_name": "",
+  "permalink": "music-charts-us",
+  "permalink_url": "https://soundcloud.com/music-charts-us",
+  "uri": "https://api.soundcloud.com/users/soundcloud%3Ausers%3A1319568996",
+  "urn": "soundcloud:users:1319568996",
+  "username": "Music Charts",
+  "verified": true,
+  "city": "",
+  "country_code": "US",
+  "badges": {
+   "pro": false,
+   "creator_mid_tier": false,
+   "pro_unlimited": false,
+   "verified": true
+  },
+  "station_urn": "soundcloud:system-playlists:artist-stations:1319568996",
+  "station_permalink": "artist-stations:1319568996"
+ },
+ "tracks": [
+  {
+   "artwork_url": "https://i1.sndcdn.com/artworks-27hLf2bIqesN-0-large.jpg",
+   "caption": null,
+   "commentable": true,
+   "comment_count": 278,
+   "created_at": "2026-08-27T02:52:29Z",
+   "description": null,
+   "downloadable": false,
+   "download_count": 0,
+   "duration": 132250,
+   "full_duration": 132204,
+   "embeddable_by": "all",
+   "genre": "Rap",
+   "has_downloads_left": false,
+   "id": 2389204014,
+   "kind": "track",
+   "label_name": "Alamo",
+   "last_modified": "2026-09-15T20:45:11Z",
+   "license": "all-rights-reserved",
+   "likes_count": 30906,
+   "permalink": "dope-girl",
+   "permalink_url": "https://soundcloud.com/rodwave/dope-girl",
+   "playback_count": 1516160,
+   "public": true,
+   "publisher_metadata": {
+    "id": 2389204014,
+    "urn": "soundcloud:tracks:2389204014",
+    "artist": "Rod Wave",
+    "album_title": "Don't Look Down",
+    "contains_music": true,
+    "upc_or_ean": "196874495681",
+    "isrc": "USQX92603560",
+    "explicit": true,
+    "p_line": "(P) 2026 Alamo Records, LLC/Sony Music Entertainment",
+    "p_line_for_display": "℗ 2026 Alamo Records, LLC/Sony Music Entertainment",
+    "writer_composer": "Rodarius Green, Aaron Owuor Tago",
+    "release_title": "Dope Girl"
+   },
+   "purchase_title": null,
+   "purchase_url": null,
+   "release_date": "2026-08-28T00:00:00Z",
+   "reposts_count": 114,
+   "secret_token": null,
+   "sharing": "public",
+   "state": "finished",
+   "streamable": true,
+   "tag_list": "",
+   "title": "Dope Girl",
+   "uri": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A2389204014",
+   "urn": "soundcloud:tracks:2389204014",
+   "user_id": 29550459,
+   "visuals": null,
+   "waveform_url": "https://wave.sndcdn.com/LlytBP7gxkLu_m.json",
+   "display_date": "2026-08-28T04:00:00Z",
+   "media": {
+    "transcodings": [
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2389204014/79eaba9b-94cf-454c-a4df-5faa1d9c2f16/stream/cbc-encrypted-hls",
+      "preset": "aac_160k",
+      "duration": 132250,
+      "snipped": false,
+      "format": {
+       "protocol": "cbc-encrypted-hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2389204014/79eaba9b-94cf-454c-a4df-5faa1d9c2f16/stream/ctr-encrypted-hls",
+      "preset": "aac_160k",
+      "duration": 132250,
+      "snipped": false,
+      "format": {
+       "protocol": "ctr-encrypted-hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2389204014/ef1f3637-dfce-42ba-a2a7-a76b239d16d5/stream/cbc-encrypted-hls",
+      "preset": "aac_96k",
+      "duration": 132250,
+      "snipped": false,
+      "format": {
+       "protocol": "cbc-encrypted-hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2389204014/ef1f3637-dfce-42ba-a2a7-a76b239d16d5/stream/ctr-encrypted-hls",
+      "preset": "aac_96k",
+      "duration": 132250,
+      "snipped": false,
+      "format": {
+       "protocol": "ctr-encrypted-hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2389204014/015a88a2-e31a-40b1-ae28-6d9d2b6e4b61/stream/cbc-encrypted-hls",
+      "preset": "abr_sq",
+      "duration": 132250,
+      "snipped": false,
+      "format": {
+       "protocol": "cbc-encrypted-hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2389204014/015a88a2-e31a-40b1-ae28-6d9d2b6e4b61/stream/ctr-encrypted-hls",
+      "preset": "abr_sq",
+      "duration": 132250,
+      "snipped": false,
+      "format": {
+       "protocol": "ctr-encrypted-hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     }
+    ]
+   },
+   "station_urn": "soundcloud:system-playlists:track-stations:2389204014",
+   "station_permalink": "track-stations:2389204014",
+   "track_authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJGSSIsInN1YiI6IiIsInJpZCI6ImE0YmZjMTg4LWMzZWMtNDEwYi04NjY4LWYzNDhkNjI5NTA1MyIsImlhdCI6MTc5MzAzMDIyNX0.eTIRePM_6kQpncruLGZV_vdbms6mK-jOBEW9GN_tYVg",
+   "monetization_model": "AD_SUPPORTED",
+   "policy": "MONETIZE",
+   "user": {
+    "avatar_url": "https://i1.sndcdn.com/avatars-NOzbXZYR5Z8Dc5jX-Zfmhlg-large.jpg",
+    "first_name": "Rod",
+    "followers_count": 1490017,
+    "full_name": "Rod Wave",
+    "id": 29550459,
+    "kind": "user",
+    "last_modified": "2023-08-17T20:40:51Z",
+    "last_name": "Wave",
+    "permalink": "rodwave",
+    "permalink_url": "https://soundcloud.com/rodwave",
+    "uri": "https://api.soundcloud.com/users/soundcloud%3Ausers%3A29550459",
+    "urn": "soundcloud:users:29550459",
+    "username": "Rod Wave",
+    "verified": true,
+    "city": "St. Petersburg",
+    "country_code": null,
+    "badges": {
+     "pro": false,
+     "creator_mid_tier": false,
+     "pro_unlimited": true,
+     "verified": true
+    },
+    "station_urn": "soundcloud:system-playlists:artist-stations:29550459",
+    "station_permalink": "artist-stations:29550459"
+   }
+  },
+  {
+   "artwork_url": "https://i1.sndcdn.com/artworks-jKLYSZn8a81K-0-large.jpg",
+   "caption": null,
+   "commentable": true,
+   "comment_count": 324,
+   "created_at": "2026-10-09T23:30:06Z",
+   "description": null,
+   "downloadable": false,
+   "download_count": 0,
+   "duration": 125579,
+   "full_duration": 125533,
+   "embeddable_by": "all",
+   "genre": "Rap/Hip-Hop",
+   "has_downloads_left": false,
+   "id": 2416306920,
+   "kind": "track",
+   "label_name": "Lucki / EMPIRE",
+   "last_modified": "2026-10-16T23:33:00Z",
+   "license": "all-rights-reserved",
+   "likes_count": 13907,
+   "permalink": "60-mgs",
+   "permalink_url": "https://soundcloud.com/boob7/60-mgs",
+   "playback_count": 218399,
+   "public": true,
+   "publisher_metadata": {
+    "id": 2416306920,
+    "urn": "soundcloud:tracks:2416306920",
+    "artist": "LUCKI",
+    "album_title": "Last Laugh [archive tape]",
+    "contains_music": true,
+    "upc_or_ean": "199316782172",
+    "isrc": "USUYG1837137",
+    "explicit": true,
+    "p_line": "2026 Lucki / EMPIRE",
+    "p_line_for_display": "℗ 2026 Lucki / EMPIRE",
+    "c_line": "2026 Lucki / EMPIRE",
+    "c_line_for_display": "© 2026 Lucki / EMPIRE",
+    "release_title": "60 mgs"
+   },
+   "purchase_title": null,
+   "purchase_url": null,
+   "release_date": "2026-10-16T00:00:00Z",
+   "reposts_count": 193,
+   "secret_token": null,
+   "sharing": "public",
+   "state": "finished",
+   "streamable": true,
+   "tag_list": "",
+   "title": "60 mgs",
+   "uri": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A2416306920",
+   "urn": "soundcloud:tracks:2416306920",
+   "user_id": 5993221,
+   "visuals": null,
+   "waveform_url": "https://wave.sndcdn.com/jO9DFiX70lsQ_m.json",
+   "display_date": "2026-10-16T00:00:00Z",
+   "media": {
+    "transcodings": [
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2416306920/72f15a9e-721c-4d1a-99dd-7147ee2e95d7/stream/cbc-encrypted-hls",
+      "preset": "aac_160k",
+      "duration": 125579,
+      "snipped": false,
+      "format": {
+       "protocol": "cbc-encrypted-hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2416306920/72f15a9e-721c-4d1a-99dd-7147ee2e95d7/stream/ctr-encrypted-hls",
+      "preset": "aac_160k",
+      "duration": 125579,
+      "snipped": false,
+      "format": {
+       "protocol": "ctr-encrypted-hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2416306920/44c11614-7893-41ea-a0f8-f764097eb111/stream/cbc-encrypted-hls",
+      "preset": "aac_96k",
+      "duration": 125579,
+      "snipped": false,
+      "format": {
+       "protocol": "cbc-encrypted-hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2416306920/44c11614-7893-41ea-a0f8-f764097eb111/stream/ctr-encrypted-hls",
+      "preset": "aac_96k",
+      "duration": 125579,
+      "snipped": false,
+      "format": {
+       "protocol": "ctr-encrypted-hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2416306920/e7e95e97-d102-47ea-86ec-c9dc2793951e/stream/cbc-encrypted-hls",
+      "preset": "abr_sq",
+      "duration": 125579,
+      "snipped": false,
+      "format": {
+       "protocol": "cbc-encrypted-hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2416306920/e7e95e97-d102-47ea-86ec-c9dc2793951e/stream/ctr-encrypted-hls",
+      "preset": "abr_sq",
+      "duration": 125579,
+      "snipped": false,
+      "format": {
+       "protocol": "ctr-encrypted-hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     }
+    ]
+   },
+   "station_urn": "soundcloud:system-playlists:track-stations:2416306920",
+   "station_permalink": "track-stations:2416306920",
+   "track_authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJGSSIsInN1YiI6IiIsInJpZCI6IjY3NjUzZGY5LTQ2YjYtNDIxZi1hMWYzLTM4OWM1YTY1MDlkMiIsImlhdCI6MTc5MzAzMDIyNX0.jEJaka3aGVzvi0bbyV7Hu8UwCON4FNf2w0HHnzqVcMw",
+   "monetization_model": "AD_SUPPORTED",
+   "policy": "MONETIZE",
+   "user": {
+    "avatar_url": "https://i1.sndcdn.com/avatars-QidShZzaD9HA5TzQ-BglezQ-large.jpg",
+    "first_name": "",
+    "followers_count": 506071,
+    "full_name": "",
+    "id": 5993221,
+    "kind": "user",
+    "last_modified": "2024-09-12T20:35:19Z",
+    "last_name": "",
+    "permalink": "boob7",
+    "permalink_url": "https://soundcloud.com/boob7",
+    "uri": "https://api.soundcloud.com/users/soundcloud%3Ausers%3A5993221",
+    "urn": "soundcloud:users:5993221",
+    "username": "LUCKI",
+    "verified": true,
+    "city": "Chicago",
+    "country_code": "US",
+    "badges": {
+     "pro": false,
+     "creator_mid_tier": false,
+     "pro_unlimited": false,
+     "verified": true
+    },
+    "station_urn": "soundcloud:system-playlists:artist-stations:5993221",
+    "station_permalink": "artist-stations:5993221"
+   }
+  },
+  {
+   "artwork_url": "https://i1.sndcdn.com/artworks-PhEg4XoxL1i0-0-large.jpg",
+   "caption": null,
+   "commentable": true,
+   "comment_count": 468,
+   "created_at": "2026-07-13T23:32:22Z",
+   "description": null,
+   "downloadable": false,
+   "download_count": 0,
+   "duration": 157066,
+   "full_duration": 157020,
+   "embeddable_by": "all",
+   "genre": "Hip Hop",
+   "has_downloads_left": false,
+   "id": 2360196407,
+   "kind": "track",
+   "label_name": "Quality Control Music/Motown Records",
+   "last_modified": "2026-07-31T00:55:03Z",
+   "license": "all-rights-reserved",
+   "likes_count": 73815,
+   "permalink": "dead-fresh",
+   "permalink_url": "https://soundcloud.com/lil-baby-4pf/dead-fresh",
+   "playback_count": 3133630,
+   "public": true,
+   "publisher_metadata": {
+    "id": 2360196407,
+    "urn": "soundcloud:tracks:2360196407",
+    "artist": "Lil Baby",
+    "album_title": "Dead Fresh",
+    "contains_music": true,
+    "upc_or_ean": "00881061219149",
+    "isrc": "USUG12600008",
+    "explicit": true,
+    "p_line": "℗ 2026 Quality Control Music, LLC, under exclusive license to UMG Recordings, Inc.",
+    "p_line_for_display": "℗ 2026 Quality Control Music, LLC, under exclusive license to UMG Recordings, Inc.",
+    "c_line": "© 2026 Quality Control Music, LLC, under exclusive license to UMG Recordings, Inc.",
+    "c_line_for_display": "© 2026 Quality Control Music, LLC, under exclusive license to UMG Recordings, Inc.",
+    "release_title": "Dead Fresh"
+   },
+   "purchase_title": null,
+   "purchase_url": null,
+   "release_date": "2026-07-17T00:00:00Z",
+   "reposts_count": 401,
+   "secret_token": null,
+   "sharing": "public",
+   "state": "finished",
+   "streamable": true,
+   "tag_list": "",
+   "title": "Dead Fresh",
+   "uri": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A2360196407",
+   "urn": "soundcloud:tracks:2360196407",
+   "user_id": 300932089,
+   "visuals": null,
+   "waveform_url": "https://wave.sndcdn.com/i2LGVDoiIu0N_m.json",
+   "display_date": "2026-07-17T00:00:00Z",
+   "media": {
+    "transcodings": [
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2360196407/1156bda3-6d6e-45ef-8128-ad93a294549a/stream/cbc-encrypted-hls",
+      "preset": "aac_160k",
+      "duration": 157066,
+      "snipped": false,
+      "format": {
+       "protocol": "cbc-encrypted-hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2360196407/1156bda3-6d6e-45ef-8128-ad93a294549a/stream/ctr-encrypted-hls",
+      "preset": "aac_160k",
+      "duration": 157066,
+      "snipped": false,
+      "format": {
+       "protocol": "ctr-encrypted-hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2360196407/2877555f-caeb-45ff-be12-bb4309cb24be/stream/cbc-encrypted-hls",
+      "preset": "aac_96k",
+      "duration": 157066,
+      "snipped": false,
+      "format": {
+       "protocol": "cbc-encrypted-hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2360196407/2877555f-caeb-45ff-be12-bb4309cb24be/stream/ctr-encrypted-hls",
+      "preset": "aac_96k",
+      "duration": 157066,
+      "snipped": false,
+      "format": {
+       "protocol": "ctr-encrypted-hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2360196407/0034f66c-212a-4059-8cd6-fd7f490110e0/stream/cbc-encrypted-hls",
+      "preset": "abr_sq",
+      "duration": 157066,
+      "snipped": false,
+      "format": {
+       "protocol": "cbc-encrypted-hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2360196407/0034f66c-212a-4059-8cd6-fd7f490110e0/stream/ctr-encrypted-hls",
+      "preset": "abr_sq",
+      "duration": 157066,
+      "snipped": false,
+      "format": {
+       "protocol": "ctr-encrypted-hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     }
+    ]
+   },
+   "station_urn": "soundcloud:system-playlists:track-stations:2360196407",
+   "station_permalink": "track-stations:2360196407",
+   "track_authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJGSSIsInN1YiI6IiIsInJpZCI6IjZhY2NmMWI2LTM3NzAtNGRmZi1iYTg2LWJkOTA3MzcxNjJlMSIsImlhdCI6MTc5MzAzMDIyNX0.73YP84Gz80p0rOMB6ijXxOG9XBOgzGctsDuc3vki5oE",
+   "monetization_model": "AD_SUPPORTED",
+   "policy": "MONETIZE",
+   "user": {
+    "avatar_url": "https://i1.sndcdn.com/avatars-pbwP3VcuzglK3XYs-I98lbQ-large.jpg",
+    "first_name": "Lil",
+    "followers_count": 1995851,
+    "full_name": "Lil Baby",
+    "id": 300932089,
+    "kind": "user",
+    "last_modified": "2026-02-04T00:00:03Z",
+    "last_name": "Baby",
+    "permalink": "lil-baby-4pf",
+    "permalink_url": "https://soundcloud.com/lil-baby-4pf",
+    "uri": "https://api.soundcloud.com/users/soundcloud%3Ausers%3A300932089",
+    "urn": "soundcloud:users:300932089",
+    "username": "Lil Baby",
+    "verified": true,
+    "city": null,
+    "country_code": null,
+    "badges": {
+     "pro": false,
+     "creator_mid_tier": false,
+     "pro_unlimited": false,
+     "verified": true
+    },
+    "station_urn": "soundcloud:system-playlists:artist-stations:300932089",
+    "station_permalink": "artist-stations:300932089"
+   }
+  },
+  {
+   "artwork_url": "https://i1.sndcdn.com/artworks-v8WJnuQZiFIw-0-large.jpg",
+   "caption": null,
+   "commentable": true,
+   "comment_count": 122,
+   "created_at": "2026-08-27T02:51:42Z",
+   "description": null,
+   "downloadable": false,
+   "download_count": 0,
+   "duration": 168877,
+   "full_duration": 168831,
+   "embeddable_by": "all",
+   "genre": "Rap",
+   "has_downloads_left": false,
+   "id": 2389202610,
+   "kind": "track",
+   "label_name": "Alamo",
+   "last_modified": "2026-09-15T20:39:19Z",
+   "license": "all-rights-reserved",
+   "likes_count": 19932,
+   "permalink": "tp",
+   "permalink_url": "https://soundcloud.com/rodwave/tp",
+   "playback_count": 1172333,
+   "public": true,
+   "publisher_metadata": {
+    "id": 2389202610,
+    "urn": "soundcloud:tracks:2389202610",
+    "artist": "Rod Wave",
+    "album_title": "Don't Look Down",
+    "contains_music": true,
+    "upc_or_ean": "196874495681",
+    "isrc": "USQX92603549",
+    "explicit": true,
+    "p_line": "(P) 2026 Alamo Records, LLC/Sony Music Entertainment",
+    "p_line_for_display": "℗ 2026 Alamo Records, LLC/Sony Music Entertainment",
+    "writer_composer": "Rodarius Green, Tarkan Kozluklu, George Alexandrov, Leonardo Sternieri, Niko Schneider, Toren Spears",
+    "release_title": "TP"
+   },
+   "purchase_title": null,
+   "purchase_url": null,
+   "release_date": "2026-08-28T00:00:00Z",
+   "reposts_count": 55,
+   "secret_token": null,
+   "sharing": "public",
+   "state": "finished",
+   "streamable": true,
+   "tag_list": "",
+   "title": "TP",
+   "uri": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A2389202610",
+   "urn": "soundcloud:tracks:2389202610",
+   "user_id": 29550459,
+   "visuals": null,
+   "waveform_url": "https://wave.sndcdn.com/O3bsqD9aNB6o_m.json",
+   "display_date": "2026-08-28T04:00:00Z",
+   "media": {
+    "transcodings": [
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2389202610/3970363a-f4d5-44f9-b411-dfd1e2775afd/stream/cbc-encrypted-hls",
+      "preset": "aac_160k",
+      "duration": 168877,
+      "snipped": false,
+      "format": {
+       "protocol": "cbc-encrypted-hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2389202610/3970363a-f4d5-44f9-b411-dfd1e2775afd/stream/ctr-encrypted-hls",
+      "preset": "aac_160k",
+      "duration": 168877,
+      "snipped": false,
+      "format": {
+       "protocol": "ctr-encrypted-hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2389202610/0e293c9c-945e-4b04-8690-966bd00c986a/stream/cbc-encrypted-hls",
+      "preset": "aac_96k",
+      "duration": 168877,
+      "snipped": false,
+      "format": {
+       "protocol": "cbc-encrypted-hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2389202610/0e293c9c-945e-4b04-8690-966bd00c986a/stream/ctr-encrypted-hls",
+      "preset": "aac_96k",
+      "duration": 168877,
+      "snipped": false,
+      "format": {
+       "protocol": "ctr-encrypted-hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2389202610/69ee7659-fca3-4d1a-bc7c-57ec864926ca/stream/cbc-encrypted-hls",
+      "preset": "abr_sq",
+      "duration": 168877,
+      "snipped": false,
+      "format": {
+       "protocol": "cbc-encrypted-hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2389202610/69ee7659-fca3-4d1a-bc7c-57ec864926ca/stream/ctr-encrypted-hls",
+      "preset": "abr_sq",
+      "duration": 168877,
+      "snipped": false,
+      "format": {
+       "protocol": "ctr-encrypted-hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     }
+    ]
+   },
+   "station_urn": "soundcloud:system-playlists:track-stations:2389202610",
+   "station_permalink": "track-stations:2389202610",
+   "track_authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJGSSIsInN1YiI6IiIsInJpZCI6IjJhNzIwZGY1LTUzMTQtNDBlNy05OTc3LTRmODA1ZGY4ZWExYiIsImlhdCI6MTc5MzAzMDIyNX0.j7xgMl0BF-NBPbiqsqzp6NttwpxygftET4D7LsDqYFk",
+   "monetization_model": "AD_SUPPORTED",
+   "policy": "MONETIZE",
+   "user": {
+    "avatar_url": "https://i1.sndcdn.com/avatars-NOzbXZYR5Z8Dc5jX-Zfmhlg-large.jpg",
+    "first_name": "Rod",
+    "followers_count": 1490017,
+    "full_name": "Rod Wave",
+    "id": 29550459,
+    "kind": "user",
+    "last_modified": "2023-08-17T20:40:51Z",
+    "last_name": "Wave",
+    "permalink": "rodwave",
+    "permalink_url": "https://soundcloud.com/rodwave",
+    "uri": "https://api.soundcloud.com/users/soundcloud%3Ausers%3A29550459",
+    "urn": "soundcloud:users:29550459",
+    "username": "Rod Wave",
+    "verified": true,
+    "city": "St. Petersburg",
+    "country_code": null,
+    "badges": {
+     "pro": false,
+     "creator_mid_tier": false,
+     "pro_unlimited": true,
+     "verified": true
+    },
+    "station_urn": "soundcloud:system-playlists:artist-stations:29550459",
+    "station_permalink": "artist-stations:29550459"
+   }
+  },
+  {
+   "artwork_url": "https://i1.sndcdn.com/artworks-p8UM4WLCLM4L-0-large.jpg",
+   "caption": null,
+   "commentable": true,
+   "comment_count": 543,
+   "created_at": "2026-06-24T20:21:54Z",
+   "description": null,
+   "downloadable": false,
+   "download_count": 0,
+   "duration": 226000,
+   "full_duration": 225954,
+   "embeddable_by": "all",
+   "genre": "Rap",
+   "has_downloads_left": false,
+   "id": 2345529572,
+   "kind": "track",
+   "label_name": "Alamo",
+   "last_modified": "2026-09-15T20:42:03Z",
+   "license": "all-rights-reserved",
+   "likes_count": 42951,
+   "permalink": "piece-of-your-love",
+   "permalink_url": "https://soundcloud.com/rodwave/piece-of-your-love",
+   "playback_count": 2081459,
+   "public": true,
+   "publisher_metadata": {
+    "id": 2345529572,
+    "urn": "soundcloud:tracks:2345529572",
+    "artist": "Rod Wave",
+    "album_title": "Piece Of Your Love",
+    "contains_music": true,
+    "upc_or_ean": "196874532713",
+    "isrc": "USQX92603542",
+    "explicit": false,
+    "p_line": "(P) 2026 Alamo Records, LLC/Sony Music Entertainment",
+    "p_line_for_display": "℗ 2026 Alamo Records, LLC/Sony Music Entertainment",
+    "writer_composer": "Rodarius Green, Thomas Horton, Monte Moir, Anthony Fields, Earl Simmons, Antonio Ramos, Jeremiah Dickerson, Menariah Andrews",
+    "release_title": "Piece Of Your Love"
+   },
+   "purchase_title": null,
+   "purchase_url": null,
+   "release_date": "2026-06-26T00:00:00Z",
+   "reposts_count": 424,
+   "secret_token": null,
+   "sharing": "public",
+   "state": "finished",
+   "streamable": true,
+   "tag_list": "",
+   "title": "Piece Of Your Love",
+   "uri": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A2345529572",
+   "urn": "soundcloud:tracks:2345529572",
+   "user_id": 29550459,
+   "visuals": null,
+   "waveform_url": "https://wave.sndcdn.com/HhRsaitUlANz_m.json",
+   "display_date": "2026-06-26T04:00:00Z",
+   "media": {
+    "transcodings": [
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2345529572/386b9204-8ddb-4095-9488-e2c52e0244f1/stream/cbc-encrypted-hls",
+      "preset": "aac_160k",
+      "duration": 226000,
+      "snipped": false,
+      "format": {
+       "protocol": "cbc-encrypted-hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2345529572/386b9204-8ddb-4095-9488-e2c52e0244f1/stream/ctr-encrypted-hls",
+      "preset": "aac_160k",
+      "duration": 226000,
+      "snipped": false,
+      "format": {
+       "protocol": "ctr-encrypted-hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2345529572/0d41732d-d4ea-4d2f-89e5-6fa8bea9a77a/stream/cbc-encrypted-hls",
+      "preset": "aac_96k",
+      "duration": 226000,
+      "snipped": false,
+      "format": {
+       "protocol": "cbc-encrypted-hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2345529572/0d41732d-d4ea-4d2f-89e5-6fa8bea9a77a/stream/ctr-encrypted-hls",
+      "preset": "aac_96k",
+      "duration": 226000,
+      "snipped": false,
+      "format": {
+       "protocol": "ctr-encrypted-hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2345529572/f55a6433-aa3d-42b5-99fd-967afe4ec585/stream/cbc-encrypted-hls",
+      "preset": "abr_sq",
+      "duration": 226000,
+      "snipped": false,
+      "format": {
+       "protocol": "cbc-encrypted-hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2345529572/f55a6433-aa3d-42b5-99fd-967afe4ec585/stream/ctr-encrypted-hls",
+      "preset": "abr_sq",
+      "duration": 226000,
+      "snipped": false,
+      "format": {
+       "protocol": "ctr-encrypted-hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     }
+    ]
+   },
+   "station_urn": "soundcloud:system-playlists:track-stations:2345529572",
+   "station_permalink": "track-stations:2345529572",
+   "track_authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJGSSIsInN1YiI6IiIsInJpZCI6IjVhNmRjODc2LWY4YjAtNDNhMS04YWFjLTRkYjhlODQyZDNkMCIsImlhdCI6MTc5MzAzMDIyNX0.ahNw3fElo1Qk2xybmbgfe4U7jy4ZTXrXUKji_xmtyZQ",
+   "monetization_model": "AD_SUPPORTED",
+   "policy": "MONETIZE",
+   "user": {
+    "avatar_url": "https://i1.sndcdn.com/avatars-NOzbXZYR5Z8Dc5jX-Zfmhlg-large.jpg",
+    "first_name": "Rod",
+    "followers_count": 1490017,
+    "full_name": "Rod Wave",
+    "id": 29550459,
+    "kind": "user",
+    "last_modified": "2023-08-17T20:40:51Z",
+    "last_name": "Wave",
+    "permalink": "rodwave",
+    "permalink_url": "https://soundcloud.com/rodwave",
+    "uri": "https://api.soundcloud.com/users/soundcloud%3Ausers%3A29550459",
+    "urn": "soundcloud:users:29550459",
+    "username": "Rod Wave",
+    "verified": true,
+    "city": "St. Petersburg",
+    "country_code": null,
+    "badges": {
+     "pro": false,
+     "creator_mid_tier": false,
+     "pro_unlimited": true,
+     "verified": true
+    },
+    "station_urn": "soundcloud:system-playlists:artist-stations:29550459",
+    "station_permalink": "artist-stations:29550459"
+   }
+  },
+  {
+   "id": 2416308255,
+   "kind": "track",
+   "monetization_model": "AD_SUPPORTED",
+   "policy": "MONETIZE"
+  },
+  {
+   "id": 2416308642,
+   "kind": "track",
+   "monetization_model": "AD_SUPPORTED",
+   "policy": "MONETIZE"
+  },
+  {
+   "id": 2370975809,
+   "kind": "track",
+   "monetization_model": "AD_SUPPORTED",
+   "policy": "MONETIZE"
+  },
+  {
+   "id": 2383385982,
+   "kind": "track",
+   "monetization_model": "AD_SUPPORTED",
+   "policy": "MONETIZE"
+  },
+  {
+   "id": 2410977027,
+   "kind": "track",
+   "monetization_model": "AD_SUPPORTED",
+   "policy": "MONETIZE"
+  }
+ ],
+ "track_count": 49
+}

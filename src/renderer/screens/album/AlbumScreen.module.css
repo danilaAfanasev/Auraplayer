@@ -1,0 +1,138 @@
+.back {
+  width: 38px;
+  height: 38px;
+  margin: -6px 0 12px -6px;
+}
+
+/* Шапка: обложка альбома поверх её же размытой копии (как у страницы артиста) */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  min-height: 260px;
+  margin-bottom: 26px;
+  padding: 30px 34px;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border);
+  background:
+    radial-gradient(90% 120% at 100% 0%, var(--accent-glow), transparent 60%),
+    radial-gradient(70% 90% at 0% 100%, var(--accent-soft), transparent 70%),
+    var(--surface-2);
+  box-shadow: 0 24px 60px var(--shadow);
+  animation: rise var(--dur-slow) var(--ease) both;
+}
+
+.heroLoading {
+  min-height: 260px;
+}
+
+.blur {
+  position: absolute;
+  inset: -60px;
+  z-index: -2;
+  width: calc(100% + 120px);
+  height: calc(100% + 120px);
+  object-fit: cover;
+  filter: blur(60px) saturate(150%);
+  opacity: 0.5;
+}
+
+.shade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(90deg, var(--bg-deep) 0%, var(--bg-deep) 30%, transparent 140%);
+  opacity: 0.6;
+}
+
+.cover {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 220px;
+  height: 220px;
+  overflow: hidden;
+  border-radius: var(--radius-l);
+  color: var(--text-faint);
+  background: var(--surface);
+  box-shadow: 0 18px 44px var(--shadow);
+}
+
+.cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.eyebrow {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 46px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--text);
+}
+
+.artist {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.meta {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+@media (max-width: 1180px) {
+  .hero {
+    gap: 24px;
+    padding: 26px;
+  }
+
+  .cover {
+    width: 180px;
+    height: 180px;
+  }
+
+  .title {
+    font-size: 36px;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}

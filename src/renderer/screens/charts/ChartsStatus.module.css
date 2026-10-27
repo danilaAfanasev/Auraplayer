@@ -1,0 +1,34 @@
+.status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.compact {
+  gap: 6px;
+  font-size: 12px;
+}
+
+.updated {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.offline {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 24px;
+  padding: 0 10px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--danger);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}

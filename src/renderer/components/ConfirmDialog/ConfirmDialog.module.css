@@ -1,0 +1,59 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: var(--overlay);
+  animation: fade var(--dur) var(--ease) both;
+}
+
+.dialog {
+  width: min(420px, 100%);
+  padding: 26px;
+  border-radius: var(--radius-l);
+  background: var(--popover);
+  border: 1px solid var(--border-strong);
+  box-shadow: 0 30px 80px var(--shadow);
+  animation: pop var(--dur-slow) var(--ease) both;
+}
+
+.dialog p {
+  overflow-wrap: anywhere;
+  margin-top: 10px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.actions .danger,
+.actions .danger:hover:not(:disabled) {
+  background: transparent;
+  border: 1.5px solid var(--danger);
+  color: var(--danger);
+  box-shadow: none;
+}
+
+.actions .danger:hover:not(:disabled) {
+  background: var(--surface-2);
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+}

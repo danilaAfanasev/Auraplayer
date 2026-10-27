@@ -1,0 +1,295 @@
+{
+  "collection": [
+    {
+      "id": 2420084601,
+      "kind": "track",
+      "title": "Housewife",
+      "duration": 30000,
+      "full_duration": 208810,
+      "policy": "SNIP",
+      "monetization_model": "SUB_HIGH_TIER",
+      "streamable": true,
+      "permalink_url": "https://soundcloud.com/tate-mcrae/housewife",
+      "media": {
+        "transcodings": [
+          {
+            "preset": "mp3_1_0",
+            "snipped": true,
+            "format": {
+              "protocol": "hls",
+              "mime_type": "audio/mpeg"
+            },
+            "quality": "sq",
+            "is_legacy_transcoding": true
+          },
+          {
+            "preset": "mp3_1_0",
+            "snipped": true,
+            "format": {
+              "protocol": "progressive",
+              "mime_type": "audio/mpeg"
+            },
+            "quality": "sq",
+            "is_legacy_transcoding": true
+          }
+        ]
+      }
+    },
+    {
+      "id": 2420080329,
+      "kind": "track",
+      "title": "Tate McRae - Housewife",
+      "duration": 195047,
+      "full_duration": 195001,
+      "policy": "MONETIZE",
+      "monetization_model": "BLACKBOX",
+      "streamable": true,
+      "permalink_url": "https://soundcloud.com/22511409/tate-mcrae-housewife-1",
+      "media": {
+        "transcodings": [
+          {
+            "preset": "aac_160k",
+            "snipped": false,
+            "format": {
+              "protocol": "hls",
+              "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+            },
+            "quality": "sq",
+            "is_legacy_transcoding": false
+          },
+          {
+            "preset": "aac_96k",
+            "snipped": false,
+            "format": {
+              "protocol": "hls",
+              "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+            },
+            "quality": "lq",
+            "is_legacy_transcoding": false
+          },
+          {
+            "preset": "abr_sq",
+            "snipped": false,
+            "format": {
+              "protocol": "hls",
+              "mime_type": "audio/mpegurl"
+            },
+            "quality": "sq",
+            "is_legacy_transcoding": false
+          }
+        ]
+      }
+    },
+    {
+      "id": 2422883991,
+      "kind": "track",
+      "title": "Tate McRae - Housewife (FUZION Remix) [CLIP]",
+      "duration": 87970,
+      "full_duration": 87924,
+      "policy": "MONETIZE",
+      "monetization_model": "BLACKBOX",
+      "streamable": true,
+      "permalink_url": "https://soundcloud.com/fuzionukg/housewiferemix",
+      "media": {
+        "transcodings": [
+          {
+            "preset": "aac_160k",
+            "snipped": false,
+            "format": {
+              "protocol": "hls",
+              "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+            },
+            "quality": "sq",
+            "is_legacy_transcoding": false
+          },
+          {
+            "preset": "aac_96k",
+            "snipped": false,
+            "format": {
+              "protocol": "hls",
+              "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+            },
+            "quality": "lq",
+            "is_legacy_transcoding": false
+          },
+          {
+            "preset": "abr_sq",
+            "snipped": false,
+            "format": {
+              "protocol": "hls",
+              "mime_type": "audio/mpegurl"
+            },
+            "quality": "sq",
+            "is_legacy_transcoding": false
+          }
+        ]
+      }
+    },
+    {
+      "id": 2422950993,
+      "kind": "track",
+      "title": "Tate McRae - Housewife (Gravagerz REMIX)",
+      "duration": 168692,
+      "full_duration": 168647,
+      "policy": "MONETIZE",
+      "monetization_model": "BLACKBOX",
+      "streamable": true,
+      "permalink_url": "https://soundcloud.com/gravagerzarchive/tate-mcrae-housewife-gravagerz",
+      "media": {
+        "transcodings": [
+          {
+            "preset": "aac_160k",
+            "snipped": false,
+            "format": {
+              "protocol": "hls",
+              "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+            },
+            "quality": "sq",
+            "is_legacy_transcoding": false
+          },
+          {
+            "preset": "aac_96k",
+            "snipped": false,
+            "format": {
+              "protocol": "hls",
+              "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+            },
+            "quality": "lq",
+            "is_legacy_transcoding": false
+          },
+          {
+            "preset": "abr_sq",
+            "snipped": false,
+            "format": {
+              "protocol": "hls",
+              "mime_type": "audio/mpegurl"
+            },
+            "quality": "sq",
+            "is_legacy_transcoding": false
+          }
+        ]
+      }
+    },
+    {
+      "id": 2420352996,
+      "kind": "track",
+      "title": "Tate McRae - Housewife (Remix) Fran Garro",
+      "duration": 172354,
+      "full_duration": 172307,
+      "policy": "ALLOW",
+      "monetization_model": "NOT_APPLICABLE",
+      "streamable": true,
+      "permalink_url": "https://soundcloud.com/frangarro/tate-mcrae-housewife-techno-remix",
+      "media": {
+        "transcodings": [
+          {
+            "preset": "aac_160k",
+            "snipped": false,
+            "format": {
+              "protocol": "hls",
+              "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+            },
+            "quality": "sq",
+            "is_legacy_transcoding": false
+          },
+          {
+            "preset": "aac_96k",
+            "snipped": false,
+            "format": {
+              "protocol": "hls",
+              "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+            },
+            "quality": "lq",
+            "is_legacy_transcoding": false
+          },
+          {
+            "preset": "abr_sq",
+            "snipped": false,
+            "format": {
+              "protocol": "hls",
+              "mime_type": "audio/mpegurl"
+            },
+            "quality": "sq",
+            "is_legacy_transcoding": false
+          }
+        ]
+      }
+    },
+    {
+      "id": 1822834458,
+      "kind": "track",
+      "title": "BIRDS OF A FEATHER",
+      "duration": 210419,
+      "full_duration": 210416,
+      "policy": "MONETIZE",
+      "monetization_model": "AD_SUPPORTED",
+      "streamable": true,
+      "permalink_url": "https://soundcloud.com/billieeilish/birds-of-a-feather",
+      "media": {
+        "transcodings": [
+          {
+            "preset": "aac_160k",
+            "snipped": false,
+            "format": {
+              "protocol": "cbc-encrypted-hls",
+              "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+            },
+            "quality": "sq",
+            "is_legacy_transcoding": false
+          },
+          {
+            "preset": "aac_160k",
+            "snipped": false,
+            "format": {
+              "protocol": "ctr-encrypted-hls",
+              "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+            },
+            "quality": "sq",
+            "is_legacy_transcoding": false
+          },
+          {
+            "preset": "aac_96k",
+            "snipped": false,
+            "format": {
+              "protocol": "cbc-encrypted-hls",
+              "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+            },
+            "quality": "lq",
+            "is_legacy_transcoding": false
+          },
+          {
+            "preset": "aac_96k",
+            "snipped": false,
+            "format": {
+              "protocol": "ctr-encrypted-hls",
+              "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+            },
+            "quality": "lq",
+            "is_legacy_transcoding": false
+          },
+          {
+            "preset": "abr_sq",
+            "snipped": false,
+            "format": {
+              "protocol": "cbc-encrypted-hls",
+              "mime_type": "audio/mpegurl"
+            },
+            "quality": "sq",
+            "is_legacy_transcoding": false
+          },
+          {
+            "preset": "abr_sq",
+            "snipped": false,
+            "format": {
+              "protocol": "ctr-encrypted-hls",
+              "mime_type": "audio/mpegurl"
+            },
+            "quality": "sq",
+            "is_legacy_transcoding": false
+          }
+        ]
+      }
+    }
+  ],
+  "total_results": 5051
+}

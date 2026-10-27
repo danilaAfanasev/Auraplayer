@@ -1,0 +1,55 @@
+.missing {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: var(--danger);
+  background: var(--surface-2);
+}
+
+.dangerIcon:hover:not(:disabled) {
+  color: var(--danger);
+}
+
+.active {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 22px;
+  padding: 14px 16px;
+  border-radius: var(--radius-m, 16px);
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.activeTitle {
+  margin-bottom: 4px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.activeRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  font-size: 14px;
+}
+
+.activeName {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.activeProgress {
+  flex: none;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}

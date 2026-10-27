@@ -1,0 +1,636 @@
+{
+ "data": [
+  {
+   "id": 119060180,
+   "readable": true,
+   "title": "Vroom Vroom",
+   "title_short": "Vroom Vroom",
+   "title_version": "",
+   "duration": 193,
+   "rank": 586217,
+   "artist": {
+    "id": 1462230,
+    "name": "Charli xcx",
+    "type": "artist"
+   },
+   "album": {
+    "id": 12391914,
+    "title": "Vroom Vroom EP",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/09bea39541d8a3c3bf1d0854acaf38f2/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/09bea39541d8a3c3bf1d0854acaf38f2/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 509473002,
+   "readable": false,
+   "title": "Immaterial",
+   "title_short": "Immaterial",
+   "title_version": "",
+   "duration": 233,
+   "rank": 502582,
+   "artist": {
+    "id": 6478881,
+    "name": "SOPHIE",
+    "type": "artist"
+   },
+   "album": {
+    "id": 65212332,
+    "title": "OIL OF EVERY PEARL'S UN-INSIDES",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/9ab8a5aba57f9ae3e3e7ba92b2a9b1a1/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/9ab8a5aba57f9ae3e3e7ba92b2a9b1a1/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 1184296752,
+   "readable": true,
+   "title": "Beautiful",
+   "title_short": "Beautiful",
+   "title_version": "",
+   "duration": 227,
+   "rank": 348930,
+   "artist": {
+    "id": 7850510,
+    "name": "A. G. Cook",
+    "type": "artist"
+   },
+   "album": {
+    "id": 194585252,
+    "title": "PC Music, Vol. 1",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/aeb151cf8a91f6ea2e2e322f2a15b113/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/aeb151cf8a91f6ea2e2e322f2a15b113/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 864796942,
+   "readable": true,
+   "title": "money machine",
+   "title_short": "money machine",
+   "title_version": "",
+   "duration": 114,
+   "rank": 448669,
+   "artist": {
+    "id": 57379042,
+    "name": "100 gecs",
+    "type": "artist"
+   },
+   "album": {
+    "id": 129486262,
+    "title": "1000 gecs",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/99de7c29e3883776293aef6b0de88384/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/99de7c29e3883776293aef6b0de88384/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 1180780442,
+   "readable": true,
+   "title": "Be Your USA",
+   "title_short": "Be Your USA",
+   "title_version": "",
+   "duration": 173,
+   "rank": 315187,
+   "artist": {
+    "id": 8265448,
+    "name": "Finn Keane",
+    "type": "artist"
+   },
+   "album": {
+    "id": 193903632,
+    "title": "Be Your USA",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/13e12bf85f77c3cfecb37ae17086abe2/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/13e12bf85f77c3cfecb37ae17086abe2/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 99613428,
+   "readable": true,
+   "title": "Hey QT",
+   "title_short": "Hey QT",
+   "title_version": "",
+   "duration": 235,
+   "rank": 359644,
+   "artist": {
+    "id": 450350,
+    "name": "Qt",
+    "type": "artist"
+   },
+   "album": {
+    "id": 10202820,
+    "title": "Hey QT",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/78209b98e92df6bdaf54eee4622d78c5/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/78209b98e92df6bdaf54eee4622d78c5/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 1173827092,
+   "readable": true,
+   "title": "Every Night",
+   "title_short": "Every Night",
+   "title_version": "",
+   "duration": 212,
+   "rank": 286020,
+   "artist": {
+    "id": 7135525,
+    "name": "Hannah Diamond",
+    "type": "artist"
+   },
+   "album": {
+    "id": 192567102,
+    "title": "Every Night",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/357da38a36bdfff87d065f1088961b43/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/357da38a36bdfff87d065f1088961b43/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 840490232,
+   "readable": true,
+   "title": "Flamboyant",
+   "title_short": "Flamboyant",
+   "title_version": "",
+   "duration": 196,
+   "rank": 309986,
+   "artist": {
+    "id": 9829696,
+    "name": "Dorian Electra",
+    "type": "artist"
+   },
+   "album": {
+    "id": 124124262,
+    "title": "Flamboyant (Deluxe)",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/67e70cb96c84d125d0e92568a8da6f76/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/67e70cb96c84d125d0e92568a8da6f76/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 1500133362,
+   "readable": true,
+   "title": "rom com 2021",
+   "title_short": "rom com 2021",
+   "title_version": "",
+   "duration": 196,
+   "rank": 323148,
+   "artist": {
+    "id": 10758284,
+    "name": "Soccer Mommy",
+    "type": "artist"
+   },
+   "album": {
+    "id": 260330432,
+    "title": "rom com 2021",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/b6d294f819a7efa4de59c29b6e24ab3f/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/b6d294f819a7efa4de59c29b6e24ab3f/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 1213625742,
+   "readable": true,
+   "title": "Friday Night",
+   "title_short": "Friday Night",
+   "title_version": "",
+   "duration": 205,
+   "rank": 289591,
+   "artist": {
+    "id": 7850512,
+    "name": "GFOTY",
+    "type": "artist"
+   },
+   "album": {
+    "id": 200951552,
+    "title": "GFOTYBUCKS",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/bab2a4c46ab75945c5254c162fc24815/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/bab2a4c46ab75945c5254c162fc24815/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 1045716742,
+   "readable": true,
+   "title": "team edward",
+   "title_short": "team edward",
+   "title_version": "",
+   "duration": 87,
+   "rank": 260883,
+   "artist": {
+    "id": 88010542,
+    "name": "meat computer",
+    "type": "artist"
+   },
+   "album": {
+    "id": 165825462,
+    "title": "team edward",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/989385fff6c85c4d443e7cae1cdbb22d/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/989385fff6c85c4d443e7cae1cdbb22d/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 1450089352,
+   "readable": true,
+   "title": "Kyoto (Glitch Gum Remix)",
+   "title_short": "Kyoto (Glitch Gum Remix)",
+   "title_version": "",
+   "duration": 160,
+   "rank": 239913,
+   "artist": {
+    "id": 1058631,
+    "name": "Phoebe Bridgers",
+    "type": "artist"
+   },
+   "album": {
+    "id": 248305172,
+    "title": "Kyoto (Glitch Gum Remix)",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/766c861389949ae83e7a66a929878d11/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/766c861389949ae83e7a66a929878d11/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 818941742,
+   "readable": false,
+   "title": "So Hot You're Hurting My Feelings (A. G. Cook Remix)",
+   "title_short": "So Hot You're Hurting My Feelings",
+   "title_version": "(A. G. Cook Remix)",
+   "duration": 215,
+   "rank": 316195,
+   "artist": {
+    "id": 4631793,
+    "name": "Caroline Polachek",
+    "type": "artist"
+   },
+   "album": {
+    "id": 120497322,
+    "title": "So Hot You're Hurting My Feelings (A. G. Cook Remix)",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/be1903ba11dc49b0390f16c11855020e/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/be1903ba11dc49b0390f16c11855020e/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 1269675752,
+   "readable": true,
+   "title": "BB",
+   "title_short": "BB",
+   "title_version": "",
+   "duration": 166,
+   "rank": 279803,
+   "artist": {
+    "id": 410246,
+    "name": "Shygirl",
+    "type": "artist"
+   },
+   "album": {
+    "id": 213481122,
+    "title": "BB",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/ebae0963fb0e3009dcb0969e92ece66d/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/ebae0963fb0e3009dcb0969e92ece66d/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 1199070162,
+   "readable": true,
+   "title": "All Night",
+   "title_short": "All Night",
+   "title_version": "",
+   "duration": 177,
+   "rank": 258817,
+   "artist": {
+    "id": 7850514,
+    "name": "Danny L Harle",
+    "type": "artist"
+   },
+   "album": {
+    "id": 197993572,
+    "title": "Harlecore",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/be5615bb8339bffa477e0484b7d57ca1/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/be5615bb8339bffa477e0484b7d57ca1/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 1348385642,
+   "readable": false,
+   "title": "Musician",
+   "title_short": "Musician",
+   "title_version": "",
+   "duration": 238,
+   "rank": 20911,
+   "artist": {
+    "id": 864274,
+    "name": "Porter Robinson",
+    "type": "artist"
+   },
+   "album": {
+    "id": 224054812,
+    "title": "Nurture",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/40373e21fd0a32b0d65539b9e8cc557f/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/40373e21fd0a32b0d65539b9e8cc557f/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 959948122,
+   "readable": false,
+   "title": "claws",
+   "title_short": "claws",
+   "title_version": "",
+   "duration": 149,
+   "rank": 469666,
+   "artist": {
+    "id": 1462230,
+    "name": "Charli xcx",
+    "type": "artist"
+   },
+   "album": {
+    "id": 148126272,
+    "title": "how i'm feeling now",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/f2315bc78a1049916d387cd23feeb3ee/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/f2315bc78a1049916d387cd23feeb3ee/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 1252701862,
+   "readable": false,
+   "title": "glittr",
+   "title_short": "glittr",
+   "title_version": "",
+   "duration": 158,
+   "rank": 21892,
+   "artist": {
+    "id": 62817042,
+    "name": "aldn",
+    "type": "artist"
+   },
+   "album": {
+    "id": 209639702,
+    "title": "glittr",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/57671d92f364d5316238cb4e349e4a9e/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/57671d92f364d5316238cb4e349e4a9e/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 1951200217,
+   "readable": false,
+   "title": "Drama",
+   "title_short": "Drama",
+   "title_version": "",
+   "duration": 120,
+   "rank": 7850,
+   "artist": {
+    "id": 5804578,
+    "name": "Bladee",
+    "type": "artist"
+   },
+   "album": {
+    "id": 363782157,
+    "title": "Good Luck (Deluxe)",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/d41d8cd98f00b204e9800998ecf8427e/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/d41d8cd98f00b204e9800998ecf8427e/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 1490772962,
+   "readable": true,
+   "title": "Bites on My Neck",
+   "title_short": "Bites on My Neck",
+   "title_version": "",
+   "duration": 289,
+   "rank": 282588,
+   "artist": {
+    "id": 10877874,
+    "name": "yeule",
+    "type": "artist"
+   },
+   "album": {
+    "id": 257989642,
+    "title": "Glitch Princess",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/44a653b210fab1dbeefbbc1c9fb78edf/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/44a653b210fab1dbeefbbc1c9fb78edf/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 1166587912,
+   "readable": true,
+   "title": "Dare (PM)",
+   "title_short": "Dare (PM)",
+   "title_version": "",
+   "duration": 134,
+   "rank": 218355,
+   "artist": {
+    "id": 10922274,
+    "name": "Namasenda",
+    "type": "artist"
+   },
+   "album": {
+    "id": 191083172,
+    "title": "Dare (PM)",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/8e2e54b98909b57d4a205df4eea5a5fe/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/8e2e54b98909b57d4a205df4eea5a5fe/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 575514912,
+   "readable": true,
+   "title": "Hello Kitty",
+   "title_short": "Hello Kitty",
+   "title_version": "",
+   "duration": 180,
+   "rank": 313531,
+   "artist": {
+    "id": 50452132,
+    "name": "Slayyyter",
+    "type": "artist"
+   },
+   "album": {
+    "id": 76900992,
+    "title": "Hello Kitty",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/20f928685ab90574b975abd6a378091d/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/20f928685ab90574b975abd6a378091d/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 1500039312,
+   "readable": true,
+   "title": "Effeminacy",
+   "title_short": "Effeminacy",
+   "title_version": "",
+   "duration": 175,
+   "rank": 300568,
+   "artist": {
+    "id": 4496315,
+    "name": "Sega Bodega",
+    "type": "artist"
+   },
+   "album": {
+    "id": 260307052,
+    "title": "Romeo",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/2b628568caebeff3ecbffa889f2d5260/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/2b628568caebeff3ecbffa889f2d5260/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 1866469947,
+   "readable": false,
+   "title": "Trampoline",
+   "title_short": "Trampoline",
+   "title_version": "",
+   "duration": 243,
+   "rank": 274953,
+   "artist": {
+    "id": 4673985,
+    "name": "Kero Kero Bonito",
+    "type": "artist"
+   },
+   "album": {
+    "id": 346363307,
+    "title": "Trampoline",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/0f27c083714a7768885bab7a5f094ee4/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/0f27c083714a7768885bab7a5f094ee4/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 103667346,
+   "readable": true,
+   "title": "When I Rule the World",
+   "title_short": "When I Rule the World",
+   "title_version": "",
+   "duration": 186,
+   "rank": 401045,
+   "artist": {
+    "id": 168775,
+    "name": "LiZ",
+    "type": "artist"
+   },
+   "album": {
+    "id": 10780772,
+    "title": "When I Rule the World",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/3b3379b09db46bafa950c2b2cd889c1b/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/3b3379b09db46bafa950c2b2cd889c1b/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 1483154272,
+   "readable": true,
+   "title": "Rain On Me (Arca Remix)",
+   "title_short": "Rain On Me",
+   "title_version": "(Arca Remix)",
+   "duration": 263,
+   "rank": 270096,
+   "artist": {
+    "id": 75491,
+    "name": "Lady Gaga",
+    "type": "artist"
+   },
+   "album": {
+    "id": 256096052,
+    "title": "Dawn Of Chromatica",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/816af041222847c88803c8306253cf6c/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/816af041222847c88803c8306253cf6c/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 852335362,
+   "readable": true,
+   "title": "Party",
+   "title_short": "Party",
+   "title_version": "",
+   "duration": 170,
+   "rank": 237974,
+   "artist": {
+    "id": 66281672,
+    "name": "Planet 1999",
+    "type": "artist"
+   },
+   "album": {
+    "id": 126717862,
+    "title": "Party",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/afc04741e1d34b923a14018a4361b763/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/afc04741e1d34b923a14018a4361b763/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 114418080,
+   "readable": true,
+   "title": "Bitch",
+   "title_short": "Bitch",
+   "duration": 207,
+   "rank": 601563,
+   "artist": {
+    "id": 5587890,
+    "name": "Allie X",
+    "type": "artist"
+   },
+   "album": {
+    "id": 11851260,
+    "title": "CollXtion I (Deluxe Version)",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/62192cf09498b9d5de6884e1ef81be84/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/62192cf09498b9d5de6884e1ef81be84/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 437638462,
+   "readable": true,
+   "title": "Unlock it (Lock It) (feat. Kim Petras and Jay Park)",
+   "title_short": "Unlock it (Lock It)",
+   "title_version": "(feat. Kim Petras and Jay Park)",
+   "duration": 232,
+   "rank": 499082,
+   "artist": {
+    "id": 1462230,
+    "name": "Charli xcx",
+    "type": "artist"
+   },
+   "album": {
+    "id": 52934662,
+    "title": "Pop 2",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/91bce7283dcdc938789cf81da46c6842/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/91bce7283dcdc938789cf81da46c6842/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 1623008992,
+   "readable": true,
+   "title": "Watch Me",
+   "title_short": "Watch Me",
+   "title_version": "",
+   "duration": 176,
+   "rank": 242406,
+   "artist": {
+    "id": 51739862,
+    "name": "The Pom-Poms",
+    "type": "artist"
+   },
+   "album": {
+    "id": 287952142,
+    "title": "The Pom-Poms",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/aa76d1502358d1a6b1101c139cd327e2/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/aa76d1502358d1a6b1101c139cd327e2/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  }
+ ],
+ "checksum": "56a9d2d8c020c32dd66c8996bd7583bb",
+ "total": 50,
+ "next": "https://api.deezer.com/playlist/10805667442/tracks?limit=30&index=30"
+}

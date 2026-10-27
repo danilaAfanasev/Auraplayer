@@ -1,0 +1,311 @@
+.table {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 2.4fr) minmax(0, 1.4fr) 56px minmax(0, auto);
+  align-items: center;
+  gap: 14px;
+  min-height: 56px;
+  padding: 6px 12px;
+  border-radius: var(--radius-s);
+  transition: background-color var(--dur) var(--ease);
+  animation: row-in var(--dur-slow) var(--ease) both;
+  animation-delay: calc(var(--i, 0) * 18ms);
+}
+
+.row:not(.header):hover,
+.row:not(.header):focus-visible {
+  background: var(--surface);
+}
+
+.row:focus-visible {
+  outline-offset: -2px;
+}
+
+.header {
+  min-height: 34px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  animation: none;
+}
+
+.current,
+.current:hover {
+  background: var(--surface-hover);
+}
+
+/* Номер / эквалайзер / кнопка «играть» при наведении */
+.num {
+  position: relative;
+  display: grid;
+  place-items: center start;
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+}
+
+.numText {
+  padding-left: 2px;
+}
+
+.rowPlay {
+  position: absolute;
+  left: -4px;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  margin-top: -15px;
+  border-radius: 50%;
+  color: var(--text);
+  background: var(--surface-hover);
+  opacity: 0;
+  transform: scale(0.85);
+  transition:
+    opacity var(--dur-fast) var(--ease),
+    transform var(--dur-fast) var(--ease);
+}
+
+.row:hover .rowPlay,
+.rowPlay:focus-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.row:hover .numText,
+.row:hover .eq {
+  opacity: 0;
+}
+
+.current .rowPlay {
+  display: none;
+}
+
+.current:hover .eq {
+  opacity: 1;
+}
+
+/* Название + исполнитель с обложкой */
+.titleCell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.cover {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 42px;
+  height: 42px;
+  overflow: hidden;
+  border-radius: var(--radius-xs);
+  color: var(--text-muted);
+  background: linear-gradient(135deg, var(--accent-soft), var(--surface-hover));
+}
+
+.cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.meta {
+  min-width: 0;
+}
+
+.title,
+.artist,
+.album {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.title {
+  font-weight: 700;
+}
+
+.current .title {
+  color: var(--accent-text);
+}
+
+.artistLine {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.artist {
+  min-width: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* Скрытый трек в своём списке или поиске: приглушён, с пометкой и «Вернуть». */
+.blocked .cover,
+.blocked .title,
+.blocked .artist,
+.blocked .albumCell,
+.blocked .time,
+.blocked .numText {
+  opacity: 0.45;
+}
+
+.blockedTag {
+  flex: none;
+  padding: 1px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.restore {
+  flex: none;
+  height: 30px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  transition: background-color var(--dur-fast) var(--ease);
+}
+
+.restore:hover,
+.restore:focus-visible {
+  background: var(--surface-hover);
+}
+
+.albumCell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.time {
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+  text-align: right;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2px;
+  min-width: 0;
+}
+
+/* Эквалайзер */
+.eq {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 14px;
+  padding-left: 2px;
+  transition: opacity var(--dur-fast) var(--ease);
+}
+
+.eq span {
+  width: 3px;
+  height: 100%;
+  border-radius: 2px;
+  background: var(--accent);
+  transform-origin: bottom;
+  animation: eq 900ms ease-in-out infinite;
+}
+
+.eq span:nth-child(2) {
+  animation-duration: 700ms;
+  animation-delay: -300ms;
+}
+
+.eq span:nth-child(3) {
+  animation-duration: 1100ms;
+  animation-delay: -500ms;
+}
+
+.eq span:nth-child(4) {
+  animation-duration: 800ms;
+  animation-delay: -150ms;
+}
+
+.eqPaused span {
+  animation-play-state: paused;
+}
+
+@keyframes eq {
+  0%,
+  100% {
+    transform: scaleY(0.25);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes row-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+
+@media (max-width: 1180px) {
+  .row {
+    grid-template-columns: 40px minmax(0, 2.2fr) minmax(0, 1fr) 52px minmax(0, auto);
+  }
+}
+
+/* Перетаскивание строк плейлиста */
+.row[draggable='true'] {
+  position: relative;
+}
+
+.dragging {
+  opacity: 0.4;
+}
+
+.dropBefore::after,
+.dropAfter::after {
+  content: '';
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent-glow);
+  pointer-events: none;
+}
+
+.dropBefore::after {
+  top: -2px;
+}
+
+.dropAfter::after {
+  bottom: -2px;
+}

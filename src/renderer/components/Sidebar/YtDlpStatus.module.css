@@ -1,0 +1,93 @@
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  margin: 0 8px 10px;
+  padding: 8px 12px;
+  border-radius: var(--radius-s);
+  background: var(--surface-2);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.text {
+  flex: 1;
+  min-width: 0;
+}
+
+.track {
+  flex-basis: 100%;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--border);
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--accent);
+  transition: width var(--dur) var(--ease);
+}
+
+.indeterminate {
+  width: 35%;
+  animation: slide 1.2s var(--ease) infinite;
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(300%);
+  }
+}
+
+.failed {
+  flex-wrap: nowrap;
+  color: var(--text);
+}
+
+.icon {
+  flex: none;
+  color: var(--danger);
+}
+
+.retry {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 4px;
+  height: 24px;
+  padding: 0 8px;
+  border-radius: var(--radius-xs);
+  color: var(--accent-text);
+  font-size: 12px;
+  font-weight: 700;
+  transition: background-color var(--dur-fast) var(--ease);
+}
+
+.retry:hover {
+  background: var(--surface-hover);
+}
+
+/* Свёрнутый сайдбар: остаётся только полоска хода / значок ошибки */
+.compact {
+  margin: 0 6px 10px;
+  padding: 8px 6px;
+  justify-content: center;
+}
+
+.compact .text,
+.compact .retryLabel {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .indeterminate {
+    animation: none;
+  }
+}

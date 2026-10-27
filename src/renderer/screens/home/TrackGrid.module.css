@@ -1,0 +1,142 @@
+/* Сетка треков в две колонки (блок «Популярное сейчас» на главной) */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 28px;
+  row-gap: 2px;
+}
+
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  padding: 6px 10px 6px 6px;
+  border-radius: var(--radius-s);
+  transition: background-color var(--dur) var(--ease);
+  animation: fadeUp var(--dur-slow) var(--ease) both;
+}
+
+.item:hover,
+.item:focus-within {
+  background: var(--surface-hover);
+}
+
+.current .title {
+  color: var(--accent-text);
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-align: left;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+}
+
+.main:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.position {
+  flex: none;
+  width: 24px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+}
+
+.cover {
+  position: relative;
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  overflow: hidden;
+  border-radius: 10px;
+  color: var(--text-faint);
+  background: var(--surface-2);
+}
+
+.cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.coverOverlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--play-bg);
+  background: var(--overlay);
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease);
+}
+
+.item:hover .coverOverlay,
+.current .coverOverlay {
+  opacity: 1;
+}
+
+.meta {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.title,
+.artist {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.artist {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.note {
+  color: var(--text-faint);
+}
+
+.time {
+  flex: none;
+  min-width: 40px;
+  text-align: right;
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}

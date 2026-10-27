@@ -1,0 +1,177 @@
+.block {
+  display: grid;
+  grid-template-columns: minmax(280px, 380px) minmax(0, 1fr);
+  gap: 16px;
+  margin-bottom: 30px;
+  animation: rise var(--dur-slow) var(--ease) both;
+}
+
+/* «Моя волна» — крупная кнопка */
+.myWave {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 104px;
+  padding: 18px 22px;
+  border-radius: var(--radius-l);
+  border: 1px solid var(--border);
+  text-align: left;
+  background:
+    radial-gradient(120% 140% at 0% 0%, var(--accent-glow), transparent 60%),
+    var(--surface-2);
+  transition:
+    transform var(--dur-fast) var(--ease),
+    border-color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+
+.myWave:hover:not(:disabled) {
+  border-color: var(--border-strong);
+  box-shadow: 0 14px 36px var(--shadow);
+}
+
+.myWave:active:not(:disabled) {
+  transform: scale(0.985);
+}
+
+.myWavePlaying {
+  border-color: var(--accent);
+}
+
+.myWaveIcon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  box-shadow: 0 8px 24px var(--accent-soft);
+}
+
+.myWaveText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.myWaveTitle {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.myWaveSub {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+/* Чипы волн */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 38px;
+  padding: 0 16px 0 13px;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  font-size: 14px;
+  font-weight: 700;
+  background: var(--surface-2);
+  transition:
+    background-color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    transform var(--dur-fast) var(--ease);
+}
+
+.chip svg {
+  color: var(--accent-text);
+}
+
+.chip:hover:not(:disabled) {
+  background: var(--surface-hover);
+}
+
+.chip:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.chipOn {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+/* «Своя волна» */
+.custom {
+  display: flex;
+  gap: 8px;
+  max-width: 460px;
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+  transition: border-color var(--dur) var(--ease);
+}
+
+.input::placeholder {
+  color: var(--text-faint);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.go {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  transition:
+    background-color var(--dur) var(--ease),
+    opacity var(--dur) var(--ease);
+}
+
+.go:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.go:disabled {
+  opacity: 0.5;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}

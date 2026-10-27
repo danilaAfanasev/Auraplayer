@@ -1,0 +1,4570 @@
+{
+ "collection": [
+  {
+   "artwork_url": "https://i1.sndcdn.com/artworks-000145741114-7ich0h-large.jpg",
+   "caption": null,
+   "commentable": true,
+   "comment_count": 817,
+   "created_at": "2016-02-03T18:02:48Z",
+   "description": "To Support The Channel.\n\nhttps://paypal.me/4gangsta\n\nhttps://paypal.me/4gangsta\n\n-\n-",
+   "downloadable": false,
+   "download_count": 0,
+   "duration": 219945,
+   "full_duration": 219945,
+   "embeddable_by": "all",
+   "genre": "TARAS",
+   "has_downloads_left": false,
+   "id": 245269075,
+   "kind": "track",
+   "label_name": null,
+   "last_modified": "2022-04-19T07:15:07Z",
+   "license": "all-rights-reserved",
+   "likes_count": 152468,
+   "permalink": "taras-2",
+   "permalink_url": "https://soundcloud.com/gangstersoul/taras-2",
+   "playback_count": 13365435,
+   "public": true,
+   "publisher_metadata": {
+    "id": 245269075,
+    "urn": "soundcloud:tracks:245269075",
+    "artist": "TARAS",
+    "contains_music": true,
+    "isrc": "QM8DG2031580"
+   },
+   "purchase_title": null,
+   "purchase_url": null,
+   "release_date": null,
+   "reposts_count": 660,
+   "secret_token": null,
+   "sharing": "public",
+   "state": "finished",
+   "streamable": true,
+   "tag_list": "TARAS Тебя Нежно Грубо",
+   "title": "TARAS - Тебя Нежно Грубо",
+   "uri": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A245269075",
+   "urn": "soundcloud:tracks:245269075",
+   "user_id": 186721185,
+   "visuals": null,
+   "waveform_url": "https://wave.sndcdn.com/0WxvoF2qz2ER_m.json",
+   "display_date": "2016-02-03T18:02:48Z",
+   "media": {
+    "transcodings": [
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:245269075/01ea13ba-1da8-4ead-84e7-a2abfa2884b4/stream/hls",
+      "preset": "aac_160k",
+      "duration": 219945,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:245269075/d01a2b27-e298-4afd-b018-d38bd48e4c79/stream/hls",
+      "preset": "aac_96k",
+      "duration": 219945,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:245269075/785063c6-7446-4504-83ca-5d988b983c17/stream/hls",
+      "preset": "abr_sq",
+      "duration": 219945,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     }
+    ]
+   },
+   "station_urn": "soundcloud:system-playlists:track-stations:245269075",
+   "station_permalink": "track-stations:245269075",
+   "track_authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJGSSIsInN1YiI6IiIsInJpZCI6IiIsImlhdCI6MTc5MzAzMTcyMH0.3_GG0wMgMuAcIepY8FwRPh-HbMsYbTCKknV-SwkHQe4",
+   "monetization_model": "NOT_APPLICABLE",
+   "policy": "ALLOW",
+   "user": {
+    "avatar_url": "https://i1.sndcdn.com/avatars-eQVRIqA1tFw3FrjH-yRoHAA-large.jpg",
+    "city": null,
+    "comments_count": 0,
+    "country_code": null,
+    "created_at": null,
+    "creator_subscriptions": [
+     {
+      "product": {
+       "id": "free"
+      }
+     }
+    ],
+    "creator_subscription": {
+     "product": {
+      "id": "free"
+     }
+    },
+    "description": "To Support: https://paypal.me/4gangsta\n\n-\n\nРепост 700  Руб.",
+    "followers_count": 11337,
+    "followings_count": 10,
+    "first_name": "Репост",
+    "full_name": "Репост 700  Руб.",
+    "groups_count": 0,
+    "id": 186721185,
+    "kind": "user",
+    "last_modified": "2020-12-11T11:33:44Z",
+    "last_name": "700  Руб.",
+    "likes_count": 415,
+    "playlist_likes_count": 26,
+    "permalink": "gangstersoul",
+    "permalink_url": "https://soundcloud.com/gangstersoul",
+    "playlist_count": 2,
+    "reposts_count": null,
+    "track_count": 18,
+    "uri": "https://api.soundcloud.com/users/soundcloud%3Ausers%3A186721185",
+    "urn": "soundcloud:users:186721185",
+    "username": "Русский Рэп",
+    "verified": false,
+    "visuals": {
+     "urn": "soundcloud:users:186721185",
+     "enabled": true,
+     "visuals": [
+      {
+       "urn": "soundcloud:visuals:85143917",
+       "entry_time": 0,
+       "visual_url": "https://i1.sndcdn.com/visuals-000186721185-jeWLXF-original.jpg"
+      }
+     ],
+     "tracking": null
+    },
+    "badges": {
+     "pro": false,
+     "creator_mid_tier": false,
+     "pro_unlimited": false,
+     "verified": false
+    },
+    "station_urn": "soundcloud:system-playlists:artist-stations:186721185",
+    "station_permalink": "artist-stations:186721185",
+    "date_of_birth": null
+   }
+  },
+  {
+   "artwork_url": "https://i1.sndcdn.com/artworks-000147166316-tgkjfh-large.jpg",
+   "caption": null,
+   "commentable": true,
+   "comment_count": 165,
+   "created_at": "2016-02-14T22:27:07Z",
+   "description": "To Support The Channel.\n\nhttps://paypal.me/4gangsta\n\nhttps://paypal.me/4gangsta\n\n-\n-",
+   "downloadable": false,
+   "download_count": 0,
+   "duration": 298386,
+   "full_duration": 298450,
+   "embeddable_by": "all",
+   "genre": "Hip-hop & Rap",
+   "has_downloads_left": false,
+   "id": 247069997,
+   "kind": "track",
+   "label_name": null,
+   "last_modified": "2021-03-20T12:03:44Z",
+   "license": "all-rights-reserved",
+   "likes_count": 31495,
+   "permalink": "jvxdwonlmhk6",
+   "permalink_url": "https://soundcloud.com/gangstersoul/jvxdwonlmhk6",
+   "playback_count": 2680308,
+   "public": true,
+   "publisher_metadata": {
+    "id": 247069997,
+    "urn": "soundcloud:tracks:247069997",
+    "artist": "Антиреспект",
+    "contains_music": true,
+    "isrc": "QM8DG2031576"
+   },
+   "purchase_title": null,
+   "purchase_url": null,
+   "release_date": null,
+   "reposts_count": 422,
+   "secret_token": null,
+   "sharing": "public",
+   "state": "finished",
+   "streamable": true,
+   "tag_list": "Тишины Хочу",
+   "title": "Антиреспект - Тишины Хочу",
+   "uri": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A247069997",
+   "urn": "soundcloud:tracks:247069997",
+   "user_id": 186721185,
+   "visuals": null,
+   "waveform_url": "https://wave.sndcdn.com/fVNQq80HKLTt_m.json",
+   "display_date": "2016-02-14T22:27:07Z",
+   "media": {
+    "transcodings": [
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:247069997/86e5297b-bb9b-4f62-ac72-d269564bc00a/stream/hls",
+      "preset": "aac_160k",
+      "duration": 298386,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:247069997/2df52088-177b-49f0-8dac-ab49e7aa15d5/stream/hls",
+      "preset": "aac_96k",
+      "duration": 298386,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:247069997/916789e4-53ba-4f2d-81da-83b79603afa0/stream/hls",
+      "preset": "abr_sq",
+      "duration": 298386,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     }
+    ]
+   },
+   "station_urn": "soundcloud:system-playlists:track-stations:247069997",
+   "station_permalink": "track-stations:247069997",
+   "track_authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJGSSIsInN1YiI6IiIsInJpZCI6IiIsImlhdCI6MTc5MzAzMTcyMH0.3_GG0wMgMuAcIepY8FwRPh-HbMsYbTCKknV-SwkHQe4",
+   "monetization_model": "NOT_APPLICABLE",
+   "policy": "ALLOW",
+   "user": {
+    "avatar_url": "https://i1.sndcdn.com/avatars-eQVRIqA1tFw3FrjH-yRoHAA-large.jpg",
+    "city": null,
+    "comments_count": 0,
+    "country_code": null,
+    "created_at": null,
+    "creator_subscriptions": [
+     {
+      "product": {
+       "id": "free"
+      }
+     }
+    ],
+    "creator_subscription": {
+     "product": {
+      "id": "free"
+     }
+    },
+    "description": "To Support: https://paypal.me/4gangsta\n\n-\n\nРепост 700  Руб.",
+    "followers_count": 11337,
+    "followings_count": 10,
+    "first_name": "Репост",
+    "full_name": "Репост 700  Руб.",
+    "groups_count": 0,
+    "id": 186721185,
+    "kind": "user",
+    "last_modified": "2020-12-11T11:33:44Z",
+    "last_name": "700  Руб.",
+    "likes_count": 415,
+    "playlist_likes_count": 26,
+    "permalink": "gangstersoul",
+    "permalink_url": "https://soundcloud.com/gangstersoul",
+    "playlist_count": 2,
+    "reposts_count": null,
+    "track_count": 18,
+    "uri": "https://api.soundcloud.com/users/soundcloud%3Ausers%3A186721185",
+    "urn": "soundcloud:users:186721185",
+    "username": "Русский Рэп",
+    "verified": false,
+    "visuals": {
+     "urn": "soundcloud:users:186721185",
+     "enabled": true,
+     "visuals": [
+      {
+       "urn": "soundcloud:visuals:85143917",
+       "entry_time": 0,
+       "visual_url": "https://i1.sndcdn.com/visuals-000186721185-jeWLXF-original.jpg"
+      }
+     ],
+     "tracking": null
+    },
+    "badges": {
+     "pro": false,
+     "creator_mid_tier": false,
+     "pro_unlimited": false,
+     "verified": false
+    },
+    "station_urn": "soundcloud:system-playlists:artist-stations:186721185",
+    "station_permalink": "artist-stations:186721185",
+    "date_of_birth": null
+   }
+  },
+  {
+   "artwork_url": "https://i1.sndcdn.com/artworks-000136120597-4ct6al-large.jpg",
+   "caption": null,
+   "commentable": true,
+   "comment_count": 164,
+   "created_at": "2015-11-14T12:34:44Z",
+   "description": "To Support The Channel.\n\nhttps://paypal.me/4gangsta\n\nhttps://paypal.me/4gangsta\n\n-\n-",
+   "downloadable": false,
+   "download_count": 0,
+   "duration": 233894,
+   "full_duration": 233896,
+   "embeddable_by": "all",
+   "genre": "Hip-hop & Rap",
+   "has_downloads_left": false,
+   "id": 233026709,
+   "kind": "track",
+   "label_name": null,
+   "last_modified": "2022-06-20T23:17:00Z",
+   "license": "all-rights-reserved",
+   "likes_count": 39149,
+   "permalink": "babylon",
+   "permalink_url": "https://soundcloud.com/gangstersoul/babylon",
+   "playback_count": 4069647,
+   "public": true,
+   "publisher_metadata": {
+    "id": 233026709,
+    "urn": "soundcloud:tracks:233026709",
+    "artist": "Эндшпиль",
+    "contains_music": true,
+    "isrc": "QM8DG2031361"
+   },
+   "purchase_title": null,
+   "purchase_url": null,
+   "release_date": null,
+   "reposts_count": 402,
+   "secret_token": null,
+   "sharing": "public",
+   "state": "finished",
+   "streamable": true,
+   "tag_list": "Мой Babylon Эндшпиль",
+   "title": "Эндшпиль - Мой Babylon",
+   "uri": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A233026709",
+   "urn": "soundcloud:tracks:233026709",
+   "user_id": 186721185,
+   "visuals": null,
+   "waveform_url": "https://wave.sndcdn.com/PWai3V4ZLHP8_m.json",
+   "display_date": "2015-11-14T12:34:44Z",
+   "media": {
+    "transcodings": [
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:233026709/c7d3e760-2658-4b85-8139-04bac6f35635/stream/hls",
+      "preset": "aac_160k",
+      "duration": 233894,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:233026709/de2336d4-b113-4718-b2b4-595c8742a5a5/stream/hls",
+      "preset": "aac_96k",
+      "duration": 233894,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:233026709/2206073a-faa9-47dc-8d5b-15c686a4cdb4/stream/hls",
+      "preset": "abr_sq",
+      "duration": 233894,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     }
+    ]
+   },
+   "station_urn": "soundcloud:system-playlists:track-stations:233026709",
+   "station_permalink": "track-stations:233026709",
+   "track_authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJGSSIsInN1YiI6IiIsInJpZCI6IiIsImlhdCI6MTc5MzAzMTcyMH0.3_GG0wMgMuAcIepY8FwRPh-HbMsYbTCKknV-SwkHQe4",
+   "monetization_model": "NOT_APPLICABLE",
+   "policy": "ALLOW",
+   "user": {
+    "avatar_url": "https://i1.sndcdn.com/avatars-eQVRIqA1tFw3FrjH-yRoHAA-large.jpg",
+    "city": null,
+    "comments_count": 0,
+    "country_code": null,
+    "created_at": null,
+    "creator_subscriptions": [
+     {
+      "product": {
+       "id": "free"
+      }
+     }
+    ],
+    "creator_subscription": {
+     "product": {
+      "id": "free"
+     }
+    },
+    "description": "To Support: https://paypal.me/4gangsta\n\n-\n\nРепост 700  Руб.",
+    "followers_count": 11337,
+    "followings_count": 10,
+    "first_name": "Репост",
+    "full_name": "Репост 700  Руб.",
+    "groups_count": 0,
+    "id": 186721185,
+    "kind": "user",
+    "last_modified": "2020-12-11T11:33:44Z",
+    "last_name": "700  Руб.",
+    "likes_count": 415,
+    "playlist_likes_count": 26,
+    "permalink": "gangstersoul",
+    "permalink_url": "https://soundcloud.com/gangstersoul",
+    "playlist_count": 2,
+    "reposts_count": null,
+    "track_count": 18,
+    "uri": "https://api.soundcloud.com/users/soundcloud%3Ausers%3A186721185",
+    "urn": "soundcloud:users:186721185",
+    "username": "Русский Рэп",
+    "verified": false,
+    "visuals": {
+     "urn": "soundcloud:users:186721185",
+     "enabled": true,
+     "visuals": [
+      {
+       "urn": "soundcloud:visuals:85143917",
+       "entry_time": 0,
+       "visual_url": "https://i1.sndcdn.com/visuals-000186721185-jeWLXF-original.jpg"
+      }
+     ],
+     "tracking": null
+    },
+    "badges": {
+     "pro": false,
+     "creator_mid_tier": false,
+     "pro_unlimited": false,
+     "verified": false
+    },
+    "station_urn": "soundcloud:system-playlists:artist-stations:186721185",
+    "station_permalink": "artist-stations:186721185",
+    "date_of_birth": null
+   }
+  },
+  {
+   "artwork_url": "https://i1.sndcdn.com/artworks-yrl35wc4h8i29sMb-4GFHTw-large.jpg",
+   "caption": null,
+   "commentable": true,
+   "comment_count": 25,
+   "created_at": "2024-07-12T07:12:49Z",
+   "description": "САМЫЕ ЛУЧШИЕ БЛЯТЬ РЕПЕРЫ НАХУЙ\n@saintchasergoon и VSC собственно блять\nЛучше нас нет и не будет ты понял блять\nПослушай хуила ВНИМАТЕЛЬНО БЛЯТЬ\nТе такого блять тебе никто такого никогда блять не расскажет\n\n@saintchasergoon\nЯ кончил этой шалаве и попал прямо на глаз\nОбсыпал чуваку я плана где то на глаз\nДаже не буду говорить вам чем я лучше вас \nВесь твой микстейп стоит условно как один напас\nЯ повторял и повторяю наплевать на это\nРусский МС вафёл, а chasergoon великолепен\nКатали сучек на банане, но здесь разный смысл\nТы лох изрезал морду себе блять когда ты брился\nРостовский репер хотел кушать и пошел на урну\nПотом блять провонял себе микро - он хавал курник \nЯ видел ваши клипы во всех своих бывших шмотках\nО да мы на ножах ты блять с заточкой с зубной щетки\nВсе мои хейтеры разъехались по лагерям\nНо не в сизо бля не подумай им 15 еблан\nО да их возраст как тех телок то что ты ебешь\nСпустя минуток пять они такие ВСЁ\n\n@shytah\n\nВыстрел в твой лоб - ты готов\nОн спит в гробу сладких снов\nНе знаю время - у меня нет часов\nУ нас много ганжи, будто бы тут ростов\nЕй нужна машина вызвал рейс кар\nKlad Money говорит мы опаздываем на рейс кар\nЯ курю дерьмо, жесткий кумар\nЯ курю первый класс мой блант прикольный плацкарт\nЯ вынес этот мусор бля я санитар\nЯ Паша Техник под занами со мной МС Кальмар\nМы выдуваем дым они лишь парят пар\nМы выдуваем дым мы выдуваем гарь\nСо мной мои вороны слышишь кар-кар\nЯ забываю строки нужен секретарь\nНе фараон но зову свою суку тварь\nУ меня есть зеленый яд...\nЯ люблю лежать между ног своей кикнес\nНоги у нее широкие, а попа фитнес\nЯ кстати хочу сделать сука с тобой фитнес\nИ кстати Klad Money не узбек, но любит видео связь\nЯ буду звонить и сука делать там грязь\nБуду вспоминать как твоя попка тряслась\n\n@darealkladmoney\n\nMoney не уебок, но я выхожу пограбить\nФлекс Финесс, я тупой, я хочу деньги потратить\nЯ тебя тоже люблю, но ща хочу потрахать\nОтправляю ей эмоджи когда я хожу покакать\nНе сказал что он мой друг ведь я хочу его ограбить\nЯ уже нашел тут link и мне осталось лишь ударить\nЯ уже шуршу авито ищу кому это впарить\nМне похуй на заяву ведь он скамер\nА у меня паспорт его\n\n@alwayshighcity\n\nБля мой хуй это большая писька\nЕсли есть список торговцев спайса - то я в этом списке\nДаже не взял с собой баллон, но твой брат уже смылся\nЯ даж не трогал свой биткоин, а он уже отмылся\nОни нашли мента под солями типа вот дерьмо\nЯ живу на ебаном болоте типа водяной\nКогда я на новом бро лекарстве я такой тупой\nЕсли б начал хапать раньше - я бы не закончил школу\nЕсли ты в конекте с ФСИН считаю петушком\nТелки никогда не ждут чтобы я подошел\nТвою блядь пердолят в жопу бля под порошком\nЯ торгую блять легально, не вижу бутылки под очком\nПочему то все равно они хотят залезть в айфон\nПочему то не берет меня когда курю дерьмо\nПочему то телки про меня говорят это он\nПочему то [?]",
+   "downloadable": false,
+   "download_count": 0,
+   "duration": 245795,
+   "full_duration": 245786,
+   "embeddable_by": "all",
+   "genre": "",
+   "has_downloads_left": false,
+   "id": 1869640398,
+   "kind": "track",
+   "label_name": "",
+   "last_modified": "2026-08-03T03:18:34Z",
+   "license": "all-rights-reserved",
+   "likes_count": 2554,
+   "permalink": "rrr",
+   "permalink_url": "https://soundcloud.com/91y/rrr",
+   "playback_count": 148646,
+   "public": true,
+   "publisher_metadata": {
+    "id": 1869640398,
+    "urn": "soundcloud:tracks:1869640398",
+    "publisher": "",
+    "explicit": false,
+    "p_line": "℗ ",
+    "p_line_for_display": "℗ "
+   },
+   "purchase_title": null,
+   "purchase_url": null,
+   "release_date": null,
+   "reposts_count": 56,
+   "secret_token": null,
+   "sharing": "public",
+   "state": "finished",
+   "streamable": true,
+   "tag_list": "saintchasergoon alwayshighcity \"klad money\" \"некий парень\"",
+   "title": "@saintchasergoon ft.некий парень Klad Money  alwayshighcity - R.I.P. Русский Рэп (prod. Lex Luger)",
+   "uri": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A1869640398",
+   "urn": "soundcloud:tracks:1869640398",
+   "user_id": 1308227517,
+   "visuals": null,
+   "waveform_url": "https://wave.sndcdn.com/JadHRg99wAcb_m.json",
+   "display_date": "2024-07-12T07:12:49Z",
+   "media": {
+    "transcodings": [
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:1869640398/7923bc22-0cee-47c7-b94a-465c5930dfa4/stream/hls",
+      "preset": "aac_160k",
+      "duration": 245795,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:1869640398/1a23519f-b319-4ee4-9cc4-30aacd583d70/stream/hls",
+      "preset": "aac_96k",
+      "duration": 245795,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:1869640398/f1adb7a7-383b-4c5f-b84b-727e9d3310b6/stream/hls",
+      "preset": "abr_sq",
+      "duration": 245795,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     }
+    ]
+   },
+   "station_urn": "soundcloud:system-playlists:track-stations:1869640398",
+   "station_permalink": "track-stations:1869640398",
+   "track_authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJGSSIsInN1YiI6IiIsInJpZCI6Ijg3Yzk5Y2FkLWRkZWItNDliMi05ODBmLTU3Yzg1ZDA0MGQxNSIsImlhdCI6MTc5MzAzMTcyMH0.vrhmpCh9GRWs0Idlgq304B8UtpHWRmafwzFqz7ijPTE",
+   "monetization_model": "BLACKBOX",
+   "policy": "MONETIZE",
+   "user": {
+    "avatar_url": "https://i1.sndcdn.com/avatars-aXMf7kZ12PSJ3Prn-1CRFqw-large.jpg",
+    "city": "",
+    "comments_count": 0,
+    "country_code": null,
+    "created_at": null,
+    "creator_subscriptions": [
+     {
+      "product": {
+       "id": "free"
+      }
+     }
+    ],
+    "creator_subscription": {
+     "product": {
+      "id": "free"
+     }
+    },
+    "description": "",
+    "followers_count": 65,
+    "followings_count": 110,
+    "first_name": "",
+    "full_name": "",
+    "groups_count": 0,
+    "id": 1308227517,
+    "kind": "user",
+    "last_modified": "2026-10-18T07:45:33Z",
+    "last_name": "",
+    "likes_count": 2043,
+    "playlist_likes_count": 0,
+    "permalink": "91y",
+    "permalink_url": "https://soundcloud.com/91y",
+    "playlist_count": 2,
+    "reposts_count": null,
+    "track_count": 12,
+    "uri": "https://api.soundcloud.com/users/soundcloud%3Ausers%3A1308227517",
+    "urn": "soundcloud:users:1308227517",
+    "username": "You",
+    "verified": false,
+    "visuals": null,
+    "badges": {
+     "pro": false,
+     "creator_mid_tier": false,
+     "pro_unlimited": false,
+     "verified": false
+    },
+    "station_urn": "soundcloud:system-playlists:artist-stations:1308227517",
+    "station_permalink": "artist-stations:1308227517",
+    "date_of_birth": null
+   }
+  },
+  {
+   "artwork_url": "https://i1.sndcdn.com/artworks-000148062010-jmwcno-large.jpg",
+   "caption": null,
+   "commentable": true,
+   "comment_count": 28,
+   "created_at": "2016-02-21T18:39:27Z",
+   "description": "To Support The Channel.\n\nhttps://paypal.me/4gangsta\n\nhttps://paypal.me/4gangsta\n\n-\n-",
+   "downloadable": false,
+   "download_count": 0,
+   "duration": 162005,
+   "full_duration": 162000,
+   "embeddable_by": "all",
+   "genre": "Hip-hop & Rap",
+   "has_downloads_left": false,
+   "id": 248195631,
+   "kind": "track",
+   "label_name": null,
+   "last_modified": "2020-05-06T07:15:15Z",
+   "license": "all-rights-reserved",
+   "likes_count": 14146,
+   "permalink": "new-2016",
+   "permalink_url": "https://soundcloud.com/gangstersoul/new-2016",
+   "playback_count": 1344594,
+   "public": true,
+   "publisher_metadata": {
+    "id": 248195631,
+    "urn": "soundcloud:tracks:248195631",
+    "artist": "Каспийский Груз",
+    "contains_music": true,
+    "isrc": "QM8DG2031320"
+   },
+   "purchase_title": null,
+   "purchase_url": null,
+   "release_date": null,
+   "reposts_count": 173,
+   "secret_token": null,
+   "sharing": "public",
+   "state": "finished",
+   "streamable": true,
+   "tag_list": "Каспийский Груз - Кайфуем",
+   "title": "Каспийский Груз - Кайфуем (2020)",
+   "uri": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A248195631",
+   "urn": "soundcloud:tracks:248195631",
+   "user_id": 186721185,
+   "visuals": null,
+   "waveform_url": "https://wave.sndcdn.com/Fkahjt9UwcXe_m.json",
+   "display_date": "2016-02-21T18:39:27Z",
+   "media": {
+    "transcodings": [
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:248195631/3dd2224c-45ca-417b-803e-eca10a22f2db/stream/hls",
+      "preset": "aac_160k",
+      "duration": 162005,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:248195631/c4f95028-26fc-49ef-adb0-fea6cab596d1/stream/hls",
+      "preset": "aac_96k",
+      "duration": 162005,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:248195631/20523c3c-9902-452d-ba6b-5a3e0632e6fe/stream/hls",
+      "preset": "abr_sq",
+      "duration": 162005,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     }
+    ]
+   },
+   "station_urn": "soundcloud:system-playlists:track-stations:248195631",
+   "station_permalink": "track-stations:248195631",
+   "track_authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJGSSIsInN1YiI6IiIsInJpZCI6IiIsImlhdCI6MTc5MzAzMTcyMH0.3_GG0wMgMuAcIepY8FwRPh-HbMsYbTCKknV-SwkHQe4",
+   "monetization_model": "NOT_APPLICABLE",
+   "policy": "ALLOW",
+   "user": {
+    "avatar_url": "https://i1.sndcdn.com/avatars-eQVRIqA1tFw3FrjH-yRoHAA-large.jpg",
+    "city": null,
+    "comments_count": 0,
+    "country_code": null,
+    "created_at": null,
+    "creator_subscriptions": [
+     {
+      "product": {
+       "id": "free"
+      }
+     }
+    ],
+    "creator_subscription": {
+     "product": {
+      "id": "free"
+     }
+    },
+    "description": "To Support: https://paypal.me/4gangsta\n\n-\n\nРепост 700  Руб.",
+    "followers_count": 11337,
+    "followings_count": 10,
+    "first_name": "Репост",
+    "full_name": "Репост 700  Руб.",
+    "groups_count": 0,
+    "id": 186721185,
+    "kind": "user",
+    "last_modified": "2020-12-11T11:33:44Z",
+    "last_name": "700  Руб.",
+    "likes_count": 415,
+    "playlist_likes_count": 26,
+    "permalink": "gangstersoul",
+    "permalink_url": "https://soundcloud.com/gangstersoul",
+    "playlist_count": 2,
+    "reposts_count": null,
+    "track_count": 18,
+    "uri": "https://api.soundcloud.com/users/soundcloud%3Ausers%3A186721185",
+    "urn": "soundcloud:users:186721185",
+    "username": "Русский Рэп",
+    "verified": false,
+    "visuals": {
+     "urn": "soundcloud:users:186721185",
+     "enabled": true,
+     "visuals": [
+      {
+       "urn": "soundcloud:visuals:85143917",
+       "entry_time": 0,
+       "visual_url": "https://i1.sndcdn.com/visuals-000186721185-jeWLXF-original.jpg"
+      }
+     ],
+     "tracking": null
+    },
+    "badges": {
+     "pro": false,
+     "creator_mid_tier": false,
+     "pro_unlimited": false,
+     "verified": false
+    },
+    "station_urn": "soundcloud:system-playlists:artist-stations:186721185",
+    "station_permalink": "artist-stations:186721185",
+    "date_of_birth": null
+   }
+  },
+  {
+   "artwork_url": "https://i1.sndcdn.com/artworks-000410001408-3talrl-large.jpg",
+   "caption": null,
+   "commentable": true,
+   "comment_count": 26,
+   "created_at": "2018-09-24T00:45:46Z",
+   "description": "",
+   "downloadable": false,
+   "download_count": 0,
+   "duration": 242384,
+   "full_duration": 242411,
+   "embeddable_by": "all",
+   "genre": "Hip-hop & Rap",
+   "has_downloads_left": false,
+   "id": 504192855,
+   "kind": "track",
+   "label_name": null,
+   "last_modified": "2021-07-18T09:43:55Z",
+   "license": "all-rights-reserved",
+   "likes_count": 10031,
+   "permalink": "chestnyy-a-ty-prosti-mamaya-khuligan",
+   "permalink_url": "https://soundcloud.com/dima-klimchuk-546136970/chestnyy-a-ty-prosti-mamaya-khuligan",
+   "playback_count": 1112803,
+   "public": true,
+   "publisher_metadata": {
+    "id": 504192855,
+    "urn": "soundcloud:tracks:504192855",
+    "artist": "Русский рэп"
+   },
+   "purchase_title": null,
+   "purchase_url": null,
+   "release_date": null,
+   "reposts_count": 58,
+   "secret_token": null,
+   "sharing": "public",
+   "state": "finished",
+   "streamable": true,
+   "tag_list": "",
+   "title": "Честный - А ты прости мама,я - хулиган",
+   "uri": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A504192855",
+   "urn": "soundcloud:tracks:504192855",
+   "user_id": 513489009,
+   "visuals": null,
+   "waveform_url": "https://wave.sndcdn.com/J5DzB0rz4oWA_m.json",
+   "display_date": "2018-09-24T00:45:46Z",
+   "media": {
+    "transcodings": [
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:504192855/de3f2a97-8edb-4e5a-b75d-ed2641100a99/stream/hls",
+      "preset": "aac_160k",
+      "duration": 242384,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:504192855/6344917d-848a-45e5-9b41-2e5cc5a8fec2/stream/hls",
+      "preset": "aac_96k",
+      "duration": 242384,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:504192855/f0d34e12-3b9a-4322-9c9c-444df3830943/stream/hls",
+      "preset": "abr_sq",
+      "duration": 242384,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     }
+    ]
+   },
+   "station_urn": "soundcloud:system-playlists:track-stations:504192855",
+   "station_permalink": "track-stations:504192855",
+   "track_authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJGSSIsInN1YiI6IiIsInJpZCI6Ijk5ZjM3YjlhLTM3YTYtNDc5NS04ZjNmLWNjODU1NDY3YjE3ZSIsImlhdCI6MTc5MzAzMTcyMH0._uNSLvtq0wpJBAgqAe1DBh6pSYaYU97VpTn8JocIFeE",
+   "monetization_model": "BLACKBOX",
+   "policy": "MONETIZE",
+   "user": {
+    "avatar_url": "https://i1.sndcdn.com/avatars-000512761296-e4f20b-large.jpg",
+    "city": null,
+    "comments_count": 0,
+    "country_code": null,
+    "created_at": null,
+    "creator_subscriptions": [
+     {
+      "product": {
+       "id": "free"
+      }
+     }
+    ],
+    "creator_subscription": {
+     "product": {
+      "id": "free"
+     }
+    },
+    "description": null,
+    "followers_count": 410,
+    "followings_count": 1,
+    "first_name": "Dima",
+    "full_name": "Dima Klimchuk",
+    "groups_count": 0,
+    "id": 513489009,
+    "kind": "user",
+    "last_modified": "2018-10-02T06:06:58Z",
+    "last_name": "Klimchuk",
+    "likes_count": 13,
+    "playlist_likes_count": 0,
+    "permalink": "dima-klimchuk-546136970",
+    "permalink_url": "https://soundcloud.com/dima-klimchuk-546136970",
+    "playlist_count": 0,
+    "reposts_count": null,
+    "track_count": 14,
+    "uri": "https://api.soundcloud.com/users/soundcloud%3Ausers%3A513489009",
+    "urn": "soundcloud:users:513489009",
+    "username": "Dima Klimchuk",
+    "verified": false,
+    "visuals": null,
+    "badges": {
+     "pro": false,
+     "creator_mid_tier": false,
+     "pro_unlimited": false,
+     "verified": false
+    },
+    "station_urn": "soundcloud:system-playlists:artist-stations:513489009",
+    "station_permalink": "artist-stations:513489009",
+    "date_of_birth": null
+   }
+  },
+  {
+   "artwork_url": null,
+   "caption": null,
+   "commentable": true,
+   "comment_count": 88,
+   "created_at": "2019-09-06T17:16:02Z",
+   "description": "",
+   "downloadable": false,
+   "download_count": 0,
+   "duration": 239092,
+   "full_duration": 239120,
+   "embeddable_by": "all",
+   "genre": "",
+   "has_downloads_left": false,
+   "id": 677277537,
+   "kind": "track",
+   "label_name": null,
+   "last_modified": "2019-09-06T17:16:02Z",
+   "license": "all-rights-reserved",
+   "likes_count": 14912,
+   "permalink": "t9-vdokh-vydokh",
+   "permalink_url": "https://soundcloud.com/user-16049884/t9-vdokh-vydokh",
+   "playback_count": 1160976,
+   "public": true,
+   "publisher_metadata": {
+    "id": 677277537,
+    "urn": "soundcloud:tracks:677277537",
+    "artist": "Ода Нашей Любви (Вдох-Выдох) (красивый русский рэп о любви)",
+    "contains_music": true
+   },
+   "purchase_title": null,
+   "purchase_url": null,
+   "release_date": null,
+   "reposts_count": 71,
+   "secret_token": null,
+   "sharing": "public",
+   "state": "finished",
+   "streamable": true,
+   "tag_list": "",
+   "title": "Т9 Вдох выдох",
+   "uri": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A677277537",
+   "urn": "soundcloud:tracks:677277537",
+   "user_id": 271504942,
+   "visuals": null,
+   "waveform_url": "https://wave.sndcdn.com/jTs8rAzvsL3g_m.json",
+   "display_date": "2019-09-06T17:16:02Z",
+   "media": {
+    "transcodings": [
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:677277537/d3ba3ba3-4b04-48c3-ba30-a71fd5601468/stream/hls",
+      "preset": "aac_160k",
+      "duration": 239092,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:677277537/8b399768-77a3-4ba0-8f21-3e5b798c43c4/stream/hls",
+      "preset": "aac_96k",
+      "duration": 239092,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:677277537/54e3a0ae-5750-458b-86ae-5fae0d7bcd26/stream/hls",
+      "preset": "abr_sq",
+      "duration": 239092,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     }
+    ]
+   },
+   "station_urn": "soundcloud:system-playlists:track-stations:677277537",
+   "station_permalink": "track-stations:677277537",
+   "track_authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJGSSIsInN1YiI6IiIsInJpZCI6IjE1M2YxNWE1LWNkM2MtNGQ3Ni05NjJhLTllZGUwN2IzMzEyYiIsImlhdCI6MTc5MzAzMTcyMH0.bYD3tSewplUXcYTwE_DhZsMIwuvtEENE5xYj0h5kvEQ",
+   "monetization_model": "BLACKBOX",
+   "policy": "MONETIZE",
+   "user": {
+    "avatar_url": "https://i1.sndcdn.com/avatars-000295334571-oe0wu8-large.jpg",
+    "city": null,
+    "comments_count": 0,
+    "country_code": null,
+    "created_at": null,
+    "creator_subscriptions": [
+     {
+      "product": {
+       "id": "free"
+      }
+     }
+    ],
+    "creator_subscription": {
+     "product": {
+      "id": "free"
+     }
+    },
+    "description": null,
+    "followers_count": 209,
+    "followings_count": 23,
+    "first_name": "",
+    "full_name": "",
+    "groups_count": 0,
+    "id": 271504942,
+    "kind": "user",
+    "last_modified": "2024-03-02T08:36:44Z",
+    "last_name": "",
+    "likes_count": 332,
+    "playlist_likes_count": 3,
+    "permalink": "user-16049884",
+    "permalink_url": "https://soundcloud.com/user-16049884",
+    "playlist_count": 3,
+    "reposts_count": null,
+    "track_count": 25,
+    "uri": "https://api.soundcloud.com/users/soundcloud%3Ausers%3A271504942",
+    "urn": "soundcloud:users:271504942",
+    "username": "Paralidiraya",
+    "verified": false,
+    "visuals": null,
+    "badges": {
+     "pro": false,
+     "creator_mid_tier": false,
+     "pro_unlimited": false,
+     "verified": false
+    },
+    "station_urn": "soundcloud:system-playlists:artist-stations:271504942",
+    "station_permalink": "artist-stations:271504942",
+    "date_of_birth": null
+   }
+  },
+  {
+   "artwork_url": "https://i1.sndcdn.com/artworks-000240495738-8uory2-large.jpg",
+   "caption": null,
+   "commentable": true,
+   "comment_count": 36,
+   "created_at": "2017-08-30T14:21:36Z",
+   "description": "To Support The Channel.\n\nhttps://paypal.me/4gangsta\n\nhttps://paypal.me/4gangsta\n\n-\n-",
+   "downloadable": false,
+   "download_count": 0,
+   "duration": 188572,
+   "full_duration": 188595,
+   "embeddable_by": "all",
+   "genre": "Hip-hop & Rap",
+   "has_downloads_left": false,
+   "id": 340145583,
+   "kind": "track",
+   "label_name": null,
+   "last_modified": "2020-05-20T11:42:13Z",
+   "license": "all-rights-reserved",
+   "likes_count": 14628,
+   "permalink": "miyagi-endshpil-no-reason-feat-truwer",
+   "permalink_url": "https://soundcloud.com/gangstersoul/miyagi-endshpil-no-reason-feat-truwer",
+   "playback_count": 1431714,
+   "public": true,
+   "publisher_metadata": {
+    "id": 340145583,
+    "urn": "soundcloud:tracks:340145583",
+    "artist": "MiyaGi & Эндшпиль",
+    "contains_music": true,
+    "isrc": "QM8DG2031344"
+   },
+   "purchase_title": null,
+   "purchase_url": null,
+   "release_date": null,
+   "reposts_count": 148,
+   "secret_token": null,
+   "sharing": "public",
+   "state": "finished",
+   "streamable": true,
+   "tag_list": "Miyagi Эндшпиль truwer \"no reason\"",
+   "title": "Miyagi & Эндшпиль - No Reason (feat. Truwer)",
+   "uri": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A340145583",
+   "urn": "soundcloud:tracks:340145583",
+   "user_id": 186721185,
+   "visuals": null,
+   "waveform_url": "https://wave.sndcdn.com/eOxgzNYcIVW1_m.json",
+   "display_date": "2017-08-30T14:21:36Z",
+   "media": {
+    "transcodings": [
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:340145583/10c5e46c-f7a5-434e-9251-2b2a7532aedd/stream/hls",
+      "preset": "aac_160k",
+      "duration": 188572,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:340145583/42f05771-f31f-4960-853a-5b956e451fc1/stream/hls",
+      "preset": "aac_96k",
+      "duration": 188572,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:340145583/4ab8f24b-20a2-48e5-b6ae-912f4d16e794/stream/hls",
+      "preset": "abr_sq",
+      "duration": 188572,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     }
+    ]
+   },
+   "station_urn": "soundcloud:system-playlists:track-stations:340145583",
+   "station_permalink": "track-stations:340145583",
+   "track_authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJGSSIsInN1YiI6IiIsInJpZCI6IiIsImlhdCI6MTc5MzAzMTcyMH0.3_GG0wMgMuAcIepY8FwRPh-HbMsYbTCKknV-SwkHQe4",
+   "monetization_model": "NOT_APPLICABLE",
+   "policy": "ALLOW",
+   "user": {
+    "avatar_url": "https://i1.sndcdn.com/avatars-eQVRIqA1tFw3FrjH-yRoHAA-large.jpg",
+    "city": null,
+    "comments_count": 0,
+    "country_code": null,
+    "created_at": null,
+    "creator_subscriptions": [
+     {
+      "product": {
+       "id": "free"
+      }
+     }
+    ],
+    "creator_subscription": {
+     "product": {
+      "id": "free"
+     }
+    },
+    "description": "To Support: https://paypal.me/4gangsta\n\n-\n\nРепост 700  Руб.",
+    "followers_count": 11337,
+    "followings_count": 10,
+    "first_name": "Репост",
+    "full_name": "Репост 700  Руб.",
+    "groups_count": 0,
+    "id": 186721185,
+    "kind": "user",
+    "last_modified": "2020-12-11T11:33:44Z",
+    "last_name": "700  Руб.",
+    "likes_count": 415,
+    "playlist_likes_count": 26,
+    "permalink": "gangstersoul",
+    "permalink_url": "https://soundcloud.com/gangstersoul",
+    "playlist_count": 2,
+    "reposts_count": null,
+    "track_count": 18,
+    "uri": "https://api.soundcloud.com/users/soundcloud%3Ausers%3A186721185",
+    "urn": "soundcloud:users:186721185",
+    "username": "Русский Рэп",
+    "verified": false,
+    "visuals": {
+     "urn": "soundcloud:users:186721185",
+     "enabled": true,
+     "visuals": [
+      {
+       "urn": "soundcloud:visuals:85143917",
+       "entry_time": 0,
+       "visual_url": "https://i1.sndcdn.com/visuals-000186721185-jeWLXF-original.jpg"
+      }
+     ],
+     "tracking": null
+    },
+    "badges": {
+     "pro": false,
+     "creator_mid_tier": false,
+     "pro_unlimited": false,
+     "verified": false
+    },
+    "station_urn": "soundcloud:system-playlists:artist-stations:186721185",
+    "station_permalink": "artist-stations:186721185",
+    "date_of_birth": null
+   }
+  },
+  {
+   "artwork_url": "https://i1.sndcdn.com/artworks-1iIdy32cJV8Owb3z-DvZNKQ-large.png",
+   "caption": null,
+   "commentable": true,
+   "comment_count": 6,
+   "created_at": "2025-12-18T01:54:37Z",
+   "description": "",
+   "downloadable": false,
+   "download_count": 0,
+   "duration": 269614,
+   "full_duration": 269610,
+   "embeddable_by": "all",
+   "genre": "",
+   "has_downloads_left": false,
+   "id": 2231656853,
+   "kind": "track",
+   "label_name": "",
+   "last_modified": "2026-01-04T15:48:46Z",
+   "license": "all-rights-reserved",
+   "likes_count": 1019,
+   "permalink": "bozhe-khrani-russkiy-rep-cult-010",
+   "permalink_url": "https://soundcloud.com/xhuild/bozhe-khrani-russkiy-rep-cult-010",
+   "playback_count": 69936,
+   "public": true,
+   "publisher_metadata": {
+    "id": 2231656853,
+    "urn": "soundcloud:tracks:2231656853",
+    "artist": "Баста, Гуф",
+    "publisher": "",
+    "explicit": true,
+    "p_line": "",
+    "p_line_for_display": "℗ "
+   },
+   "purchase_title": null,
+   "purchase_url": null,
+   "release_date": null,
+   "reposts_count": 6,
+   "secret_token": null,
+   "sharing": "public",
+   "state": "finished",
+   "streamable": true,
+   "tag_list": "",
+   "title": "Боже, храни русский рэп (CULT 010 )",
+   "uri": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A2231656853",
+   "urn": "soundcloud:tracks:2231656853",
+   "user_id": 1148600176,
+   "visuals": null,
+   "waveform_url": "https://wave.sndcdn.com/9EDOS5uUOz4Y_m.json",
+   "display_date": "2025-12-18T01:54:37Z",
+   "media": {
+    "transcodings": [
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2231656853/40f126ba-3267-4afc-8fdb-d652b84486ff/stream/hls",
+      "preset": "aac_160k",
+      "duration": 269614,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2231656853/c2ff4c99-2b3c-4e7d-8e69-858376f7f67d/stream/hls",
+      "preset": "aac_96k",
+      "duration": 269614,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2231656853/5260aecd-5f4e-46b0-adae-589345cbc624/stream/hls",
+      "preset": "abr_sq",
+      "duration": 269614,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     }
+    ]
+   },
+   "station_urn": "soundcloud:system-playlists:track-stations:2231656853",
+   "station_permalink": "track-stations:2231656853",
+   "track_authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJGSSIsInN1YiI6IiIsInJpZCI6ImYyMTkwYTZjLWYyNDAtNGY0Zi05NWZhLTUyYTdmYjgwNmZmNSIsImlhdCI6MTc5MzAzMTcyMH0.B3XCJ0PSYPc7wtgyt3IxpiZRm-JlJIw8fbfjbeQdIDs",
+   "monetization_model": "BLACKBOX",
+   "policy": "MONETIZE",
+   "user": {
+    "avatar_url": "https://a1.sndcdn.com/images/default_avatar_large.png",
+    "city": null,
+    "comments_count": 0,
+    "country_code": null,
+    "created_at": null,
+    "creator_subscriptions": [
+     {
+      "product": {
+       "id": "free"
+      }
+     }
+    ],
+    "creator_subscription": {
+     "product": {
+      "id": "free"
+     }
+    },
+    "description": null,
+    "followers_count": 24,
+    "followings_count": 32,
+    "first_name": "xhuild",
+    "full_name": "xhuild xhuild",
+    "groups_count": 0,
+    "id": 1148600176,
+    "kind": "user",
+    "last_modified": "2026-10-13T09:51:20Z",
+    "last_name": "xhuild",
+    "likes_count": 1178,
+    "playlist_likes_count": 24,
+    "permalink": "xhuild",
+    "permalink_url": "https://soundcloud.com/xhuild",
+    "playlist_count": 0,
+    "reposts_count": null,
+    "track_count": 2,
+    "uri": "https://api.soundcloud.com/users/soundcloud%3Ausers%3A1148600176",
+    "urn": "soundcloud:users:1148600176",
+    "username": "xhuild",
+    "verified": false,
+    "visuals": null,
+    "badges": {
+     "pro": false,
+     "creator_mid_tier": false,
+     "pro_unlimited": false,
+     "verified": false
+    },
+    "station_urn": "soundcloud:system-playlists:artist-stations:1148600176",
+    "station_permalink": "artist-stations:1148600176",
+    "date_of_birth": null
+   }
+  },
+  {
+   "artwork_url": "https://i1.sndcdn.com/artworks-000162390503-k2yv13-large.jpg",
+   "caption": null,
+   "commentable": true,
+   "comment_count": 17,
+   "created_at": "2016-05-11T17:35:25Z",
+   "description": "To Support The Channel.\n\nhttps://paypal.me/4gangsta\n\nhttps://paypal.me/4gangsta\n\n-\n-",
+   "downloadable": false,
+   "download_count": 0,
+   "duration": 204402,
+   "full_duration": 204427,
+   "embeddable_by": "all",
+   "genre": "Hip-hop & Rap",
+   "has_downloads_left": false,
+   "id": 263637596,
+   "kind": "track",
+   "label_name": null,
+   "last_modified": "2021-10-27T14:15:31Z",
+   "license": "all-rights-reserved",
+   "likes_count": 9997,
+   "permalink": "dramma",
+   "permalink_url": "https://soundcloud.com/gangstersoul/dramma",
+   "playback_count": 885441,
+   "public": true,
+   "publisher_metadata": {
+    "id": 263637596,
+    "urn": "soundcloud:tracks:263637596",
+    "artist": "Dramma",
+    "contains_music": true,
+    "isrc": "QM8DG2031563"
+   },
+   "purchase_title": null,
+   "purchase_url": null,
+   "release_date": null,
+   "reposts_count": 148,
+   "secret_token": null,
+   "sharing": "public",
+   "state": "finished",
+   "streamable": true,
+   "tag_list": "Dramma Торнадо",
+   "title": "Dramma - Торнадо",
+   "uri": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A263637596",
+   "urn": "soundcloud:tracks:263637596",
+   "user_id": 186721185,
+   "visuals": null,
+   "waveform_url": "https://wave.sndcdn.com/wlbVsDhn1MJo_m.json",
+   "display_date": "2016-05-11T17:35:25Z",
+   "media": {
+    "transcodings": [
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:263637596/36aaff88-ded9-400a-ad7a-3dff099f9f61/stream/hls",
+      "preset": "aac_160k",
+      "duration": 204402,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:263637596/811da3f1-d99c-44fb-b573-07fa822c3698/stream/hls",
+      "preset": "aac_96k",
+      "duration": 204402,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:263637596/15fbf98b-291d-4c83-b7fd-c1944d372ca4/stream/hls",
+      "preset": "abr_sq",
+      "duration": 204402,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     }
+    ]
+   },
+   "station_urn": "soundcloud:system-playlists:track-stations:263637596",
+   "station_permalink": "track-stations:263637596",
+   "track_authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJGSSIsInN1YiI6IiIsInJpZCI6IiIsImlhdCI6MTc5MzAzMTcyMH0.3_GG0wMgMuAcIepY8FwRPh-HbMsYbTCKknV-SwkHQe4",
+   "monetization_model": "NOT_APPLICABLE",
+   "policy": "ALLOW",
+   "user": {
+    "avatar_url": "https://i1.sndcdn.com/avatars-eQVRIqA1tFw3FrjH-yRoHAA-large.jpg",
+    "city": null,
+    "comments_count": 0,
+    "country_code": null,
+    "created_at": null,
+    "creator_subscriptions": [
+     {
+      "product": {
+       "id": "free"
+      }
+     }
+    ],
+    "creator_subscription": {
+     "product": {
+      "id": "free"
+     }
+    },
+    "description": "To Support: https://paypal.me/4gangsta\n\n-\n\nРепост 700  Руб.",
+    "followers_count": 11337,
+    "followings_count": 10,
+    "first_name": "Репост",
+    "full_name": "Репост 700  Руб.",
+    "groups_count": 0,
+    "id": 186721185,
+    "kind": "user",
+    "last_modified": "2020-12-11T11:33:44Z",
+    "last_name": "700  Руб.",
+    "likes_count": 415,
+    "playlist_likes_count": 26,
+    "permalink": "gangstersoul",
+    "permalink_url": "https://soundcloud.com/gangstersoul",
+    "playlist_count": 2,
+    "reposts_count": null,
+    "track_count": 18,
+    "uri": "https://api.soundcloud.com/users/soundcloud%3Ausers%3A186721185",
+    "urn": "soundcloud:users:186721185",
+    "username": "Русский Рэп",
+    "verified": false,
+    "visuals": {
+     "urn": "soundcloud:users:186721185",
+     "enabled": true,
+     "visuals": [
+      {
+       "urn": "soundcloud:visuals:85143917",
+       "entry_time": 0,
+       "visual_url": "https://i1.sndcdn.com/visuals-000186721185-jeWLXF-original.jpg"
+      }
+     ],
+     "tracking": null
+    },
+    "badges": {
+     "pro": false,
+     "creator_mid_tier": false,
+     "pro_unlimited": false,
+     "verified": false
+    },
+    "station_urn": "soundcloud:system-playlists:artist-stations:186721185",
+    "station_permalink": "artist-stations:186721185",
+    "date_of_birth": null
+   }
+  },
+  {
+   "artwork_url": "https://i1.sndcdn.com/artworks-000142502241-f5bgfb-large.jpg",
+   "caption": null,
+   "commentable": true,
+   "comment_count": 47,
+   "created_at": "2016-01-09T22:55:12Z",
+   "description": "To Support The Channel.\n\nhttps://paypal.me/4gangsta\n\nhttps://paypal.me/4gangsta\n\n-\n-",
+   "downloadable": false,
+   "download_count": 0,
+   "duration": 226737,
+   "full_duration": 226737,
+   "embeddable_by": "all",
+   "genre": "Hip-hop & Rap",
+   "has_downloads_left": false,
+   "id": 241186633,
+   "kind": "track",
+   "label_name": null,
+   "last_modified": "2020-07-08T18:59:07Z",
+   "license": "all-rights-reserved",
+   "likes_count": 14547,
+   "permalink": "miyagi-s-t-russian-rap",
+   "permalink_url": "https://soundcloud.com/gangstersoul/miyagi-s-t-russian-rap",
+   "playback_count": 1440076,
+   "public": true,
+   "publisher_metadata": {
+    "id": 241186633,
+    "urn": "soundcloud:tracks:241186633",
+    "artist": "MiyaGi & Эндшпиль",
+    "contains_music": true,
+    "isrc": "QM8DG2031362"
+   },
+   "purchase_title": null,
+   "purchase_url": null,
+   "release_date": null,
+   "reposts_count": 249,
+   "secret_token": null,
+   "sharing": "public",
+   "state": "finished",
+   "streamable": true,
+   "tag_list": "MiyaGi Эндшпиль - В Последний Раз",
+   "title": "MiyaGi & Эндшпиль  - В Последний Раз",
+   "uri": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A241186633",
+   "urn": "soundcloud:tracks:241186633",
+   "user_id": 186721185,
+   "visuals": null,
+   "waveform_url": "https://wave.sndcdn.com/KyxQvH4gJOhl_m.json",
+   "display_date": "2016-01-09T22:55:12Z",
+   "media": {
+    "transcodings": [
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:241186633/0f591338-aa05-4762-939a-9ddc63932b05/stream/hls",
+      "preset": "aac_160k",
+      "duration": 226737,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:241186633/5c3743a2-a2a3-4bd9-9e99-737e24d3f32f/stream/hls",
+      "preset": "aac_96k",
+      "duration": 226737,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:241186633/d7287442-f6ea-4794-93ea-98cf1f68991b/stream/hls",
+      "preset": "abr_sq",
+      "duration": 226737,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     }
+    ]
+   },
+   "station_urn": "soundcloud:system-playlists:track-stations:241186633",
+   "station_permalink": "track-stations:241186633",
+   "track_authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJGSSIsInN1YiI6IiIsInJpZCI6IiIsImlhdCI6MTc5MzAzMTcyMH0.3_GG0wMgMuAcIepY8FwRPh-HbMsYbTCKknV-SwkHQe4",
+   "monetization_model": "NOT_APPLICABLE",
+   "policy": "ALLOW",
+   "user": {
+    "avatar_url": "https://i1.sndcdn.com/avatars-eQVRIqA1tFw3FrjH-yRoHAA-large.jpg",
+    "city": null,
+    "comments_count": 0,
+    "country_code": null,
+    "created_at": null,
+    "creator_subscriptions": [
+     {
+      "product": {
+       "id": "free"
+      }
+     }
+    ],
+    "creator_subscription": {
+     "product": {
+      "id": "free"
+     }
+    },
+    "description": "To Support: https://paypal.me/4gangsta\n\n-\n\nРепост 700  Руб.",
+    "followers_count": 11337,
+    "followings_count": 10,
+    "first_name": "Репост",
+    "full_name": "Репост 700  Руб.",
+    "groups_count": 0,
+    "id": 186721185,
+    "kind": "user",
+    "last_modified": "2020-12-11T11:33:44Z",
+    "last_name": "700  Руб.",
+    "likes_count": 415,
+    "playlist_likes_count": 26,
+    "permalink": "gangstersoul",
+    "permalink_url": "https://soundcloud.com/gangstersoul",
+    "playlist_count": 2,
+    "reposts_count": null,
+    "track_count": 18,
+    "uri": "https://api.soundcloud.com/users/soundcloud%3Ausers%3A186721185",
+    "urn": "soundcloud:users:186721185",
+    "username": "Русский Рэп",
+    "verified": false,
+    "visuals": {
+     "urn": "soundcloud:users:186721185",
+     "enabled": true,
+     "visuals": [
+      {
+       "urn": "soundcloud:visuals:85143917",
+       "entry_time": 0,
+       "visual_url": "https://i1.sndcdn.com/visuals-000186721185-jeWLXF-original.jpg"
+      }
+     ],
+     "tracking": null
+    },
+    "badges": {
+     "pro": false,
+     "creator_mid_tier": false,
+     "pro_unlimited": false,
+     "verified": false
+    },
+    "station_urn": "soundcloud:system-playlists:artist-stations:186721185",
+    "station_permalink": "artist-stations:186721185",
+    "date_of_birth": null
+   }
+  },
+  {
+   "artwork_url": "https://i1.sndcdn.com/artworks-000204027851-efxsff-large.jpg",
+   "caption": null,
+   "commentable": true,
+   "comment_count": 92,
+   "created_at": "2017-01-21T20:38:23Z",
+   "description": "To Support The Channel.\n\nhttps://paypal.me/4gangsta\n\nhttps://paypal.me/4gangsta\n\n-\n-",
+   "downloadable": false,
+   "download_count": 0,
+   "duration": 159941,
+   "full_duration": 159961,
+   "embeddable_by": "all",
+   "genre": "Hip-hop & Rap",
+   "has_downloads_left": false,
+   "id": 303868859,
+   "kind": "track",
+   "label_name": null,
+   "last_modified": "2022-04-22T07:15:41Z",
+   "license": "all-rights-reserved",
+   "likes_count": 12632,
+   "permalink": "kaspiyskiy-gruz-eta-zhizn-2017",
+   "permalink_url": "https://soundcloud.com/gangstersoul/kaspiyskiy-gruz-eta-zhizn-2017",
+   "playback_count": 1239223,
+   "public": true,
+   "publisher_metadata": {
+    "id": 303868859,
+    "urn": "soundcloud:tracks:303868859",
+    "artist": "Каспийский груз",
+    "album_title": "\"Медведи\"",
+    "contains_music": true,
+    "isrc": "QM8DG2031306"
+   },
+   "purchase_title": null,
+   "purchase_url": null,
+   "release_date": null,
+   "reposts_count": 188,
+   "secret_token": null,
+   "sharing": "public",
+   "state": "finished",
+   "streamable": true,
+   "tag_list": "Rap Каспийский груз Эта Жизнь",
+   "title": "Каспийский груз - Эта Жизнь (2020)",
+   "uri": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A303868859",
+   "urn": "soundcloud:tracks:303868859",
+   "user_id": 186721185,
+   "visuals": null,
+   "waveform_url": "https://wave.sndcdn.com/xTolPwkQl0Ol_m.json",
+   "display_date": "2017-01-21T20:38:23Z",
+   "media": {
+    "transcodings": [
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:303868859/cd07cc97-bf7a-47ea-b708-a06d265883ae/stream/hls",
+      "preset": "aac_160k",
+      "duration": 159941,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:303868859/1ff49ec0-6f0e-45b5-b415-359524518136/stream/hls",
+      "preset": "aac_96k",
+      "duration": 159941,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:303868859/21c17a5d-6cc4-45a6-9500-f645acb1a0d1/stream/hls",
+      "preset": "abr_sq",
+      "duration": 159941,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     }
+    ]
+   },
+   "station_urn": "soundcloud:system-playlists:track-stations:303868859",
+   "station_permalink": "track-stations:303868859",
+   "track_authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJGSSIsInN1YiI6IiIsInJpZCI6IiIsImlhdCI6MTc5MzAzMTcyMH0.3_GG0wMgMuAcIepY8FwRPh-HbMsYbTCKknV-SwkHQe4",
+   "monetization_model": "NOT_APPLICABLE",
+   "policy": "ALLOW",
+   "user": {
+    "avatar_url": "https://i1.sndcdn.com/avatars-eQVRIqA1tFw3FrjH-yRoHAA-large.jpg",
+    "city": null,
+    "comments_count": 0,
+    "country_code": null,
+    "created_at": null,
+    "creator_subscriptions": [
+     {
+      "product": {
+       "id": "free"
+      }
+     }
+    ],
+    "creator_subscription": {
+     "product": {
+      "id": "free"
+     }
+    },
+    "description": "To Support: https://paypal.me/4gangsta\n\n-\n\nРепост 700  Руб.",
+    "followers_count": 11337,
+    "followings_count": 10,
+    "first_name": "Репост",
+    "full_name": "Репост 700  Руб.",
+    "groups_count": 0,
+    "id": 186721185,
+    "kind": "user",
+    "last_modified": "2020-12-11T11:33:44Z",
+    "last_name": "700  Руб.",
+    "likes_count": 415,
+    "playlist_likes_count": 26,
+    "permalink": "gangstersoul",
+    "permalink_url": "https://soundcloud.com/gangstersoul",
+    "playlist_count": 2,
+    "reposts_count": null,
+    "track_count": 18,
+    "uri": "https://api.soundcloud.com/users/soundcloud%3Ausers%3A186721185",
+    "urn": "soundcloud:users:186721185",
+    "username": "Русский Рэп",
+    "verified": false,
+    "visuals": {
+     "urn": "soundcloud:users:186721185",
+     "enabled": true,
+     "visuals": [
+      {
+       "urn": "soundcloud:visuals:85143917",
+       "entry_time": 0,
+       "visual_url": "https://i1.sndcdn.com/visuals-000186721185-jeWLXF-original.jpg"
+      }
+     ],
+     "tracking": null
+    },
+    "badges": {
+     "pro": false,
+     "creator_mid_tier": false,
+     "pro_unlimited": false,
+     "verified": false
+    },
+    "station_urn": "soundcloud:system-playlists:artist-stations:186721185",
+    "station_permalink": "artist-stations:186721185",
+    "date_of_birth": null
+   }
+  },
+  {
+   "artwork_url": "https://i1.sndcdn.com/artworks-KJaM0ggclYy9yEVQ-ifG7Qw-large.jpg",
+   "caption": null,
+   "commentable": true,
+   "comment_count": 281,
+   "created_at": "2024-11-29T12:45:47Z",
+   "description": "",
+   "downloadable": false,
+   "download_count": 0,
+   "duration": 174849,
+   "full_duration": 174864,
+   "embeddable_by": "all",
+   "genre": "Hip-hop & Rap",
+   "has_downloads_left": false,
+   "id": 1969835903,
+   "kind": "track",
+   "label_name": "Gazgolder",
+   "last_modified": "2024-11-29T12:45:48Z",
+   "license": "all-rights-reserved",
+   "likes_count": 53991,
+   "permalink": "polina",
+   "permalink_url": "https://soundcloud.com/noggano161/polina",
+   "playback_count": 3965771,
+   "public": true,
+   "publisher_metadata": {
+    "id": 1969835903,
+    "urn": "soundcloud:tracks:1969835903",
+    "artist": "Ноггано",
+    "album_title": "Тёплый",
+    "contains_music": true
+   },
+   "purchase_title": null,
+   "purchase_url": "https://music.apple.com/ru/album/%D1%82%D1%91%D0%BF%D0%BB%D1%8B%D0%B9/850458507",
+   "release_date": "2009-09-01T00:00:00Z",
+   "reposts_count": 140,
+   "secret_token": null,
+   "sharing": "public",
+   "state": "finished",
+   "streamable": true,
+   "tag_list": "\"Русский Рэп\"",
+   "title": "Полина",
+   "uri": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A1969835903",
+   "urn": "soundcloud:tracks:1969835903",
+   "user_id": 1472093715,
+   "visuals": null,
+   "waveform_url": "https://wave.sndcdn.com/xBiBzqoS30HH_m.json",
+   "display_date": "2024-11-29T12:45:47Z",
+   "media": {
+    "transcodings": [
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:1969835903/b1b16321-4033-429b-929e-53246dd15241/stream/hls",
+      "preset": "aac_160k",
+      "duration": 174849,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:1969835903/9e094363-fc51-4346-9dd6-031928b07b74/stream/hls",
+      "preset": "aac_96k",
+      "duration": 174849,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:1969835903/90121989-8538-491e-b9c6-6536dca22dca/stream/hls",
+      "preset": "abr_sq",
+      "duration": 174849,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     }
+    ]
+   },
+   "station_urn": "soundcloud:system-playlists:track-stations:1969835903",
+   "station_permalink": "track-stations:1969835903",
+   "track_authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJGSSIsInN1YiI6IiIsInJpZCI6IjEyYzExNzQ3LTQ4MGEtNDc2ZC1iMmMzLWRmMGU5ZDVlZDRiOSIsImlhdCI6MTc5MzAzMTcyMH0.QNIPJ4f9Ov5qZOFHFqU1bX0Qu0s3wCzs9FxYlISvL94",
+   "monetization_model": "BLACKBOX",
+   "policy": "MONETIZE",
+   "user": {
+    "avatar_url": "https://i1.sndcdn.com/avatars-uFedEyzcOe893YaP-nZfODg-large.jpg",
+    "city": "Rostov",
+    "comments_count": 0,
+    "country_code": "RU",
+    "created_at": null,
+    "creator_subscriptions": [
+     {
+      "product": {
+       "id": "free"
+      }
+     }
+    ],
+    "creator_subscription": {
+     "product": {
+      "id": "free"
+     }
+    },
+    "description": "Хулиганское альтер эго Василия Вакуленко — «злой двойник» Басты, выстреливающий мощными эклектичными релизами.\n\nРэпер придумал в 2007-м псевдоним Ноггано, под которым начал выпускать треки, не вписывающиеся в стилистику его основного проекта. Вакуленко называл Ноггано асоциальным и аморальным типом, бабником и матерщинником.",
+    "followers_count": 9239,
+    "followings_count": 1,
+    "first_name": "",
+    "full_name": "",
+    "groups_count": 0,
+    "id": 1472093715,
+    "kind": "user",
+    "last_modified": "2024-11-29T12:20:49Z",
+    "last_name": "",
+    "likes_count": 3,
+    "playlist_likes_count": 0,
+    "permalink": "noggano161",
+    "permalink_url": "https://soundcloud.com/noggano161",
+    "playlist_count": 2,
+    "reposts_count": null,
+    "track_count": 41,
+    "uri": "https://api.soundcloud.com/users/soundcloud%3Ausers%3A1472093715",
+    "urn": "soundcloud:users:1472093715",
+    "username": "Ноггано",
+    "verified": false,
+    "visuals": {
+     "urn": "soundcloud:users:1472093715",
+     "enabled": true,
+     "visuals": [
+      {
+       "urn": "soundcloud:visuals:229937163",
+       "entry_time": 0,
+       "visual_url": "https://i1.sndcdn.com/visuals-001472093715-H3hjQM-original.jpg"
+      }
+     ],
+     "tracking": null
+    },
+    "badges": {
+     "pro": false,
+     "creator_mid_tier": false,
+     "pro_unlimited": false,
+     "verified": false
+    },
+    "station_urn": "soundcloud:system-playlists:artist-stations:1472093715",
+    "station_permalink": "artist-stations:1472093715",
+    "date_of_birth": null
+   }
+  },
+  {
+   "artwork_url": "https://i1.sndcdn.com/artworks-000150798919-5nsazw-large.jpg",
+   "caption": null,
+   "commentable": true,
+   "comment_count": 17,
+   "created_at": "2016-03-13T22:39:51Z",
+   "description": "To Support The Channel.\n\nhttps://paypal.me/4gangsta\n\nhttps://paypal.me/4gangsta\n\n-\n-",
+   "downloadable": false,
+   "download_count": 0,
+   "duration": 247347,
+   "full_duration": 247376,
+   "embeddable_by": "all",
+   "genre": "Hip-hop & Rap",
+   "has_downloads_left": false,
+   "id": 251722212,
+   "kind": "track",
+   "label_name": null,
+   "last_modified": "2022-06-09T01:11:05Z",
+   "license": "all-rights-reserved",
+   "likes_count": 21905,
+   "permalink": "jah-khalib",
+   "permalink_url": "https://soundcloud.com/gangstersoul/jah-khalib",
+   "playback_count": 2421961,
+   "public": true,
+   "publisher_metadata": {
+    "id": 251722212,
+    "urn": "soundcloud:tracks:251722212",
+    "artist": "Мот",
+    "contains_music": true,
+    "isrc": "QM8DG2031314"
+   },
+   "purchase_title": null,
+   "purchase_url": "https://viuly.io/video/jay-z--kanye-west---nias-in-paris-girls-edit-689128",
+   "release_date": null,
+   "reposts_count": 460,
+   "secret_token": null,
+   "sharing": "public",
+   "state": "finished",
+   "streamable": true,
+   "tag_list": "Мот До мурашек Jah Khalib \"jah khali\"",
+   "title": "Мот - До Мурашек Ft. Jah Khalib [2016]",
+   "uri": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A251722212",
+   "urn": "soundcloud:tracks:251722212",
+   "user_id": 186721185,
+   "visuals": null,
+   "waveform_url": "https://wave.sndcdn.com/l17mgRpI3Ibc_m.json",
+   "display_date": "2016-03-13T22:39:51Z",
+   "media": {
+    "transcodings": [
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:251722212/02ef56c4-d183-4b05-afe2-771b7bc6900b/stream/hls",
+      "preset": "aac_160k",
+      "duration": 247347,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:251722212/96dd3389-2a79-4c2b-b726-08ec6d46a6d8/stream/hls",
+      "preset": "aac_96k",
+      "duration": 247347,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:251722212/8bda2731-cc55-4d8a-9a31-0cd893aba94c/stream/hls",
+      "preset": "abr_sq",
+      "duration": 247347,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     }
+    ]
+   },
+   "station_urn": "soundcloud:system-playlists:track-stations:251722212",
+   "station_permalink": "track-stations:251722212",
+   "track_authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJGSSIsInN1YiI6IiIsInJpZCI6IiIsImlhdCI6MTc5MzAzMTcyMH0.3_GG0wMgMuAcIepY8FwRPh-HbMsYbTCKknV-SwkHQe4",
+   "monetization_model": "NOT_APPLICABLE",
+   "policy": "ALLOW",
+   "user": {
+    "avatar_url": "https://i1.sndcdn.com/avatars-eQVRIqA1tFw3FrjH-yRoHAA-large.jpg",
+    "city": null,
+    "comments_count": 0,
+    "country_code": null,
+    "created_at": null,
+    "creator_subscriptions": [
+     {
+      "product": {
+       "id": "free"
+      }
+     }
+    ],
+    "creator_subscription": {
+     "product": {
+      "id": "free"
+     }
+    },
+    "description": "To Support: https://paypal.me/4gangsta\n\n-\n\nРепост 700  Руб.",
+    "followers_count": 11337,
+    "followings_count": 10,
+    "first_name": "Репост",
+    "full_name": "Репост 700  Руб.",
+    "groups_count": 0,
+    "id": 186721185,
+    "kind": "user",
+    "last_modified": "2020-12-11T11:33:44Z",
+    "last_name": "700  Руб.",
+    "likes_count": 415,
+    "playlist_likes_count": 26,
+    "permalink": "gangstersoul",
+    "permalink_url": "https://soundcloud.com/gangstersoul",
+    "playlist_count": 2,
+    "reposts_count": null,
+    "track_count": 18,
+    "uri": "https://api.soundcloud.com/users/soundcloud%3Ausers%3A186721185",
+    "urn": "soundcloud:users:186721185",
+    "username": "Русский Рэп",
+    "verified": false,
+    "visuals": {
+     "urn": "soundcloud:users:186721185",
+     "enabled": true,
+     "visuals": [
+      {
+       "urn": "soundcloud:visuals:85143917",
+       "entry_time": 0,
+       "visual_url": "https://i1.sndcdn.com/visuals-000186721185-jeWLXF-original.jpg"
+      }
+     ],
+     "tracking": null
+    },
+    "badges": {
+     "pro": false,
+     "creator_mid_tier": false,
+     "pro_unlimited": false,
+     "verified": false
+    },
+    "station_urn": "soundcloud:system-playlists:artist-stations:186721185",
+    "station_permalink": "artist-stations:186721185",
+    "date_of_birth": null
+   }
+  },
+  {
+   "artwork_url": "https://i1.sndcdn.com/artworks-rjBjRjy6VGCXxeO1-tDCH0g-large.jpg",
+   "caption": null,
+   "commentable": true,
+   "comment_count": 14,
+   "created_at": "2023-10-22T08:04:01Z",
+   "description": "бардаш - ремикс - speed up\n\nРусский Рэп, Русский Хип-Хоп\nbest russian music, best russian songs\nлучшие русские песни, лучшая русская музыка\nrussian rap",
+   "downloadable": false,
+   "download_count": 0,
+   "duration": 103970,
+   "full_duration": 103967,
+   "embeddable_by": "me",
+   "genre": "Triphop",
+   "has_downloads_left": false,
+   "id": 1646561529,
+   "kind": "track",
+   "label_name": null,
+   "last_modified": "2024-06-30T01:16:36Z",
+   "license": "all-rights-reserved",
+   "likes_count": 323,
+   "permalink": "bardash-position-remiks-speed-up",
+   "permalink_url": "https://soundcloud.com/russian-rap-music/bardash-position-remiks-speed-up",
+   "playback_count": 144906,
+   "public": true,
+   "publisher_metadata": {
+    "id": 1646561529,
+    "urn": "soundcloud:tracks:1646561529",
+    "artist": "Youra",
+    "contains_music": true,
+    "isrc": "QZS632443974",
+    "explicit": false,
+    "writer_composer": "Youra"
+   },
+   "purchase_title": null,
+   "purchase_url": null,
+   "release_date": null,
+   "reposts_count": 12,
+   "secret_token": null,
+   "sharing": "public",
+   "state": "finished",
+   "streamable": true,
+   "tag_list": "реп рэп ua ukraine russia \"ukrainian music\" trap phonk донбасс украина ukrainian \"русский рэп\" русский \"русский реп\" \"хип хоп\" \"русская рэп сцена\" russian \"russian rap\" \"русская песня\" русская песня музыка \"русская музыка\" \"русские песни\" топ русские russians \"bad russians\" \"империя зла\" хит",
+   "title": "мой дом - русская песня - русский рэп",
+   "uri": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A1646561529",
+   "urn": "soundcloud:tracks:1646561529",
+   "user_id": 1288425035,
+   "visuals": null,
+   "waveform_url": "https://wave.sndcdn.com/THyzAFE6j46x_m.json",
+   "display_date": "2023-10-22T08:04:01Z",
+   "media": {
+    "transcodings": [
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:1646561529/9cdf498f-ea56-4e85-9667-cb8fc95e0329/stream/hls",
+      "preset": "aac_160k",
+      "duration": 103970,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:1646561529/7ec198fa-dbb8-4aff-9d8a-abb9856016d9/stream/hls",
+      "preset": "aac_96k",
+      "duration": 103970,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:1646561529/bf573a8b-3b01-4423-be0f-cd4a3f89cbf9/stream/hls",
+      "preset": "abr_sq",
+      "duration": 103970,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     }
+    ]
+   },
+   "station_urn": "soundcloud:system-playlists:track-stations:1646561529",
+   "station_permalink": "track-stations:1646561529",
+   "track_authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJGSSIsInN1YiI6IiIsInJpZCI6Ijc4YmQxMDc3LTI4OGUtNDQxNi05NTVlLWIxNGJjYWI5ZWNkZCIsImlhdCI6MTc5MzAzMTcyMH0.UiWD9uObcQqlhevrFr9cnHoeBGFvVYqHTxf2z_azoZg",
+   "monetization_model": "BLACKBOX",
+   "policy": "MONETIZE",
+   "user": {
+    "avatar_url": "https://i1.sndcdn.com/avatars-nd2Gtw1KsY6c50yT-QpRftQ-large.jpg",
+    "city": "Rap City",
+    "comments_count": 0,
+    "country_code": "US",
+    "created_at": null,
+    "creator_subscriptions": [
+     {
+      "product": {
+       "id": "free"
+      }
+     }
+    ],
+    "creator_subscription": {
+     "product": {
+      "id": "free"
+     }
+    },
+    "description": "NRRM (New Russian Rap Music) is sending Love and Peace to both Russians and Ukrainians.\nThink what we can do to stop the war, don't put up with that hundreds are killed every day in real life, not in a computer game, do not fuel the war, and don't tolerate senseless deaths due to stupidity of polititians.\n#music #beats #phonk #rapmusic #trapmusic \n#warsong #warsongs\n#hip-hop #hiphopmusic #trap #trapbeats #trapmusic \n#military #soldier #soundcloud #peace #war \n#russia  #russian #ru #rus #ukraine #ukrainian #ua\n#RLM - Russian lives matter\n#ULM - Ukrainian lives matter\n\nNew Russian rap - новый русский рэп (рэп)\nBest Russian rap war songs\nрусский рэп о сво и война России и Украины\n--\nrussia ukraine is a fasttrack to ww3, that is why we must stop it: peace talks;\n#triphop; #trap; русская музыка; русская рэп музыка; русские песни; \n<meta content=\"русские, русская, песня, музыка, песни, вайб, 2024, чил, любовь, секс, русский хит, лучший, лучшее, лучшие, русский вайб, русская музыка, русские песни, русская песня, русские хиты, россия, топ, на чиле, в тачку, в машину, музыка в машину, russian, russia, russian vibe, russianvibe,  russianhit, russianvibe, russian hit, russian hits 2024, russian top, best russian songs 2024, best russian music 2023, russian songs, russianvibe, zov, russian song, russian music\" name=\"keywords\">\n<meta property=\"og:description\" content=\"самые лучшие топ вайб чил любовь лучшее русские русская русская музыка русские популярные песни хиты русский хит русские хиты русская душа секс самое популярное тату любэ расторгуев река несни меня река russian soul russian hit russian hits 2024 russian top 2025 best russian songs 2023 best russian music 2023 russian songs russian song russian music чил песни вайб топ самые лучшие хиты\">\n\n2023  2024",
+    "followers_count": 1092,
+    "followings_count": 4,
+    "first_name": "русский рэп / реп",
+    "full_name": "русский рэп / реп NRRM",
+    "groups_count": 0,
+    "id": 1288425035,
+    "kind": "user",
+    "last_modified": "2025-05-22T04:28:33Z",
+    "last_name": "NRRM",
+    "likes_count": 392,
+    "playlist_likes_count": 203,
+    "permalink": "russian-rap-music",
+    "permalink_url": "https://soundcloud.com/russian-rap-music",
+    "playlist_count": 10,
+    "reposts_count": null,
+    "track_count": 23,
+    "uri": "https://api.soundcloud.com/users/soundcloud%3Ausers%3A1288425035",
+    "urn": "soundcloud:users:1288425035",
+    "username": "New Russian Rap Music",
+    "verified": false,
+    "visuals": {
+     "urn": "soundcloud:users:1288425035",
+     "enabled": true,
+     "visuals": [
+      {
+       "urn": "soundcloud:visuals:198721089",
+       "entry_time": 0,
+       "visual_url": "https://i1.sndcdn.com/visuals-001288425035-xMpS8d-original.jpg"
+      }
+     ],
+     "tracking": null
+    },
+    "badges": {
+     "pro": false,
+     "creator_mid_tier": false,
+     "pro_unlimited": false,
+     "verified": false
+    },
+    "station_urn": "soundcloud:system-playlists:artist-stations:1288425035",
+    "station_permalink": "artist-stations:1288425035",
+    "date_of_birth": null
+   }
+  },
+  {
+   "artwork_url": "https://i1.sndcdn.com/artworks-HrtG1xEF8zns5zXB-6VXsFg-large.jpg",
+   "caption": "Музыкантам заказали град и ливень",
+   "commentable": true,
+   "comment_count": 7,
+   "created_at": "2023-08-10T05:30:55Z",
+   "description": "shtil. original. wagner. remix pack. 2023\n🎻 вагнер  🇷🇺  русский рэп. оригинал \n\nСлова Песни / Lyrics\nМузыкантам заказали град и ливень\nЭто Вагнер - небо затянуло дымом\nВыступаем под \"Симфонию Валькирий\"\nОдеялом из свинца врага накрыло\n\nМузыкантам заказали град и ливень\nЭто Вагнер - небо затянуло дымом\nВыступаем под симфонию валькирий\nОдеялом из свинца врага накрыло\n\nБольно беда - валит арта\nВ бой залетает дикий отряд\nИграй музыкант, будет антракт\n\nПалец на затворной раме\nЧтоб не стыдно было маме\nПеремотаны все раны\nПацаны по новой пламя\n\nУраганы поливают\nС ними рядом - Лацио\nРодину спасаем\nНазывают - оккупация\n\nПроведёт нас всех Девятый\nПутем бравых самураев.\nОкопались, не достанешь!\nОкуп стать любимый танец\n\nМузыкантам заказали град и ливень\nЭто Вагнер - небо затянуло дымом\nВыступаем под симфонию валькирий\nОдеялом из свинца врага накрыло\n\nМузыкантам заказали град и ливень\nЭто Вагнер - небо затянуло дымом\nВыступаем под симфонию валькирий\nОдеялом из свинца врага накрыло\n\nWagner Group - лучшие в аду\nСделал труп - собирай лут\nСмело в путь, мы опять на штурм\nЕсли не мы, то ваши дети пойдут на войну\n\nИ молки на ветра\nХрустали теперь да\nЕсли выдали жетоны\nНикаких задних - только газ.\n500-х здесь не любят\nЕсли получилось так\nСлово набери \"Баварцы\"\nИ молись на новый шанс\n\nВагнер\nРаботайте братья\nВагнер\nШевроны на латах\nВагнер\nСолдаты удачи\nВагнер\nПервый наш старший\n\nМузыкантам заказали град и ливень\nЭто Вагнер - небо затянуло дымом\nВыступаем под симфонию валькирий\nОдеялом из свинца врага накрыло\n\nМузыкантам заказали град и ливень\nЭто Вагнер - небо затянуло дымом\nВыступаем под симфонию валькирий\nОдеялом из свинца врага накрыло\n\n\nРусский Рэп - Русский Реп - Русские Хиты 2023\nМузыка СВО - ZoV - Z - сво \nРоссия - Армия РФ - Оркеств Вагнер - Донбасс - Украина - ВСУ - ЗСУ\n\n149.200 - Волга - плен: вызывай Волгу на частоте 149.200",
+   "downloadable": false,
+   "download_count": 0,
+   "duration": 136144,
+   "full_duration": 136124,
+   "embeddable_by": "me",
+   "genre": "Hip-hop & Rap",
+   "has_downloads_left": false,
+   "id": 1589059423,
+   "kind": "track",
+   "label_name": null,
+   "last_modified": "2024-06-30T01:17:23Z",
+   "license": "all-rights-reserved",
+   "likes_count": 494,
+   "permalink": "shtil-wagner-orig-russkij-rep",
+   "permalink_url": "https://soundcloud.com/russian-rap-music/shtil-wagner-orig-russkij-rep",
+   "playback_count": 82871,
+   "public": true,
+   "publisher_metadata": {
+    "id": 1589059423,
+    "urn": "soundcloud:tracks:1589059423",
+    "artist": "shtil",
+    "contains_music": true,
+    "isrc": "QM42K2462122",
+    "explicit": false,
+    "writer_composer": "shtil"
+   },
+   "purchase_title": null,
+   "purchase_url": null,
+   "release_date": null,
+   "reposts_count": 20,
+   "secret_token": null,
+   "sharing": "public",
+   "state": "finished",
+   "streamable": true,
+   "tag_list": "\"russian rap\" рэп zov \"war songs\" \"русская музыка\" phonk rage trap rap music trapmusic military soundcloud peace war ukraine russia \"русская песня\" \"русские песни\" \"bad russians\" \"империя зла\" реп \"русский реп\" \"русский рэп\" \"russian songs\" \"russian music\" russian russians сво z",
+   "title": "град и ливень🎻оригинал 🎵 русский рэп",
+   "uri": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A1589059423",
+   "urn": "soundcloud:tracks:1589059423",
+   "user_id": 1288425035,
+   "visuals": null,
+   "waveform_url": "https://wave.sndcdn.com/SWQEzzo9I2PV_m.json",
+   "display_date": "2023-08-12T21:05:18Z",
+   "media": {
+    "transcodings": [
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:1589059423/bef9ee2a-3dea-4ac0-813b-32803f927d9e/stream/hls",
+      "preset": "aac_160k",
+      "duration": 136144,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:1589059423/36b2a6bc-cb2a-4a26-abd9-419cc83c557a/stream/hls",
+      "preset": "aac_96k",
+      "duration": 136144,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:1589059423/5d7f803a-118d-4bdb-a07b-ef5c52f1d3ae/stream/hls",
+      "preset": "abr_sq",
+      "duration": 136144,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     }
+    ]
+   },
+   "station_urn": "soundcloud:system-playlists:track-stations:1589059423",
+   "station_permalink": "track-stations:1589059423",
+   "track_authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJGSSIsInN1YiI6IiIsInJpZCI6IjQ3NmE0NTE4LTEzOTctNGYyOS1hMWViLTc5MTZhZjA5ZDU3YSIsImlhdCI6MTc5MzAzMTcyMH0.Jt8a2oaPhB-tVdGDzUx0gFl-FjWTYqF9tTe4vq-NmUA",
+   "monetization_model": "BLACKBOX",
+   "policy": "MONETIZE",
+   "user": {
+    "avatar_url": "https://i1.sndcdn.com/avatars-nd2Gtw1KsY6c50yT-QpRftQ-large.jpg",
+    "city": "Rap City",
+    "comments_count": 0,
+    "country_code": "US",
+    "created_at": null,
+    "creator_subscriptions": [
+     {
+      "product": {
+       "id": "free"
+      }
+     }
+    ],
+    "creator_subscription": {
+     "product": {
+      "id": "free"
+     }
+    },
+    "description": "NRRM (New Russian Rap Music) is sending Love and Peace to both Russians and Ukrainians.\nThink what we can do to stop the war, don't put up with that hundreds are killed every day in real life, not in a computer game, do not fuel the war, and don't tolerate senseless deaths due to stupidity of polititians.\n#music #beats #phonk #rapmusic #trapmusic \n#warsong #warsongs\n#hip-hop #hiphopmusic #trap #trapbeats #trapmusic \n#military #soldier #soundcloud #peace #war \n#russia  #russian #ru #rus #ukraine #ukrainian #ua\n#RLM - Russian lives matter\n#ULM - Ukrainian lives matter\n\nNew Russian rap - новый русский рэп (рэп)\nBest Russian rap war songs\nрусский рэп о сво и война России и Украины\n--\nrussia ukraine is a fasttrack to ww3, that is why we must stop it: peace talks;\n#triphop; #trap; русская музыка; русская рэп музыка; русские песни; \n<meta content=\"русские, русская, песня, музыка, песни, вайб, 2024, чил, любовь, секс, русский хит, лучший, лучшее, лучшие, русский вайб, русская музыка, русские песни, русская песня, русские хиты, россия, топ, на чиле, в тачку, в машину, музыка в машину, russian, russia, russian vibe, russianvibe,  russianhit, russianvibe, russian hit, russian hits 2024, russian top, best russian songs 2024, best russian music 2023, russian songs, russianvibe, zov, russian song, russian music\" name=\"keywords\">\n<meta property=\"og:description\" content=\"самые лучшие топ вайб чил любовь лучшее русские русская русская музыка русские популярные песни хиты русский хит русские хиты русская душа секс самое популярное тату любэ расторгуев река несни меня река russian soul russian hit russian hits 2024 russian top 2025 best russian songs 2023 best russian music 2023 russian songs russian song russian music чил песни вайб топ самые лучшие хиты\">\n\n2023  2024",
+    "followers_count": 1092,
+    "followings_count": 4,
+    "first_name": "русский рэп / реп",
+    "full_name": "русский рэп / реп NRRM",
+    "groups_count": 0,
+    "id": 1288425035,
+    "kind": "user",
+    "last_modified": "2025-05-22T04:28:33Z",
+    "last_name": "NRRM",
+    "likes_count": 392,
+    "playlist_likes_count": 203,
+    "permalink": "russian-rap-music",
+    "permalink_url": "https://soundcloud.com/russian-rap-music",
+    "playlist_count": 10,
+    "reposts_count": null,
+    "track_count": 23,
+    "uri": "https://api.soundcloud.com/users/soundcloud%3Ausers%3A1288425035",
+    "urn": "soundcloud:users:1288425035",
+    "username": "New Russian Rap Music",
+    "verified": false,
+    "visuals": {
+     "urn": "soundcloud:users:1288425035",
+     "enabled": true,
+     "visuals": [
+      {
+       "urn": "soundcloud:visuals:198721089",
+       "entry_time": 0,
+       "visual_url": "https://i1.sndcdn.com/visuals-001288425035-xMpS8d-original.jpg"
+      }
+     ],
+     "tracking": null
+    },
+    "badges": {
+     "pro": false,
+     "creator_mid_tier": false,
+     "pro_unlimited": false,
+     "verified": false
+    },
+    "station_urn": "soundcloud:system-playlists:artist-stations:1288425035",
+    "station_permalink": "artist-stations:1288425035",
+    "date_of_birth": null
+   }
+  },
+  {
+   "artwork_url": "https://i1.sndcdn.com/artworks-GoMvQ4bmVRaU4usr-nxFZkg-large.jpg",
+   "caption": null,
+   "commentable": true,
+   "comment_count": 73,
+   "created_at": "2022-02-07T09:16:28Z",
+   "description": "Дисс на мамбл рэп и рэперов которые ворвались в рэп ради денег и с помощью денег.",
+   "downloadable": false,
+   "download_count": 0,
+   "duration": 187652,
+   "full_duration": 187638,
+   "embeddable_by": "all",
+   "genre": "Hip-hop & Rap",
+   "has_downloads_left": false,
+   "id": 1211237755,
+   "kind": "track",
+   "label_name": null,
+   "last_modified": "2025-07-14T09:58:12Z",
+   "license": "all-rights-reserved",
+   "likes_count": 449,
+   "permalink": "mishanya-diss-na-russkiy-rep",
+   "permalink_url": "https://soundcloud.com/mishanya-ogorodnik/mishanya-diss-na-russkiy-rep",
+   "playback_count": 38673,
+   "public": true,
+   "publisher_metadata": {
+    "id": 1211237755,
+    "urn": "soundcloud:tracks:1211237755",
+    "contains_music": true
+   },
+   "purchase_title": null,
+   "purchase_url": null,
+   "release_date": null,
+   "reposts_count": 19,
+   "secret_token": null,
+   "sharing": "public",
+   "state": "finished",
+   "streamable": true,
+   "tag_list": "рэп rap mumble мамбл дисс diss \"дисс на всех\" втренде morgenshtern a4 kizaru lil timati тимати моргенштерн кизару \"русский рэп\" мишаня mishanya лил \"лил хуил\"",
+   "title": "Mishanya - Дисс на Русский Рэп",
+   "uri": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A1211237755",
+   "urn": "soundcloud:tracks:1211237755",
+   "user_id": 294251474,
+   "visuals": null,
+   "waveform_url": "https://wave.sndcdn.com/zbiFrCTrQH6o_m.json",
+   "display_date": "2022-02-07T09:16:28Z",
+   "media": {
+    "transcodings": [
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:1211237755/d98dc7e1-941a-468a-8f15-f026b9cf34e7/stream/hls",
+      "preset": "aac_160k",
+      "duration": 187652,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:1211237755/5ebb6014-010c-4705-a310-a978afb9cee6/stream/hls",
+      "preset": "aac_96k",
+      "duration": 187652,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:1211237755/610c4dfd-2d38-4494-9c7f-52e31ce57e0f/stream/hls",
+      "preset": "abr_sq",
+      "duration": 187652,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     }
+    ]
+   },
+   "station_urn": "soundcloud:system-playlists:track-stations:1211237755",
+   "station_permalink": "track-stations:1211237755",
+   "track_authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJGSSIsInN1YiI6IiIsInJpZCI6IjJkNTk0NzY1LTYzOTItNDYyZi04NjdjLTAzODFlYTYxZjI4YSIsImlhdCI6MTc5MzAzMTcyMH0.iKWIrupnhCT25QpJYwtpxN-EPv2hIIMPv7K6-W38vw8",
+   "monetization_model": "BLACKBOX",
+   "policy": "MONETIZE",
+   "user": {
+    "avatar_url": "https://i1.sndcdn.com/avatars-000683550449-yvf8uv-large.jpg",
+    "city": "Rivne",
+    "comments_count": 0,
+    "country_code": "UA",
+    "created_at": null,
+    "creator_subscriptions": [
+     {
+      "product": {
+       "id": "free"
+      }
+     }
+    ],
+    "creator_subscription": {
+     "product": {
+      "id": "free"
+     }
+    },
+    "description": "Freerider , not a rapper",
+    "followers_count": 3044,
+    "followings_count": 1,
+    "first_name": "Mishanya",
+    "full_name": "Mishanya Ogorodnik",
+    "groups_count": 0,
+    "id": 294251474,
+    "kind": "user",
+    "last_modified": "2021-10-03T20:00:01Z",
+    "last_name": "Ogorodnik",
+    "likes_count": 6,
+    "playlist_likes_count": 0,
+    "permalink": "mishanya-ogorodnik",
+    "permalink_url": "https://soundcloud.com/mishanya-ogorodnik",
+    "playlist_count": 1,
+    "reposts_count": null,
+    "track_count": 20,
+    "uri": "https://api.soundcloud.com/users/soundcloud%3Ausers%3A294251474",
+    "urn": "soundcloud:users:294251474",
+    "username": "Mishanya Ogorodnik",
+    "verified": false,
+    "visuals": null,
+    "badges": {
+     "pro": false,
+     "creator_mid_tier": false,
+     "pro_unlimited": false,
+     "verified": false
+    },
+    "station_urn": "soundcloud:system-playlists:artist-stations:294251474",
+    "station_permalink": "artist-stations:294251474",
+    "date_of_birth": null
+   }
+  },
+  {
+   "artwork_url": "https://i1.sndcdn.com/artworks-Y7Bps6UnqzJSWkJZ-LFAfiw-large.jpg",
+   "caption": null,
+   "commentable": true,
+   "comment_count": 10,
+   "created_at": "2020-08-23T02:37:02Z",
+   "description": "тимур гатиятуллин, честный, честный мама, честный майами, честный улетай, честный официальный канал, честный желаю, тимур честный, честный канал, честный годы, годы, мама, нурминский, где-то за кордоном, #честный, гатиятуллин, тимур, ауе, 2019, сигарета тлеет, хип-хоп, тима честный, честный слушать, дети 90-х, бог с нами, майами, 2018, трогаю небо, честный - кийко, песня, премьера, чесный, весна, музыка, честный лучшее, лучшая музыка, #трогаюнебо, честный тимур, подборка честный, честный реп, песни, blackstar, баста, буду рядом, газгольдер, душу хулигана, тимати, настоящий слим, гуф, rap hub, музика 2020, репер, новинки музыки, вечно молодым., новые треки, буду добрым, вечно молодым, академия порядочных парней, raphub, rapnews, втренде, биография, скриптонит, честный плачь мой город, алые закаты, честный за спиной, честный алые закаты, алые",
+   "downloadable": false,
+   "download_count": 0,
+   "duration": 242384,
+   "full_duration": 242364,
+   "embeddable_by": "all",
+   "genre": "Hip-hop & Rap",
+   "has_downloads_left": false,
+   "id": 880452394,
+   "kind": "track",
+   "label_name": null,
+   "last_modified": "2020-08-23T02:37:03Z",
+   "license": "all-rights-reserved",
+   "likes_count": 5671,
+   "permalink": "chestnyy-a-ty-prosti-mamaya-khuligan",
+   "permalink_url": "https://soundcloud.com/muzyka-ot-dushi/chestnyy-a-ty-prosti-mamaya-khuligan",
+   "playback_count": 551622,
+   "public": true,
+   "publisher_metadata": {
+    "id": 880452394,
+    "urn": "soundcloud:tracks:880452394",
+    "artist": "Русский рэп",
+    "contains_music": true
+   },
+   "purchase_title": null,
+   "purchase_url": null,
+   "release_date": null,
+   "reposts_count": 30,
+   "secret_token": null,
+   "sharing": "public",
+   "state": "finished",
+   "streamable": true,
+   "tag_list": "дворовые песни под гитару петлюра гитара русский лучшие блатная песня блатные на гитаре у костра душевные армейские гитарист виртуальные братаны лучшее дворовая хиты музыка машину",
+   "title": "Честный - А ты прости мама,я - хулиган",
+   "uri": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A880452394",
+   "urn": "soundcloud:tracks:880452394",
+   "user_id": 871357303,
+   "visuals": null,
+   "waveform_url": "https://wave.sndcdn.com/BicJWaqjTTC1_m.json",
+   "display_date": "2020-08-23T02:37:02Z",
+   "media": {
+    "transcodings": [
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:880452394/5fe5fd5b-ca22-417a-9d91-80572308bb1a/stream/hls",
+      "preset": "aac_160k",
+      "duration": 242384,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:880452394/97c12a34-1a2b-4675-b426-92cbf574a64f/stream/hls",
+      "preset": "aac_96k",
+      "duration": 242384,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:880452394/2a609591-d3d4-4b2c-be6c-15122c7e33bb/stream/hls",
+      "preset": "abr_sq",
+      "duration": 242384,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     }
+    ]
+   },
+   "station_urn": "soundcloud:system-playlists:track-stations:880452394",
+   "station_permalink": "track-stations:880452394",
+   "track_authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJGSSIsInN1YiI6IiIsInJpZCI6IjFlMTRjYWM0LWFiY2ItNDk0Zi1hNzQ0LTRjMzRmMTQ1YTMyYSIsImlhdCI6MTc5MzAzMTcyMH0.O-ENGFjkymVGzISVzCulhJ6dkwPmawRZprL2vHLJs0I",
+   "monetization_model": "BLACKBOX",
+   "policy": "MONETIZE",
+   "user": {
+    "avatar_url": "https://i1.sndcdn.com/avatars-S7pZzNVZjCZvWUKl-XhHzDw-large.jpg",
+    "city": null,
+    "comments_count": 0,
+    "country_code": null,
+    "created_at": null,
+    "creator_subscriptions": [
+     {
+      "product": {
+       "id": "free"
+      }
+     }
+    ],
+    "creator_subscription": {
+     "product": {
+      "id": "free"
+     }
+    },
+    "description": null,
+    "followers_count": 560,
+    "followings_count": 0,
+    "first_name": "muzyka_",
+    "full_name": "muzyka_ ot dushi",
+    "groups_count": 0,
+    "id": 871357303,
+    "kind": "user",
+    "last_modified": "2020-08-23T01:18:47Z",
+    "last_name": "ot dushi",
+    "likes_count": 2,
+    "playlist_likes_count": 0,
+    "permalink": "muzyka-ot-dushi",
+    "permalink_url": "https://soundcloud.com/muzyka-ot-dushi",
+    "playlist_count": 0,
+    "reposts_count": null,
+    "track_count": 5,
+    "uri": "https://api.soundcloud.com/users/soundcloud%3Ausers%3A871357303",
+    "urn": "soundcloud:users:871357303",
+    "username": "muzyka_ ot dushi",
+    "verified": false,
+    "visuals": {
+     "urn": "soundcloud:users:871357303",
+     "enabled": true,
+     "visuals": [
+      {
+       "urn": "soundcloud:visuals:108589707",
+       "entry_time": 0,
+       "visual_url": "https://i1.sndcdn.com/visuals-000871357303-wsVxMy-original.jpg"
+      }
+     ],
+     "tracking": null
+    },
+    "badges": {
+     "pro": false,
+     "creator_mid_tier": false,
+     "pro_unlimited": false,
+     "verified": false
+    },
+    "station_urn": "soundcloud:system-playlists:artist-stations:871357303",
+    "station_permalink": "artist-stations:871357303",
+    "date_of_birth": null
+   }
+  },
+  {
+   "artwork_url": "https://i1.sndcdn.com/artworks-GCi0chNukUAxPU6H-MhDdog-large.png",
+   "caption": null,
+   "commentable": true,
+   "comment_count": 3,
+   "created_at": "2022-01-23T17:50:38Z",
+   "description": "",
+   "downloadable": false,
+   "download_count": 0,
+   "duration": 228173,
+   "full_duration": 228153,
+   "embeddable_by": "all",
+   "genre": "",
+   "has_downloads_left": false,
+   "id": 1202200501,
+   "kind": "track",
+   "label_name": null,
+   "last_modified": "2022-01-23T17:50:52Z",
+   "license": "all-rights-reserved",
+   "likes_count": 4387,
+   "permalink": "9-gramm-seks",
+   "permalink_url": "https://soundcloud.com/user-975579494/9-gramm-seks",
+   "playback_count": 514636,
+   "public": true,
+   "publisher_metadata": {
+    "id": 1202200501,
+    "urn": "soundcloud:tracks:1202200501",
+    "artist": "РУССКИЙ РЭП",
+    "album_title": "zf.fm",
+    "contains_music": true
+   },
+   "purchase_title": null,
+   "purchase_url": null,
+   "release_date": null,
+   "reposts_count": 8,
+   "secret_token": null,
+   "sharing": "public",
+   "state": "finished",
+   "streamable": true,
+   "tag_list": "Hip-Hop",
+   "title": "9 грамм - Секс",
+   "uri": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A1202200501",
+   "urn": "soundcloud:tracks:1202200501",
+   "user_id": 853488265,
+   "visuals": null,
+   "waveform_url": "https://wave.sndcdn.com/bkVlYc0h0wVk_m.json",
+   "display_date": "2022-01-23T17:50:38Z",
+   "media": {
+    "transcodings": [
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:1202200501/35447803-7f96-4373-a86a-59bfec84886f/stream/hls",
+      "preset": "aac_160k",
+      "duration": 228173,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:1202200501/1b329ed6-9073-4c94-abb1-f3a927b1d4dc/stream/hls",
+      "preset": "aac_96k",
+      "duration": 228173,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:1202200501/0c1f8098-dd49-45f9-8acd-efe1d16412be/stream/hls",
+      "preset": "abr_sq",
+      "duration": 228173,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     }
+    ]
+   },
+   "station_urn": "soundcloud:system-playlists:track-stations:1202200501",
+   "station_permalink": "track-stations:1202200501",
+   "track_authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJGSSIsInN1YiI6IiIsInJpZCI6ImZmNGRiOGFlLTVkZWMtNDlhNi05Y2UzLThlNmRkZDcwYmFhNCIsImlhdCI6MTc5MzAzMTcyMH0.fiYQu683QZStQSiLhtokaWIIHZQlWzCs4YTlXs7kouw",
+   "monetization_model": "BLACKBOX",
+   "policy": "MONETIZE",
+   "user": {
+    "avatar_url": "https://a1.sndcdn.com/images/default_avatar_large.png",
+    "city": "",
+    "comments_count": 0,
+    "country_code": null,
+    "created_at": null,
+    "creator_subscriptions": [
+     {
+      "product": {
+       "id": "free"
+      }
+     }
+    ],
+    "creator_subscription": {
+     "product": {
+      "id": "free"
+     }
+    },
+    "description": "",
+    "followers_count": 103,
+    "followings_count": 2,
+    "first_name": "Илья",
+    "full_name": "Илья Никишин",
+    "groups_count": 0,
+    "id": 853488265,
+    "kind": "user",
+    "last_modified": "2021-10-26T19:00:15Z",
+    "last_name": "Никишин",
+    "likes_count": 59,
+    "playlist_likes_count": 1,
+    "permalink": "user-975579494",
+    "permalink_url": "https://soundcloud.com/user-975579494",
+    "playlist_count": 61,
+    "reposts_count": null,
+    "track_count": 54,
+    "uri": "https://api.soundcloud.com/users/soundcloud%3Ausers%3A853488265",
+    "urn": "soundcloud:users:853488265",
+    "username": "Двоечка",
+    "verified": false,
+    "visuals": null,
+    "badges": {
+     "pro": false,
+     "creator_mid_tier": false,
+     "pro_unlimited": false,
+     "verified": false
+    },
+    "station_urn": "soundcloud:system-playlists:artist-stations:853488265",
+    "station_permalink": "artist-stations:853488265",
+    "date_of_birth": null
+   }
+  },
+  {
+   "artwork_url": "https://i1.sndcdn.com/artworks-000528941031-uub75y-large.jpg",
+   "caption": null,
+   "commentable": true,
+   "comment_count": 4,
+   "created_at": "2019-05-02T14:10:41Z",
+   "description": "",
+   "downloadable": false,
+   "download_count": 0,
+   "duration": 209731,
+   "full_duration": 209756,
+   "embeddable_by": "all",
+   "genre": "",
+   "has_downloads_left": false,
+   "id": 614638617,
+   "kind": "track",
+   "label_name": null,
+   "last_modified": "2019-05-03T19:57:34Z",
+   "license": "all-rights-reserved",
+   "likes_count": 4180,
+   "permalink": "v-x-v-prince-den-ili-noch",
+   "permalink_url": "https://soundcloud.com/user-684419373/v-x-v-prince-den-ili-noch",
+   "playback_count": 371723,
+   "public": true,
+   "publisher_metadata": {
+    "id": 614638617,
+    "urn": "soundcloud:tracks:614638617",
+    "artist": "Русский рэп",
+    "contains_music": true
+   },
+   "purchase_title": null,
+   "purchase_url": null,
+   "release_date": null,
+   "reposts_count": 13,
+   "secret_token": null,
+   "sharing": "public",
+   "state": "finished",
+   "streamable": true,
+   "tag_list": "",
+   "title": "V $ X V Prince - День или Ночь",
+   "uri": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A614638617",
+   "urn": "soundcloud:tracks:614638617",
+   "user_id": 320476750,
+   "visuals": null,
+   "waveform_url": "https://wave.sndcdn.com/u7iDwroCi2EY_m.json",
+   "display_date": "2019-05-03T19:57:34Z",
+   "media": {
+    "transcodings": [
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:614638617/8f1304ec-2b24-4188-bd7b-b9c135edec5d/stream/hls",
+      "preset": "aac_160k",
+      "duration": 209731,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:614638617/fe06aa9f-a2b9-4ee7-ab77-24236c280b45/stream/hls",
+      "preset": "aac_96k",
+      "duration": 209731,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:614638617/aee50fe2-1ebb-4249-92dc-6e2670e56421/stream/hls",
+      "preset": "abr_sq",
+      "duration": 209731,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     }
+    ]
+   },
+   "station_urn": "soundcloud:system-playlists:track-stations:614638617",
+   "station_permalink": "track-stations:614638617",
+   "track_authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJGSSIsInN1YiI6IiIsInJpZCI6IjVlNWUyNTg3LWUzMTktNGUzMS04YTUzLTM5ZmQ5MDFkZjU3OCIsImlhdCI6MTc5MzAzMTcyMH0.kZzoH8BjspV5NjIh-PWQBLoZeeVIqr1YfUv2LypMzus",
+   "monetization_model": "BLACKBOX",
+   "policy": "MONETIZE",
+   "user": {
+    "avatar_url": "https://i1.sndcdn.com/avatars-000336056828-70yq1m-large.jpg",
+    "city": "",
+    "comments_count": 0,
+    "country_code": null,
+    "created_at": null,
+    "creator_subscriptions": [
+     {
+      "product": {
+       "id": "free"
+      }
+     }
+    ],
+    "creator_subscription": {
+     "product": {
+      "id": "free"
+     }
+    },
+    "description": "",
+    "followers_count": 57,
+    "followings_count": 23,
+    "first_name": "",
+    "full_name": "",
+    "groups_count": 0,
+    "id": 320476750,
+    "kind": "user",
+    "last_modified": "2019-08-08T14:41:38Z",
+    "last_name": "",
+    "likes_count": 9,
+    "playlist_likes_count": 1,
+    "permalink": "user-684419373",
+    "permalink_url": "https://soundcloud.com/user-684419373",
+    "playlist_count": 0,
+    "reposts_count": null,
+    "track_count": 4,
+    "uri": "https://api.soundcloud.com/users/soundcloud%3Ausers%3A320476750",
+    "urn": "soundcloud:users:320476750",
+    "username": "Profile",
+    "verified": false,
+    "visuals": {
+     "urn": "soundcloud:users:320476750",
+     "enabled": true,
+     "visuals": [
+      {
+       "urn": "soundcloud:visuals:35130176",
+       "entry_time": 0,
+       "visual_url": "https://i1.sndcdn.com/visuals-000320476750-39ABlz-original.jpg"
+      }
+     ],
+     "tracking": null
+    },
+    "badges": {
+     "pro": false,
+     "creator_mid_tier": false,
+     "pro_unlimited": false,
+     "verified": false
+    },
+    "station_urn": "soundcloud:system-playlists:artist-stations:320476750",
+    "station_permalink": "artist-stations:320476750",
+    "date_of_birth": null
+   }
+  },
+  {
+   "artwork_url": "https://i1.sndcdn.com/artworks-5RsvoRDnuTJ0-0-large.jpg",
+   "caption": null,
+   "commentable": true,
+   "comment_count": 1,
+   "created_at": "2026-10-11T22:16:24Z",
+   "description": null,
+   "downloadable": false,
+   "download_count": 0,
+   "duration": 92694,
+   "full_duration": 92648,
+   "embeddable_by": "all",
+   "genre": "Hip Hop/Rap",
+   "has_downloads_left": false,
+   "id": 2417241789,
+   "kind": "track",
+   "label_name": "lusenkov.label",
+   "last_modified": "2026-10-11T22:35:21Z",
+   "license": "all-rights-reserved",
+   "likes_count": 3,
+   "permalink": "russkij-rep",
+   "permalink_url": "https://soundcloud.com/mamadaimneglock-music/russkij-rep",
+   "playback_count": 50,
+   "public": true,
+   "publisher_metadata": {
+    "id": 2417241789,
+    "urn": "soundcloud:tracks:2417241789",
+    "artist": "MAMADAIMNEGLOCK",
+    "album_title": "1000 прости 2000 спасибо",
+    "contains_music": true,
+    "upc_or_ean": "3522304142431",
+    "isrc": "AEA3P2610209",
+    "explicit": true,
+    "p_line": "2026 lusenkov.label",
+    "p_line_for_display": "℗ 2026 lusenkov.label",
+    "c_line": "2026 lusenkov.label",
+    "c_line_for_display": "© 2026 lusenkov.label",
+    "release_title": "Русский рэп"
+   },
+   "purchase_title": null,
+   "purchase_url": null,
+   "release_date": "2026-10-23T00:00:00Z",
+   "reposts_count": 0,
+   "secret_token": null,
+   "sharing": "public",
+   "state": "finished",
+   "streamable": true,
+   "tag_list": "Unassigned",
+   "title": "Русский рэп",
+   "uri": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A2417241789",
+   "urn": "soundcloud:tracks:2417241789",
+   "user_id": 1738062644,
+   "visuals": null,
+   "waveform_url": "https://wave.sndcdn.com/TynaMxIUbylo_m.json",
+   "display_date": "2026-10-22T21:00:00Z",
+   "media": {
+    "transcodings": [
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2417241789/e9080694-5ec2-40cd-a0dd-d828643a723d/stream/cbc-encrypted-hls",
+      "preset": "aac_160k",
+      "duration": 92694,
+      "snipped": false,
+      "format": {
+       "protocol": "cbc-encrypted-hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2417241789/e9080694-5ec2-40cd-a0dd-d828643a723d/stream/ctr-encrypted-hls",
+      "preset": "aac_160k",
+      "duration": 92694,
+      "snipped": false,
+      "format": {
+       "protocol": "ctr-encrypted-hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2417241789/78ab046a-486b-479b-80c6-5b262abde85a/stream/cbc-encrypted-hls",
+      "preset": "aac_96k",
+      "duration": 92694,
+      "snipped": false,
+      "format": {
+       "protocol": "cbc-encrypted-hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2417241789/78ab046a-486b-479b-80c6-5b262abde85a/stream/ctr-encrypted-hls",
+      "preset": "aac_96k",
+      "duration": 92694,
+      "snipped": false,
+      "format": {
+       "protocol": "ctr-encrypted-hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2417241789/3e157401-a402-4afa-ab6a-4d43a1194c0d/stream/cbc-encrypted-hls",
+      "preset": "abr_sq",
+      "duration": 92694,
+      "snipped": false,
+      "format": {
+       "protocol": "cbc-encrypted-hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:2417241789/3e157401-a402-4afa-ab6a-4d43a1194c0d/stream/ctr-encrypted-hls",
+      "preset": "abr_sq",
+      "duration": 92694,
+      "snipped": false,
+      "format": {
+       "protocol": "ctr-encrypted-hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     }
+    ]
+   },
+   "station_urn": "soundcloud:system-playlists:track-stations:2417241789",
+   "station_permalink": "track-stations:2417241789",
+   "track_authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJGSSIsInN1YiI6IiIsInJpZCI6IjhkNjY0YjliLTQyYTQtNDcxMS04NTFiLTQ5ZDlmOTQ3OTFhOSIsImlhdCI6MTc5MzAzMTcyMH0.Jh553T96oiv5FBAGWP1d9yspHlmcVtfF3PkpZ-Dr73Y",
+   "monetization_model": "AD_SUPPORTED",
+   "policy": "MONETIZE",
+   "user": {
+    "avatar_url": "https://a1.sndcdn.com/images/default_avatar_large.png",
+    "city": null,
+    "comments_count": 0,
+    "country_code": null,
+    "created_at": null,
+    "creator_subscriptions": [
+     {
+      "product": {
+       "id": "free"
+      }
+     }
+    ],
+    "creator_subscription": {
+     "product": {
+      "id": "free"
+     }
+    },
+    "description": null,
+    "followers_count": 0,
+    "followings_count": 0,
+    "first_name": "",
+    "full_name": "",
+    "groups_count": 0,
+    "id": 1738062644,
+    "kind": "user",
+    "last_modified": "2026-08-06T10:16:55Z",
+    "last_name": "",
+    "likes_count": 0,
+    "playlist_likes_count": 0,
+    "permalink": "mamadaimneglock-music",
+    "permalink_url": "https://soundcloud.com/mamadaimneglock-music",
+    "playlist_count": 0,
+    "reposts_count": null,
+    "track_count": 6,
+    "uri": "https://api.soundcloud.com/users/soundcloud%3Ausers%3A1738062644",
+    "urn": "soundcloud:users:1738062644",
+    "username": "MAMADAIMNEGLOCK",
+    "verified": false,
+    "visuals": null,
+    "badges": {
+     "pro": false,
+     "creator_mid_tier": false,
+     "pro_unlimited": false,
+     "verified": false
+    },
+    "station_urn": "soundcloud:system-playlists:artist-stations:1738062644",
+    "station_permalink": "artist-stations:1738062644",
+    "date_of_birth": null
+   }
+  },
+  {
+   "artwork_url": "https://i1.sndcdn.com/artworks-000590751896-5gcajt-large.jpg",
+   "caption": null,
+   "commentable": true,
+   "comment_count": 11,
+   "created_at": "2019-01-11T00:54:04Z",
+   "description": "",
+   "downloadable": false,
+   "download_count": 0,
+   "duration": 248444,
+   "full_duration": 248472,
+   "embeddable_by": "all",
+   "genre": "",
+   "has_downloads_left": false,
+   "id": 557141142,
+   "kind": "track",
+   "label_name": null,
+   "last_modified": "2025-07-14T09:59:08Z",
+   "license": "all-rights-reserved",
+   "likes_count": 220,
+   "permalink": "mishanya-14",
+   "permalink_url": "https://soundcloud.com/mishanya-ogorodnik/mishanya-14",
+   "playback_count": 17953,
+   "public": true,
+   "publisher_metadata": {
+    "id": 557141142,
+    "urn": "soundcloud:tracks:557141142",
+    "contains_music": true
+   },
+   "purchase_title": null,
+   "purchase_url": null,
+   "release_date": null,
+   "reposts_count": 8,
+   "secret_token": null,
+   "sharing": "public",
+   "state": "finished",
+   "streamable": true,
+   "tag_list": "",
+   "title": "Mishanya - Русский Рэп",
+   "uri": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A557141142",
+   "urn": "soundcloud:tracks:557141142",
+   "user_id": 294251474,
+   "visuals": null,
+   "waveform_url": "https://wave.sndcdn.com/0IbAKAE8hROb_m.json",
+   "display_date": "2019-01-11T00:54:04Z",
+   "media": {
+    "transcodings": [
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:557141142/cb7d8ea1-e23c-4c5d-b930-9f2985a3e33c/stream/hls",
+      "preset": "aac_160k",
+      "duration": 248444,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:557141142/6d1c6c85-36f7-4326-bb61-1034ab0dea65/stream/hls",
+      "preset": "aac_96k",
+      "duration": 248444,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:557141142/b17fd715-0533-44d8-b8a8-448f90b46623/stream/hls",
+      "preset": "abr_sq",
+      "duration": 248444,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     }
+    ]
+   },
+   "station_urn": "soundcloud:system-playlists:track-stations:557141142",
+   "station_permalink": "track-stations:557141142",
+   "track_authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJGSSIsInN1YiI6IiIsInJpZCI6ImRjNWUzNWIxLWU1YzUtNDQ0Ny04Y2UyLWNhZGI4ZDJlNzM2MSIsImlhdCI6MTc5MzAzMTcyMH0.iLXxSe49TMcKbynhnUlVMtb7riYoYjtFl8MN2P1Zlt4",
+   "monetization_model": "BLACKBOX",
+   "policy": "MONETIZE",
+   "user": {
+    "avatar_url": "https://i1.sndcdn.com/avatars-000683550449-yvf8uv-large.jpg",
+    "city": "Rivne",
+    "comments_count": 0,
+    "country_code": "UA",
+    "created_at": null,
+    "creator_subscriptions": [
+     {
+      "product": {
+       "id": "free"
+      }
+     }
+    ],
+    "creator_subscription": {
+     "product": {
+      "id": "free"
+     }
+    },
+    "description": "Freerider , not a rapper",
+    "followers_count": 3044,
+    "followings_count": 1,
+    "first_name": "Mishanya",
+    "full_name": "Mishanya Ogorodnik",
+    "groups_count": 0,
+    "id": 294251474,
+    "kind": "user",
+    "last_modified": "2021-10-03T20:00:01Z",
+    "last_name": "Ogorodnik",
+    "likes_count": 6,
+    "playlist_likes_count": 0,
+    "permalink": "mishanya-ogorodnik",
+    "permalink_url": "https://soundcloud.com/mishanya-ogorodnik",
+    "playlist_count": 1,
+    "reposts_count": null,
+    "track_count": 20,
+    "uri": "https://api.soundcloud.com/users/soundcloud%3Ausers%3A294251474",
+    "urn": "soundcloud:users:294251474",
+    "username": "Mishanya Ogorodnik",
+    "verified": false,
+    "visuals": null,
+    "badges": {
+     "pro": false,
+     "creator_mid_tier": false,
+     "pro_unlimited": false,
+     "verified": false
+    },
+    "station_urn": "soundcloud:system-playlists:artist-stations:294251474",
+    "station_permalink": "artist-stations:294251474",
+    "date_of_birth": null
+   }
+  },
+  {
+   "artwork_url": "https://i1.sndcdn.com/artworks-5sCOBqeZcYkVROK5-QDTaQQ-large.jpg",
+   "caption": null,
+   "commentable": true,
+   "comment_count": 15,
+   "created_at": "2023-10-08T22:56:47Z",
+   "description": "Yopt - Я И Есть Буря - Русский Рэп",
+   "downloadable": false,
+   "download_count": 0,
+   "duration": 181205,
+   "full_duration": 181185,
+   "embeddable_by": "all",
+   "genre": "Rap",
+   "has_downloads_left": false,
+   "id": 1635410493,
+   "kind": "track",
+   "label_name": null,
+   "last_modified": "2024-03-08T18:40:56Z",
+   "license": "all-rights-reserved",
+   "likes_count": 301,
+   "permalink": "yopt-ya-i-est-burya-russkij",
+   "permalink_url": "https://soundcloud.com/your-likes/yopt-ya-i-est-burya-russkij",
+   "playback_count": 56156,
+   "public": true,
+   "publisher_metadata": {
+    "id": 1635410493,
+    "urn": "soundcloud:tracks:1635410493",
+    "contains_music": true
+   },
+   "purchase_title": null,
+   "purchase_url": null,
+   "release_date": "2023-09-24T00:00:00Z",
+   "reposts_count": 12,
+   "secret_token": null,
+   "sharing": "public",
+   "state": "finished",
+   "streamable": true,
+   "tag_list": "yopt zov z rage top40 ukraine russia ua ru warsong warsongs russian russians russianhits russianhit russianvibe russiansong russianmusic stopwar russiaukrainewar rlm ulm ukrainian ukrainians senseless war russianrap rurap rusrap",
+   "title": "Yopt - Я И Есть Буря - Русский Рэп",
+   "uri": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A1635410493",
+   "urn": "soundcloud:tracks:1635410493",
+   "user_id": 1278756307,
+   "visuals": null,
+   "waveform_url": "https://wave.sndcdn.com/hczvCI1tFWIY_m.json",
+   "display_date": "2023-10-08T22:56:47Z",
+   "media": {
+    "transcodings": [
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:1635410493/cca7aa4b-11b9-456e-ae4b-dd1f7a6203f6/stream/hls",
+      "preset": "aac_160k",
+      "duration": 181205,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:1635410493/af79af12-28d9-4fb8-ac9b-a47782b99355/stream/hls",
+      "preset": "aac_96k",
+      "duration": 181205,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:1635410493/a16cb60d-dd3c-44b5-9790-8e6be6c8c1a6/stream/hls",
+      "preset": "abr_sq",
+      "duration": 181205,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     }
+    ]
+   },
+   "station_urn": "soundcloud:system-playlists:track-stations:1635410493",
+   "station_permalink": "track-stations:1635410493",
+   "track_authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJGSSIsInN1YiI6IiIsInJpZCI6IjAyNjFkMzhiLTk4NWQtNDIyMy1iYzBmLTI3MDFkNjY0YmM4MSIsImlhdCI6MTc5MzAzMTcyMH0.rb3YWcgZb3CwZAGGiXVYYtifDYkhkpcZmmVwriIz4D8",
+   "monetization_model": "BLACKBOX",
+   "policy": "MONETIZE",
+   "user": {
+    "avatar_url": "https://i1.sndcdn.com/avatars-TA6jgq36SskaEvUM-RngtBA-large.jpg",
+    "city": "music",
+    "comments_count": 0,
+    "country_code": null,
+    "created_at": null,
+    "creator_subscriptions": [
+     {
+      "product": {
+       "id": "free"
+      }
+     }
+    ],
+    "creator_subscription": {
+     "product": {
+      "id": "free"
+     }
+    },
+    "description": "Play Likes music on SoundCloud\nAnd enjoy independent music Likes on SoundCloud\n#peace #love #russian #marine \n#rap #pop #dancy #club #house\n#onrepeat \n#war-songs #hip-hop \n#phonk #triphop #trapmusic\n#russia #ukraine #war\n#yopt #speed-up #ru #ua #rus #slav\nRussian marine war rap \nбронебойный русский рэп\nморпех",
+    "followers_count": 1089,
+    "followings_count": 887,
+    "first_name": "hits",
+    "full_name": "hits",
+    "groups_count": 0,
+    "id": 1278756307,
+    "kind": "user",
+    "last_modified": "2025-02-22T22:16:31Z",
+    "last_name": "",
+    "likes_count": 1773,
+    "playlist_likes_count": 110,
+    "permalink": "your-likes",
+    "permalink_url": "https://soundcloud.com/your-likes",
+    "playlist_count": 9,
+    "reposts_count": null,
+    "track_count": 26,
+    "uri": "https://api.soundcloud.com/users/soundcloud%3Ausers%3A1278756307",
+    "urn": "soundcloud:users:1278756307",
+    "username": "Likes",
+    "verified": false,
+    "visuals": {
+     "urn": "soundcloud:users:1278756307",
+     "enabled": true,
+     "visuals": [
+      {
+       "urn": "soundcloud:visuals:202900317",
+       "entry_time": 0,
+       "visual_url": "https://i1.sndcdn.com/visuals-001278756307-fTwrz7-original.jpg"
+      }
+     ],
+     "tracking": null
+    },
+    "badges": {
+     "pro": false,
+     "creator_mid_tier": false,
+     "pro_unlimited": false,
+     "verified": false
+    },
+    "station_urn": "soundcloud:system-playlists:artist-stations:1278756307",
+    "station_permalink": "artist-stations:1278756307",
+    "date_of_birth": null
+   }
+  },
+  {
+   "artwork_url": "https://i1.sndcdn.com/artworks-000134885120-mq5z5c-large.jpg",
+   "caption": null,
+   "commentable": true,
+   "comment_count": 40,
+   "created_at": "2015-11-03T12:10:03Z",
+   "description": "",
+   "downloadable": false,
+   "download_count": 0,
+   "duration": 256719,
+   "full_duration": 256780,
+   "embeddable_by": "all",
+   "genre": "Тимати",
+   "has_downloads_left": false,
+   "id": 231346488,
+   "kind": "track",
+   "label_name": null,
+   "last_modified": "2019-11-26T16:21:24Z",
+   "license": "all-rights-reserved",
+   "likes_count": 11306,
+   "permalink": "rqw5eknrkmo1",
+   "permalink_url": "https://soundcloud.com/rurap/rqw5eknrkmo1",
+   "playback_count": 901731,
+   "public": true,
+   "publisher_metadata": null,
+   "purchase_title": null,
+   "purchase_url": null,
+   "release_date": null,
+   "reposts_count": 44,
+   "secret_token": null,
+   "sharing": "public",
+   "state": "finished",
+   "streamable": true,
+   "tag_list": "Понты \"Русский рэп\" \"Russian rap\" RuRap Blackstar",
+   "title": "Тимати - Понты",
+   "uri": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A231346488",
+   "urn": "soundcloud:tracks:231346488",
+   "user_id": 182794913,
+   "visuals": null,
+   "waveform_url": "https://wave.sndcdn.com/gryF9jirpf7K_m.json",
+   "display_date": "2015-11-03T12:10:03Z",
+   "media": {
+    "transcodings": [
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:231346488/6296f8de-0e93-49d6-a01a-68508707de71/stream/hls",
+      "preset": "aac_160k",
+      "duration": 256719,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:231346488/6385160c-4487-41ee-aadd-4cd4eab98324/stream/hls",
+      "preset": "aac_96k",
+      "duration": 256719,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:231346488/df28a05c-31c4-420f-ab62-33fb7d41c951/stream/hls",
+      "preset": "abr_sq",
+      "duration": 256719,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     }
+    ]
+   },
+   "station_urn": "soundcloud:system-playlists:track-stations:231346488",
+   "station_permalink": "track-stations:231346488",
+   "track_authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJGSSIsInN1YiI6IiIsInJpZCI6IjNlZjgxNDEyLTczNjktNDg1Mi04YmYyLWFiODY5NTQ4ZDBiNCIsImlhdCI6MTc5MzAzMTcyMH0.O2-0L_r9OHIqyEj4FpGhE3AcGXZEV-e3eetfNmtowig",
+   "monetization_model": "BLACKBOX",
+   "policy": "MONETIZE",
+   "user": {
+    "avatar_url": "https://i1.sndcdn.com/avatars-000184555188-wn40zh-large.jpg",
+    "city": "",
+    "comments_count": 0,
+    "country_code": "RU",
+    "created_at": null,
+    "creator_subscriptions": [
+     {
+      "product": {
+       "id": "free"
+      }
+     }
+    ],
+    "creator_subscription": {
+     "product": {
+      "id": "free"
+     }
+    },
+    "description": null,
+    "followers_count": 2731,
+    "followings_count": 5,
+    "first_name": "Русский",
+    "full_name": "Русский Рэп",
+    "groups_count": 0,
+    "id": 182794913,
+    "kind": "user",
+    "last_modified": "2020-06-15T06:06:43Z",
+    "last_name": "Рэп",
+    "likes_count": 36,
+    "playlist_likes_count": 0,
+    "permalink": "rurap",
+    "permalink_url": "https://soundcloud.com/rurap",
+    "playlist_count": 0,
+    "reposts_count": null,
+    "track_count": 25,
+    "uri": "https://api.soundcloud.com/users/soundcloud%3Ausers%3A182794913",
+    "urn": "soundcloud:users:182794913",
+    "username": "RuRap",
+    "verified": false,
+    "visuals": {
+     "urn": "soundcloud:users:182794913",
+     "enabled": true,
+     "visuals": [
+      {
+       "urn": "soundcloud:visuals:3728117",
+       "entry_time": 0,
+       "visual_url": "https://i1.sndcdn.com/visuals-000182794913-rVLhXU-original.jpg"
+      }
+     ],
+     "tracking": null
+    },
+    "badges": {
+     "pro": false,
+     "creator_mid_tier": false,
+     "pro_unlimited": false,
+     "verified": false
+    },
+    "station_urn": "soundcloud:system-playlists:artist-stations:182794913",
+    "station_permalink": "artist-stations:182794913",
+    "date_of_birth": null
+   }
+  },
+  {
+   "artwork_url": "https://i1.sndcdn.com/artworks-XB3eMuKCUJsF92DK-Dv3tSw-large.jpg",
+   "caption": "Запомните меня таким",
+   "commentable": true,
+   "comment_count": 2,
+   "created_at": "2023-10-16T01:24:27Z",
+   "description": "Yopt - Осколок На Ветру\n\nРусский Рэп, Русский Хип-Хоп\nbest russian music, best russian songs\nлучшие русские песни, лучшая русская музыка\nrussian rap",
+   "downloadable": false,
+   "download_count": 0,
+   "duration": 97483,
+   "full_duration": 97489,
+   "embeddable_by": "me",
+   "genre": "Русский Рэп",
+   "has_downloads_left": false,
+   "id": 1641502899,
+   "kind": "track",
+   "label_name": null,
+   "last_modified": "2024-06-30T01:16:54Z",
+   "license": "all-rights-reserved",
+   "likes_count": 127,
+   "permalink": "flake",
+   "permalink_url": "https://soundcloud.com/russian-rap-music/flake",
+   "playback_count": 43836,
+   "public": true,
+   "publisher_metadata": {
+    "id": 1641502899,
+    "urn": "soundcloud:tracks:1641502899",
+    "artist": "Yopt",
+    "contains_music": true,
+    "isrc": "QZMHM2474194",
+    "explicit": false,
+    "writer_composer": "Yopt"
+   },
+   "purchase_title": null,
+   "purchase_url": null,
+   "release_date": null,
+   "reposts_count": 6,
+   "secret_token": null,
+   "sharing": "public",
+   "state": "finished",
+   "streamable": true,
+   "tag_list": "\"русский рэп\" рэп русский реп \"русский реп\" \"хип хоп\" \"русская рэп сцена\" russian \"russian rap\" \"русская песня\" русская песня музыка \"русская музыка\" \"best russian music\" \"best russian songs\" \"russian songs\" \"russian music\" \"русские песни\" \"russian hits\" russia ukraine singer/songwriter топ хит русские хиты russians \"bad russians\" \"империя зла\"",
+   "title": "Осколок На Ветру - русский рэп",
+   "uri": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A1641502899",
+   "urn": "soundcloud:tracks:1641502899",
+   "user_id": 1288425035,
+   "visuals": null,
+   "waveform_url": "https://wave.sndcdn.com/6o13C1eB0JSe_m.json",
+   "display_date": "2023-10-16T01:24:27Z",
+   "media": {
+    "transcodings": [
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:1641502899/b518ac07-b6bf-44eb-8cd8-122adfcc2a33/stream/hls",
+      "preset": "aac_160k",
+      "duration": 97483,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:1641502899/32ba74c4-c220-4b18-9565-31f34e01ee6b/stream/hls",
+      "preset": "aac_96k",
+      "duration": 97483,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:1641502899/707d22c6-1002-4241-9b35-06368995aa2f/stream/hls",
+      "preset": "abr_sq",
+      "duration": 97483,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     }
+    ]
+   },
+   "station_urn": "soundcloud:system-playlists:track-stations:1641502899",
+   "station_permalink": "track-stations:1641502899",
+   "track_authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJGSSIsInN1YiI6IiIsInJpZCI6ImNiMDdmZDkyLTlhNWMtNGQ1MC1iNzg4LTBmY2IyOTdlMWQyOCIsImlhdCI6MTc5MzAzMTcyMH0.jzCmX2F-8VLSPKd3e8h4iWqpow1zRN3H7ygogJXc2zY",
+   "monetization_model": "BLACKBOX",
+   "policy": "MONETIZE",
+   "user": {
+    "avatar_url": "https://i1.sndcdn.com/avatars-nd2Gtw1KsY6c50yT-QpRftQ-large.jpg",
+    "city": "Rap City",
+    "comments_count": 0,
+    "country_code": "US",
+    "created_at": null,
+    "creator_subscriptions": [
+     {
+      "product": {
+       "id": "free"
+      }
+     }
+    ],
+    "creator_subscription": {
+     "product": {
+      "id": "free"
+     }
+    },
+    "description": "NRRM (New Russian Rap Music) is sending Love and Peace to both Russians and Ukrainians.\nThink what we can do to stop the war, don't put up with that hundreds are killed every day in real life, not in a computer game, do not fuel the war, and don't tolerate senseless deaths due to stupidity of polititians.\n#music #beats #phonk #rapmusic #trapmusic \n#warsong #warsongs\n#hip-hop #hiphopmusic #trap #trapbeats #trapmusic \n#military #soldier #soundcloud #peace #war \n#russia  #russian #ru #rus #ukraine #ukrainian #ua\n#RLM - Russian lives matter\n#ULM - Ukrainian lives matter\n\nNew Russian rap - новый русский рэп (рэп)\nBest Russian rap war songs\nрусский рэп о сво и война России и Украины\n--\nrussia ukraine is a fasttrack to ww3, that is why we must stop it: peace talks;\n#triphop; #trap; русская музыка; русская рэп музыка; русские песни; \n<meta content=\"русские, русская, песня, музыка, песни, вайб, 2024, чил, любовь, секс, русский хит, лучший, лучшее, лучшие, русский вайб, русская музыка, русские песни, русская песня, русские хиты, россия, топ, на чиле, в тачку, в машину, музыка в машину, russian, russia, russian vibe, russianvibe,  russianhit, russianvibe, russian hit, russian hits 2024, russian top, best russian songs 2024, best russian music 2023, russian songs, russianvibe, zov, russian song, russian music\" name=\"keywords\">\n<meta property=\"og:description\" content=\"самые лучшие топ вайб чил любовь лучшее русские русская русская музыка русские популярные песни хиты русский хит русские хиты русская душа секс самое популярное тату любэ расторгуев река несни меня река russian soul russian hit russian hits 2024 russian top 2025 best russian songs 2023 best russian music 2023 russian songs russian song russian music чил песни вайб топ самые лучшие хиты\">\n\n2023  2024",
+    "followers_count": 1092,
+    "followings_count": 4,
+    "first_name": "русский рэп / реп",
+    "full_name": "русский рэп / реп NRRM",
+    "groups_count": 0,
+    "id": 1288425035,
+    "kind": "user",
+    "last_modified": "2025-05-22T04:28:33Z",
+    "last_name": "NRRM",
+    "likes_count": 392,
+    "playlist_likes_count": 203,
+    "permalink": "russian-rap-music",
+    "permalink_url": "https://soundcloud.com/russian-rap-music",
+    "playlist_count": 10,
+    "reposts_count": null,
+    "track_count": 23,
+    "uri": "https://api.soundcloud.com/users/soundcloud%3Ausers%3A1288425035",
+    "urn": "soundcloud:users:1288425035",
+    "username": "New Russian Rap Music",
+    "verified": false,
+    "visuals": {
+     "urn": "soundcloud:users:1288425035",
+     "enabled": true,
+     "visuals": [
+      {
+       "urn": "soundcloud:visuals:198721089",
+       "entry_time": 0,
+       "visual_url": "https://i1.sndcdn.com/visuals-001288425035-xMpS8d-original.jpg"
+      }
+     ],
+     "tracking": null
+    },
+    "badges": {
+     "pro": false,
+     "creator_mid_tier": false,
+     "pro_unlimited": false,
+     "verified": false
+    },
+    "station_urn": "soundcloud:system-playlists:artist-stations:1288425035",
+    "station_permalink": "artist-stations:1288425035",
+    "date_of_birth": null
+   }
+  },
+  {
+   "artwork_url": "https://i1.sndcdn.com/artworks-000134003110-u8uvm6-large.jpg",
+   "caption": null,
+   "commentable": true,
+   "comment_count": 6,
+   "created_at": "2015-10-26T15:14:46Z",
+   "description": "",
+   "downloadable": false,
+   "download_count": 0,
+   "duration": 329848,
+   "full_duration": 329930,
+   "embeddable_by": "all",
+   "genre": "Баста",
+   "has_downloads_left": false,
+   "id": 230159108,
+   "kind": "track",
+   "label_name": null,
+   "last_modified": "2017-09-02T15:20:54Z",
+   "license": "all-rights-reserved",
+   "likes_count": 7831,
+   "permalink": "feat",
+   "permalink_url": "https://soundcloud.com/rurap/feat",
+   "playback_count": 670730,
+   "public": true,
+   "publisher_metadata": null,
+   "purchase_title": null,
+   "purchase_url": null,
+   "release_date": null,
+   "reposts_count": 79,
+   "secret_token": null,
+   "sharing": "public",
+   "state": "finished",
+   "streamable": true,
+   "tag_list": "\"Смоки Мо\" Gazgolder \"Каменные цветы\" \"Елена Ваенга\" \"Русский рэп\" \"Russian rap\"",
+   "title": "Баста Feat. Смоки Мо - Каменные Цветы (при Уч. Елена Ваенга)",
+   "uri": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A230159108",
+   "urn": "soundcloud:tracks:230159108",
+   "user_id": 182794913,
+   "visuals": null,
+   "waveform_url": "https://wave.sndcdn.com/FjYkAUpg3Nlc_m.json",
+   "display_date": "2015-10-26T15:14:46Z",
+   "media": {
+    "transcodings": [
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:230159108/e5a30577-4beb-4ae2-94db-3e7a66b17329/stream/hls",
+      "preset": "aac_160k",
+      "duration": 329848,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:230159108/a41d0ddf-c526-417d-9739-f70d0fe1d625/stream/hls",
+      "preset": "aac_96k",
+      "duration": 329848,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:230159108/e075db5d-aace-4a58-b932-ff3313c9b45c/stream/hls",
+      "preset": "abr_sq",
+      "duration": 329848,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     }
+    ]
+   },
+   "station_urn": "soundcloud:system-playlists:track-stations:230159108",
+   "station_permalink": "track-stations:230159108",
+   "track_authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJGSSIsInN1YiI6IiIsInJpZCI6Ijk2MTgwMTMxLTEwYTktNDQ3Yi04NDJmLTRhYmQ3NTM3OTAzZSIsImlhdCI6MTc5MzAzMTcyMH0.3HUZAYQXL4EsJBl-yMzOqo9PkrXoGi6N1inZsaXWmK8",
+   "monetization_model": "BLACKBOX",
+   "policy": "MONETIZE",
+   "user": {
+    "avatar_url": "https://i1.sndcdn.com/avatars-000184555188-wn40zh-large.jpg",
+    "city": "",
+    "comments_count": 0,
+    "country_code": "RU",
+    "created_at": null,
+    "creator_subscriptions": [
+     {
+      "product": {
+       "id": "free"
+      }
+     }
+    ],
+    "creator_subscription": {
+     "product": {
+      "id": "free"
+     }
+    },
+    "description": null,
+    "followers_count": 2731,
+    "followings_count": 5,
+    "first_name": "Русский",
+    "full_name": "Русский Рэп",
+    "groups_count": 0,
+    "id": 182794913,
+    "kind": "user",
+    "last_modified": "2020-06-15T06:06:43Z",
+    "last_name": "Рэп",
+    "likes_count": 36,
+    "playlist_likes_count": 0,
+    "permalink": "rurap",
+    "permalink_url": "https://soundcloud.com/rurap",
+    "playlist_count": 0,
+    "reposts_count": null,
+    "track_count": 25,
+    "uri": "https://api.soundcloud.com/users/soundcloud%3Ausers%3A182794913",
+    "urn": "soundcloud:users:182794913",
+    "username": "RuRap",
+    "verified": false,
+    "visuals": {
+     "urn": "soundcloud:users:182794913",
+     "enabled": true,
+     "visuals": [
+      {
+       "urn": "soundcloud:visuals:3728117",
+       "entry_time": 0,
+       "visual_url": "https://i1.sndcdn.com/visuals-000182794913-rVLhXU-original.jpg"
+      }
+     ],
+     "tracking": null
+    },
+    "badges": {
+     "pro": false,
+     "creator_mid_tier": false,
+     "pro_unlimited": false,
+     "verified": false
+    },
+    "station_urn": "soundcloud:system-playlists:artist-stations:182794913",
+    "station_permalink": "artist-stations:182794913",
+    "date_of_birth": null
+   }
+  },
+  {
+   "artwork_url": "https://i1.sndcdn.com/artworks-UYHzeBpCsumRhlhZ-s80jMQ-large.jpg",
+   "caption": "Музыкантам заказали град и ливень. Это Вагнер - небо затянуло дымом. Выступаем под симфонию валькирий. Одеялом из свинца врага накрыло.",
+   "commentable": true,
+   "comment_count": 1,
+   "created_at": "2023-08-10T04:33:48Z",
+   "description": "Shtil. Remix Pack. Град и Ливень:\nWAGNER - RUS Remix  - Бредли Наш  - Реп И Хип-Хоп \n\nРусский рэп. Русский реп.\nbest russian music, best russian songs\nлучшие русские песни, лучшая русская музыка\nRussian rap.\n\nСлова Песни / Lyrics\nМузыкантам заказали град и ливень\nЭто Вагнер - небо затянуло дымом\nВыступаем под \"Симфонию Валькирий\"\nОдеялом из свинца врага накрыло\n\nМузыкантам заказали град и ливень\nЭто Вагнер - небо затянуло дымом\nВыступаем под симфонию валькирий\nОдеялом из свинца врага накрыло\n\nБольно беда - валит арта\nВ бой залетает дикий отряд\nИграй музыкант, будет антракт\n\nПалец на затворной раме\nЧтоб не стыдно было маме\nПеремотаны все раны\nПацаны по новой пламя\n\nУраганы поливают\nС ними рядом - Лацио\nРодину спасаем\nНазывают - оккупация\n\nПроведёт нас всех Девятый\nПутем бравых самураев.\nОкопались, не достанешь!\nОкуп стать любимый танец\n\nМузыкантам заказали град и ливень\nЭто Вагнер - небо затянуло дымом\nВыступаем под симфонию валькирий\nОдеялом из свинца врага накрыло\n\nМузыкантам заказали град и ливень\nЭто Вагнер - небо затянуло дымом\nВыступаем под симфонию валькирий\nОдеялом из свинца врага накрыло\n\nWagner Group - лучшие в аду\nСделал труп - собирай лут\nСмело в путь, мы опять на штурм\nЕсли не мы, то ваши дети пойдут на войну\n\nИ молки на ветра\nХрустали теперь да\nЕсли выдали жетоны\nНикаких задних - только газ.\n500-х здесь не любят\nЕсли получилось так\nСлово набери \"Баварцы\"\nИ молись на новый шанс\n\nВагнер\nРаботайте братья\nВагнер\nШевроны на латах\nВагнер\nСолдаты удачи\nВагнер\nПервый наш старший\n\nМузыкантам заказали град и ливень\nЭто Вагнер - небо затянуло дымом\nВыступаем под симфонию валькирий\nОдеялом из свинца врага накрыло\n\nМузыкантам заказали град и ливень\nЭто Вагнер - небо затянуло дымом\nВыступаем под симфонию валькирий\nОдеялом из свинца врага накрыло\n\n\nZVO - ZoV - Z - сво \nРоссия - Армия РФ - Оркеств Вагнер - Донбасс - Украина - ВСУ - ЗСУ \n\n149.200 - Волга - плен: вызывай Волгу на частоте 149.200",
+   "downloadable": false,
+   "download_count": 0,
+   "duration": 122900,
+   "full_duration": 122880,
+   "embeddable_by": "me",
+   "genre": "сво",
+   "has_downloads_left": false,
+   "id": 1589027687,
+   "kind": "track",
+   "label_name": null,
+   "last_modified": "2024-06-30T01:18:18Z",
+   "license": "all-rights-reserved",
+   "likes_count": 66,
+   "permalink": "wagner-rus-remix-bredli-nash-149-200",
+   "permalink_url": "https://soundcloud.com/russian-rap-music/wagner-rus-remix-bredli-nash-149-200",
+   "playback_count": 14119,
+   "public": true,
+   "publisher_metadata": {
+    "id": 1589027687,
+    "urn": "soundcloud:tracks:1589027687",
+    "artist": "SHTIL",
+    "contains_music": true,
+    "isrc": "QZS642414222",
+    "explicit": false,
+    "writer_composer": "SHTIL"
+   },
+   "purchase_title": null,
+   "purchase_url": null,
+   "release_date": null,
+   "reposts_count": 2,
+   "secret_token": null,
+   "sharing": "public",
+   "state": "finished",
+   "streamable": true,
+   "tag_list": "\"russian rap\" рэп \"русский рэп\" zov сво топ warsong \"war songs\" \"русская музыка\" 149.200 хиты песня русский реп \"русский реп\" \"русская рэп сцена\" russian \"русская песня\" русская музыка ukraine russia хит русские \"русские песни\" russians \"bad russians\" \"империя зла\" украина россия",
+   "title": "WAGNER. Бредли Наш 💣 русский рэп",
+   "uri": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A1589027687",
+   "urn": "soundcloud:tracks:1589027687",
+   "user_id": 1288425035,
+   "visuals": null,
+   "waveform_url": "https://wave.sndcdn.com/UZvmj31AD9BH_m.json",
+   "display_date": "2023-08-10T04:33:48Z",
+   "media": {
+    "transcodings": [
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:1589027687/4bdf7138-86c7-4fd4-8c41-c540c209082f/stream/hls",
+      "preset": "aac_160k",
+      "duration": 122900,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:1589027687/981f1153-1e9a-4e4f-8d82-e48c0a295f8b/stream/hls",
+      "preset": "aac_96k",
+      "duration": 122900,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:1589027687/3dada32d-2379-42fb-9133-8dbbec748a4f/stream/hls",
+      "preset": "abr_sq",
+      "duration": 122900,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     }
+    ]
+   },
+   "station_urn": "soundcloud:system-playlists:track-stations:1589027687",
+   "station_permalink": "track-stations:1589027687",
+   "track_authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJGSSIsInN1YiI6IiIsInJpZCI6ImIyNmQ4ZDA4LTU1OTMtNGVlMi1hMjRiLWEzOGJiY2I3MjAzOCIsImlhdCI6MTc5MzAzMTcyMH0.GdKEfErl7m_r0IsAvORBhS-hPfKkbho2IwCBctaDobc",
+   "monetization_model": "BLACKBOX",
+   "policy": "MONETIZE",
+   "user": {
+    "avatar_url": "https://i1.sndcdn.com/avatars-nd2Gtw1KsY6c50yT-QpRftQ-large.jpg",
+    "city": "Rap City",
+    "comments_count": 0,
+    "country_code": "US",
+    "created_at": null,
+    "creator_subscriptions": [
+     {
+      "product": {
+       "id": "free"
+      }
+     }
+    ],
+    "creator_subscription": {
+     "product": {
+      "id": "free"
+     }
+    },
+    "description": "NRRM (New Russian Rap Music) is sending Love and Peace to both Russians and Ukrainians.\nThink what we can do to stop the war, don't put up with that hundreds are killed every day in real life, not in a computer game, do not fuel the war, and don't tolerate senseless deaths due to stupidity of polititians.\n#music #beats #phonk #rapmusic #trapmusic \n#warsong #warsongs\n#hip-hop #hiphopmusic #trap #trapbeats #trapmusic \n#military #soldier #soundcloud #peace #war \n#russia  #russian #ru #rus #ukraine #ukrainian #ua\n#RLM - Russian lives matter\n#ULM - Ukrainian lives matter\n\nNew Russian rap - новый русский рэп (рэп)\nBest Russian rap war songs\nрусский рэп о сво и война России и Украины\n--\nrussia ukraine is a fasttrack to ww3, that is why we must stop it: peace talks;\n#triphop; #trap; русская музыка; русская рэп музыка; русские песни; \n<meta content=\"русские, русская, песня, музыка, песни, вайб, 2024, чил, любовь, секс, русский хит, лучший, лучшее, лучшие, русский вайб, русская музыка, русские песни, русская песня, русские хиты, россия, топ, на чиле, в тачку, в машину, музыка в машину, russian, russia, russian vibe, russianvibe,  russianhit, russianvibe, russian hit, russian hits 2024, russian top, best russian songs 2024, best russian music 2023, russian songs, russianvibe, zov, russian song, russian music\" name=\"keywords\">\n<meta property=\"og:description\" content=\"самые лучшие топ вайб чил любовь лучшее русские русская русская музыка русские популярные песни хиты русский хит русские хиты русская душа секс самое популярное тату любэ расторгуев река несни меня река russian soul russian hit russian hits 2024 russian top 2025 best russian songs 2023 best russian music 2023 russian songs russian song russian music чил песни вайб топ самые лучшие хиты\">\n\n2023  2024",
+    "followers_count": 1092,
+    "followings_count": 4,
+    "first_name": "русский рэп / реп",
+    "full_name": "русский рэп / реп NRRM",
+    "groups_count": 0,
+    "id": 1288425035,
+    "kind": "user",
+    "last_modified": "2025-05-22T04:28:33Z",
+    "last_name": "NRRM",
+    "likes_count": 392,
+    "playlist_likes_count": 203,
+    "permalink": "russian-rap-music",
+    "permalink_url": "https://soundcloud.com/russian-rap-music",
+    "playlist_count": 10,
+    "reposts_count": null,
+    "track_count": 23,
+    "uri": "https://api.soundcloud.com/users/soundcloud%3Ausers%3A1288425035",
+    "urn": "soundcloud:users:1288425035",
+    "username": "New Russian Rap Music",
+    "verified": false,
+    "visuals": {
+     "urn": "soundcloud:users:1288425035",
+     "enabled": true,
+     "visuals": [
+      {
+       "urn": "soundcloud:visuals:198721089",
+       "entry_time": 0,
+       "visual_url": "https://i1.sndcdn.com/visuals-001288425035-xMpS8d-original.jpg"
+      }
+     ],
+     "tracking": null
+    },
+    "badges": {
+     "pro": false,
+     "creator_mid_tier": false,
+     "pro_unlimited": false,
+     "verified": false
+    },
+    "station_urn": "soundcloud:system-playlists:artist-stations:1288425035",
+    "station_permalink": "artist-stations:1288425035",
+    "date_of_birth": null
+   }
+  },
+  {
+   "artwork_url": "https://i1.sndcdn.com/artworks-7dRu61mZA4a7jiV2-fH8ewg-large.jpg",
+   "caption": "Музыкантам заказали град и ливень. Это Вагнер - небо затянуло дымом. Выступаем под симфонию валькирий. Одеялом из свинца врага накрыло.",
+   "commentable": true,
+   "comment_count": 11,
+   "created_at": "2023-08-10T05:39:14Z",
+   "description": "SHTIL (Speed Up) - ЧВК Remix  - WAGNER - Вагнер \nrussian rap - russian song - Speed Up\nРусский Рэп; Русский Хип-Хоп\nbest russian music, best russian songs\nлучшие русские песни, лучшая русская музыка\n\n\n149.200 - Волга",
+   "downloadable": false,
+   "download_count": 0,
+   "duration": 133897,
+   "full_duration": 133878,
+   "embeddable_by": "me",
+   "genre": "Triphop",
+   "has_downloads_left": false,
+   "id": 1589065199,
+   "kind": "track",
+   "label_name": null,
+   "last_modified": "2024-06-30T01:18:12Z",
+   "license": "all-rights-reserved",
+   "likes_count": 458,
+   "permalink": "shtil-remix-pack-wagner-chvk-remix-speed-up-rabotaet-vagner-russkiy-rep-2023",
+   "permalink_url": "https://soundcloud.com/russian-rap-music/shtil-remix-pack-wagner-chvk-remix-speed-up-rabotaet-vagner-russkiy-rep-2023",
+   "playback_count": 121575,
+   "public": true,
+   "publisher_metadata": {
+    "id": 1589065199,
+    "urn": "soundcloud:tracks:1589065199",
+    "artist": "Штиль",
+    "contains_music": true,
+    "isrc": "QZMHL2421987",
+    "explicit": false,
+    "writer_composer": "Штиль"
+   },
+   "purchase_title": null,
+   "purchase_url": null,
+   "release_date": null,
+   "reposts_count": 13,
+   "secret_token": null,
+   "sharing": "public",
+   "state": "finished",
+   "streamable": true,
+   "tag_list": "\"russian rap\" ukraine russia russian \"русский рэп\" рэп русский реп \"русский реп\" \"хип хоп\" \"русская рэп сцена\" \"русская песня\" русская песня музыка \"русская музыка\" \"russian songs\" \"russian music\" \"русские песни\" \"russian hits\" топ хит русские хиты russians \"bad russians\" \"империя зла\" сво чвк \"russian song\"",
+   "title": "Град и ливень⚔️русский рэп⚔️russian rap🎻ЧВК",
+   "uri": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A1589065199",
+   "urn": "soundcloud:tracks:1589065199",
+   "user_id": 1288425035,
+   "visuals": null,
+   "waveform_url": "https://wave.sndcdn.com/JOTm6SFGhTKf_m.json",
+   "display_date": "2023-08-10T07:03:33Z",
+   "media": {
+    "transcodings": [
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:1589065199/ca7bfc3b-b09a-4596-bcd7-d2fd64f0f773/stream/hls",
+      "preset": "aac_160k",
+      "duration": 133897,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:1589065199/65275a52-46d1-40c7-8818-95e1d5d8cf93/stream/hls",
+      "preset": "aac_96k",
+      "duration": 133897,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:1589065199/bf23de51-d822-4894-9486-92592ed1979b/stream/hls",
+      "preset": "abr_sq",
+      "duration": 133897,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     }
+    ]
+   },
+   "station_urn": "soundcloud:system-playlists:track-stations:1589065199",
+   "station_permalink": "track-stations:1589065199",
+   "track_authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJGSSIsInN1YiI6IiIsInJpZCI6IjliZDVkYWNlLTJlNDktNGY0OC05NDUyLTVjMzNkOWJjMTI4MiIsImlhdCI6MTc5MzAzMTcyMH0.NX_1625pyBnuDFXLWvKr06x4I7_okg7Lm-BlmpYvGdk",
+   "monetization_model": "BLACKBOX",
+   "policy": "MONETIZE",
+   "user": {
+    "avatar_url": "https://i1.sndcdn.com/avatars-nd2Gtw1KsY6c50yT-QpRftQ-large.jpg",
+    "city": "Rap City",
+    "comments_count": 0,
+    "country_code": "US",
+    "created_at": null,
+    "creator_subscriptions": [
+     {
+      "product": {
+       "id": "free"
+      }
+     }
+    ],
+    "creator_subscription": {
+     "product": {
+      "id": "free"
+     }
+    },
+    "description": "NRRM (New Russian Rap Music) is sending Love and Peace to both Russians and Ukrainians.\nThink what we can do to stop the war, don't put up with that hundreds are killed every day in real life, not in a computer game, do not fuel the war, and don't tolerate senseless deaths due to stupidity of polititians.\n#music #beats #phonk #rapmusic #trapmusic \n#warsong #warsongs\n#hip-hop #hiphopmusic #trap #trapbeats #trapmusic \n#military #soldier #soundcloud #peace #war \n#russia  #russian #ru #rus #ukraine #ukrainian #ua\n#RLM - Russian lives matter\n#ULM - Ukrainian lives matter\n\nNew Russian rap - новый русский рэп (рэп)\nBest Russian rap war songs\nрусский рэп о сво и война России и Украины\n--\nrussia ukraine is a fasttrack to ww3, that is why we must stop it: peace talks;\n#triphop; #trap; русская музыка; русская рэп музыка; русские песни; \n<meta content=\"русские, русская, песня, музыка, песни, вайб, 2024, чил, любовь, секс, русский хит, лучший, лучшее, лучшие, русский вайб, русская музыка, русские песни, русская песня, русские хиты, россия, топ, на чиле, в тачку, в машину, музыка в машину, russian, russia, russian vibe, russianvibe,  russianhit, russianvibe, russian hit, russian hits 2024, russian top, best russian songs 2024, best russian music 2023, russian songs, russianvibe, zov, russian song, russian music\" name=\"keywords\">\n<meta property=\"og:description\" content=\"самые лучшие топ вайб чил любовь лучшее русские русская русская музыка русские популярные песни хиты русский хит русские хиты русская душа секс самое популярное тату любэ расторгуев река несни меня река russian soul russian hit russian hits 2024 russian top 2025 best russian songs 2023 best russian music 2023 russian songs russian song russian music чил песни вайб топ самые лучшие хиты\">\n\n2023  2024",
+    "followers_count": 1092,
+    "followings_count": 4,
+    "first_name": "русский рэп / реп",
+    "full_name": "русский рэп / реп NRRM",
+    "groups_count": 0,
+    "id": 1288425035,
+    "kind": "user",
+    "last_modified": "2025-05-22T04:28:33Z",
+    "last_name": "NRRM",
+    "likes_count": 392,
+    "playlist_likes_count": 203,
+    "permalink": "russian-rap-music",
+    "permalink_url": "https://soundcloud.com/russian-rap-music",
+    "playlist_count": 10,
+    "reposts_count": null,
+    "track_count": 23,
+    "uri": "https://api.soundcloud.com/users/soundcloud%3Ausers%3A1288425035",
+    "urn": "soundcloud:users:1288425035",
+    "username": "New Russian Rap Music",
+    "verified": false,
+    "visuals": {
+     "urn": "soundcloud:users:1288425035",
+     "enabled": true,
+     "visuals": [
+      {
+       "urn": "soundcloud:visuals:198721089",
+       "entry_time": 0,
+       "visual_url": "https://i1.sndcdn.com/visuals-001288425035-xMpS8d-original.jpg"
+      }
+     ],
+     "tracking": null
+    },
+    "badges": {
+     "pro": false,
+     "creator_mid_tier": false,
+     "pro_unlimited": false,
+     "verified": false
+    },
+    "station_urn": "soundcloud:system-playlists:artist-stations:1288425035",
+    "station_permalink": "artist-stations:1288425035",
+    "date_of_birth": null
+   }
+  },
+  {
+   "artwork_url": "https://i1.sndcdn.com/artworks-000411789198-btqqcn-large.jpg",
+   "caption": null,
+   "commentable": true,
+   "comment_count": 62,
+   "created_at": "2018-09-27T19:47:29Z",
+   "description": "To Support The Channel.\n\nhttps://paypal.me/4gangsta\n\nhttps://paypal.me/4gangsta\n\n-\n-",
+   "downloadable": false,
+   "download_count": 0,
+   "duration": 274044,
+   "full_duration": 274076,
+   "embeddable_by": "all",
+   "genre": "Dance & EDM",
+   "has_downloads_left": false,
+   "id": 506128440,
+   "kind": "track",
+   "label_name": null,
+   "last_modified": "2020-12-22T07:50:44Z",
+   "license": "all-rights-reserved",
+   "likes_count": 8692,
+   "permalink": "kean-dysso-shake-that-monkey",
+   "permalink_url": "https://soundcloud.com/gangstersoul/kean-dysso-shake-that-monkey",
+   "playback_count": 744245,
+   "public": true,
+   "publisher_metadata": {
+    "id": 506128440,
+    "urn": "soundcloud:tracks:506128440",
+    "artist": "KEAN DYSSO",
+    "contains_music": true,
+    "isrc": "QM8DG2031284"
+   },
+   "purchase_title": null,
+   "purchase_url": "https://youtu.be/cHneUb02dl8",
+   "release_date": null,
+   "reposts_count": 189,
+   "secret_token": null,
+   "sharing": "public",
+   "state": "finished",
+   "streamable": true,
+   "tag_list": "\"shake \" Electronic \"Hip Hop\" \"rap \" Remix mix",
+   "title": "Kean Dysso - Shake That Monkey",
+   "uri": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A506128440",
+   "urn": "soundcloud:tracks:506128440",
+   "user_id": 186721185,
+   "visuals": null,
+   "waveform_url": "https://wave.sndcdn.com/mDJbUrgHhQIK_m.json",
+   "display_date": "2018-09-27T19:47:29Z",
+   "media": {
+    "transcodings": [
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:506128440/42f6f983-1502-4218-afb4-a1ba147d154a/stream/hls",
+      "preset": "aac_160k",
+      "duration": 274044,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:506128440/bda13277-2e97-4f54-a20f-6b6c721ed761/stream/hls",
+      "preset": "aac_96k",
+      "duration": 274044,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:506128440/b17f0021-78f7-4b71-af25-38f0ca9822d1/stream/hls",
+      "preset": "abr_sq",
+      "duration": 274044,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     }
+    ]
+   },
+   "station_urn": "soundcloud:system-playlists:track-stations:506128440",
+   "station_permalink": "track-stations:506128440",
+   "track_authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJGSSIsInN1YiI6IiIsInJpZCI6IiIsImlhdCI6MTc5MzAzMTcyMH0.3_GG0wMgMuAcIepY8FwRPh-HbMsYbTCKknV-SwkHQe4",
+   "monetization_model": "NOT_APPLICABLE",
+   "policy": "ALLOW",
+   "user": {
+    "avatar_url": "https://i1.sndcdn.com/avatars-eQVRIqA1tFw3FrjH-yRoHAA-large.jpg",
+    "city": null,
+    "comments_count": 0,
+    "country_code": null,
+    "created_at": null,
+    "creator_subscriptions": [
+     {
+      "product": {
+       "id": "free"
+      }
+     }
+    ],
+    "creator_subscription": {
+     "product": {
+      "id": "free"
+     }
+    },
+    "description": "To Support: https://paypal.me/4gangsta\n\n-\n\nРепост 700  Руб.",
+    "followers_count": 11337,
+    "followings_count": 10,
+    "first_name": "Репост",
+    "full_name": "Репост 700  Руб.",
+    "groups_count": 0,
+    "id": 186721185,
+    "kind": "user",
+    "last_modified": "2020-12-11T11:33:44Z",
+    "last_name": "700  Руб.",
+    "likes_count": 415,
+    "playlist_likes_count": 26,
+    "permalink": "gangstersoul",
+    "permalink_url": "https://soundcloud.com/gangstersoul",
+    "playlist_count": 2,
+    "reposts_count": null,
+    "track_count": 18,
+    "uri": "https://api.soundcloud.com/users/soundcloud%3Ausers%3A186721185",
+    "urn": "soundcloud:users:186721185",
+    "username": "Русский Рэп",
+    "verified": false,
+    "visuals": {
+     "urn": "soundcloud:users:186721185",
+     "enabled": true,
+     "visuals": [
+      {
+       "urn": "soundcloud:visuals:85143917",
+       "entry_time": 0,
+       "visual_url": "https://i1.sndcdn.com/visuals-000186721185-jeWLXF-original.jpg"
+      }
+     ],
+     "tracking": null
+    },
+    "badges": {
+     "pro": false,
+     "creator_mid_tier": false,
+     "pro_unlimited": false,
+     "verified": false
+    },
+    "station_urn": "soundcloud:system-playlists:artist-stations:186721185",
+    "station_permalink": "artist-stations:186721185",
+    "date_of_birth": null
+   }
+  },
+  {
+   "artwork_url": "https://i1.sndcdn.com/artworks-000118846938-ngmslp-large.jpg",
+   "caption": null,
+   "commentable": true,
+   "comment_count": 39,
+   "created_at": "2015-06-01T21:44:35Z",
+   "description": "RAP FROM RUSSIA 2015 HIP HOP BEATS SLOVETSKII GAZGOLDER BASTA NOGGANO 9 GRAMM TGK KASPIISKII GRUZ DJ NIK ONE PTAHA CENTR LE TRUK DECL VIBE РЭП РОССИЯ 2015 ХИП ХОП СЛОВЕТСКИЙ СЛОВЕЦКИЙ ГАЗГОЛЬДЕР БАСТА НОГГАНО НОГГАНО 9 ГРАММ ТГК ВАЙБ КАСПИЙСКИЙ ГРУЗ НИК ОАН ПТАХА РИГОС ЦЕНТР ЛЕ ТРЮК ДЕЦЛ AK 47 & MANY MORE",
+   "downloadable": false,
+   "download_count": 0,
+   "duration": 2083807,
+   "full_duration": 2083982,
+   "embeddable_by": "all",
+   "genre": "SLOVETSKII",
+   "has_downloads_left": false,
+   "id": 208336822,
+   "kind": "track",
+   "label_name": null,
+   "last_modified": "2021-07-28T22:24:52Z",
+   "license": "all-rights-reserved",
+   "likes_count": 5562,
+   "permalink": "fromrapssiawithluv-slovetskii-guf-rigos-9-gramm-tgk-kaspiiskii-gruz-nik-one-ptaha-centr-le-truk",
+   "permalink_url": "https://soundcloud.com/malagambadj/fromrapssiawithluv-slovetskii-guf-rigos-9-gramm-tgk-kaspiiskii-gruz-nik-one-ptaha-centr-le-truk",
+   "playback_count": 95217,
+   "public": true,
+   "publisher_metadata": {
+    "id": 208336822,
+    "urn": "soundcloud:tracks:208336822"
+   },
+   "purchase_title": null,
+   "purchase_url": null,
+   "release_date": null,
+   "reposts_count": 25,
+   "secret_token": null,
+   "sharing": "public",
+   "state": "finished",
+   "streamable": true,
+   "tag_list": "GUF RIGOS \"9 GRAMM\" TGK \"KASPIISKII GRUZ\" \"DJ NIK ONE\" PTAHA CENTR \"LE TRUK\" DECL Rap \"Hip Hop\" RUSSIA RUSSKII 2015 СЛОВЕЦКИЙ ГУФ РИГОС \"9 ГРАММ\" ТГК \"КАСПИЙСКИЙ ГРУЗ\" \"НИК ОАН\" ПТАХА ЦЕНТР \"ЛЕ ТРЮК\" ДЕЦЛ РЭП \"ХИП ХОП\" СЛОВЕТСКИЙ",
+   "title": "FromRAPSSIAwithLuv 1 | РУССКИЙ РЭП ДЕЦЛ SLOVETSKII GUF 9 GRAMM TGK KASPIISKII GRUZ CENTR LE TRUK",
+   "uri": "https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A208336822",
+   "urn": "soundcloud:tracks:208336822",
+   "user_id": 12876697,
+   "visuals": null,
+   "waveform_url": "https://wave.sndcdn.com/xJDNbItRD0xg_m.json",
+   "display_date": "2015-06-01T21:44:35Z",
+   "media": {
+    "transcodings": [
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:208336822/5d9c1c32-2dae-45ee-9743-bbb2e13cc5f3/stream/hls",
+      "preset": "aac_160k",
+      "duration": 2083807,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:208336822/48f0c026-91f0-4e78-bac8-f2766644844e/stream/hls",
+      "preset": "aac_96k",
+      "duration": 2083807,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mp4; codecs=\"mp4a.40.2\""
+      },
+      "quality": "lq",
+      "is_legacy_transcoding": false
+     },
+     {
+      "url": "https://api-v2.soundcloud.com/media/soundcloud:tracks:208336822/0de55397-b6ae-4e4b-8c7b-62876869756d/stream/hls",
+      "preset": "abr_sq",
+      "duration": 2083807,
+      "snipped": false,
+      "format": {
+       "protocol": "hls",
+       "mime_type": "audio/mpegurl"
+      },
+      "quality": "sq",
+      "is_legacy_transcoding": false
+     }
+    ]
+   },
+   "station_urn": "soundcloud:system-playlists:track-stations:208336822",
+   "station_permalink": "track-stations:208336822",
+   "track_authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJGSSIsInN1YiI6IiIsInJpZCI6ImZhM2ExYjZhLTBkNjMtNDI4YS05ZDIyLTA4MzQ1ZTMwYzc4ZSIsImlhdCI6MTc5MzAzMTcyMH0._vga1q3-3e3G8gPnM-gtV9NjbRjv6WkfF-GFO59TJNM",
+   "monetization_model": "BLACKBOX",
+   "policy": "MONETIZE",
+   "user": {
+    "avatar_url": "https://i1.sndcdn.com/avatars-7uXd4mymrW5lHnMF-LSt4Hw-large.jpg",
+    "city": "",
+    "comments_count": 0,
+    "country_code": null,
+    "created_at": null,
+    "creator_subscriptions": [
+     {
+      "product": {
+       "id": "creator-pro-unlimited"
+      }
+     }
+    ],
+    "creator_subscription": {
+     "product": {
+      "id": "creator-pro-unlimited"
+     }
+    },
+    "description": "Bass.Music * Urban.Sound * Fresh.Beats\n\nMALAGAMBA – Open Format DJ full of energy, that likes to mash up new sound & old beats, from funk to hip hop, grime, trap to d’n’b and all the types of future bass, ukg & electronic music.\nTill now, MALAGAMBA (ex SVK Boy) has the opportunity to share the stage with artists like Wilkinson, Sigma, Dope D.O.D, Flava D, Subcarpati, Sun Glitters, MC Dynamite, Psychofreud, R.O.A., Argatu', Danaga, DJ Oldskull, DJ Undoo, Power pe Vinil, Freqax or DJ Snow at such wonderful music festivals like SAGA, Electric Castle, Intencity, Sunset Festival, Awake, Live Festival, United Arts Fest., Electro Sun Fest and various magic parties.\nA very religious DJ... he believes in Art!\n\nWinner @ DJ Competitions:\n1) Electric Castle 2015 - Disco Funk & Glitch Hop\n2) Electric Castle 2016 - Breaks & Bass Music\n3) Awake Festival 2017 – Trap & Future Bass\n4) Dharma Creative 2017 - Dubstep & Trap",
+    "followers_count": 1021,
+    "followings_count": 2000,
+    "first_name": "",
+    "full_name": "",
+    "groups_count": 0,
+    "id": 12876697,
+    "kind": "user",
+    "last_modified": "2026-09-25T15:47:33Z",
+    "last_name": "",
+    "likes_count": 2417,
+    "playlist_likes_count": 64,
+    "permalink": "malagambadj",
+    "permalink_url": "https://soundcloud.com/malagambadj",
+    "playlist_count": 20,
+    "reposts_count": null,
+    "track_count": 83,
+    "uri": "https://api.soundcloud.com/users/soundcloud%3Ausers%3A12876697",
+    "urn": "soundcloud:users:12876697",
+    "username": "𝙈𝘼𝙇𝘼𝙂𝘼𝙈𝘽𝘼",
+    "verified": false,
+    "visuals": {
+     "urn": "soundcloud:users:12876697",
+     "enabled": true,
+     "visuals": [
+      {
+       "urn": "soundcloud:visuals:63241678",
+       "entry_time": 0,
+       "visual_url": "https://i1.sndcdn.com/visuals-000012876697-2GeJaU-original.jpg"
+      }
+     ],
+     "tracking": null
+    },
+    "badges": {
+     "pro": false,
+     "creator_mid_tier": false,
+     "pro_unlimited": true,
+     "verified": false
+    },
+    "station_urn": "soundcloud:system-playlists:artist-stations:12876697",
+    "station_permalink": "artist-stations:12876697",
+    "date_of_birth": null
+   }
+  }
+ ],
+ "total_results": 8174,
+ "query_urn": "soundcloud:search:b9464a167d6a4f028e2ffa437772b42b"
+}

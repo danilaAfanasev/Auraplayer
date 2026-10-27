@@ -1,0 +1,47 @@
+{
+ "data": [
+  {
+   "id": 1676262957,
+   "readable": true,
+   "title": "showdown",
+   "title_short": "showdown",
+   "title_version": "",
+   "duration": 121,
+   "rank": 182506,
+   "artist": {
+    "id": 126239552,
+    "name": "shadowraze",
+    "type": "artist"
+   },
+   "album": {
+    "id": 300650887,
+    "title": "showdown",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/08ec3728127c3e3e3ad1a8d54c77c743/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/08ec3728127c3e3e3ad1a8d54c77c743/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  },
+  {
+   "id": 1537289862,
+   "readable": true,
+   "title": "astral step",
+   "title_short": "astral step",
+   "title_version": "",
+   "duration": 122,
+   "rank": 157790,
+   "artist": {
+    "id": 126239552,
+    "name": "shadowraze",
+    "type": "artist"
+   },
+   "album": {
+    "id": 269219102,
+    "title": "astral step",
+    "cover_xl": "https://cdn-images.dzcdn.net/images/cover/ace883dfddc5b525376e7e12aa33bd13/1000x1000-000000-80-0-0.jpg",
+    "cover_big": "https://cdn-images.dzcdn.net/images/cover/ace883dfddc5b525376e7e12aa33bd13/500x500-000000-80-0-0.jpg"
+   },
+   "type": "track"
+  }
+ ],
+ "total": 2
+}

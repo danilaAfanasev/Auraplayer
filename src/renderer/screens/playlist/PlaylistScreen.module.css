@@ -1,0 +1,154 @@
+.head {
+  display: flex;
+  align-items: flex-end;
+  gap: 28px;
+  margin-bottom: 28px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.eyebrow {
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.title {
+  min-width: 0;
+}
+
+.titleButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 100%;
+  margin: 0 -10px;
+  padding: 2px 10px;
+  border-radius: var(--radius-s);
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  text-align: left;
+  transition: background-color var(--dur) var(--ease);
+}
+
+.titleButton:hover {
+  background: var(--surface);
+}
+
+.titleText {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.titlePencil {
+  flex: none;
+  color: var(--text-muted);
+  opacity: 0;
+  transition: opacity var(--dur) var(--ease);
+}
+
+.titleButton:hover .titlePencil,
+.titleButton:focus-visible .titlePencil {
+  opacity: 1;
+}
+
+.titleInput {
+  width: 100%;
+  margin: 0 -10px;
+  padding: 2px 10px;
+  border: 0;
+  border-radius: var(--radius-s);
+  background: var(--surface-2);
+  box-shadow: 0 0 0 2px var(--accent);
+  font-size: 34px;
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.meta {
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.more {
+  position: relative;
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  min-width: 220px;
+  padding: 6px;
+  border-radius: var(--radius-m);
+  background: var(--popover);
+  border: 1px solid var(--border-strong);
+  box-shadow: 0 18px 48px var(--shadow);
+  animation: menu-in var(--dur) var(--ease) both;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 40px;
+  padding: 0 12px;
+  border-radius: var(--radius-xs);
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  transition: background-color var(--dur-fast) var(--ease);
+}
+
+.menuItem:hover,
+.menuItem:focus-visible {
+  background: var(--surface-hover);
+}
+
+.menuDanger {
+  color: var(--danger);
+}
+
+.hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  color: var(--text-faint);
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.98);
+  }
+}
+
+@media (max-width: 1180px) {
+  .head {
+    gap: 20px;
+  }
+}

@@ -1,0 +1,68 @@
+/* Карточка приложения — на всё окно, без полей: углы и тень окну без рамки даёт сама Windows 11. */
+.window {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+/* Мягкий градиентный фон темы за стеклянной карточкой */
+.backdrop {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(60% 70% at 12% 8%, var(--bg-glow) 0%, transparent 70%),
+    radial-gradient(55% 60% at 92% 30%, var(--accent-soft) 0%, transparent 70%),
+    radial-gradient(70% 70% at 70% 105%, var(--bg-glow) 0%, transparent 65%),
+    linear-gradient(160deg, var(--bg) 0%, var(--bg-deep) 100%);
+}
+
+.card {
+  position: relative;
+  height: 100%;
+  display: grid;
+  grid-template-columns: var(--sidebar-w) minmax(0, 1fr) var(--right-w);
+  overflow: hidden;
+  background: var(--card);
+  backdrop-filter: blur(40px) saturate(140%);
+  transition: grid-template-columns var(--dur-slow) var(--ease);
+}
+
+.main {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border-left: 1px solid var(--border);
+}
+
+.right > * {
+  flex: 1;
+}
+
+/* Сайдбар свёрнут в иконки: кнопкой-шевроном или автоматически в окне уже 1200 px */
+.card[data-sidebar='collapsed'] {
+  grid-template-columns: var(--sidebar-w-collapsed) minmax(0, 1fr) var(--right-w);
+}
+
+/* Окно уже 1280 px — правая колонка скрыта */
+@media (max-width: 1279px) {
+  .card {
+    grid-template-columns: var(--sidebar-w) minmax(0, 1fr);
+  }
+
+  .card[data-sidebar='collapsed'] {
+    grid-template-columns: var(--sidebar-w-collapsed) minmax(0, 1fr);
+  }
+
+  .right {
+    display: none;
+  }
+}

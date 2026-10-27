@@ -1,0 +1,13 @@
+.env
+.env.*
+!.env.example
+node_modules/
+__pycache__/
+.DS_Store
+dist/
+out/
+release/
+.autopilot/serve.*
+
+# Список личного для `npm run public` — только на этом компьютере, в копию не идёт
+.public-forbidden

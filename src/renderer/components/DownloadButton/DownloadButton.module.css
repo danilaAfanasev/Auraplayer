@@ -1,0 +1,92 @@
+.button {
+  position: relative;
+}
+
+/* Скачано: акцентная галочка, без эффекта нажатия. */
+.done,
+.done:hover:not(:disabled) {
+  color: var(--accent-text);
+  background: transparent;
+  cursor: default;
+}
+
+.done:active:not(:disabled) {
+  transform: none;
+}
+
+/* Нельзя скачать (автор запретил): выглядит неактивной, но подсказка при наведении видна. */
+.blocked,
+.blocked:hover:not(:disabled) {
+  opacity: 0.4;
+  color: var(--text-muted);
+  background: transparent;
+  cursor: not-allowed;
+}
+
+.blocked:active:not(:disabled) {
+  transform: none;
+}
+
+/* Идёт загрузка: кольцо прогресса, при наведении — крестик отмены. */
+.busy {
+  color: var(--accent-text);
+}
+
+.ring {
+  position: absolute;
+  inset: 2px;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  transform: rotate(-90deg);
+  pointer-events: none;
+}
+
+.ring circle {
+  fill: none;
+  stroke-width: 2.4;
+}
+
+.track {
+  stroke: var(--surface-hover);
+}
+
+.value {
+  stroke: var(--accent);
+  stroke-linecap: round;
+  stroke-dasharray: var(--ring-len);
+  stroke-dashoffset: var(--ring-offset);
+  transition: stroke-dashoffset 240ms var(--ease);
+}
+
+.queued {
+  stroke: var(--text-faint);
+}
+
+.spin {
+  animation: ring-spin 1s linear infinite;
+}
+
+.cancel {
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease);
+}
+
+.busy:hover .cancel,
+.busy:focus-visible .cancel {
+  opacity: 1;
+}
+
+@keyframes ring-spin {
+  from {
+    transform: rotate(-90deg);
+  }
+  to {
+    transform: rotate(270deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spin {
+    animation-duration: 3s;
+  }
+}

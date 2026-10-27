@@ -1,0 +1,80 @@
+/* Анимация смены темы. Классы на <html> ставит themeTransition.ts на время перехода. */
+
+/* Заливка кругом: старый вид стоит на месте, новый открывается кругом от точки клика.
+   Круг в нулевом радиусе задан и в CSS — между созданием снимков и стартом анимации нового кадра не видно. */
+html.vt-reveal::view-transition-old(root),
+html.vt-reveal::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+html.vt-reveal::view-transition-new(root) {
+  clip-path: circle(0px at var(--vt-x, 50%) var(--vt-y, 50%));
+}
+
+/* Уменьшение анимации: короткий кроссфейд без круга. */
+html.vt-fade::view-transition-old(root),
+html.vt-fade::view-transition-new(root) {
+  animation-duration: 200ms;
+  animation-timing-function: ease;
+}
+
+/* Запасной путь без View Transitions: переменные темы плавно перетекают. */
+@property --bg { syntax: '<color>'; inherits: true; initial-value: transparent; }
+@property --bg-glow { syntax: '<color>'; inherits: true; initial-value: transparent; }
+@property --bg-deep { syntax: '<color>'; inherits: true; initial-value: transparent; }
+@property --card { syntax: '<color>'; inherits: true; initial-value: transparent; }
+@property --popover { syntax: '<color>'; inherits: true; initial-value: transparent; }
+@property --surface { syntax: '<color>'; inherits: true; initial-value: transparent; }
+@property --surface-2 { syntax: '<color>'; inherits: true; initial-value: transparent; }
+@property --surface-hover { syntax: '<color>'; inherits: true; initial-value: transparent; }
+@property --border { syntax: '<color>'; inherits: true; initial-value: transparent; }
+@property --border-strong { syntax: '<color>'; inherits: true; initial-value: transparent; }
+@property --text { syntax: '<color>'; inherits: true; initial-value: transparent; }
+@property --text-muted { syntax: '<color>'; inherits: true; initial-value: transparent; }
+@property --text-faint { syntax: '<color>'; inherits: true; initial-value: transparent; }
+@property --accent { syntax: '<color>'; inherits: true; initial-value: transparent; }
+@property --accent-hover { syntax: '<color>'; inherits: true; initial-value: transparent; }
+@property --accent-contrast { syntax: '<color>'; inherits: true; initial-value: transparent; }
+@property --accent-soft { syntax: '<color>'; inherits: true; initial-value: transparent; }
+@property --accent-glow { syntax: '<color>'; inherits: true; initial-value: transparent; }
+@property --accent-text { syntax: '<color>'; inherits: true; initial-value: transparent; }
+@property --danger { syntax: '<color>'; inherits: true; initial-value: transparent; }
+@property --success { syntax: '<color>'; inherits: true; initial-value: transparent; }
+@property --play-bg { syntax: '<color>'; inherits: true; initial-value: transparent; }
+@property --play-icon { syntax: '<color>'; inherits: true; initial-value: transparent; }
+@property --scrollbar { syntax: '<color>'; inherits: true; initial-value: transparent; }
+@property --scrollbar-hover { syntax: '<color>'; inherits: true; initial-value: transparent; }
+@property --shadow { syntax: '<color>'; inherits: true; initial-value: transparent; }
+@property --overlay { syntax: '<color>'; inherits: true; initial-value: transparent; }
+
+html.theme-smooth {
+  transition:
+    --bg 350ms ease,
+    --bg-glow 350ms ease,
+    --bg-deep 350ms ease,
+    --card 350ms ease,
+    --popover 350ms ease,
+    --surface 350ms ease,
+    --surface-2 350ms ease,
+    --surface-hover 350ms ease,
+    --border 350ms ease,
+    --border-strong 350ms ease,
+    --text 350ms ease,
+    --text-muted 350ms ease,
+    --text-faint 350ms ease,
+    --accent 350ms ease,
+    --accent-hover 350ms ease,
+    --accent-contrast 350ms ease,
+    --accent-soft 350ms ease,
+    --accent-glow 350ms ease,
+    --accent-text 350ms ease,
+    --danger 350ms ease,
+    --success 350ms ease,
+    --play-bg 350ms ease,
+    --play-icon 350ms ease,
+    --scrollbar 350ms ease,
+    --scrollbar-hover 350ms ease,
+    --shadow 350ms ease,
+    --overlay 350ms ease;
+}

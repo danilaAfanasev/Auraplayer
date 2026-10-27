@@ -1,0 +1,21 @@
+.host {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: calc(var(--titlebar-h) + 8px) var(--content-pad) 24px;
+  scrollbar-gutter: stable;
+}
+
+.screen {
+  max-width: 1180px;
+  margin: 0 auto;
+  animation: screen-in var(--dur-slow) var(--ease) both;
+}
+
+@keyframes screen-in {
+  from {
+    opacity: 0.25;
+    transform: translateY(8px);
+  }
+}

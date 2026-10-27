@@ -1,0 +1,136 @@
+/* Цвета здесь — только из переменных --pv-*, которые ThemePreview берёт из палитры показываемой темы. */
+.preview {
+  position: relative;
+  height: 88px;
+  padding: 10px;
+  border-radius: var(--radius-s);
+  background:
+    radial-gradient(70% 90% at 12% 6%, var(--pv-glow) 0%, transparent 70%),
+    linear-gradient(160deg, var(--pv-bg) 0%, var(--pv-deep) 100%);
+  overflow: hidden;
+}
+
+.large {
+  height: 190px;
+  padding: 20px;
+  border-radius: var(--radius-m);
+}
+
+.window {
+  display: grid;
+  grid-template-columns: 26% 1fr;
+  gap: 8px;
+  height: 100%;
+  padding: 8px;
+  border-radius: 9px;
+  background: var(--pv-card);
+}
+
+.large .window {
+  padding: 14px;
+  gap: 14px;
+  border-radius: 14px;
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.large .side {
+  gap: 9px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--pv-accent);
+}
+
+.large .dot {
+  width: 20px;
+  height: 20px;
+}
+
+.bar {
+  height: 5px;
+  border-radius: 3px;
+  background: var(--pv-surface);
+}
+
+.large .bar {
+  height: 9px;
+  border-radius: 5px;
+}
+
+.main {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.large .main {
+  gap: 10px;
+}
+
+.title {
+  width: 60%;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--pv-text);
+}
+
+.large .title {
+  height: 14px;
+  border-radius: 7px;
+}
+
+.line {
+  height: 5px;
+  border-radius: 3px;
+  background: var(--pv-muted);
+  opacity: 0.7;
+}
+
+.large .line {
+  height: 8px;
+  border-radius: 4px;
+}
+
+.short {
+  width: 70%;
+}
+
+.play {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--pv-accent);
+}
+
+.large .play {
+  width: 38px;
+  height: 38px;
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  border-style: solid;
+  border-width: 3.5px 0 3.5px 6px;
+  border-color: transparent transparent transparent var(--pv-accent-contrast);
+}
+
+.large .triangle {
+  margin-left: 3px;
+  border-width: 7px 0 7px 12px;
+}

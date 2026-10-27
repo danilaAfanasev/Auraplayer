@@ -1,0 +1,26 @@
+.links {
+  min-width: 0;
+}
+
+.link {
+  cursor: pointer;
+  border-radius: var(--radius-xs);
+  text-underline-offset: 2px;
+  transition: color var(--dur) var(--ease);
+}
+
+.link:hover,
+.link:focus-visible {
+  color: var(--text);
+  text-decoration: underline;
+}
+
+.link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.busy {
+  cursor: progress;
+  opacity: 0.7;
+}

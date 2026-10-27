@@ -1,0 +1,10 @@
+/* Когда трек слушали; фиксированная ширина, чтобы колонка действий не «гуляла» между строками. */
+.ago {
+  width: 104px;
+  padding-left: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: right;
+  white-space: nowrap;
+  color: var(--text-muted);
+}

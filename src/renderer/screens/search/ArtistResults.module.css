@@ -1,0 +1,98 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+  padding: 12px 18px 12px 12px;
+  border-radius: var(--radius-l);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  transition:
+    background-color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
+  animation: rise var(--dur-slow) var(--ease) both;
+}
+
+.card:hover,
+.card:focus-within {
+  background: var(--surface-hover);
+  border-color: var(--border-strong);
+}
+
+.top {
+  flex: 1 1 420px;
+  padding: 16px 22px 16px 16px;
+  background:
+    radial-gradient(80% 140% at 100% 0%, var(--accent-soft), transparent 70%),
+    var(--surface);
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-align: left;
+  border-radius: var(--radius-m);
+}
+
+.main:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.meta {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.top .name {
+  font-size: 26px;
+  letter-spacing: -0.02em;
+}
+
+.chevron {
+  flex: none;
+  color: var(--text-muted);
+  transition: transform var(--dur) var(--ease);
+}
+
+.card:hover .chevron {
+  transform: translateX(3px);
+  color: var(--text);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}

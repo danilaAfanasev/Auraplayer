@@ -1,0 +1,186 @@
+/* Баннер-герой: размытая обложка на всю карточку, сама обложка справа уходит в тень к тексту слева. */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 290px;
+  margin-bottom: 30px;
+  padding: 34px 38px;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border);
+  background:
+    radial-gradient(90% 120% at 100% 0%, var(--accent-glow), transparent 60%),
+    radial-gradient(70% 90% at 0% 100%, var(--accent-soft), transparent 70%),
+    var(--surface-2);
+  box-shadow: 0 24px 60px var(--shadow);
+  animation: rise var(--dur-slow) var(--ease) both;
+}
+
+.blur {
+  position: absolute;
+  inset: -60px;
+  z-index: -3;
+  width: calc(100% + 120px);
+  height: calc(100% + 120px);
+  object-fit: cover;
+  filter: blur(56px) saturate(150%);
+  opacity: 0.55;
+}
+
+.art {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -2;
+  display: grid;
+  place-items: center;
+  width: 58%;
+  color: var(--text-faint);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, var(--text) 45%);
+  /* Маска работает только по прозрачности: любой непрозрачный цвет темы. */
+  mask-image: linear-gradient(90deg, transparent 0%, var(--text) 45%);
+}
+
+.art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+  transition: transform 1.2s var(--ease);
+}
+
+.hero:hover .art img {
+  transform: scale(1.07);
+}
+
+.shade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, var(--bg-deep) 0%, transparent 70%),
+    linear-gradient(0deg, var(--bg-deep) 0%, transparent 45%);
+  opacity: 0.8;
+}
+
+.stat {
+  position: absolute;
+  top: 24px;
+  right: 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  padding: 8px 14px;
+  border-radius: var(--radius-m);
+  background: var(--overlay);
+  backdrop-filter: blur(12px);
+}
+
+.statLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.statValue {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.statValue svg {
+  color: var(--accent-text);
+}
+
+.body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 56%;
+  min-width: 0;
+}
+
+.eyebrow {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.title {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: 50px;
+  line-height: 1.04;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  overflow-wrap: anywhere;
+}
+
+.artist {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.titleLink {
+  cursor: pointer;
+  border-radius: var(--radius-xs);
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+}
+
+.titleLink:hover,
+.titleLink:focus-visible {
+  text-decoration: underline;
+}
+
+.titleLink:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.album {
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+@media (max-width: 1180px) {
+  .hero {
+    min-height: 250px;
+    padding: 28px 30px;
+  }
+
+  .title {
+    font-size: 40px;
+  }
+
+  .body {
+    max-width: 62%;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}

@@ -1,0 +1,6 @@
+/* Место под отметку «Файл не найден» — строки одной ширины. */
+.slot {
+  display: inline-grid;
+  flex: none;
+  width: 30px;
+}

@@ -1,0 +1,15 @@
+.pop svg {
+  animation: like-pop 320ms var(--ease);
+}
+
+@keyframes like-pop {
+  0% {
+    transform: scale(0.7);
+  }
+  55% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

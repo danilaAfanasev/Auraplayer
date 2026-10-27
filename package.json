@@ -1,0 +1,42 @@
+{
+  "name": "aura",
+  "productName": "Aura",
+  "version": "0.2.0",
+  "description": "Aura — бесплатный аудиоплеер для Windows: музыка с YouTube, SoundCloud, Internet Archive и с диска, волна похожих треков, без аккаунтов",
+  "author": "Aura",
+  "license": "MIT",
+  "private": true,
+  "main": "./out/main/index.js",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "preview": "electron-vite preview",
+    "typecheck": "tsc --noEmit -p tsconfig.node.json && tsc --noEmit -p tsconfig.web.json",
+    "test": "vitest run",
+    "check": "npm run typecheck && vitest run",
+    "dist": "electron-vite build && electron-builder --win nsis --x64",
+    "icon": "electron scripts/make-icon.mjs",
+    "public": "node scripts/make-public.mjs"
+  },
+  "dependencies": {
+    "@fontsource/manrope": "^5.3.0",
+    "lucide-react": "^1.61.0",
+    "music-metadata": "^12.2.3",
+    "nanoid": "^6.0.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "zustand": "^5.0.16"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^6.1.2",
+    "electron": "^45.0.0",
+    "electron-builder": "^26.18.0",
+    "electron-vite": "^6.0.0",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.5",
+    "vitest": "^5.0.5"
+  }
+}

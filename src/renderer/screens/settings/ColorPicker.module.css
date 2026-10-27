@@ -1,0 +1,135 @@
+.picker {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.swatch {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-s);
+  border: 2px solid var(--border-strong);
+  box-shadow: 0 6px 18px var(--shadow);
+  transition:
+    transform var(--dur-fast) var(--ease),
+    border-color var(--dur) var(--ease);
+}
+
+.swatch:hover {
+  transform: scale(1.06);
+  border-color: var(--text-faint);
+}
+
+.swatch:active {
+  transform: scale(0.96);
+}
+
+.hex {
+  width: 118px;
+  height: 44px;
+  padding: 0 14px;
+  border-radius: var(--radius-s);
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+  text-transform: lowercase;
+  transition:
+    border-color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease),
+    background-color var(--dur) var(--ease);
+}
+
+.hex:hover {
+  background: var(--surface-hover);
+}
+
+.hex:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.hex.invalid {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--danger) 25%, transparent);
+}
+
+.popover {
+  position: fixed;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 248px;
+  padding: 14px;
+  border-radius: var(--radius-m);
+  background: var(--popover);
+  border: 1px solid var(--border-strong);
+  box-shadow: 0 24px 60px var(--shadow);
+  animation: pop var(--dur) var(--ease) both;
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+}
+
+.sv {
+  position: relative;
+  height: 150px;
+  border-radius: var(--radius-xs);
+  cursor: crosshair;
+  touch-action: none;
+}
+
+.hue {
+  position: relative;
+  height: 14px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  touch-action: none;
+  background: linear-gradient(
+    to right,
+    hsl(0 100% 50%),
+    hsl(60 100% 50%),
+    hsl(120 100% 50%),
+    hsl(180 100% 50%),
+    hsl(240 100% 50%),
+    hsl(300 100% 50%),
+    hsl(360 100% 50%)
+  );
+}
+
+.svThumb,
+.hueThumb {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 3px solid var(--text);
+  box-shadow: 0 2px 8px var(--shadow);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.hueThumb {
+  top: 50%;
+}

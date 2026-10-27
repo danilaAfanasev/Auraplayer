@@ -1,0 +1,92 @@
+{
+ "result": [
+  {
+   "name": "flac.ffp",
+   "source": "original",
+   "format": "Flac FingerPrint",
+   "size": "1334"
+  },
+  {
+   "name": "gd1977-05-08.shure57.stevenson.29303.flac16_files.xml",
+   "source": "metadata",
+   "format": "Metadata",
+   "summation": "md5"
+  },
+  {
+   "name": "gd1977-05-08d01t01.flac",
+   "source": "original",
+   "format": "Flac",
+   "title": "Turning",
+   "creator": "Grateful Dead",
+   "album": "1977-05-08 - Barton Hall - Cornell University",
+   "track": "01",
+   "size": "3709628",
+   "length": "39.8",
+   "height": "0",
+   "width": "0"
+  },
+  {
+   "name": "gd1977-05-08d01t01.mp3",
+   "source": "derivative",
+   "creator": "Grateful Dead",
+   "title": "Turning",
+   "track": "01",
+   "album": "1977-05-08 - Barton Hall - Cornell University",
+   "bitrate": "190",
+   "length": "00:39",
+   "format": "VBR MP3",
+   "original": "gd1977-05-08d01t01.flac",
+   "size": "948224",
+   "height": "0",
+   "width": "0"
+  },
+  {
+   "name": "gd1977-05-08d01t01.ogg",
+   "source": "derivative",
+   "format": "Ogg Vorbis",
+   "original": "gd1977-05-08d01t01.flac",
+   "size": "504460",
+   "length": "39.8",
+   "height": "0",
+   "width": "0"
+  },
+  {
+   "name": "gd1977-05-08d01t02.flac",
+   "source": "original",
+   "format": "Flac",
+   "title": "Minglewood Blues",
+   "creator": "Grateful Dead",
+   "album": "1977-05-08 - Barton Hall - Cornell University",
+   "track": "02",
+   "size": "33730386",
+   "length": "323.81",
+   "height": "0",
+   "width": "0"
+  },
+  {
+   "name": "gd1977-05-08d01t02.mp3",
+   "source": "derivative",
+   "creator": "Grateful Dead",
+   "title": "Minglewood Blues",
+   "track": "02",
+   "album": "1977-05-08 - Barton Hall - Cornell University",
+   "bitrate": "197",
+   "length": "05:23",
+   "format": "VBR MP3",
+   "original": "gd1977-05-08d01t02.flac",
+   "size": "7966720",
+   "height": "0",
+   "width": "0"
+  },
+  {
+   "name": "gd1977-05-08d01t02.ogg",
+   "source": "derivative",
+   "format": "Ogg Vorbis",
+   "original": "gd1977-05-08d01t02.flac",
+   "size": "3891597",
+   "length": "323.81",
+   "height": "0",
+   "width": "0"
+  }
+ ]
+}

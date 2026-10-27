@@ -1,0 +1,137 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 22px;
+  border-radius: var(--radius-pill);
+  font-size: 15px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition:
+    background-color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    color var(--dur) var(--ease),
+    transform var(--dur-fast) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+
+.button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.button:disabled {
+  opacity: 0.5;
+}
+
+.accent {
+  background: var(--accent);
+  color: var(--accent-contrast);
+  box-shadow: 0 8px 24px var(--accent-soft);
+}
+
+.accent:hover:not(:disabled) {
+  background: var(--accent-hover);
+  box-shadow: 0 10px 28px var(--accent-glow);
+}
+
+.outline {
+  border: 1.5px solid var(--border-strong);
+  color: var(--text);
+}
+
+.outline:hover:not(:disabled) {
+  background: var(--surface-2);
+  border-color: var(--text-faint);
+}
+
+.ghost {
+  color: var(--text-muted);
+  padding: 0 14px;
+}
+
+.ghost:hover:not(:disabled) {
+  color: var(--text);
+  background: var(--surface-2);
+}
+
+/* Круглые кнопки-иконки */
+.iconButton {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  border-radius: 50%;
+  color: var(--text-muted);
+  transition:
+    background-color var(--dur) var(--ease),
+    color var(--dur) var(--ease),
+    transform var(--dur-fast) var(--ease);
+}
+
+.iconButton:hover:not(:disabled) {
+  color: var(--text);
+  background: var(--surface-2);
+}
+
+.iconButton:active:not(:disabled) {
+  transform: scale(0.92);
+}
+
+.iconButton:disabled {
+  opacity: 0.45;
+}
+
+.small {
+  width: 30px;
+  height: 30px;
+}
+
+.medium {
+  width: 36px;
+  height: 36px;
+}
+
+.large {
+  width: 44px;
+  height: 44px;
+}
+
+.active {
+  color: var(--accent-text);
+}
+
+.active:hover:not(:disabled) {
+  color: var(--accent-text);
+}
+
+/*
+ * Переключатель (повтор, перемешивание): включённый виден сразу — акцентная иконка, мягкая подложка
+ * и точка под иконкой; выключенный — обычная приглушённая иконка.
+ */
+.toggle {
+  position: relative;
+}
+
+.toggle::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 3px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent-text);
+  transform: translateX(-50%) scale(0);
+  transition: transform var(--dur) var(--ease);
+}
+
+.toggleOn,
+.toggleOn:hover:not(:disabled) {
+  background: var(--accent-soft);
+  box-shadow: inset 0 0 0 1px var(--accent-soft);
+}
+
+.toggleOn::after {
+  transform: translateX(-50%) scale(1);
+}

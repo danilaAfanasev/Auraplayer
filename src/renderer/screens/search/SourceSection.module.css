@@ -1,0 +1,80 @@
+.section + .section {
+  margin-top: 28px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.count {
+  padding: 2px 9px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: var(--surface-2);
+}
+
+.more {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: auto;
+  padding: 4px 6px 4px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition:
+    color var(--dur) var(--ease),
+    background-color var(--dur) var(--ease);
+}
+
+.more:hover {
+  color: var(--text);
+  background: var(--surface-2);
+}
+
+.notice {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 60px;
+  padding: 12px 16px;
+  border-radius: var(--radius-m);
+  border: 1px dashed var(--border-strong);
+  color: var(--text-muted);
+  animation: fade var(--dur-slow) var(--ease) both;
+}
+
+.noticeIcon {
+  flex: none;
+  color: var(--text-faint);
+}
+
+.noticeText {
+  flex: 1;
+  min-width: 0;
+  font-weight: 600;
+}
+
+.retry {
+  height: 36px;
+  padding: 0 16px;
+  font-size: 14px;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+/* «Подготовка YouTube… 45%» над скелетоном при первом поиске */
+.preparing {
+  min-height: 48px;
+  margin-bottom: 10px;
+}

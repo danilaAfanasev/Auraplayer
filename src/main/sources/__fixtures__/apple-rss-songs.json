@@ -1,0 +1,227 @@
+{
+ "feed": {
+  "title": "Топ-песни",
+  "id": "https://rss.marketingtools.apple.com/api/v2/ru/music/most-played/100/songs.json",
+  "author": {
+   "name": "Apple",
+   "url": "https://www.apple.com/"
+  },
+  "links": [
+   {
+    "self": "https://rss.marketingtools.apple.com/api/v2/ru/music/most-played/100/songs.json"
+   }
+  ],
+  "copyright": "Copyright © 2026 Apple Inc. All rights reserved.",
+  "country": "ru",
+  "icon": "https://www.apple.com/favicon.ico",
+  "updated": "Sat, 24 Oct 2026 16:46:37 +0000",
+  "results": [
+   {
+    "artistName": "VILLIAN & madk1d",
+    "id": "6793620672",
+    "name": "ДИНАСТИЯ",
+    "releaseDate": "2026-07-24",
+    "kind": "songs",
+    "artistId": "1818347359",
+    "artistUrl": "https://music.apple.com/ru/artist/villian/1818347359",
+    "contentAdvisoryRating": "Explict",
+    "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/1f/72/90/1f729078-0a21-ede0-5246-f501f51a7339/cover.jpg/100x100bb.jpg",
+    "genres": [
+     {
+      "name": "Хип-хоп"
+     },
+     {
+      "name": "Музыка"
+     }
+    ],
+    "url": "https://music.apple.com/ru/album/%D0%B4%D0%B8%D0%BD%D0%B0%D1%81%D1%82%D0%B8%D1%8F/6793617802?i=6793620672"
+   },
+   {
+    "artistName": "МАЯК X",
+    "id": "6820477982",
+    "name": "Украсть тебя",
+    "releaseDate": "2026-10-08",
+    "kind": "songs",
+    "artistId": "1858260304",
+    "artistUrl": "https://music.apple.com/ru/artist/%D0%BC%D0%B0%D1%8F%D0%BA-x/1858260304",
+    "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/b7/04/d8/b704d867-11ec-0252-a5ea-62f16b6121fd/cover.jpg/100x100bb.jpg",
+    "genres": [
+     {
+      "name": "Поп"
+     },
+     {
+      "name": "Музыка"
+     }
+    ],
+    "url": "https://music.apple.com/ru/album/%D1%83%D0%BA%D1%80%D0%B0%D1%81%D1%82%D1%8C-%D1%82%D0%B5%D0%B1%D1%8F/6820477617?i=6820477982"
+   },
+   {
+    "artistName": "By Индия, Xcho & МОТ",
+    "id": "6766252279",
+    "name": "Шадэ",
+    "releaseDate": "2026-05-08",
+    "kind": "songs",
+    "artistId": "1524416796",
+    "artistUrl": "https://music.apple.com/ru/artist/by-%D0%B8%D0%BD%D0%B4%D0%B8%D1%8F/1524416796",
+    "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/53/bb/9a/53bb9a92-fc7e-e6c5-68d2-25f3701f7ed7/cover.jpg/100x100bb.jpg",
+    "genres": [
+     {
+      "name": "Поп"
+     },
+     {
+      "name": "Музыка"
+     }
+    ],
+    "url": "https://music.apple.com/ru/album/%D1%88%D0%B0%D0%B4%D1%8D/6766252274?i=6766252279"
+   },
+   {
+    "artistName": "Татьяна Буланова",
+    "id": "1394028184",
+    "name": "Ледяное сердце",
+    "releaseDate": "1998-01-01",
+    "kind": "songs",
+    "artistId": "459071512",
+    "artistUrl": "https://music.apple.com/ru/artist/%D1%82%D0%B0%D1%82%D1%8C%D1%8F%D0%BD%D0%B0-%D0%B1%D1%83%D0%BB%D0%B0%D0%BD%D0%BE%D0%B2%D0%B0/459071512",
+    "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1a/6b/7d/1a6b7d90-b63a-78cb-d702-c365f3423d22/cover.jpg/100x100bb.jpg",
+    "genres": [
+     {
+      "name": "Поп"
+     },
+     {
+      "name": "Музыка"
+     }
+    ],
+    "url": "https://music.apple.com/ru/album/%D0%BB%D0%B5%D0%B4%D1%8F%D0%BD%D0%BE%D0%B5-%D1%81%D0%B5%D1%80%D0%B4%D1%86%D0%B5/1394028165?i=1394028184"
+   },
+   {
+    "artistName": "Imael Angel",
+    "id": "1894224409",
+    "name": "BAD TIMES",
+    "releaseDate": "2026-03-30",
+    "kind": "songs",
+    "artistId": "1890366317",
+    "artistUrl": "https://music.apple.com/ru/artist/imael-angel/1890366317",
+    "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d5/ad/da/d5adda6b-65f4-755a-05ab-f33a4e0e4cdd/artwork.jpg/100x100bb.jpg",
+    "genres": [
+     {
+      "name": "Хаус"
+     },
+     {
+      "name": "Музыка"
+     },
+     {
+      "name": "Танцевальная"
+     }
+    ],
+    "url": "https://music.apple.com/ru/album/bad-times/1894224408?i=1894224409"
+   },
+   {
+    "artistName": "ENZRO",
+    "id": "6767217103",
+    "name": "Ты не бойся ночи",
+    "releaseDate": "2026-04-15",
+    "kind": "songs",
+    "artistId": "1830049975",
+    "artistUrl": "https://music.apple.com/ru/artist/enzro/1830049975",
+    "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/cb/cc/d6/cbccd600-646a-6b6e-8c20-c2b0c7a03c94/0.jpg/100x100bb.jpg",
+    "genres": [
+     {
+      "name": "Поп"
+     },
+     {
+      "name": "Музыка"
+     },
+     {
+      "name": "Танцевальная"
+     },
+     {
+      "name": "Хаус"
+     }
+    ],
+    "url": "https://music.apple.com/ru/album/%D1%82%D1%8B-%D0%BD%D0%B5-%D0%B1%D0%BE%D0%B9%D1%81%D1%8F-%D0%BD%D0%BE%D1%87%D0%B8/1896427685?i=6767217103"
+   },
+   {
+    "artistName": "Koss & ПЛУТТО",
+    "id": "6807444951",
+    "name": "Земляк",
+    "releaseDate": "2026-09-11",
+    "kind": "songs",
+    "artistId": "1391094568",
+    "artistUrl": "https://music.apple.com/ru/artist/koss/1391094568",
+    "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/43/8c/34/438c34f5-d859-bb13-c99c-0468296db210/cover.jpg/100x100bb.jpg",
+    "genres": [
+     {
+      "name": "Поп"
+     },
+     {
+      "name": "Музыка"
+     }
+    ],
+    "url": "https://music.apple.com/ru/album/%D0%B7%D0%B5%D0%BC%D0%BB%D1%8F%D0%BA/6807444950?i=6807444951"
+   },
+   {
+    "artistName": "BEARWOLF",
+    "id": "1877777287",
+    "name": "Феникс",
+    "releaseDate": "2026-02-20",
+    "kind": "songs",
+    "artistId": "1764325904",
+    "artistUrl": "https://music.apple.com/ru/artist/bearwolf/1764325904",
+    "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/16/fa/f3/16faf31d-ea7f-be83-cc25-64bcd83252b1/0.jpg/100x100bb.jpg",
+    "genres": [
+     {
+      "name": "Поп"
+     },
+     {
+      "name": "Музыка"
+     },
+     {
+      "name": "Рок"
+     }
+    ],
+    "url": "https://music.apple.com/ru/album/%D1%84%D0%B5%D0%BD%D0%B8%D0%BA%D1%81/1877777286?i=1877777287"
+   },
+   {
+    "artistName": "Mary Gu",
+    "id": "6823386337",
+    "name": "Королевство кривых зеркал",
+    "releaseDate": "2026-10-23",
+    "kind": "songs",
+    "artistId": "1161673879",
+    "artistUrl": "https://music.apple.com/ru/artist/mary-gu/1161673879",
+    "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/07/94/a6/0794a64f-1631-d43e-b1d7-b9bbd472e3c1/0.jpg/100x100bb.jpg",
+    "genres": [
+     {
+      "name": "Поп"
+     },
+     {
+      "name": "Музыка"
+     },
+     {
+      "name": "Рок"
+     }
+    ],
+    "url": "https://music.apple.com/ru/album/%D0%BA%D0%BE%D1%80%D0%BE%D0%BB%D0%B5%D0%B2%D1%81%D1%82%D0%B2%D0%BE-%D0%BA%D1%80%D0%B8%D0%B2%D1%8B%D1%85-%D0%B7%D0%B5%D1%80%D0%BA%D0%B0%D0%BB/6823386335?i=6823386337"
+   },
+   {
+    "artistName": "Леша Свик & Лолита",
+    "id": "6823194022",
+    "name": "Так хотели",
+    "releaseDate": "2026-10-23",
+    "kind": "songs",
+    "artistId": "1101305467",
+    "artistUrl": "https://music.apple.com/ru/artist/%D0%BB%D0%B5%D1%88%D0%B0-%D1%81%D0%B2%D0%B8%D0%BA/1101305467",
+    "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/13/fb/4e/13fb4eaf-da77-41f4-204d-85edad876058/cover.jpg/100x100bb.jpg",
+    "genres": [
+     {
+      "name": "Поп"
+     },
+     {
+      "name": "Музыка"
+     }
+    ],
+    "url": "https://music.apple.com/ru/album/%D1%82%D0%B0%D0%BA-%D1%85%D0%BE%D1%82%D0%B5%D0%BB%D0%B8/6823194021?i=6823194022"
+   }
+  ]
+ }
+}

@@ -1,0 +1,112 @@
+.presets {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 14px;
+}
+
+.preset {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 8px 8px 12px;
+  border-radius: var(--radius-m);
+  text-align: left;
+  background: var(--surface);
+  border: 2px solid transparent;
+  box-shadow: 0 0 0 1px var(--border) inset;
+  transition:
+    transform var(--dur) var(--ease),
+    background-color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+
+.preset:hover {
+  background: var(--surface-2);
+  transform: translateY(-2px);
+}
+
+.preset:active {
+  transform: scale(0.98);
+}
+
+.selected,
+.selected:hover {
+  border-color: var(--accent);
+  box-shadow: 0 8px 26px var(--accent-soft);
+}
+
+.presetName {
+  padding: 0 6px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.check {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  color: var(--accent-contrast);
+  background: var(--accent);
+  box-shadow: 0 2px 8px var(--shadow);
+  opacity: 0;
+  transform: scale(0.5);
+  transition:
+    opacity var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+}
+
+.selected .check {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.custom {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 22px;
+  border-top: 1px solid var(--border);
+}
+
+.customHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.badge {
+  margin-left: 10px;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  color: var(--accent-text);
+  background: var(--accent-soft);
+  font-size: 12px;
+  font-weight: 700;
+  vertical-align: middle;
+}
+
+.customBody {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 28px 36px;
+}
+
+.pickers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 32px;
+}
+
+.livePreview {
+  flex: 1 1 260px;
+  max-width: 420px;
+}

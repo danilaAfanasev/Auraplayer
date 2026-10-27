@@ -1,0 +1,14 @@
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  margin: -8px 0 20px;
+}
+
+.note {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+}

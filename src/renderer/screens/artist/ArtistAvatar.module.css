@@ -1,0 +1,17 @@
+.avatar {
+  flex: none;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 50%;
+  font-weight: 800;
+  color: var(--accent-contrast);
+  background: linear-gradient(140deg, var(--accent-hover), var(--accent));
+  box-shadow: 0 10px 28px var(--shadow);
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

@@ -1,0 +1,258 @@
+.bar {
+  container: player / inline-size;
+  margin: 0 var(--content-pad) 22px;
+  padding: 14px 22px 12px;
+  border-radius: var(--radius-l);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  box-shadow: 0 18px 50px var(--shadow);
+  backdrop-filter: blur(24px);
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.top {
+  display: grid;
+  grid-template-columns: minmax(150px, 1.5fr) auto auto minmax(130px, 1fr);
+  align-items: center;
+  gap: 12px;
+}
+
+/* Текущий трек */
+.track {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.cover {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-s);
+  color: var(--text-muted);
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--accent-soft), var(--surface-hover));
+}
+
+.cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: fade-in var(--dur-slow) var(--ease) both;
+}
+
+.meta {
+  min-width: 0;
+}
+
+.title,
+.artist {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.title {
+  font-weight: 700;
+}
+
+.sub {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  margin-top: 2px;
+}
+
+.artist {
+  min-width: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* Кнопки трека — в «таблетке», как в референсе: один размер, один ряд, по центру */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border-radius: var(--radius-s);
+  background: var(--surface-2);
+}
+
+.transport {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.play {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  margin: 0 4px;
+  border-radius: 50%;
+  background: var(--play-bg);
+  color: var(--play-icon);
+  box-shadow: 0 6px 18px var(--shadow);
+  transition:
+    transform var(--dur-fast) var(--ease),
+    box-shadow var(--dur) var(--ease),
+    opacity var(--dur) var(--ease);
+}
+
+.play:hover:not(:disabled) {
+  transform: scale(1.06);
+}
+
+.play:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.play:disabled {
+  opacity: 0.75;
+}
+
+.playIcon {
+  margin-left: 2px;
+}
+
+.volume {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+/* Громкость не ужимается: при нехватке места перестраивается панель (ниже), а не ползунок. */
+.volumeSlider {
+  flex: none;
+  width: 90px;
+}
+
+/* Прогресс */
+.progress {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.progressSlider {
+  flex: 1;
+}
+
+.time {
+  flex: none;
+  min-width: 40px;
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* «Волна: <название>» над играющим треком */
+.wave {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  max-width: 100%;
+  margin-bottom: 1px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--accent-text);
+}
+
+.wave > svg {
+  flex: none;
+}
+
+.waveTitle {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.waveOff {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  color: var(--text-muted);
+  transition:
+    color var(--dur) var(--ease),
+    background-color var(--dur) var(--ease);
+}
+
+.waveOff:hover {
+  color: var(--text);
+  background: var(--surface-hover);
+}
+
+/*
+ * Узкая панель (окно 1100–1400 px с раскрытым сайдбаром и правой колонкой): в один ряд всё не помещается —
+ * кнопки трека уходят во второй ряд, к прогрессу; трек, транспорт и громкость остаются наверху целиком.
+ */
+@container player (max-width: 800px) {
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(auto, 1fr) auto auto;
+    grid-template-areas:
+      'track transport volume'
+      'actions progress progress';
+    align-items: center;
+    gap: 10px 12px;
+  }
+
+  .top {
+    display: contents;
+  }
+
+  .track {
+    grid-area: track;
+  }
+
+  .actions {
+    grid-area: actions;
+    justify-self: start;
+  }
+
+  .transport {
+    grid-area: transport;
+  }
+
+  .volume {
+    grid-area: volume;
+  }
+
+  .progress {
+    grid-area: progress;
+  }
+}
+
+/* Совсем узко (запас): повтор и перемешивание прячутся раньше громкости. */
+@container player (max-width: 560px) {
+  .transport > button:first-child,
+  .transport > button:last-child {
+    display: none;
+  }
+}
