@@ -25,7 +25,9 @@ import { AddToPlaylistButton } from '../AddToPlaylistMenu/AddToPlaylistMenu';
 import { ArtistLinks } from '../ArtistLinks/ArtistLinks';
 import { IconButton } from '../Button/Button';
 import { DownloadButton } from '../DownloadButton/DownloadButton';
+import { EqButton } from '../Equalizer/EqButton';
 import { LikeButton } from '../LikeButton/LikeButton';
+import { LyricsButton } from '../Lyrics/LyricsButton';
 import { SourceBadge } from '../SourceBadge/SourceBadge';
 import { WaveButton } from '../WaveButton/WaveButton';
 import styles from './PlayerBar.module.css';
@@ -77,7 +79,7 @@ function NowPlayingInfo() {
 }
 
 /**
- * «Не нравится», ♥, «+», «Скачать», «Волна по треку» для играющего трека — одного размера, в один ряд.
+ * «Не нравится», ♥, «+», «Скачать», «Волна по треку» для играющего трека, «Текст» и эквалайзер — одного размера, в один ряд.
  * «Не нравится» — у любого трека: он уходит в чёрный список, плеер переходит к следующему.
  */
 function TrackActions() {
@@ -95,6 +97,8 @@ function TrackActions() {
       <AddToPlaylistButton track={track} icon="list" size="medium" />
       <DownloadButton track={track} size="medium" />
       <WaveButton track={track} size="medium" />
+      <LyricsButton size="medium" />
+      <EqButton size="medium" />
     </div>
   );
 }

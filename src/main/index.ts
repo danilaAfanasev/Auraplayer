@@ -1,11 +1,12 @@
 // Точка входа main-процесса Aura.
-import { app, BrowserWindow, Menu, protocol } from 'electron';
+import { app, BrowserWindow, Menu, protocol, session } from 'electron';
 import { buildPalette } from '../shared/palette';
 import { registerIpc } from './ipc';
 import { attachFlushOnClose, registerQuitFlush } from './ipc/app';
 import { cancelAllDownloads, mediaRoots, sweepDownloadLeftovers } from './ipc/downloads';
 import { registerMediaKeys } from './ipc/media';
 import { prepareYtDlpInBackground } from './ipc/ytdlp';
+import { installMediaCors } from './mediaCors';
 import { MEDIA_SCHEME_PRIVILEGES, registerMediaProtocol } from './protocol';
 import { getSettings } from './settingsStore';
 import { setStoreDir } from './store';
@@ -47,6 +48,8 @@ if (!app.requestSingleInstanceLock()) {
     Menu.setApplicationMenu(null);
     setStoreDir(app.getPath('userData'));
     registerMediaProtocol(protocol, mediaRoots);
+    // Звук с CDN — с разрешением CORS: иначе звуковой граф (эквалайзер, саундвейв) получает тишину.
+    installMediaCors(session.defaultSession);
     registerIpc();
     // Выход посреди загрузки: отменить загрузки (с уборкой .part), потом дописать файлы.
     registerQuitFlush(cancelAllDownloads);

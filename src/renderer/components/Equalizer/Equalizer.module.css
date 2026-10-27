@@ -1,0 +1,360 @@
+.anchor {
+  display: inline-flex;
+}
+
+/* Окошко над кнопкой в панели плеера */
+.popover {
+  position: fixed;
+  z-index: 300;
+  overflow-y: auto;
+  padding: 16px;
+  border-radius: var(--radius-m);
+  background: var(--popover);
+  border: 1px solid var(--border-strong);
+  box-shadow: 0 18px 48px var(--shadow);
+  animation: eq-in var(--dur) var(--ease) both;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.panelLarge {
+  gap: 16px;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.headText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.status {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* Переключатель — как в настройках */
+.switch {
+  position: relative;
+  flex: none;
+  width: 44px;
+  height: 26px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-hover);
+  border: 1px solid var(--border-strong);
+  transition:
+    background-color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
+}
+
+.switch::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  transition:
+    transform var(--dur) var(--ease),
+    background-color var(--dur) var(--ease);
+}
+
+.switch[aria-checked='true'] {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.switch[aria-checked='true']::after {
+  background: var(--accent-contrast);
+  transform: translateX(18px);
+}
+
+.switch:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+/* Пресеты-кнопки */
+.presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  padding: 6px 11px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-strong);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease);
+}
+
+.chip:hover {
+  color: var(--text);
+  background: var(--surface-hover);
+}
+
+.chip:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.chipActive,
+.chipActive:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.chipStatic {
+  cursor: default;
+}
+
+/* Выключен — приглушено, но живо */
+.off {
+  opacity: 0.45;
+  transition: opacity var(--dur) var(--ease);
+}
+
+.off:hover,
+.off:focus-within {
+  opacity: 0.7;
+}
+
+/* Кривая с точками */
+.curve {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.curveArea {
+  position: relative;
+  height: 150px;
+  touch-action: none;
+  cursor: ns-resize;
+  border-radius: var(--radius-xs);
+}
+
+.curveLarge .curveArea {
+  height: 220px;
+}
+
+.curveSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.zeroLine {
+  stroke: var(--border-strong);
+  stroke-width: 1;
+}
+
+.curveFill {
+  fill: var(--accent);
+  fill-opacity: 0.12;
+  stroke: none;
+}
+
+.curveLine {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
+
+.point {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--popover);
+  box-shadow: 0 2px 6px var(--shadow);
+  cursor: grab;
+  transition:
+    transform var(--dur-fast) var(--ease),
+    box-shadow var(--dur-fast) var(--ease);
+}
+
+.curveLarge .point {
+  width: 18px;
+  height: 18px;
+  margin: -9px 0 0 -9px;
+}
+
+.point:hover,
+.pointActive {
+  transform: scale(1.2);
+}
+
+.pointActive {
+  cursor: grabbing;
+}
+
+.point:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+.pointValue {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 3px 7px;
+  border-radius: var(--radius-xs);
+  background: var(--text);
+  color: var(--popover);
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.bandLabels {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.hint {
+  margin-top: -6px;
+  font-size: 12px;
+  color: var(--text-faint);
+}
+
+/* Кнопки внизу */
+.actions,
+.saveForm {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ghost,
+.primary {
+  padding: 7px 13px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 700;
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    opacity var(--dur-fast) var(--ease);
+}
+
+.ghost {
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+}
+
+.ghost:hover {
+  background: var(--surface-hover);
+}
+
+.primary {
+  background: var(--play-bg);
+  color: var(--play-icon);
+}
+
+.primary:hover {
+  opacity: 0.88;
+}
+
+.ghost:focus-visible,
+.primary:focus-visible,
+.link:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.link {
+  margin-left: auto;
+  padding: 6px 4px;
+  border-radius: var(--radius-xs);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.link:hover {
+  color: var(--text);
+}
+
+.nameInput {
+  flex: 1;
+  min-width: 140px;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  user-select: text;
+}
+
+.nameInput:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.error {
+  flex-basis: 100%;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--danger);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@keyframes eq-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.98);
+  }
+}

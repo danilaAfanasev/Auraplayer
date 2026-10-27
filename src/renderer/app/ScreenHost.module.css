@@ -7,6 +7,11 @@
   scrollbar-gutter: stable;
 }
 
+/* Над экраном плашка обновления: отступ под заголовок окна уже дала она. */
+:global([data-update-banner='shown']) > .host {
+  padding-top: 12px;
+}
+
 .screen {
   max-width: 1180px;
   margin: 0 auto;

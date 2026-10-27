@@ -1,0 +1,73 @@
+/* Строка под шапкой артиста: «Есть другие исполнители с именем …» и переключатели */
+.namesakes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+  margin: -12px 0 28px;
+  padding: 12px 18px;
+  border-radius: var(--radius-m);
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  animation: rise var(--dur-slow) var(--ease) both;
+}
+
+.text {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 260px;
+  padding: 4px 16px 4px 4px;
+  border-radius: var(--radius-pill);
+  text-align: left;
+  color: var(--text);
+  transition: background-color var(--dur) var(--ease);
+}
+
+.chip:hover,
+.chip:focus-visible {
+  background: var(--surface-2);
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.name,
+.genre {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.name {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.genre {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-faint);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}

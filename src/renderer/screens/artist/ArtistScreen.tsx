@@ -21,10 +21,11 @@ import { useUi } from '../../stores/useUi';
 import { artistWaveSeed, useWave } from '../../stores/useWave';
 import { ArtistAvatar } from './ArtistAvatar';
 import { ArtistCard, ArtistRow } from './ArtistCard';
-import { artistQueryOf, isArtistNotFound, pageKey, useArtistPage, useArtistPages } from './artistData';
+import { artistQueryOf, isArtistNotFound, pageKey, useArtistPage, useArtistPages, visibleNamesakes } from './artistData';
 import { parseArtistParam } from './artistNav';
 import styles from './ArtistScreen.module.css';
 import { FollowButton } from './FollowButton';
+import { Namesakes } from './Namesakes';
 import { ReleaseGrid } from './ReleaseGrid';
 import { splitReleases } from './releaseFormat';
 
@@ -194,11 +195,14 @@ function Content({ page }: { page: ArtistPage }) {
   const top = allTop ? topTracks : topTracks.slice(0, TOP_PREVIEW);
   const bl = useBlacklist();
   const blocked = isArtistBlocked(artist.name, bl);
+  const followed = useLibrary((s) => s.lib.followedArtists);
+  const namesakes = useMemo(() => visibleNamesakes(page.namesakes, followed), [page.namesakes, followed]);
 
   return (
     <>
       <Header page={page} blocked={blocked} />
       {blocked && <BlockedBar name={artist.name} />}
+      <Namesakes name={artist.name} namesakes={namesakes} />
 
       <Section title="Популярные треки" aside={topTracks.length > TOP_PREVIEW && <MoreToggle open={allTop} onToggle={() => setAllTop((v) => !v)} />}>
         {topTracks.length === 0 ? (

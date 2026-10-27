@@ -55,9 +55,12 @@ export async function runThemeTransition(apply: () => void, origin?: ThemeOrigin
     await transition.ready;
     if (!reduced) {
       const radius = revealRadius(x, y, window.innerWidth, window.innerHeight);
+      // fill: 'forwards' — круг остаётся полным и после конца анимации. Без него анимация (её ведёт композитор)
+      // кончалась раньше, чем главный поток снимал снимки перехода, и до снятия действовало правило из CSS —
+      // круг нулевого радиуса: на кадр-другой (дольше, если главный поток занят) было видно старую тему.
       el.animate(
         { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
-        { duration: THEME_REVEAL_MS, easing: 'cubic-bezier(0.4, 0, 0.2, 1)', pseudoElement: '::view-transition-new(root)' },
+        { duration: THEME_REVEAL_MS, easing: 'cubic-bezier(0.4, 0, 0.2, 1)', fill: 'forwards', pseudoElement: '::view-transition-new(root)' },
       );
     }
   } catch {

@@ -1,0 +1,58 @@
+/* Селекторы с button — чтобы перебить размер и цвет базовой кнопки-иконки независимо от порядка стилей */
+
+/* В ряду кнопок страницы альбома: круг с контуром, как «⋯» у артиста */
+button.button {
+  width: 44px;
+  height: 44px;
+  border: 1.5px solid var(--border-strong);
+  color: var(--text);
+}
+
+button.button.liked {
+  color: var(--accent-text);
+}
+
+/*
+ * Поверх обложки карточки: на полупрозрачной подложке. Скрыта, пока карточка не под курсором
+ * (показывает карточка своим правилом через className); у сохранённого видна всегда.
+ */
+button.overlay {
+  position: absolute;
+  z-index: 1;
+  top: 8px;
+  right: 8px;
+  color: var(--text);
+  background: var(--overlay);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  transition:
+    opacity var(--dur) var(--ease),
+    background-color var(--dur) var(--ease),
+    color var(--dur) var(--ease),
+    transform var(--dur-fast) var(--ease);
+}
+
+button.overlay:focus-visible,
+button.overlay.liked {
+  opacity: 1;
+}
+
+button.overlay.liked {
+  color: var(--accent-text);
+}
+
+.pop svg {
+  animation: album-like-pop 320ms var(--ease);
+}
+
+@keyframes album-like-pop {
+  0% {
+    transform: scale(0.7);
+  }
+  55% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

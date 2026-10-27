@@ -23,6 +23,7 @@ import {
   parseItunesArtists,
   parsePopularArtists,
   pickDeezerArtist,
+  pickNamesakeBySong,
   selectReleases,
 } from './artists';
 import { createCatalogLimiter, createRateLimiter, ITUNES_BASE, type RateLimiter } from './catalog';
@@ -713,5 +714,123 @@ describe('лента: каждая подписка даёт своих похо
     const { fetchJson } = fakeFetch([[/entity=album/, () => new Promise(() => undefined)]]);
     const service = createArtistsService({ country: () => 'ru', fetchJson, ...memoryCache(), sleep: async () => undefined, limiter: NO_LIMIT, feedTimeouts: { followedMs: 30 } });
     await expect(service.buildFeed([{ id: '500', name: 'Подписка 0', followedAt: 1 }])).rejects.toMatchObject({ kind: 'unavailable' });
+  });
+});
+describe('тёзки: переход по имени из трека', () => {
+  const artistRow = (artistId: number, genre = 'Pop') => ({ wrapperType: 'artist', artistId, artistName: 'Zoe', primaryGenreName: genre });
+  const songRow = (artistId: number, trackName: string, artistName = 'Zoe') => ({
+    wrapperType: 'track',
+    kind: 'song',
+    trackId: artistId * 1000 + trackName.length,
+    artistId,
+    artistName,
+    trackName,
+    collectionName: 'Альбом',
+  });
+  const collection = (id: number, artistId: number) => ({
+    wrapperType: 'collection',
+    collectionType: 'Album',
+    collectionId: id,
+    artistId,
+    artistName: 'Zoe',
+    collectionName: `Релиз ${id}`,
+    trackCount: 9,
+    releaseDate: '2026-05-01T07:00:00Z',
+    artworkUrl100: `https://is1.example/${id}/100x100bb.jpg`,
+  });
+  const twoZoe = { results: [artistRow(11), artistRow(22, 'Рок'), { wrapperType: 'artist', artistId: 33, artistName: 'Zoe Beats' }] };
+
+  const make = (extra: Route[], list: unknown = twoZoe) => {
+    const ran: string[] = [];
+    const fake = fakeFetch([
+      [/search\?term=Zoe&entity=musicArtist/, list],
+      [/lookup\?id=11&entity=album.*country=ru/, { results: [artistRow(11), collection(1, 11)] }],
+      [/lookup\?id=22&entity=album.*country=ru/, { results: [artistRow(22, 'Рок'), collection(2, 22)] }],
+      ...extra,
+    ]);
+    const limiter: RateLimiter = { run: (_p, fn) => (ran.push('x'), fn()) };
+    const service = createArtistsService({ country: () => 'ru', fetchJson: fake.fetchJson, ...memoryCache(), sleep: async () => undefined, limiter });
+    const catalogCalls = () => fake.calls.filter((u) => u.startsWith(ITUNES_BASE));
+    return { service, calls: fake.calls, catalogCalls, ran };
+  };
+  const songSearch = /search\?term=Zoe%20.*&entity=song&country=/;
+
+  it('популярные треки тёзки — только его песни: песни другого исполнителя с тем же именем отсеиваются', () => {
+    const json = {
+      results: [
+        songRow(11, 'Чужой хит'),
+        songRow(22, 'Своя песня'),
+        songRow(22, 'Дуэт', 'Zoe & Кто-то'),
+        songRow(11, 'Чужой дуэт', 'Zoe & Кто-то'),
+      ],
+    };
+    expect(parseArtistSongs(json, { id: '22', name: 'Zoe' }).map((t) => t.title)).toEqual(['Своя песня', 'Дуэт', 'Чужой дуэт']);
+  });
+
+  it('pickNamesakeBySong: берёт исполнителя совпавшей песни, чужие песни с тем же названием пропускает', () => {
+    const json = { results: [songRow(99, 'Ночной звонок', 'Другой Zoe'), songRow(22, 'Ночной звонок (feat. DJ X)'), songRow(11, 'Ночной звонок')] };
+    const namesakes = [
+      { id: '11', name: 'Zoe' },
+      { id: '22', name: 'Zoe' },
+    ];
+    expect(pickNamesakeBySong(json, namesakes, 'Ночной звонок')?.id).toBe('22');
+    expect(pickNamesakeBySong(json, namesakes, 'Совсем другая песня')).toBeNull();
+    expect(pickNamesakeBySong({ results: [] }, namesakes, 'Ночной звонок')).toBeNull();
+  });
+
+  it('два точных тёзки и подсказка-трек: открывается исполнитель этой песни, второй — в namesakes с жанром', async () => {
+    const { service, catalogCalls, ran } = make([[songSearch, { results: [songRow(22, 'Ночной звонок')] }]]);
+    const page = await service.page({ name: 'Zoe', track: { title: 'Ночной звонок' } });
+    expect(page.artist).toMatchObject({ id: '22', name: 'Zoe', genre: 'Рок' });
+    expect(page.namesakes).toEqual([{ id: '11', name: 'Zoe', genre: 'Pop', imageUrl: 'https://is1.example/1/600x600bb.jpg' }]);
+    expect(catalogCalls().filter((u) => songSearch.test(u))).toHaveLength(1);
+    // каждый запрос к каталогу прошёл через ограничитель частоты
+    expect(ran).toHaveLength(catalogCalls().length);
+  });
+
+  it('без подсказки — первый из каталога, песню не ищем; тёзки всё равно отдаются', async () => {
+    const { service, catalogCalls } = make([]);
+    const page = await service.page({ name: 'Zoe' });
+    expect(page.artist.id).toBe('11');
+    expect(page.namesakes?.map((a) => a.id)).toEqual(['22']);
+    expect(catalogCalls().some((u) => songSearch.test(u))).toBe(false);
+  });
+
+  it('песня не нашлась или нет сети на её поиске — прежнее поведение: первый из каталога', async () => {
+    const miss = make([[songSearch, { results: [songRow(99, 'Ночной звонок', 'Кто-то ещё')] }]]);
+    expect((await miss.service.page({ name: 'Zoe', track: { title: 'Ночной звонок' } })).artist.id).toBe('11');
+    const broken = make([
+      [
+        songSearch,
+        () => {
+          throw new SourceError('unavailable', 'сбой');
+        },
+      ],
+    ]);
+    expect((await broken.service.page({ name: 'Zoe', track: { title: 'Ночной звонок' } })).artist.id).toBe('11');
+  });
+
+  it('тёзка один: песню не ищем, namesakes нет', async () => {
+    const { service, catalogCalls } = make([], { results: [artistRow(11), { wrapperType: 'artist', artistId: 33, artistName: 'Zoe Beats' }] });
+    const page = await service.page({ name: 'Zoe', track: { title: 'Ночной звонок' } });
+    expect(page.artist.id).toBe('11');
+    expect(page.namesakes ?? []).toEqual([]);
+    expect(catalogCalls().some((u) => songSearch.test(u))).toBe(false);
+  });
+
+  it('страница по id тёзок не ищет и поиск песни не делает', async () => {
+    const { service, catalogCalls } = make([]);
+    const page = await service.page({ id: '22' });
+    expect(page.artist.id).toBe('22');
+    expect(page.namesakes).toBeUndefined();
+    expect(catalogCalls().some((u) => u.includes('entity=musicArtist'))).toBe(false);
+  });
+
+  it('тёзок в namesakes не больше трёх', async () => {
+    const many = { results: [11, 22, 44, 55, 66, 77].map((id) => artistRow(id)) };
+    const { service } = make([], many);
+    const page = await service.page({ name: 'Zoe' });
+    expect(page.namesakes).toHaveLength(3);
+    expect(page.namesakes?.map((a) => a.id)).toEqual(['22', '44', '55']);
   });
 });

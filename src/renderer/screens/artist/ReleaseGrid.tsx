@@ -1,6 +1,7 @@
 import { Disc3, LoaderCircle, Play } from 'lucide-react';
 import { useState } from 'react';
 import type { ArtistRelease } from '../../../shared/types';
+import { AlbumLikeButton } from '../../components/AlbumLikeButton/AlbumLikeButton';
 import { ArtistLinks } from '../../components/ArtistLinks/ArtistLinks';
 import { useNow } from '../../components/useNow';
 import { playRelease, releaseArtists } from './artistData';
@@ -40,6 +41,7 @@ function ReleaseCard({ release, currentArtist }: { release: ArtistRelease; curre
         >
           {release.coverUrl ? <img src={release.coverUrl} alt="" loading="lazy" draggable={false} /> : <Disc3 size={40} strokeWidth={1.4} />}
         </button>
+        <AlbumLikeButton release={release} variant="overlay" size="small" className={styles.like} />
         <button
           type="button"
           className={[styles.play, loading ? styles.playVisible : ''].join(' ')}
@@ -56,6 +58,7 @@ function ReleaseCard({ release, currentArtist }: { release: ArtistRelease; curre
       <ArtistLinks
         artist={release.artist}
         title={release.title}
+        trackHint={false}
         except={currentArtist}
         known={releaseArtists(release)}
         className={styles.artist}
@@ -66,7 +69,10 @@ function ReleaseCard({ release, currentArtist }: { release: ArtistRelease; curre
   );
 }
 
-/** Сетка релизов: обложка и название (клик — страница альбома, «играть» на обложке — слушать), исполнители ссылками, вид и дата. */
+/**
+ * Сетка релизов: обложка и название (клик — страница альбома, «играть» на обложке — слушать, сердечко — сохранить альбом),
+ * исполнители ссылками, вид и дата.
+ */
 export function ReleaseGrid({ releases, currentArtist }: Props) {
   return (
     <div className={styles.grid} role="list">

@@ -24,6 +24,8 @@ export const chartsService = createChartsService({
     await getSettings(); // страна чарта — из настроек
     return fetchCatalog({ country: currentCountry() });
   },
+  // Сменили страну, пока шло обновление (settings.save зовёт refresh) — следом обновление для новой.
+  country: currentCountry,
   read: () => readJson<unknown>(CHARTS_FILE, null),
   write: (data) => writeJson(CHARTS_FILE, data),
   emit: (s) => broadcast(IPC.charts.update, s),

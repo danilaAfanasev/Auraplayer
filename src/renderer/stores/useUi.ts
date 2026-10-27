@@ -10,6 +10,7 @@ export type ScreenName =
   | 'tag'
   | 'playlist'
   | 'likes'
+  | 'albums'
   | 'downloads'
   | 'local'
   | 'history'

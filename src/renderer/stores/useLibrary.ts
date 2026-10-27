@@ -4,7 +4,7 @@ import { create } from 'zustand';
 import type { ArtistToBlock } from '../../shared/blacklist';
 import * as ops from '../../shared/library';
 import type { TasteEvent } from '../../shared/taste';
-import type { ArtistRef, LibraryData, Playlist, Track } from '../../shared/types';
+import type { ArtistRef, ArtistRelease, LibraryData, Playlist, Track } from '../../shared/types';
 import { errorMessage } from '../app/errors';
 import { createDebouncedSaver } from './persist';
 import { useUi } from './useUi';
@@ -22,6 +22,8 @@ interface LibraryState {
   movePlaylistTrack(id: string, from: number, to: number): void;
   /** Возвращает новое состояние «нравится». */
   toggleLike(track: Track): boolean;
+  /** Сохранить альбом снимком или убрать; треки альбома не лайкаются. Возвращает новое состояние «сохранён». */
+  toggleAlbumLike(release: ArtistRelease): boolean;
   pushHistory(track: Track, at?: number): void;
   follow(artist: ArtistRef): void;
   /** «Подписаться на всех»: уже подписанные пропускаются. */
@@ -55,7 +57,8 @@ export const useLibrary = create<LibraryState>((set, get) => {
   const commit = (lib: LibraryData) => {
     if (lib === get().lib) return;
     set({ lib });
-    if (canSave) saver.schedule(lib);
+    // Подписчики (трекер вкуса) могли внутри `set` уже записать своё поверх `lib` — сохраняем то, что в сторе сейчас.
+    if (canSave) saver.schedule(get().lib);
   };
 
   return {
@@ -105,6 +108,11 @@ export const useLibrary = create<LibraryState>((set, get) => {
       commit(lib);
       return ops.isLiked(lib, track.id);
     },
+    toggleAlbumLike(release) {
+      const lib = ops.toggleAlbumLike(get().lib, release);
+      commit(lib);
+      return ops.isAlbumLiked(lib, release.id);
+    },
     pushHistory(track, at = Date.now()) {
       commit(ops.pushHistory(get().lib, track, at));
     },
@@ -145,6 +153,9 @@ export const flushLibrary = (): Promise<void> => saver.flush();
 
 /** Селектор: стоит ли «нравится» у трека. */
 export const useIsLiked = (trackId: string): boolean => useLibrary((s) => s.lib.likes.includes(trackId));
+
+/** Селектор: сохранён ли альбом (по id релиза). */
+export const useIsAlbumLiked = (releaseId: string): boolean => useLibrary((s) => s.lib.likedAlbums.some((a) => a.release.id === releaseId));
 
 /** Селектор: подписан ли пользователь на артиста. */
 export const useIsFollowing = (artistId: string): boolean => useLibrary((s) => s.lib.followedArtists.some((a) => a.id === artistId));

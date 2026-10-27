@@ -80,6 +80,12 @@
   transform: none;
 }
 
+/* Сердечко «Сохранить альбом» — появляется вместе с «играть» */
+.card:hover .like,
+.cover:focus-within .like {
+  opacity: 1;
+}
+
 .title,
 .artist,
 .meta,

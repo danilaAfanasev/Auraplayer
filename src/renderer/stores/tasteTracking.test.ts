@@ -32,6 +32,7 @@ const track = (id: string, artist: string, title = `Песня ${id}`): Track =>
 });
 
 let streams: Map<string, (url: string) => void>;
+let saved: import('../../shared/types').LibraryData[];
 let initial: import('../../shared/types').LibraryData;
 let library: typeof import('./useLibrary');
 let player: typeof import('./usePlayer');
@@ -54,6 +55,7 @@ beforeEach(async () => {
   vi.resetModules();
   engine.handlers = {};
   streams = new Map();
+  saved = [];
   initial = (await import('../../shared/library')).emptyLibrary();
   vi.stubGlobal('localStorage', { getItem: () => null, setItem: () => undefined, removeItem: () => undefined });
   vi.stubGlobal('window', {
@@ -61,7 +63,7 @@ beforeEach(async () => {
     aura: {
       resolveStream: (t: Track) => new Promise<string>((resolve) => streams.set(t.id, resolve)),
       prepareStreams: async () => undefined,
-      library: { load: async () => initial, save: async () => undefined },
+      library: { load: async () => initial, save: async (lib: import('../../shared/types').LibraryData) => void saved.push(lib) },
       onBeforeClose: () => () => undefined,
     },
   });
@@ -139,5 +141,40 @@ describe('трекер вкуса', () => {
     ]);
     library.useLibrary.getState().toggleLike(track('l', 'Liked & Co')); // снял лайк — ничего
     expect(events()).toHaveLength(3);
+  });
+
+  it('лайк альбома — «нравится» каждому исполнителю альбома; снятие и загрузка библиотеки с альбомами — нет', async () => {
+    const ops = await import('../../shared/library');
+    const release = (id: string, artist: string) => ({
+      id,
+      title: `Альбом ${id}`,
+      artist,
+      artistId: '1',
+      kind: 'album' as const,
+      releaseDate: '2026-10-23',
+      trackCount: 9,
+    });
+    initial = ops.toggleAlbumLike(ops.emptyLibrary(), release('1', 'Old'), 1);
+    await start();
+    expect(events()).toEqual([]);
+    library.useLibrary.getState().toggleAlbumLike(release('2', 'Captown & Niman'));
+    expect(events()).toEqual([
+      ['Captown', 'like'],
+      ['Niman', 'like'],
+    ]);
+    library.useLibrary.getState().toggleAlbumLike(release('2', 'Captown & Niman')); // убрал — ничего
+    expect(events()).toHaveLength(2);
+    // лайки треков не тронуты
+    expect(library.useLibrary.getState().lib.likes).toEqual([]);
+  });
+
+  it('во вкус попало то же, что записано в файл: сохраняется библиотека уже с событием вкуса, а не до него', async () => {
+    await start();
+    const release = { id: '5', title: 'Альбом', artist: 'Captown', artistId: '1', kind: 'album' as const, releaseDate: '2026-10-23', trackCount: 9 };
+    library.useLibrary.getState().toggleAlbumLike(release);
+    await library.flushLibrary();
+    const last = saved.at(-1)!;
+    expect(last.likedAlbums.map((a) => a.release.id)).toEqual(['5']);
+    expect(last.taste.events.map((e) => [e.artist, e.kind])).toEqual([['Captown', 'like']]);
   });
 });

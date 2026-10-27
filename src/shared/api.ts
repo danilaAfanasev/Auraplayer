@@ -14,6 +14,10 @@ import type {
   SourceResult,
   Track,
 } from './types';
+import type { Lyrics } from './lyrics';
+import type { UpdateCheck } from './version';
+
+export type { UpdateCheck };
 
 export type MediaKey = 'play-pause' | 'next' | 'prev';
 
@@ -59,7 +63,10 @@ export interface ArtistFeedSnapshot {
 }
 
 /** Страница артиста: по id каталога или по имени (похожие артисты известны только по имени). */
-export type ArtistQuery = { id: string } | { name: string };
+export type ArtistQuery =
+  | { id: string }
+  /** `track` — подсказка: трек, с которого перешли по имени (при точных тёзках откроется тот, чья это песня). */
+  | { name: string; track?: { title: string } };
 
 /**
  * Текст ошибки страницы артиста, когда имени нет в каталоге точно (тёзки с похожим именем не подставляются):
@@ -197,6 +204,12 @@ export interface AuraApi {
     /** Следующая порция: похожие на недавние треки и на сиды. */
     more(req: WaveMoreRequest): Promise<Track[]>;
   };
+  lyrics: {
+    /** Текст песни играющего трека (G63): из кэша или из базы текстов. Нет текста — `{ kind: 'none' }`; сбой сети — исключение. */
+    get(track: Track): Promise<Lyrics>;
+    /** Загрузить тексты заранее (текущий и следующие треки); отвечает сразу, ошибки молчат. */
+    prefetch(tracks: Track[]): Promise<void>;
+  };
   pickDownloadDir(): Promise<string | null>;
   openExternal(url: string): Promise<void>; // только http(s)
   showInFolder(path: string): Promise<void>;
@@ -212,6 +225,23 @@ export interface AuraApi {
    * чтобы отложенные сохранения успели дописаться.
    */
   onBeforeClose(cb: () => Promise<void>): () => void;
+  /** Обновление Aura из релизов GitHub (G46–G49). */
+  update: {
+    /** Версия установленной Aura (`X.Y.Z`). */
+    version(): Promise<string>;
+    /**
+     * Есть ли версия новее. `manual` — проверка кнопкой «Проверить обновления»: ошибка сети приходит как `error`;
+     * при запуске ошибки молчат (`none`). Не упакованная Aura (dev) без подменённого адреса — всегда `none`.
+     */
+    check(manual?: boolean): Promise<UpdateCheck>;
+    /** Скачать найденное обновление (ошибка — исключение с человеческим текстом; отмена — тоже исключение). */
+    download(): Promise<void>;
+    cancel(): Promise<void>;
+    /** Запустить установщик и выйти из Aura (с сохранением); после установки Aura откроется сама. */
+    install(): Promise<void>;
+    /** Ход скачивания: 0..1, -1 — неизвестно. */
+    onProgress(cb: (fraction: number) => void): () => void;
+  };
 }
 
 /**

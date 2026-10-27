@@ -340,3 +340,8 @@
   margin: 0 6px;
   padding: 12px 2px 0;
 }
+
+/* Саундвейв на фоне: под полупрозрачной поверхностью — подложка, приглушающая волну за текстом. */
+:global(:root[data-soundwave]) .sidebar {
+  background: linear-gradient(var(--surface), var(--surface)), var(--wave-scrim);
+}

@@ -5,6 +5,7 @@
 // кэш — artist-feed.json, без сети остаётся сохранённая лента.
 // Модуль не импортирует electron: чтение/запись/рассылку задаёт src/main/ipc/charts.ts.
 import type { ArtistFeedSnapshot, ChartsSnapshot } from '../shared/api';
+import { cleanRelease } from '../shared/release';
 import { CHART_COUNTRIES, makeTrackId, type ArtistRelease, type CountryCode, type Track } from '../shared/types';
 import type { ArtistFeedData } from './sources/artists';
 import type { CatalogLists } from './sources/catalog';
@@ -37,8 +38,13 @@ export interface ArtistFeedDeps {
 }
 
 export interface ChartsServiceDeps {
-  /** Скачать свежий чарт (fetchCatalog). */
+  /** Скачать свежий чарт (fetchCatalog) — для страны, выбранной на момент вызова. */
   load(): Promise<CatalogLists>;
+  /**
+   * Страна чарта, выбранная сейчас. Есть — «Обновить» во время идущего обновления для другой страны
+   * ставит обновление следом, а не возвращает идущее (оно скачивает прежнюю страну).
+   */
+  country?: () => CountryCode;
   read(): Promise<unknown>;
   write(data: ChartsCache): Promise<void>;
   /** Рассылка снимка в окна после каждого изменения. */
@@ -84,26 +90,7 @@ export function normalizeChartsCache(raw: unknown): ChartsCache | null {
   return { version: 1, updatedAt: raw.updatedAt, chart, ...(country ? { country } : {}) };
 }
 
-const RELEASE_KINDS = new Set(['album', 'ep', 'single']);
 const digits = (v: unknown): v is string => typeof v === 'string' && /^\d+$/.test(v);
-
-function cleanRelease(v: unknown): ArtistRelease | null {
-  if (!isObject(v) || !digits(v.id) || !nonEmpty(v.title) || !nonEmpty(v.artist) || !digits(v.artistId)) return null;
-  if (typeof v.kind !== 'string' || !RELEASE_KINDS.has(v.kind)) return null;
-  if (typeof v.releaseDate !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(v.releaseDate)) return null;
-  const r: ArtistRelease = {
-    id: v.id,
-    title: v.title,
-    artist: v.artist,
-    artistId: v.artistId,
-    kind: v.kind as ArtistRelease['kind'],
-    releaseDate: v.releaseDate,
-    trackCount: typeof v.trackCount === 'number' && v.trackCount > 0 ? v.trackCount : 0,
-  };
-  if (nonEmpty(v.coverUrl) && v.coverUrl.startsWith('https://')) r.coverUrl = v.coverUrl;
-  if (isObject(v.similarTo) && digits(v.similarTo.id) && nonEmpty(v.similarTo.name)) r.similarTo = { id: v.similarTo.id, name: v.similarTo.name };
-  return r;
-}
 
 /** Содержимое artist-feed.json → лента; повреждённое — null. */
 export function normalizeFeedCache(raw: unknown): ArtistFeedCache | null {
@@ -137,6 +124,8 @@ export function createChartsService(deps: ChartsServiceDeps): ChartsService {
   let cache: ChartsCache | null = null;
   let loaded: Promise<void> | null = null;
   let inflight: Promise<ChartsSnapshot> | null = null;
+  /** Сверка страны после идущего обновления (и обновление для новой, если её сменили, пока оно шло). */
+  let again: Promise<ChartsSnapshot> | null = null;
   let error: ChartsSnapshot['error'] = null;
   let timer: ReturnType<typeof setInterval> | null = null;
 
@@ -185,8 +174,20 @@ export function createChartsService(deps: ChartsServiceDeps): ChartsService {
   }
 
   function refresh(): Promise<ChartsSnapshot> {
-    if (!inflight) inflight = doRefresh();
-    return inflight;
+    if (!inflight) {
+      inflight = doRefresh();
+      return inflight;
+    }
+    if (again || !deps.country) return again ?? inflight;
+    // Идущее могло начаться для прежней страны — после него сверяем страну, которую оно правда скачало
+    // (на старте настройки могли быть ещё не прочитаны), с выбранной сейчас; другая — сразу обновление для неё,
+    // та же (или переключили туда и обратно) — второй раз не скачиваем.
+    again = inflight.then((snap) => {
+      again = null;
+      const country = deps.country?.();
+      return country === undefined || (country === snap.country && !snap.error) ? snap : refresh();
+    });
+    return again;
   }
 
   // ---------- лента артистов ----------

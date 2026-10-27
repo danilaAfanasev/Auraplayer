@@ -2,7 +2,7 @@ import { mkdirSync, mkdtempSync, rmSync, symlinkSync, writeFileSync } from 'node
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
-import { mediaUrl, parseRange, resolveMediaRequest, type MediaRoots } from './protocol';
+import { MEDIA_SCHEME_PRIVILEGES, mediaResponse, mediaUrl, parseRange, resolveMediaRequest, type MediaRoots } from './protocol';
 
 let base: string;
 let allowed: string;
@@ -121,5 +121,23 @@ describe('parseRange', () => {
   it('за пределами файла — неудовлетворимый', () => {
     expect(parseRange('bytes=1000-', 1000)).toBe('unsatisfiable');
     expect(parseRange('bytes=500-100', 1000)).toBe('unsatisfiable');
+  });
+});
+
+describe('mediaResponse и CORS (звуковой граф)', () => {
+  it('схема разрешает CORS: <audio crossOrigin> получает звук, а не тишину', () => {
+    expect(MEDIA_SCHEME_PRIVILEGES.privileges?.corsEnabled).toBe(true);
+  });
+
+  it('ответ на файл и на диапазон несёт Access-Control-Allow-Origin: *', async () => {
+    const url = mediaUrl(join(allowed, 'song.mp3'));
+    const full = await mediaResponse(new Request(url), roots);
+    expect(full.status).toBe(200);
+    expect(full.headers.get('access-control-allow-origin')).toBe('*');
+    const part = await mediaResponse(new Request(url, { headers: { range: 'bytes=0-99' } }), roots);
+    expect(part.status).toBe(206);
+    expect(part.headers.get('access-control-allow-origin')).toBe('*');
+    await full.body?.cancel();
+    await part.body?.cancel();
   });
 });

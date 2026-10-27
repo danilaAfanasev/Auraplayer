@@ -1,5 +1,5 @@
 import { Check, Palette, RotateCcw } from 'lucide-react';
-import { useEffect, useState, type MouseEvent } from 'react';
+import { useEffect, useId, useState, type MouseEvent } from 'react';
 import { DEFAULT_THEME, THEME_PRESETS, type ThemePreset } from '../../../shared/palette';
 import type { ThemeSettings } from '../../../shared/types';
 import { Button } from '../../components/Button/Button';
@@ -9,6 +9,7 @@ import styles from './AppearanceSection.module.css';
 import { ColorPicker } from './ColorPicker';
 import { SettingsSection } from './SettingsSection';
 import { ThemePreview } from './ThemePreview';
+import toggles from './YoutubeSection.module.css';
 
 /** Точка анимации заливки для клика: место клика, а для клавиатуры (нет координат) — центр кнопки. */
 function originOf(e: MouseEvent<HTMLElement>): ThemeOrigin {
@@ -27,10 +28,13 @@ function themeFromColors(accent: string, background: string): ThemeSettings {
   return { presetId: preset?.id ?? null, accent, background };
 }
 
-/** Секция «Оформление»: готовые темы карточками и свои цвета (акцент + фон). */
+/** Секция «Оформление»: готовые темы карточками, свои цвета (акцент + фон) и «Саундвейв на фоне». */
 export function AppearanceSection() {
   const theme = useSettings((s) => s.settings.theme);
   const applyTheme = useSettings((s) => s.applyTheme);
+  const soundwave = useSettings((s) => s.settings.soundwave);
+  const update = useSettings((s) => s.update);
+  const soundwaveId = useId();
 
   // Черновик своих цветов: показывается в превью во время перетаскивания, в интерфейс уходит по отпусканию.
   const [draft, setDraft] = useState({ accent: theme.accent, background: theme.background });
@@ -104,6 +108,28 @@ export function AppearanceSection() {
           </div>
         </div>
       </div>
+
+      <label className={toggles.toggleRow}>
+        <span className={toggles.toggleText}>
+          <span id={soundwaveId} className={toggles.toggleTitle}>
+            Саундвейв на фоне
+          </span>
+          <span className={toggles.toggleSub}>
+            {soundwave ? 'Живая волна звука за всем окном, в цвет темы' : 'Выключен: фон окна без волны'}
+          </span>
+        </span>
+        <button
+          type="button"
+          role="switch"
+          aria-checked={soundwave}
+          aria-labelledby={soundwaveId}
+          className={toggles.switch}
+          onClick={(e) => {
+            e.preventDefault();
+            update({ soundwave: !soundwave });
+          }}
+        />
+      </label>
     </SettingsSection>
   );
 }

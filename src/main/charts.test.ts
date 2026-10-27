@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import type { ArtistFeedSnapshot, ChartsSnapshot } from '../shared/api';
-import type { ArtistRelease, Track } from '../shared/types';
+import type { ArtistRelease, CountryCode, Track } from '../shared/types';
 import { CHARTS_REFRESH_MS, createChartsService, FEED_RETRIES, FEED_TIMEOUT_MESSAGE } from './charts';
 import type { ArtistFeedData } from './sources/artists';
 import type { CatalogLists } from './sources/catalog';
@@ -44,6 +44,71 @@ describe('createChartsService — страна чарта', () => {
     expect(file()).toMatchObject({ country: 'de' });
     const again = setup(async () => ({ chart: [] }), file());
     expect((await again.service.snapshot()).country).toBe('de');
+  });
+});
+
+describe('createChartsService — смена страны во время обновления (G71)', () => {
+  function setupCountry() {
+    let country: CountryCode = 'us';
+    const releases: (() => void)[] = [];
+    const loaded: CountryCode[] = [];
+    const service = createChartsService({
+      country: () => country,
+      // Как ipc/charts.ts: страна читается в момент запуска загрузки.
+      load: () => {
+        const c = country;
+        loaded.push(c);
+        return new Promise<CatalogLists>((resolve) => releases.push(() => resolve({ chart: [t(c)], country: c })));
+      },
+      read: async () => null,
+      write: async () => undefined,
+      emit: () => undefined,
+      now: () => 5_000,
+    });
+    return { service, loaded, releases, setCountry: (c: CountryCode) => (country = c) };
+  }
+  const flush = () => new Promise((r) => setTimeout(r, 0));
+
+  it('другая страна во время идущего обновления — сразу после него обновление для новой страны', async () => {
+    const { service, loaded, releases, setCountry } = setupCountry();
+    const first = service.refresh();
+    await flush();
+    setCountry('de');
+    const second = service.refresh();
+    releases[0]();
+    expect((await first).country).toBe('us');
+    await flush();
+    expect(loaded).toEqual(['us', 'de']);
+    releases[1]();
+    const snap = await second;
+    expect(snap.country).toBe('de');
+    expect(snap.chart.map((x) => x.id)).toEqual(['catalog:de']);
+  });
+
+  it('та же страна во время идущего обновления — один запрос', async () => {
+    const { service, loaded, releases } = setupCountry();
+    const first = service.refresh();
+    await flush();
+    const second = service.refresh();
+    releases[0]();
+    await first;
+    expect((await second).country).toBe('us');
+    expect(loaded).toEqual(['us']);
+  });
+
+  it('страну переключили туда и обратно, пока шло обновление, — второго запроса нет', async () => {
+    const { service, loaded, releases, setCountry } = setupCountry();
+    const first = service.refresh();
+    await flush();
+    setCountry('de');
+    const second = service.refresh();
+    setCountry('us');
+    const third = service.refresh();
+    releases[0]();
+    await first;
+    expect((await second).country).toBe('us');
+    expect((await third).country).toBe('us');
+    expect(loaded).toEqual(['us']);
   });
 });
 
@@ -202,6 +267,20 @@ describe('лента «Новое от моих артистов»', () => {
     expect(snap.followed.map((r) => r.id)).toEqual(['1']);
     expect(snap.error).toEqual({ kind: 'offline', message: 'Нет соединения' });
     expect(file()).toEqual(savedFeed);
+  });
+
+  it('битые релизы в файле ленты отбрасываются, лишние поля и http-обложки — тоже', async () => {
+    const stored = {
+      ...savedFeed,
+      followed: [
+        { ...release('1', '2026-10-01'), extra: 1, coverUrl: 'http://x/y.jpg' },
+        { ...release('3', '2026-10-02'), kind: 'mixtape' },
+        { ...release('4', '2026-10-03'), releaseDate: '3 окт' },
+      ],
+    };
+    const { service } = setupFeed(async () => ({ followed: [], similar: [], followedIds: [] }), stored);
+    const snap = await service.feedSnapshot();
+    expect(snap.followed).toEqual([release('1', '2026-10-01')]);
   });
 
   it('повреждённый файл ленты — пустая лента', async () => {

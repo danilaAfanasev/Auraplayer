@@ -2,6 +2,7 @@ import {
   ChevronLeft,
   Cloud,
   Compass,
+  Disc3,
   Download,
   FolderOpen,
   Heart,
@@ -217,6 +218,7 @@ export function Sidebar() {
         <div className={styles.section}>
           <div className={styles.sectionTitle}>Библиотека</div>
           <NavItem icon={Heart} label="Мне нравится" target={{ name: 'likes' }} />
+          <NavItem icon={Disc3} label="Альбомы" target={{ name: 'albums' }} />
           <NavItem icon={Users} label="Мои артисты" target={{ name: 'following' }} />
           <NavItem icon={Download} label="Скачанное" target={{ name: 'downloads' }} />
           <NavItem icon={FolderOpen} label="Мои файлы" target={{ name: 'local' }} />

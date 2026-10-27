@@ -87,3 +87,86 @@ describe('openArtistByName — известный id по имени', () => {
     expect(data.artistQueryOf({ id: '7' }, [{ id: '42', name: 'sqwore' }])).toEqual({ id: '7' });
   });
 });
+
+describe('openArtistByName — тёзки: подсказка-трек', () => {
+  it('трек уходит в запрос страницы, а параметр экрана хранит его — другой трек того же имени даёт другую страницу', async () => {
+    const calls: unknown[] = [];
+    page = async (q) => {
+      calls.push(q);
+      return PAGE;
+    };
+    expect(await data.openArtistByName('Zoe', [], { title: 'Ночной звонок' })).toBe(true);
+    expect(calls).toEqual([{ name: 'Zoe', track: { title: 'Ночной звонок' } }]);
+    expect(ui.useUi.getState().screen).toEqual({ name: 'artist', param: 'name:Zoe|track:Ночной звонок' });
+
+    expect(await data.openArtistByName('Zoe', [], { title: 'Другая песня' })).toBe(true);
+    expect(calls).toHaveLength(2);
+    expect(ui.useUi.getState().screen.param).toBe('name:Zoe|track:Другая песня');
+  });
+
+  it('подсказка-трек решает раньше подписки: подписан на одного Zoe — песня другого открывает того, чья песня (история 168)', async () => {
+    const calls: unknown[] = [];
+    page = async (q) => {
+      calls.push(q);
+      return { ...PAGE, artist: { id: '77', name: 'Zoe' } };
+    };
+    const lib = (await import('../../stores/useLibrary')).useLibrary;
+    lib.getState().follow({ id: '42', name: 'Zoe' });
+    expect(await data.openArtistByName('Zoe', [], { title: 'Ночной звонок' })).toBe(true);
+    expect(calls).toEqual([{ name: 'Zoe', track: { title: 'Ночной звонок' } }]);
+    expect(ui.useUi.getState().screen).toEqual({ name: 'artist', param: 'name:Zoe|track:Ночной звонок' });
+  });
+
+  it('без подсказки подписка по-прежнему решает сразу: страница по id подписки, запроса нет', async () => {
+    const calls: unknown[] = [];
+    page = async (q) => {
+      calls.push(q);
+      return PAGE;
+    };
+    const lib = (await import('../../stores/useLibrary')).useLibrary;
+    lib.getState().follow({ id: '42', name: 'Zoe' });
+    expect(await data.openArtistByName('Zoe')).toBe(true);
+    expect(await data.openArtistByName('Zoe', [], { title: '  ' })).toBe(true);
+    expect(calls).toEqual([]);
+    expect(ui.useUi.getState().screen).toEqual({ name: 'artist', param: 'id:42' });
+  });
+
+  it('экран артиста с подсказкой-треком не подменяет запрос подпиской-тёзкой; без подсказки — подменяет', () => {
+    const followed = [{ id: '42', name: 'Zoe' }];
+    expect(data.artistQueryOf({ name: 'Zoe', track: { title: 'Ночной звонок' } }, followed)).toEqual({ name: 'Zoe', track: { title: 'Ночной звонок' } });
+    expect(data.artistQueryOf({ name: 'Zoe' }, followed)).toEqual({ id: '42' });
+  });
+
+  it('известный id исполнителя (единственный артист релиза) точнее песни: страница по нему и с подсказкой', async () => {
+    const calls: unknown[] = [];
+    page = async (q) => {
+      calls.push(q);
+      return PAGE;
+    };
+    expect(await data.openArtistByName('Zoe', [{ id: '55', name: 'Zoe' }], { title: 'Ночной звонок' })).toBe(true);
+    expect(calls).toEqual([]);
+    expect(ui.useUi.getState().screen).toEqual({ name: 'artist', param: 'id:55' });
+  });
+
+  it('без трека запрос прежний: только имя', async () => {
+    const calls: unknown[] = [];
+    page = async (q) => {
+      calls.push(q);
+      return PAGE;
+    };
+    await data.openArtistByName('Zoe');
+    expect(calls).toEqual([{ name: 'Zoe' }]);
+  });
+});
+
+describe('тёзки на странице артиста', () => {
+  it('подписанный тёзка в переключателях — первым: страницу другого открыла песня, к своему нужен путь', () => {
+    const namesakes = [
+      { id: '1', name: 'Zoe', genre: 'Pop' },
+      { id: '2', name: 'Zoe' },
+    ];
+    expect(data.visibleNamesakes(namesakes, [{ id: '2', name: 'Zoe', followedAt: 0 }])).toEqual([{ id: '2', name: 'Zoe' }, { id: '1', name: 'Zoe', genre: 'Pop' }]);
+    expect(data.visibleNamesakes(namesakes, [])).toEqual(namesakes);
+    expect(data.visibleNamesakes(undefined, [])).toEqual([]);
+  });
+});

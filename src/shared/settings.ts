@@ -1,4 +1,5 @@
 // Настройки по умолчанию и проверка настроек, прочитанных с диска.
+import { defaultEqualizer, normalizeEqualizer } from './equalizer';
 import { DEFAULT_THEME, parseHex, toHex } from './palette';
 import { CHART_COUNTRIES, type RepeatMode, type Settings, type ThemeSettings } from './types';
 
@@ -20,6 +21,8 @@ export function defaultSettings(downloadDir: string): Settings {
     lastSession: null,
     chartCountry: 'auto',
     onboarded: false,
+    equalizer: defaultEqualizer(),
+    soundwave: true,
   };
 }
 
@@ -72,5 +75,8 @@ export function normalizeSettings(raw: unknown, downloadDir: string): Settings {
     chartCountry: normalizeCountry(raw.chartCountry),
     // Файл настроек уже есть, а поля нет — пользователь старой версии: первый запуск ему не показываем.
     onboarded: typeof raw.onboarded === 'boolean' ? raw.onboarded : true,
+    equalizer: normalizeEqualizer(raw.equalizer),
+    // Саундвейв включён по умолчанию — и у старого файла без поля.
+    soundwave: typeof raw.soundwave === 'boolean' ? raw.soundwave : d.soundwave,
   };
 }

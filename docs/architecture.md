@@ -24,7 +24,8 @@ README.md, LICENSE   для публикации (MIT)
 - Окно: `contextIsolation: true`, `nodeIntegration: false`, `sandbox: true`. К системе рендерер обращается только через `window.aura`.
 - `window.aura` описан типом `AuraApi` в `src/shared/api.ts`; имена каналов — `IPC.<область>.<действие>` в `src/shared/ipc.ts`, вид `aura:<область>:<действие>`. Реализует мост `src/preload/index.ts`, обработчики — `src/main/ipc/<область>.ts` (все регистрируются в `ipc/index.ts`).
 - `handle(channel, fn)` (`ipc/handle.ts`) оборачивает обработчик: исключение не пересекает границу, рендерер получает `IpcResult` с человеческим текстом (`UserError`), без стектрейса.
-- События main → renderer: прогресс загрузки, прогресс yt-dlp, обновление чартов и ленты артистов, развёрнутость окна, медиаклавиши, запрос на сброс сохранений перед закрытием.
+- Области IPC: `window`, `settings`, `library`, `sources`, `downloads`, `local`, `ytdlp`, `system`, `charts`, `artists`, `wave`, `soundcloud`, `update` (обновление Aura), `lyrics` (тексты песен).
+- События main → renderer: прогресс загрузки, прогресс yt-dlp, ход скачивания обновления (`IPC.update.progress`), обновление чартов и ленты артистов, развёрнутость окна, медиаклавиши, запрос на сброс сохранений перед закрытием.
 - Внешние ссылки открываются в браузере только для `http(s)` (`openExternal`); новые окна и переходы внутри приложения запрещены (`src/main/window.ts`).
 - `shared/` не импортирует electron, DOM и ничего из main/renderer.
 
@@ -33,8 +34,8 @@ README.md, LICENSE   для публикации (MIT)
 `src/shared/types.ts`:
 
 - `Track.id = "<source>:<sourceId>"` — стабильный ключ во всех списках. `Track.official` — признак «официальный звук» (канал «- Topic», «Official Audio» в названии), нужен фильтру не-треков. `SourceId`: `archive | youtube | soundcloud | local | catalog`. Для `local` `sourceId` — абсолютный путь файла, для `archive` — `"<identifier>/<файл>"`.
-- `LibraryData` (`version: 1`): плейлисты, лайки, история (до 100), `followedArtists` (подписки на артистов), `blacklist` (чёрный список, `shared/blacklist.ts`), `taste` (журнал событий вкуса, рейтинг считает `shared/taste.ts`) и `tracks` — снимки метаданных только тех треков, на которые есть ссылки. Операции над ней — чистые функции `shared/library.ts`, каждая возвращает новый объект.
-- `Settings` (`version: 1`): тема, `downloadDir`, `youtubeEnabled`, `soundcloudEnabled`, `waveAfterQueue`, `chartCountry` (`'auto'` или код страны), `onboarded` (прошёл ли первый запуск), `localFolders`, громкость и режимы, `lastSession`. У старого файла без поля `onboarded` значение `true` — существующему пользователю первый запуск не показывается. Лишние поля старых файлов (например, `jamendoClientId`) `normalizeSettings` отбрасывает.
+- `LibraryData` (`version: 1`): плейлисты, лайки, история (до 100), `followedArtists` (подписки на артистов), `likedAlbums` (лайкнутые альбомы: снимок релиза и время; лайк альбома не трогает `likes` и `tracks`, снимок проверяет `cleanRelease` из `shared/release.ts` — его же берёт кэш ленты в `main/charts.ts`), `blacklist` (чёрный список, `shared/blacklist.ts`), `taste` (журнал событий вкуса, рейтинг считает `shared/taste.ts`) и `tracks` — снимки метаданных только тех треков, на которые есть ссылки. Операции над ней — чистые функции `shared/library.ts`, каждая возвращает новый объект.
+- `Settings` (`version: 1`): тема, `downloadDir`, `youtubeEnabled`, `soundcloudEnabled`, `waveAfterQueue`, `chartCountry` (`'auto'` или код страны), `onboarded` (прошёл ли первый запуск), `localFolders`, громкость и режимы, `lastSession`, `equalizer` (`EqualizerSettings` из `shared/equalizer.ts`: включён ли, пресет, 10 полос, предусиление, мои пресеты), `soundwave` (саундвейв на фоне). У старого файла без поля `onboarded` значение `true` — существующему пользователю первый запуск не показывается; без поля `soundwave` — `true`. Лишние поля старых файлов (например, `jamendoClientId`) `normalizeSettings` отбрасывает.
 - `SourceResult` — ответ источника: треки и необязательная ошибка (`offline | no-key | bad-key | unavailable | disabled | unknown`; `no-key`/`bad-key` остались в типе, ключей ни у одного источника нет).
 - `artistNames.ts` — единый разбор исполнителей (`splitArtists`: «A & B», «feat.» в строке и в названии) и ключ сравнения `artistKey` (без регистра, ё, знаков); им пользуются волна, чёрный список, вкус и ссылки на артистов. `trackFilter.ts` — `isLikelyTrack`: отсев не-треков (шоу, подкасты, многочасовые миксы). `queue.ts` — выбор следующего/предыдущего трека и порядок перемешивания; `palette.ts` — вся палитра интерфейса из двух цветов (акцент и фон) с контрастом текста ≥ 4.5:1.
 
@@ -53,7 +54,7 @@ README.md, LICENSE   для публикации (MIT)
 
 - Запись атомарная (временный файл → rename). Повреждённый файл откладывается в `<имя>.bak`, читается как пустой. Миграций нет, формат версионируется полем `version`.
 - `flushWrites()` ждёт все начатые записи.
-- Файлы: `library.json`, `settings.json`, `downloads.json`, `local-index.json`, `charts.json` (чарт), `catalog-matches.json` (трек каталога → видео YouTube), `artists-cache.json` (id артистов в каталоге и Deezer), `artist-feed.json` (лента подписок), `soundcloud-charts.json` (раздел SoundCloud). Каталоги: `bin/` (yt-dlp.exe), `ytdlp-cache/`, `covers/` (обложки «Моих файлов»).
+- Файлы: `library.json`, `settings.json`, `downloads.json`, `local-index.json`, `charts.json` (чарт), `catalog-matches.json` (трек каталога → видео YouTube), `artists-cache.json` (id артистов в каталоге и Deezer), `artist-feed.json` (лента подписок), `soundcloud-charts.json` (раздел SoundCloud), `lyrics.json` (тексты песен). Каталоги: `bin/` (yt-dlp.exe), `ytdlp-cache/`, `covers/` (обложки «Моих файлов»).
 - В рендерере: очередь воспроизведения (снимки треков) — в `localStorage` под ключом `aura.player.queue`, состояние сайдбара — `aura.sidebar.collapsed`. В настройках — только id очереди, индекс и позиция.
 
 Сохранение из рендерера: сторы зовут `createDebouncedSaver` (`stores/persist.ts`, задержка 300 мс) → `aura.library.save` / `aura.settings.save`.
@@ -81,6 +82,7 @@ README.md, LICENSE   для публикации (MIT)
 
 - Метаданные и релизы — iTunes search/lookup по стране чарта и us. «Похожие» и фото — открытый API Deezer по имени артиста (`/artist/{id}/related`); id артиста кэшируется в `artists-cache.json`. Звук треков артиста — адаптер каталога (YouTube).
 - Лента (`buildFeed`): «Новое от моих артистов» (релизы подписок за 90 дней, нет свежих — последние за 180) и «Свежее от похожих» (60 дней, подписки исключены). Живёт в сервисе чартов (`main/charts.ts`): то же расписание (запуск и каждые 6 ч), кэш `artist-feed.json`, события `IPC.artists.feedUpdate`; релизы подписок присылаются раньше похожих. Подписки сервис берёт из `library.json`, поэтому рендерер перед `refreshFeed` сначала сохраняет библиотеку (`useFeed`). `chartsService` экспортируется из `ipc/charts.ts`.
+- Тёзки: `page` по имени принимает подсказку-трек (`ArtistQuery = {id} | {name, track?: {title}}`). При нескольких точных тёзках main ищет песню «исполнитель + название» в каталоге (через `catalogLimiter`, `pickNamesakeBySong`) и берёт исполнителя совпавшей песни, иначе — первого; остальные точные тёзки (до 3) приходят в `ArtistPage.namesakes` для переключателей на странице. Рендерер (`openArtistByName` в `screens/artist/artistData.ts`): известный id исполнителя релиза — сразу страница по id; с подсказкой-треком решает песня; без неё имя подписки ведёт на страницу подписки по id.
 
 ### Страна чарта
 
@@ -120,15 +122,35 @@ README.md, LICENSE   для публикации (MIT)
 
 ## Протокол `aura-media://`
 
-`main/protocol.ts`: `aura-media://file/<encodeURIComponent(абсолютный путь)>` с поддержкой Range. Отдаёт только файлы из папки скачивания, `localFolders`, кэша обложек и из записей загрузок (`mediaRoots()` в `ipc/downloads.ts`). Схема регистрируется как привилегированная до готовности приложения (`MEDIA_SCHEME_PRIVILEGES` в `main/index.ts`).
+`main/protocol.ts`: `aura-media://file/<encodeURIComponent(абсолютный путь)>` с поддержкой Range. Отдаёт только файлы из папки скачивания, `localFolders`, кэша обложек и из записей загрузок (`mediaRoots()` в `ipc/downloads.ts`). Схема регистрируется как привилегированная до готовности приложения (`MEDIA_SCHEME_PRIVILEGES` в `main/index.ts`, с `corsEnabled`), ответ несёт `Access-Control-Allow-Origin: *` — иначе звуковой граф получает тишину.
+
+## Обновление Aura
+
+- `shared/version.ts` — чистая часть: `parseVersion`, `compareVersions`, `parseLatestRelease` (ответ GitHub о последнем релизе → `UpdateInfo` или `null`: не новее, черновик, пререлиз, нет ассета `Aura-Setup-*.exe`), `releaseNotesText` (что нового — без разметки, до 12 строк), адрес репозитория `UPDATE_REPO`.
+- `main/updater.ts` — `createUpdater(deps)` без electron: `check(manual)`, `download(onProgress)` (установщик во временную папку `aura-update` под именем `Aura-Setup-<версия>.exe` — из версии, а не из ответа сервера; сверка размера и SHA-256), `cancel()`, `install()`. Установка: скрытая обёртка PowerShell `update.ps1` ждёт выхода Aura (с обычным сохранением при закрытии), запускает установщик NSIS тихо поверх (`/S --updated /D=<папка Aura>`) и открывает Aura заново.
+- `main/ipc/update.ts` — IPC-область `update` (`version`, `check`, `download`, `cancel`, `install`, событие `progress`). Подменный адрес релизов `AURA_UPDATE_URL` действует только в неупакованной Aura (для проверок); в режиме разработки без него тихая проверка ничего не находит.
+- Рендерер: `stores/useUpdate.ts` (`startUpdateCheck` из `App.tsx` — тихая проверка через ~5 с после запуска; фазы `idle | available | downloading | installing | failed`), `components/Update/` (окно «Обновить / Позже», плашка сверху после «Позже», ход скачивания), раздел «О программе» в настройках — ручная проверка.
+
+## Тексты песен
+
+- `shared/lyrics.ts` — чистая часть: ключ кэша (`lyricsKey`), запрос без пометок в названии (`lyricsQuery`, `cleanLyricsTitle`), разбор LRC (`parseLrc`), выбор записи из ответа базы (`pickLyricsRecord`: исполнитель и название совпадают, длительность ±5 с; запись меньше чем в 3 непустые строки проигрывает настоящему тексту; затем ±3 с лучше ±5, синхронный лучше простого, ближе по длительности, тот же альбом), `lyricsFromRecord`, строка по времени (`lineIndexAt`).
+- `main/lyrics.ts` — `createLyricsService(deps)`: `get(track)` (точный запрос, затем поиск; ошибка сети — исключение и не кэшируется), `prefetch(tracks)`; кэш `lyrics.json` (до 500 записей, «текста нет» перепроверяется через сутки), не больше двух запросов к открытой базе текстов разом. IPC-область `lyrics` (`get`, `prefetch`) — `main/ipc/lyrics.ts`.
+- Рендерер: `stores/useLyrics.ts` (`initLyrics` из `main.tsx`: текст текущего трека и заранее — для следующих, с паузой 300 мс; статус `idle | loading | ready | none | error`), `components/Lyrics/` (`LyricsButton` в панели плеера — неактивна, пока текста нет; `LyricsOverlay` — текст на всё окно поверх саундвейва, подсветка строки; перемотка прокруткой и кликом по строке — чистая логика `scrub.ts`).
+
+## Звуковой граф: эквалайзер и саундвейв
+
+- `renderer/audioGraph.ts` — единственный владелец `AudioContext`. Оба `<audio>` движка (`audioEngine.ts` ставит им `crossOrigin = 'anonymous'`) подключены к одной цепочке: источник → предусиление → 10 фильтров эквалайзера → анализатор → выход. Граф создаётся при первом воспроизведении (`resumeGraph`), до него элементы играют напрямую; громкость остаётся на элементах. `setEqualizer` меняет усиления плавно; `getAnalyser` читает саундвейв.
+- Звук с CDN доступен графу только с разрешением CORS: `main/mediaCors.ts` (`installMediaCors(session)`) дописывает `Access-Control-Allow-Origin: *` к ответам на запросы звука (`resourceType === 'media'`), если заголовка нет. Звук не проксируется — идёт прямо с CDN. Для `aura-media://` заголовок ставит сам протокол.
+- Модель эквалайзера — `shared/equalizer.ts` (полосы 32 Гц – 16 кГц, ±12 дБ, встроенные и мои пресеты, `effectiveGains`: выключенный — нули); настройки → граф — `stores/equalizerSync.ts`. Интерфейс — `components/Equalizer/` (кривая с точками `EqCurve`, общая панель `EqPanel`, кнопка с окошком `EqButton` в панели плеера) и раздел «Эквалайзер» в настройках.
+- Саундвейв: `shared/soundwave.ts` — математика кадра (уровни полос, сглаживание, линии), `components/Soundwave/Soundwave.tsx` — `<canvas>` за карточкой окна в цвет акцента темы; `<html data-soundwave>` делает панели полупрозрачными. Выключается настройкой `soundwave`.
 
 ## Запуск main
 
-`main/index.ts`: один экземпляр (`requestSingleInstanceLock`, повторный запуск поднимает окно); `setStoreDir(userData)` → `registerMediaProtocol` → `registerIpc` (в том числе запуск обновления чартов) → `registerQuitFlush` → уборка обрывков → окно. Фон окна до первой отрисовки — цвет темы из настроек, чтобы не было вспышки. Меню приложения убрано, рамка своя (`TitleBar`).
+`main/index.ts`: один экземпляр (`requestSingleInstanceLock`, повторный запуск поднимает окно); `setStoreDir(userData)` → `registerMediaProtocol` → `installMediaCors(session.defaultSession)` → `registerIpc` (в том числе запуск обновления чартов) → `registerQuitFlush` → уборка обрывков → окно → фоновая подготовка yt-dlp. Фон окна до первой отрисовки — цвет темы из настроек, чтобы не было вспышки. Меню приложения убрано, рамка своя (`TitleBar`).
 
 ## Рендерер
 
-Вход — `renderer/main.tsx`: до отрисовки грузятся `useSettings` и `useLibrary`. Сторы (zustand, `renderer/stores/`):
+Вход — `renderer/main.tsx`: до отрисовки грузятся `useSettings` и `useLibrary`, затем `initLyrics()`. Сторы (zustand, `renderer/stores/`):
 
 - `usePlayer` — очередь и состояние воспроизведения; единственный `<audio>` живёт в `audioEngine.ts`. Перед загрузкой трек проходит `aura.resolveStream`. Треки из `WAIT_SOURCES` (youtube, catalog, soundcloud) грузятся без таймера и без автоперескока: срыв — одна повторная попытка (`resolveStream` с `fresh`), потом тост «Повторить»; остальным — `LOAD_TIMEOUT_MS` (15 с) и переход к следующему. Конец очереди — хук `setQueueEndHook` (см. «Волна»). Громкость, mute, повтор, перемешивание и `lastSession` сохраняются в настройки.
 - `useLibrary` — `LibraryData` и действия-обёртки над `shared/library.ts`, отложенное сохранение.
@@ -136,8 +158,9 @@ README.md, LICENSE   для публикации (MIT)
 - `useDownloads` — записи и состояния загрузок; `useUi` — текущий экран, «Назад», строка поиска, тосты.
 - `tasteTracking` — события вкуса (см. «Чёрный список и вкус»); `blacklistActions` — действия и селекторы чёрного списка.
 - `useWave` — волна поверх очереди плеера (чёрный список: подписка чистит память, пул и очередь; «Не нравится» скрывает только текущий трек; удаление будущих треков снаружи волну не выключает — замена очереди другим списком выключает); `useFeed` — лента артистов (снимки из main, «Обновить», пересборка после подписки).
+- `useUpdate` — обновление Aura (см. «Обновление Aura»); `useLyrics` — текст текущего трека (см. «Тексты песен»); `equalizerSync` — настройки эквалайзера → звуковой граф.
 
-Экраны выбираются по `ScreenName` (`stores/useUi.ts`) через реестр `app/ScreenHost.tsx`; параметр экрана — тег для `tag`, id для `playlist`, `id:<id>` или `name:<имя>` для `artist` (`screens/artist/artistNav.ts`). Есть экраны `charts`, `artist`, `album` (страница альбома, параметр — id релиза, `artistNav.ts`), `following` («Мои артисты»). Исполнитель в строках («Недавно», очередь, сетки, плеер) — ссылка `components/ArtistLinks`; переход по имени только при точном совпадении (`artistKey`), иначе остаётся текстом. Все списки треков рисует один компонент `TrackTable` (♥, «+», «Скачать», метка источника в каждой строке; `playlistId` включает перетаскивание и удаление). Запросы по источникам с повторами — `screens/search/sourceQueries.ts`; чарты — `screens/charts/useCharts.ts`; блоки ленты и волны на главной — `screens/home/` (`FeedBlocks`, `WaveBlock`).
+Экраны выбираются по `ScreenName` (`stores/useUi.ts`) через реестр `app/ScreenHost.tsx`; параметр экрана — тег для `tag`, id для `playlist`, `id:<id>`, `name:<имя>` или `name:<имя>|track:<название>` (с подсказкой-треком для тёзок) для `artist` (`screens/artist/artistNav.ts`). Есть экраны `charts`, `artist`, `album` (страница альбома, параметр — id релиза, `artistNav.ts`), `albums` (лайкнутые альбомы), `following` («Мои артисты»). Исполнитель в строках («Недавно», очередь, сетки, плеер) — ссылка `components/ArtistLinks`; переход по имени только при точном совпадении (`artistKey`), иначе остаётся текстом. Все списки треков рисует один компонент `TrackTable` (♥, «+», «Скачать», метка источника в каждой строке; `playlistId` включает перетаскивание и удаление). Запросы по источникам с повторами — `screens/search/sourceQueries.ts`; чарты — `screens/charts/useCharts.ts`; блоки ленты и волны на главной — `screens/home/` (`FeedBlocks`, `WaveBlock`).
 
 Первый запуск: `components/Onboarding` (поверх приложения, пока `needsOnboarding`: `onboarded === false` и библиотека пуста) спрашивает «Что ты слушаешь?» (артисты страны и жанры), записывает подписки и события вкуса. Фоновая установка yt-dlp при первом запуске показывается в сайдбаре (`components/Sidebar/YtDlpStatus`). Очередь справа — `components/RightPanel/Queue` поверх `queueView.ts` (сыгранные, текущий, следующие; окно ~120 строк; у будущих «Убрать из очереди»). Меню «⋯» в строках — `components/Menu`.
 

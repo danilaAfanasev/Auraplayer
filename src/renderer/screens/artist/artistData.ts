@@ -5,7 +5,7 @@ import { create } from 'zustand';
 import { CATALOG_ARTIST_NOT_FOUND, type ArtistQuery } from '../../../shared/api';
 import { artistKey, splitArtists } from '../../../shared/artistNames';
 import { isArtistBlocked, withoutBlocked, type Blacklist } from '../../../shared/blacklist';
-import type { AlbumPage, ArtistCard, ArtistPage, ArtistRef, ArtistRelease, PopularArtist, Track } from '../../../shared/types';
+import type { AlbumPage, ArtistCard, ArtistPage, ArtistRef, ArtistRelease, FollowedArtist, NamesakeRef, PopularArtist, Track } from '../../../shared/types';
 import { errorMessage } from '../../app/errors';
 import { useBlacklist } from '../../stores/blacklistActions';
 import { useLibrary } from '../../stores/useLibrary';
@@ -80,6 +80,16 @@ export function useArtistPage(key: string): Loadable<ArtistPage> | undefined {
   return useMemo(() => (entry?.status === 'done' ? { status: 'done', value: visibleArtistPage(entry.value, bl) } : entry), [entry, bl]);
 }
 
+/**
+ * Тёзки для переключателей страницы: подписанные — первыми. Страницу по имени с подсказкой-треком выбирает песня,
+ * а не подписка (история 168), — к своему тёзке с неё нужен путь.
+ */
+export function visibleNamesakes(namesakes: readonly NamesakeRef[] | undefined, followed: readonly FollowedArtist[]): NamesakeRef[] {
+  const ids = new Set(followed.map((a) => a.id));
+  const list = namesakes ?? [];
+  return [...list.filter((a) => ids.has(a.id)), ...list.filter((a) => !ids.has(a.id))];
+}
+
 /** Треки релиза: из кэша (или уже открытой страницы альбома) или запросом (параллельные вызовы — один запрос). */
 export function loadRelease(id: string): Promise<Track[]> {
   const album = useAlbumPages.getState().entries[id];
@@ -132,27 +142,34 @@ export function releaseArtists(release: Pick<ArtistRelease, 'artist' | 'artistId
   return names.length === 1 && release.artistId ? [{ id: release.artistId, name: names[0] }] : [];
 }
 
-/** Запрос страницы: имя, совпадающее (`artistKey`) с известным артистом, — его id; иначе как есть. */
+/**
+ * Запрос страницы: имя, совпадающее (`artistKey`) с известным артистом, — его id; иначе как есть.
+ * С подсказкой-треком — как есть: среди точных тёзок выбирает песня, а не подписка (история 168).
+ */
 export function artistQueryOf(query: ArtistQuery, known: readonly KnownArtist[]): ArtistQuery {
-  if (!('name' in query)) return query;
+  if (!('name' in query) || query.track?.title.trim()) return query;
   const key = artistKey(query.name);
   const match = key ? known.find((a) => artistKey(a.name) === key) : undefined;
   return match ? { id: match.id } : query;
 }
 
 /**
- * Страница артиста по имени (ссылки на исполнителей). Имя подписки или известного артиста (`known`, например
- * единственный исполнитель релиза) — сразу страница по его id. Иначе сначала данные по имени (кэш на время
- * работы), потом переход; каталог знает только тёзку с похожим именем или никого — открывается поиск по этому
- * имени (ник SoundCloud не подменяется чужим артистом). Нет сети — тост. Страница нашлась — true.
+ * Страница артиста по имени (ссылки на исполнителей). Известный артист (`known`, например единственный
+ * исполнитель релиза) — сразу страница по его id. `track` — трек, с которого перешли: среди точных тёзок main
+ * выберет исполнителя этой песни раньше подписок (история 168); без трека имя подписки — сразу страница по её id.
+ * Иначе сначала данные по имени (кэш на время работы), потом переход; каталог знает только тёзку с похожим
+ * именем или никого — открывается поиск по этому имени (ник SoundCloud не подменяется чужим артистом).
+ * Нет сети — тост. Страница нашлась — true.
  */
-export function openArtistByName(name: string, known: readonly KnownArtist[] = []): Promise<boolean> {
-  const byId = artistQueryOf({ name: name.trim() }, [...known, ...useLibrary.getState().lib.followedArtists]);
+export function openArtistByName(name: string, known: readonly KnownArtist[] = [], track?: { title: string }): Promise<boolean> {
+  const title = track?.title.trim();
+  const followed = title ? [] : useLibrary.getState().lib.followedArtists;
+  const byId = artistQueryOf({ name: name.trim() }, [...known, ...followed]);
   if ('id' in byId) {
     openArtist(byId);
     return Promise.resolve(true);
   }
-  const query = { name: name.trim() };
+  const query: ArtistQuery = title ? { name: name.trim(), track: { title } } : { name: name.trim() };
   const key = pageKey(query);
   const store = useArtistPages.getState();
   if (store.entries[key]?.status !== 'done' && store.entries[key]?.status !== 'loading') store.retry(key, query);
@@ -164,7 +181,7 @@ export function openArtistByName(name: string, known: readonly KnownArtist[] = [
         openArtist(query);
         resolve(true);
       } else if (isArtistNotFound(e)) {
-        useUi.getState().setQuery(query.name);
+        useUi.getState().setQuery(name.trim());
         resolve(false);
       } else {
         useUi.getState().toast(e.offline ? `${ARTIST_NOT_FOUND_MESSAGE}: нет соединения` : ARTIST_NOT_FOUND_MESSAGE, undefined, 'error');

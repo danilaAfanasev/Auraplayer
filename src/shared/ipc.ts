@@ -61,6 +61,10 @@ export const IPC = {
     start: 'aura:wave:start',
     more: 'aura:wave:more',
   },
+  lyrics: {
+    get: 'aura:lyrics:get',
+    prefetch: 'aura:lyrics:prefetch',
+  },
   system: {
     pickDownloadDir: 'aura:system:pick-download-dir',
     openExternal: 'aura:system:open-external',
@@ -82,6 +86,15 @@ export const IPC = {
   media: {
     /** событие main → renderer: MediaKey */
     key: 'aura:media:key',
+  },
+  update: {
+    version: 'aura:update:version',
+    check: 'aura:update:check',
+    download: 'aura:update:download',
+    cancel: 'aura:update:cancel',
+    install: 'aura:update:install',
+    /** событие main → renderer: доля скачанного 0..1, -1 — неизвестно */
+    progress: 'aura:update:progress',
   },
 } as const;
 

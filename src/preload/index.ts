@@ -71,6 +71,10 @@ const api: AuraApi = {
     start: (seed) => invoke(IPC.wave.start, seed),
     more: (req) => invoke(IPC.wave.more, req),
   },
+  lyrics: {
+    get: (track) => invoke(IPC.lyrics.get, track),
+    prefetch: (tracks) => invoke(IPC.lyrics.prefetch, tracks),
+  },
   pickDownloadDir: () => invoke(IPC.system.pickDownloadDir),
   openExternal: (url) => invoke(IPC.system.openExternal, url),
   showInFolder: (path) => invoke(IPC.system.showInFolder, path),
@@ -88,6 +92,14 @@ const api: AuraApi = {
         .catch(() => undefined)
         .finally(() => ipcRenderer.send(IPC.app.flushDone, id));
     }),
+  update: {
+    version: () => invoke(IPC.update.version),
+    check: (manual) => invoke(IPC.update.check, manual === true),
+    download: () => invoke(IPC.update.download),
+    cancel: () => invoke(IPC.update.cancel),
+    install: () => invoke(IPC.update.install),
+    onProgress: (cb) => subscribe(IPC.update.progress, cb),
+  },
 };
 
 contextBridge.exposeInMainWorld('aura', api);

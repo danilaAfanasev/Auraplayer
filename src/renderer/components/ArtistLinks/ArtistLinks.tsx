@@ -8,8 +8,13 @@ import styles from './ArtistLinks.module.css';
 interface Props {
   /** Строка исполнителей трека или релиза («A & B feat. C»). */
   artist: string;
-  /** Название: фиты из него («Song (feat. C)») — тоже ссылки. */
+  /** Название: фиты из него («Song (feat. C)») — тоже ссылки. У трека это ещё и подсказка тёзок (см. `trackHint`). */
   title?: string;
+  /**
+   * `title` — название трека: при точных тёзках в каталоге откроется исполнитель этой песни. `false` —
+   * название чужое (релиз): подсказки нет. По умолчанию `true`.
+   */
+  trackHint?: boolean;
   className?: string;
   /** Это имя — не ссылка (страница этого артиста уже открыта). */
   except?: string;
@@ -22,13 +27,13 @@ interface Props {
  * трек и не доходит до строки или карточки вокруг. Имена — строчные элементы, а не <button>: кнопка в Chromium —
  * неразрывный блок, и длинное имя обрезалось бы без «…». Enter и пробел работают как клик.
  */
-export function ArtistLinks({ artist, title, className, except, known }: Props) {
+export function ArtistLinks({ artist, title, trackHint = true, className, except, known }: Props) {
   const [busy, setBusy] = useState<string | null>(null);
   const skip = except ? artistKey(except) : '';
   const open = (name: string) => {
     if (busy) return;
     setBusy(name);
-    void openArtistByName(name, known).finally(() => setBusy(null));
+    void openArtistByName(name, known, trackHint && title ? { title } : undefined).finally(() => setBusy(null));
   };
   const stop = (e: MouseEvent) => e.stopPropagation();
   const parts = artistLinkParts(artist, title);

@@ -2,13 +2,16 @@
 import { nanoid } from 'nanoid';
 import { artistKey } from './artistNames';
 import * as blacklist from './blacklist';
+import { cleanRelease } from './release';
 import { addTasteEvents, cleanGenres, emptyTaste, normalizeTaste, type TasteEvent } from './taste';
 import {
   SOURCE_IDS,
   type ArtistRef,
+  type ArtistRelease,
   type FollowedArtist,
   type HistoryEntry,
   type LibraryData,
+  type LikedAlbum,
   type Playlist,
   type Track,
 } from './types';
@@ -24,6 +27,7 @@ export function emptyLibrary(): LibraryData {
     likes: [],
     history: [],
     followedArtists: [],
+    likedAlbums: [],
     blacklist: blacklist.emptyBlacklist(),
     taste: emptyTaste(),
   };
@@ -198,6 +202,18 @@ export function unblockTrack(lib: LibraryData, trackId: string): LibraryData {
   return bl === lib.blacklist ? lib : { ...lib, blacklist: bl };
 }
 
+export const isAlbumLiked = (lib: LibraryData, releaseId: string): boolean => lib.likedAlbums.some((a) => a.release.id === releaseId);
+
+/**
+ * Сохранить альбом или убрать, если он уже сохранён. Хранится снимок релиза; треки альбома не лайкаются и в
+ * `tracks`/`likes` не попадают. Пометка ленты «похож на …» в снимок не берётся.
+ */
+export function toggleAlbumLike(lib: LibraryData, release: ArtistRelease, now = Date.now()): LibraryData {
+  if (isAlbumLiked(lib, release.id)) return { ...lib, likedAlbums: lib.likedAlbums.filter((a) => a.release.id !== release.id) };
+  const { similarTo: _similarTo, ...snapshot } = release;
+  return { ...lib, likedAlbums: [{ release: snapshot, likedAt: now }, ...lib.likedAlbums] };
+}
+
 /** Исполнитель в чёрном списке: подписка на него снимается, во вкус — «Не нравится». */
 export function blockArtist(lib: LibraryData, artist: blacklist.ArtistToBlock, now = Date.now()): LibraryData {
   const bl = blacklist.blockArtist(lib.blacklist, artist, now);
@@ -273,6 +289,21 @@ function keepRetired(t: Track): Track {
   return kept;
 }
 
+/** Сохранённые альбомы из файла: битые и повторы по id релиза отбрасываются, порядок файла сохраняется. */
+export function normalizeLikedAlbums(raw: unknown): LikedAlbum[] {
+  if (!Array.isArray(raw)) return [];
+  const out: LikedAlbum[] = [];
+  const seen = new Set<string>();
+  for (const a of raw) {
+    if (!isObject(a)) continue;
+    const release = cleanRelease(a.release);
+    if (!release || seen.has(release.id)) continue;
+    seen.add(release.id);
+    out.push({ release, likedAt: isNumber(a.likedAt) ? a.likedAt : 0 });
+  }
+  return out;
+}
+
 /** Приводит прочитанный JSON к `LibraryData`: битые записи отбрасываются, мусор — пустая библиотека. */
 export function normalizeLibrary(raw: unknown): LibraryData {
   if (!isObject(raw)) return emptyLibrary();
@@ -320,10 +351,12 @@ export function normalizeLibrary(raw: unknown): LibraryData {
     }
   }
 
+  const likedAlbums = normalizeLikedAlbums(raw.likedAlbums);
+
   // Чёрный список и вкус — свои ветки: id скрытых треков не обязаны быть в `tracks` (снимки — в самом списке).
   const bl = blacklist.normalizeBlacklist(raw.blacklist);
   const hidden: blacklist.Blacklist = { ...bl, tracks: bl.tracks.map((b) => ({ ...b, track: keepRetired(b.track) })) };
   const taste = normalizeTaste(raw.taste);
 
-  return pruneTracks({ version: 1, tracks, playlists, likes, history, followedArtists, blacklist: hidden, taste });
+  return pruneTracks({ version: 1, tracks, playlists, likes, history, followedArtists, likedAlbums, blacklist: hidden, taste });
 }

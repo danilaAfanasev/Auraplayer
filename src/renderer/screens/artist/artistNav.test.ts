@@ -9,6 +9,20 @@ describe('параметр экрана артиста', () => {
     expect(parseArtistParam(artistParam({ name: 'id:хитрое имя' }))).toEqual({ name: 'id:хитрое имя' });
   });
 
+  it('имя с подсказкой-треком: туда и обратно; без подсказки параметр прежний', () => {
+    const q = { name: 'Zoe', track: { title: 'Ночной звонок' } };
+    expect(parseArtistParam(artistParam(q))).toEqual(q);
+    expect(artistParam({ name: 'Zoe' })).toBe('name:Zoe');
+    // имя и название могут содержать любые знаки, в том числе разделитель
+    const odd = { name: 'A|B', track: { title: 'x|track:y' } };
+    expect(parseArtistParam(artistParam(odd))).toEqual(odd);
+  });
+
+  it('разные треки одного имени — разные ключи страницы (подсказка влияет на выбор тёзки)', () => {
+    expect(artistParam({ name: 'Zoe', track: { title: 'A' } })).not.toBe(artistParam({ name: 'Zoe', track: { title: 'B' } }));
+    expect(artistParam({ name: 'Zoe', track: { title: '  ' } })).toBe('name:Zoe');
+  });
+
   it('мусор — null', () => {
     expect(parseArtistParam(undefined)).toBeNull();
     expect(parseArtistParam('id:')).toBeNull();

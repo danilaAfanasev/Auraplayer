@@ -1,6 +1,7 @@
 // Область экрана: показывает текущий экран из useUi с мягким появлением.
 import type { ComponentType } from 'react';
 import { AlbumScreen } from '../screens/album/AlbumScreen';
+import { AlbumsScreen } from '../screens/albums/AlbumsScreen';
 import { ArtistScreen } from '../screens/artist/ArtistScreen';
 import { ChartsScreen } from '../screens/charts/ChartsScreen';
 import { BrowseScreen } from '../screens/browse/BrowseScreen';
@@ -28,6 +29,7 @@ const SCREENS: Record<ScreenName, ComponentType<{ param?: string }>> = {
   tag: TagScreen,
   playlist: PlaylistScreen,
   likes: LikesScreen,
+  albums: AlbumsScreen,
   downloads: DownloadsScreen,
   local: LocalScreen,
   history: HistoryScreen,

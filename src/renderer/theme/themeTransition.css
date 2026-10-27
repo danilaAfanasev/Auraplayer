@@ -12,6 +12,17 @@ html.vt-reveal::view-transition-new(root) {
   clip-path: circle(0px at var(--vt-x, 50%) var(--vt-y, 50%));
 }
 
+/* Пока идёт смена темы, у живого DOM нет CSS-переходов цвета: новый вид (::view-transition-new — живой, а не
+   снимок) сразу в новых цветах. Иначе внутри круга элементы 200 мс догоняли новую тему от старой — «хвост» старой. */
+html.vt-reveal *,
+html.vt-reveal *::before,
+html.vt-reveal *::after,
+html.vt-fade *,
+html.vt-fade *::before,
+html.vt-fade *::after {
+  transition: none !important;
+}
+
 /* Уменьшение анимации: короткий кроссфейд без круга. */
 html.vt-fade::view-transition-old(root),
 html.vt-fade::view-transition-new(root) {

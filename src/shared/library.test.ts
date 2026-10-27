@@ -6,15 +6,18 @@ import {
   emptyLibrary,
   followArtist,
   followArtists,
+  isAlbumLiked,
   isFollowing,
   isLiked,
   isRetiredTrack,
   movePlaylistTrack,
   normalizeLibrary,
+  normalizeLikedAlbums,
   pushHistory,
   removeFromPlaylist,
   reorderTarget,
   renamePlaylist,
+  toggleAlbumLike,
   toggleLike,
   unfollowArtist,
   blockArtist,
@@ -26,7 +29,7 @@ import {
   unblockTrack,
 } from './library';
 import { isBlocked } from './blacklist';
-import { SOURCE_IDS, type LibraryData, type Track } from './types';
+import { SOURCE_IDS, type ArtistRelease, type LibraryData, type Track } from './types';
 
 const track = (n: number, source: Track['source'] = 'archive'): Track => ({
   id: `${source}:t${n}`,
@@ -51,6 +54,7 @@ describe('emptyLibrary', () => {
       likes: [],
       history: [],
       followedArtists: [],
+      likedAlbums: [],
       blacklist: { tracks: [], artists: [] },
       taste: { events: [], genres: [] },
     });
@@ -356,5 +360,70 @@ describe('чёрный список и вкус в библиотеке', () => 
     for (const g of ['a', 'b', 'c', 'd', 'e', 'f', 'g']) lib = recordGenre(lib, g);
     expect(lib.taste.genres).toEqual(['g', 'f', 'e', 'd', 'c', 'b', 'a', 'pop']);
     expect(normalizeLibrary(JSON.parse(JSON.stringify(lib))).taste).toEqual(lib.taste);
+  });
+});
+
+describe('лайкнутые альбомы', () => {
+  const album = (id: string, patch: Partial<ArtistRelease> = {}): ArtistRelease => ({
+    id,
+    title: `Альбом ${id}`,
+    artist: 'Captown & Niman',
+    artistId: '1436282869',
+    kind: 'album',
+    releaseDate: '2026-10-23',
+    trackCount: 10,
+    coverUrl: 'https://is1.example/600x600bb.jpg',
+    ...patch,
+  });
+
+  it('toggleAlbumLike: сохраняет снимок, новые первыми; повторно — убирает', () => {
+    let lib = toggleAlbumLike(emptyLibrary(), album('1'), 100);
+    lib = toggleAlbumLike(lib, album('2'), 200);
+    expect(lib.likedAlbums.map((a) => [a.release.id, a.likedAt])).toEqual([
+      ['2', 200],
+      ['1', 100],
+    ]);
+    expect(lib.likedAlbums[1].release).toEqual(album('1'));
+    expect(isAlbumLiked(lib, '1')).toBe(true);
+    lib = toggleAlbumLike(lib, album('1'), 300);
+    expect(isAlbumLiked(lib, '1')).toBe(false);
+    expect(lib.likedAlbums.map((a) => a.release.id)).toEqual(['2']);
+  });
+
+  it('лайк альбома не трогает «Мне нравится» и снимки треков', () => {
+    const base = toggleLike(emptyLibrary(), track(1));
+    const lib = toggleAlbumLike(base, album('9'), 5);
+    expect(lib.likes).toEqual(base.likes);
+    expect(lib.tracks).toEqual(base.tracks);
+    expect(lib.playlists).toEqual(base.playlists);
+  });
+
+  it('в снимок не попадает пометка «похож на» из ленты', () => {
+    const lib = toggleAlbumLike(emptyLibrary(), album('3', { similarTo: { id: '7', name: 'Truwer' } }), 1);
+    expect(lib.likedAlbums[0].release).not.toHaveProperty('similarTo');
+  });
+
+  it('normalizeLikedAlbums: битое и повторы отбрасываются, дата по умолчанию 0', () => {
+    const out = normalizeLikedAlbums([
+      { release: album('1'), likedAt: 50 },
+      { release: album('1'), likedAt: 10 },
+      { release: { id: 'нет' }, likedAt: 1 },
+      { release: album('2') },
+      'мусор',
+    ]);
+    expect(out.map((a) => [a.release.id, a.likedAt])).toEqual([
+      ['1', 50],
+      ['2', 0],
+    ]);
+    expect(normalizeLikedAlbums('не список')).toEqual([]);
+    expect(normalizeLikedAlbums(undefined)).toEqual([]);
+  });
+
+  it('старый library.json без поля открывается; сохранённые альбомы переживают запись и чтение', () => {
+    const old = JSON.parse(JSON.stringify(emptyLibrary()));
+    delete old.likedAlbums;
+    expect(normalizeLibrary(old).likedAlbums).toEqual([]);
+    const lib = toggleAlbumLike(emptyLibrary(), album('4'), 7);
+    expect(normalizeLibrary(JSON.parse(JSON.stringify(lib))).likedAlbums).toEqual(lib.likedAlbums);
   });
 });

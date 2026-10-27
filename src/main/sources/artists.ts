@@ -13,6 +13,7 @@ import type {
   ArtistRelease,
   CountryCode,
   FollowedArtist,
+  NamesakeRef,
   PopularArtist,
   ReleaseKind,
   SimilarArtist,
@@ -52,6 +53,8 @@ const SIMILAR_RELEASES_PER_ARTIST = 2;
 const FEED_FOLLOWED_LIMIT = 60;
 const FEED_SIMILAR_LIMIT = 40;
 const PAGE_SIMILAR_LIMIT = 12;
+/** Других точных тёзок на странице артиста, открытой по имени. */
+const NAMESAKES_LIMIT = 3;
 const TOP_TRACKS = 10;
 /** Меньше — популярные добираются свежими песнями артиста. */
 const TOP_TRACKS_MIN = 8;
@@ -314,6 +317,9 @@ export function parseArtistSongs(json: unknown, artist: ArtistRef, limit = TOP_T
     if (isMixOrCompilation({ title, album, artist: artistName, collectionArtist: str(r.collectionArtistName) })) continue;
     if (JUNK.test(title) || JUNK.test(artistName) || JUNK.test(album)) continue;
     if (!involves(artistName, idStr(r.artistId), title, artist)) continue;
+    // Тёзка: песня исполнителя с точно таким же именем, но другим id — не этого артиста.
+    const owner = idStr(r.artistId);
+    if (owner && owner !== artist.id && artistKey(artistName) === artistKey(artist.name)) continue;
     const key = songKey({ title, artist: artistName });
     if (seen.has(key)) continue;
     seen.add(key);
@@ -321,6 +327,22 @@ export function parseArtistSongs(json: unknown, artist: ArtistRef, limit = TOP_T
     if (kept.length >= limit) break;
   }
   return parseItunesTracks({ results: kept }).map(itunesTrackToTrack);
+}
+
+/**
+ * Какой из точных тёзок поёт эту песню: исполнитель первой песни из поиска, у которой название то же
+ * (скобки и пометки не важны) и id исполнителя — один из тёзок. Нет такой — null.
+ */
+export function pickNamesakeBySong(json: unknown, namesakes: readonly CatalogArtist[], title: string): CatalogArtist | null {
+  const want = coreTitle(title);
+  if (!want) return null;
+  for (const r of results(json)) {
+    if (!isObject(r) || r.wrapperType !== 'track' || r.kind !== 'song') continue;
+    const artistId = idStr(r.artistId);
+    const found = namesakes.find((a) => a.id === artistId);
+    if (found && coreTitle(str(r.trackName)) === want) return found;
+  }
+  return null;
 }
 
 // ---------- Похожие артисты и фото (открытый API без ключа) ----------
@@ -568,6 +590,9 @@ const enc = encodeURIComponent;
 const artistSearchUrl = (term: string, country: string) => `${ITUNES_BASE}/search?term=${enc(term)}&entity=musicArtist&country=${country}&limit=10`;
 const albumsUrl = (ids: string[], country: string) =>
   `${ITUNES_BASE}/lookup?id=${ids.join(',')}&entity=album&limit=${LOOKUP_LIMIT}&sort=recent&country=${country}`;
+/** Песня «исполнитель + название» — чтобы узнать, какому из тёзок она принадлежит. */
+const songByTitleUrl = (name: string, title: string, country: string) =>
+  `${ITUNES_BASE}/search?term=${enc(`${name} ${title}`)}&entity=song&country=${country}&limit=10`;
 const topSongsUrl = (name: string, country: string) =>
   `${ITUNES_BASE}/search?term=${enc(name)}&entity=song&attribute=artistTerm&country=${country}&limit=50`;
 const songsUrl = (id: string, country: string) => `${ITUNES_BASE}/lookup?id=${id}&entity=song&limit=100&sort=recent&country=${country}`;
@@ -692,15 +717,48 @@ export function createArtistsService(deps: ArtistsServiceDeps = {}): ArtistsServ
     searchIn: readonly string[] = countries(),
     priority: RequestPriority = 'user',
   ): Promise<CatalogArtist | null> {
+    const { same } = await exactArtists(name, searchIn, priority);
+    return (genre && same.find((a) => a.genre === genre)) || same[0] || null;
+  }
+
+  /** Все точные тёзки в каталоге (порядок каталога) и страна, где они нашлись: первая страна, где есть хоть один. */
+  async function exactArtists(
+    name: string,
+    searchIn: readonly string[] = countries(),
+    priority: RequestPriority = 'user',
+  ): Promise<{ same: CatalogArtist[]; country: string | null }> {
     const n = artistKey(name);
-    if (!n) return null;
+    if (!n) return { same: [], country: null };
     for (const country of searchIn) {
       const list = parseItunesArtists(await get(artistSearchUrl(name, country), priority));
       const same = list.filter((a) => artistKey(a.name) === n);
-      const pick = (genre && same.find((a) => a.genre === genre)) || same[0];
-      if (pick) return pick;
+      if (same.length > 0) return { same, country };
     }
-    return null;
+    return { same: [], country: null };
+  }
+
+  /**
+   * Из точных тёзок — тот, чья эта песня: один запрос поиска песни «исполнитель + название» (через ограничитель).
+   * Не нашлось или каталог не ответил — null, страница откроется по умолчанию.
+   */
+  async function namesakeBySong(name: string, title: string, same: readonly CatalogArtist[], country: string): Promise<CatalogArtist | null> {
+    try {
+      return pickNamesakeBySong(await get(songByTitleUrl(name, title, country)), same, title);
+    } catch {
+      return null;
+    }
+  }
+
+  /** Фото и жанр других тёзок: обложка их свежего релиза (один запрос на все); не получилось — без фото. */
+  async function namesakeCards(others: readonly CatalogArtist[]): Promise<NamesakeRef[]> {
+    if (others.length === 0) return [];
+    const groups = await albumsOf(others.map((a) => a.id)).catch(() => new Map<string, ArtistAlbums>());
+    return others.map((a) => {
+      const group = groups.get(a.id);
+      const cover = group ? selectReleases(group.collections, a).find((r) => r.coverUrl)?.coverUrl : undefined;
+      const genre = a.genre ?? group?.artist.genre;
+      return { id: a.id, name: a.name, ...(genre ? { genre } : {}), ...(cover ? { imageUrl: cover } : {}) };
+    });
   }
 
   /** Артисты каталога по запросу: своя страна, ничего подходящего — зарубежный каталог. */
@@ -748,11 +806,16 @@ export function createArtistsService(deps: ArtistsServiceDeps = {}): ArtistsServ
 
   async function page(query: ArtistQuery): Promise<ArtistPage> {
     let id = 'id' in query ? idStr(query.id) : '';
+    let others: CatalogArtist[] = [];
     if (!id) {
       const name = 'name' in query ? query.name.trim() : '';
-      const found = name ? await catalogArtistByName(name) : null;
-      if (!found) throw new SourceError('unavailable', CATALOG_ARTIST_NOT_FOUND);
-      id = found.id;
+      const { same, country } = name ? await exactArtists(name) : { same: [], country: null };
+      if (same.length === 0 || !country) throw new SourceError('unavailable', CATALOG_ARTIST_NOT_FOUND);
+      // Несколько точных тёзок: трек, с которого перешли, говорит, чей он; иначе — первый из каталога.
+      const title = 'track' in query ? query.track?.title.trim() : '';
+      const pick = (same.length > 1 && title ? await namesakeBySong(name, title, same, country) : null) ?? same[0];
+      id = pick.id;
+      others = same.filter((a) => a.id !== pick.id).slice(0, NAMESAKES_LIMIT);
     }
 
     const group = (await albumsOf([id])).get(id);
@@ -790,7 +853,8 @@ export function createArtistsService(deps: ArtistsServiceDeps = {}): ArtistsServ
     const head: ArtistPage['artist'] = { id: artist.id, name: artist.name };
     if (artist.genre) head.genre = artist.genre;
     if (imageUrl) head.imageUrl = imageUrl;
-    return { artist: head, topTracks, releases, similar };
+    const namesakes = await namesakeCards(others);
+    return { artist: head, topTracks, releases, similar, ...(namesakes.length > 0 ? { namesakes } : {}) };
   }
 
   /** Релиз в каталоге своей страны, затем зарубежном: обёртка коллекции и треки одним lookup. */

@@ -16,6 +16,11 @@ function assertQuery(q: unknown): asserts q is ArtistQuery {
     q !== null &&
     (typeof (q as { id?: unknown }).id === 'string' || typeof (q as { name?: unknown }).name === 'string');
   if (!ok) throw new UserError('Неверный параметр: артист');
+  // Подсказка-трек (необязательная): объект с названием; иначе — мусор, а не тихая потеря.
+  const track = (q as { track?: unknown }).track;
+  if (track !== undefined && !(typeof track === 'object' && track !== null && typeof (track as { title?: unknown }).title === 'string')) {
+    throw new UserError('Неверный параметр: трек артиста');
+  }
 }
 
 /** Ошибка источника — человеческий текст как есть, код — вид ошибки (offline, unavailable…). */

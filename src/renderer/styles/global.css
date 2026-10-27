@@ -219,3 +219,16 @@ input[type='range']:disabled {
     transition-duration: 1ms !important;
   }
 }
+
+/* Саундвейв на фоне окна (`<html data-soundwave>` ставит компонент Soundwave): панели полупрозрачные,
+   без размытия — волна видна сквозь них; за текстом её приглушает подложка `--wave-scrim`.
+   `--card-rgb` — цвет карточки темы без альфы (ставит theme/applyTheme.ts). */
+:root[data-soundwave] {
+  --wave-card: rgba(var(--card-rgb), 0.46);
+  --wave-scrim: rgba(var(--card-rgb), 0.38);
+}
+
+:root[data-scheme='light'][data-soundwave] {
+  --wave-card: rgba(var(--card-rgb), 0.56);
+  --wave-scrim: rgba(var(--card-rgb), 0.46);
+}

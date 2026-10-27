@@ -1,0 +1,57 @@
+[
+  {
+    "id": 2001,
+    "name": "Stronger",
+    "trackName": "Stronger",
+    "artistName": "Kanye West",
+    "albumName": "Rn’B Chic",
+    "duration": 313.0,
+    "instrumental": false,
+    "plainLyrics": "Plain line one\nPlain line two",
+    "syncedLyrics": null
+  },
+  {
+    "id": 2002,
+    "name": "Stronger",
+    "trackName": "Stronger",
+    "artistName": "Kanye West",
+    "albumName": "Graduation",
+    "duration": 311.0,
+    "instrumental": false,
+    "plainLyrics": "Plain line one\nPlain line two",
+    "syncedLyrics": "[00:01.00] Plain line one\n[00:04.20] Plain line two"
+  },
+  {
+    "id": 2003,
+    "name": "Stronger (Instrumental)",
+    "trackName": "Stronger (Instrumental)",
+    "artistName": "Kanye West",
+    "albumName": "Graduation",
+    "duration": 312.0,
+    "instrumental": true,
+    "plainLyrics": null,
+    "syncedLyrics": null
+  },
+  {
+    "id": 2004,
+    "name": "Harder, Better, Faster, Stronger",
+    "trackName": "Harder, Better, Faster, Stronger",
+    "artistName": "Daft Punk",
+    "albumName": "Discovery",
+    "duration": 224.0,
+    "instrumental": false,
+    "plainLyrics": "Other song",
+    "syncedLyrics": "[00:01.00] Other song"
+  },
+  {
+    "id": 2005,
+    "name": "Stronger",
+    "trackName": "Stronger",
+    "artistName": "Kelly Clarkson",
+    "albumName": "Stronger",
+    "duration": 222.0,
+    "instrumental": false,
+    "plainLyrics": "Another song",
+    "syncedLyrics": "[00:01.00] Another song"
+  }
+]

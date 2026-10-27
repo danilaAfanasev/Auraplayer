@@ -10,6 +10,7 @@ import { createRoot } from 'react-dom/client';
 import { App } from './app/App';
 import { DEFAULT_THEME } from '../shared/palette';
 import { useLibrary } from './stores/useLibrary';
+import { initLyrics } from './stores/useLyrics';
 import { useSettings } from './stores/useSettings';
 import { applyPaletteVars } from './theme/applyTheme';
 
@@ -18,6 +19,8 @@ async function bootstrap(): Promise<void> {
   applyPaletteVars(DEFAULT_THEME);
   // Настройки (тема) — до первой отрисовки, библиотека — параллельно.
   await Promise.all([useSettings.getState().load(), useLibrary.getState().load()]);
+
+  initLyrics();
 
   createRoot(document.getElementById('root')!).render(
     <StrictMode>

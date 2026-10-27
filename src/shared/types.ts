@@ -1,4 +1,5 @@
 // Модель данных Aura — общая для main и renderer (без импорта electron/DOM).
+import type { EqualizerSettings } from './equalizer';
 import type { Blacklist } from './blacklist';
 import type { Taste } from './taste';
 
@@ -86,6 +87,17 @@ export interface ArtistRelease {
   similarTo?: { id: string; name: string };
 }
 
+/** Сохранённый альбом: снимок релиза (виден без сети) и когда его сохранили. Треки альбома в «Мне нравится» не попадают. */
+export interface LikedAlbum {
+  release: ArtistRelease;
+  likedAt: number;
+}
+
+/** Другой артист каталога с тем же именем (переключатель на странице артиста): фото и жанр помогают их различить. */
+export interface NamesakeRef extends ArtistRef {
+  genre?: string;
+}
+
 /** Похожий артист (по открытому API похожих) — только имя и фото; страница открывается поиском по имени. */
 export interface SimilarArtist {
   name: string;
@@ -109,6 +121,8 @@ export interface ArtistPage {
   /** Релизы от новых к старым, без миксов и чужих сборников. */
   releases: ArtistRelease[];
   similar: SimilarArtist[];
+  /** Другие исполнители каталога с точно таким же именем (до 3) — только у страницы, открытой по имени. */
+  namesakes?: NamesakeRef[];
 }
 
 export interface LibraryData {
@@ -118,6 +132,8 @@ export interface LibraryData {
   likes: string[]; // trackId, новые — в начало
   history: HistoryEntry[]; // новые — в начало, не больше 100
   followedArtists: FollowedArtist[]; // подписки, новые — в начало
+  /** Сохранённые альбомы (снимки релизов), новые — в начало. */
+  likedAlbums: LikedAlbum[];
   /** Чёрный список: скрытые треки (со снимками) и исполнители. */
   blacklist: Blacklist;
   /** Вкус: журнал событий для скрытого рейтинга исполнителей и жанры пользователя. */
@@ -164,6 +180,10 @@ export interface Settings {
   chartCountry: 'auto' | CountryCode;
   /** Первый запуск пройден (или пропущен). Новый пользователь — false, старый файл без поля — true. */
   onboarded: boolean;
+  /** Эквалайзер: выключен по умолчанию; полосы, пресет, предусиление, мои пресеты. */
+  equalizer: EqualizerSettings;
+  /** Саундвейв на фоне окна. По умолчанию true (и у старого файла без поля). */
+  soundwave: boolean;
 }
 
 export interface DownloadRecord {

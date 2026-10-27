@@ -13,10 +13,11 @@ import { Readable } from 'node:stream';
 export const MEDIA_SCHEME = 'aura-media';
 const MEDIA_HOST = 'file';
 
-/** Регистрируется до `app.whenReady()`: стандартная безопасная схема с потоковой отдачей (нужно для перемотки). */
+/** Регистрируется до `app.whenReady()`: стандартная безопасная схема с потоковой отдачей (нужно для перемотки);
+ * `corsEnabled` + заголовок в ответе — иначе <audio crossOrigin> через звуковой граф играет тишину. */
 export const MEDIA_SCHEME_PRIVILEGES: CustomScheme = {
   scheme: MEDIA_SCHEME,
-  privileges: { standard: true, secure: true, supportFetchAPI: true, stream: true },
+  privileges: { standard: true, secure: true, supportFetchAPI: true, stream: true, corsEnabled: true },
 };
 
 /** Разрешённые папки (рекурсивно) и отдельные файлы. */
@@ -171,6 +172,7 @@ export async function mediaResponse(request: Request, roots: MediaRoots): Promis
     'Accept-Ranges': 'bytes',
     'Cache-Control': 'no-cache',
     'X-Content-Type-Options': 'nosniff',
+    'Access-Control-Allow-Origin': '*',
   };
   const range = parseRange(request.headers.get('range'), res.size);
   if (range === 'unsatisfiable') {

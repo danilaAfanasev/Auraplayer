@@ -1,6 +1,8 @@
 // Звук приложения: один играющий <audio> и один предзагрузочный (следующий трек подгружается заранее,
 // чтобы «Далее» звучало сразу). Плеер (usePlayer) управляет ими только через этот модуль; события
-// отдаёт только играющий элемент — предзагрузка плеер не трогает.
+// отдаёт только играющий элемент — предзагрузка плеер не трогает. Оба элемента подключены к звуковому
+// графу (`audioGraph`: эквалайзер, анализатор саундвейва); громкость и mute — на самих элементах.
+import { attachElement, resumeGraph } from './audioGraph';
 
 export interface AudioEngineEvents {
   time(sec: number): void;
@@ -32,7 +34,10 @@ let muted = false;
 
 function create(): HTMLAudioElement {
   const el = new Audio();
+  // CORS-запрос: без него звук чужого адреса приходит в граф тишиной (заголовок дописывает main, mediaCors.ts).
+  el.crossOrigin = 'anonymous';
   el.preload = 'auto';
+  attachElement(el);
   const on = (type: string, fn: () => void) => el.addEventListener(type, () => el === active && fn());
 
   on('timeupdate', () => handlers.time?.(el.currentTime));
@@ -75,6 +80,7 @@ function clear(el: HTMLAudioElement): void {
 
 function playSafely(el: HTMLAudioElement): void {
   const seq = loadSeq;
+  resumeGraph();
   el.play().catch((err: unknown) => {
     if (seq !== loadSeq) return;
     const name = (err as { name?: string } | null)?.name;

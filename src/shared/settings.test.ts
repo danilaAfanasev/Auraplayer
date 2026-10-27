@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { defaultEqualizer, savePreset, setBandGain } from './equalizer';
 import { defaultSettings, normalizeSettings } from './settings';
 
 const DIR = 'C:\\Users\\me\\Music\\Aura';
@@ -91,5 +92,23 @@ describe('normalizeSettings', () => {
   it('последняя сессия читается', () => {
     const s = normalizeSettings({ lastSession: { queue: ['archive:1', 'local:C:\\a.mp3'], index: 1, positionSec: 42.5 } }, DIR);
     expect(s.lastSession).toEqual({ queue: ['archive:1', 'local:C:\\a.mp3'], index: 1, positionSec: 42.5 });
+  });
+
+  it('эквалайзер и саундвейв: старый файл без полей — эквалайзер выключен, саундвейв включён', () => {
+    const s = normalizeSettings({ version: 1, volume: 0.5 }, DIR);
+    expect(s.equalizer).toEqual(defaultEqualizer());
+    expect(s.equalizer.enabled).toBe(false);
+    expect(s.soundwave).toBe(true);
+    expect(defaultSettings(DIR).soundwave).toBe(true);
+    expect(defaultSettings(DIR).equalizer.enabled).toBe(false);
+  });
+  it('эквалайзер и выключенный саундвейв переживают перезапуск', () => {
+    const r = savePreset(setBandGain(defaultEqualizer(), 0, 6), 'Мой');
+    if ('error' in r) throw new Error(r.error);
+    const saved = { ...defaultSettings(DIR), equalizer: r.eq, soundwave: false };
+    const s = normalizeSettings(JSON.parse(JSON.stringify(saved)), DIR);
+    expect(s.equalizer).toEqual(r.eq);
+    expect(s.soundwave).toBe(false);
+    expect(normalizeSettings({ soundwave: 'нет', equalizer: 5 }, DIR)).toMatchObject({ soundwave: true, equalizer: defaultEqualizer() });
   });
 });

@@ -1,0 +1,155 @@
+/* «Мои пресеты» и «Предусиление» — под кривой друг под другом, в широком окне — двумя колонками. */
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+
+@media (min-width: 1560px) {
+  .columns {
+    grid-template-columns: minmax(0, 1.5fr) minmax(240px, 1fr);
+  }
+}
+
+.columns > .block:last-child {
+  max-width: 460px;
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.blockTitle {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-height: 44px;
+  padding: 4px 6px 4px 12px;
+  border-radius: var(--radius-s);
+  background: var(--surface);
+}
+
+.name {
+  flex: 1 1 160px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.badge {
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.button {
+  padding: 6px 11px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-strong);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text);
+  transition: background-color var(--dur-fast) var(--ease);
+}
+
+.button:hover:not(:disabled) {
+  background: var(--surface-hover);
+}
+
+.button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.danger {
+  color: var(--danger);
+}
+
+.input {
+  flex: 1;
+  min-width: 140px;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  user-select: text;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.error {
+  flex-basis: 100%;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--danger);
+}
+
+.empty {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.preampHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.preampValue {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--accent-text);
+}
+
+.range {
+  width: 100%;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

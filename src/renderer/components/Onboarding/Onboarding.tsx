@@ -10,6 +10,7 @@ import { ArtistAvatar } from '../../screens/artist/ArtistAvatar';
 import { useBlacklist } from '../../stores/blacklistActions';
 import { Button } from '../Button/Button';
 import { genreIcon } from '../GenreIcon/genreIcon';
+import { YtDlpStatus } from '../Sidebar/YtDlpStatus';
 import { Skeleton } from '../Skeleton/Skeleton';
 import { finishOnboarding, rankPopular, skipOnboarding } from './onboardingFlow';
 import styles from './Onboarding.module.css';
@@ -173,6 +174,10 @@ export function Onboarding() {
       </div>
 
       <footer className={styles.footer}>
+        {/* Слой закрывает сайдбар с полоской yt-dlp — ход загрузки виден здесь (G70); после закрытия — снова в сайдбаре. */}
+        <div className={styles.ytdlp}>
+          <YtDlpStatus />
+        </div>
         <span className={styles.summary}>{summary.length > 0 ? `Выбрано: ${summary.join(' и ')}` : 'Ничего не выбрано'}</span>
         <Button variant="ghost" onClick={skipOnboarding}>
           Пропустить

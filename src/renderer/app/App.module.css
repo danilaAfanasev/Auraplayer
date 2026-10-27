@@ -66,3 +66,30 @@
     display: none;
   }
 }
+
+/* Саундвейв на фоне: карточка полупрозрачнее и без размытия — тонкие линии волны видны сквозь неё.
+   За экраном (таблицы, текст) волна приглушена подложкой, у шапки и панели плеера — ярче. */
+:global(:root[data-soundwave]) .card {
+  background: var(--wave-card);
+  backdrop-filter: none;
+}
+
+:global(:root[data-soundwave]) .main {
+  background: linear-gradient(
+    to bottom,
+    transparent 0,
+    var(--wave-scrim) 24%,
+    var(--wave-scrim) 70%,
+    transparent 88%
+  );
+}
+
+:global(:root[data-soundwave]) .right {
+  background: var(--wave-scrim);
+}
+
+/* Текст песни открыт: слой над карточкой (но под заголовком окна, z-index 40) закрывает её целиком.
+   Размытие карточки сняли — иначе она становится слоем-контекстом и заголовок окна оказывается под текстом. */
+.window[data-lyrics='open'] .card {
+  backdrop-filter: none;
+}

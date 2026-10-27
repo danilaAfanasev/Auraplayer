@@ -54,6 +54,12 @@ export function initTasteTracking(): void {
       // Лайк ставится по одному; разом много — это не нажатие (например, повторная загрузка библиотеки).
       if (added.length === 1 && s.lib.tracks[added[0]]) out.push(...eventsFor(s.lib.tracks[added[0]], 'like', now));
     }
+    if (s.lib.likedAlbums !== prev.lib.likedAlbums) {
+      const before = new Set(prev.lib.likedAlbums.map((a) => a.release.id));
+      const added = s.lib.likedAlbums.filter((a) => !before.has(a.release.id));
+      // Как с лайком трека: сохранение альбома — одно нажатие; пачка разом — не оно. Треки альбома во вкус не идут.
+      if (added.length === 1) for (const artist of splitArtists(added[0].release.artist)) out.push({ artist, kind: 'like', at: now });
+    }
     if (s.lib.followedArtists !== prev.lib.followedArtists) {
       const before = new Set(prev.lib.followedArtists.map((a) => a.id));
       for (const a of s.lib.followedArtists) if (!before.has(a.id)) out.push({ artist: a.name, kind: 'follow', at: now });

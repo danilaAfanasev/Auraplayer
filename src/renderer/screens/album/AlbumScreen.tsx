@@ -1,11 +1,12 @@
 // Страница альбома (EP, сингла): обложка, вид и название, исполнители ссылками, год, число треков и длительность;
-// «Слушать», «Перемешать», «В плейлист», «Скачать альбом»; трек-лист по порядку. Скрытые треки — приглушены.
+// «Слушать», «Перемешать», «В плейлист», «Скачать альбом», сердечко «Сохранить альбом»; трек-лист по порядку. Скрытые треки — приглушены.
 import { ChevronLeft, CircleAlert, Disc3, Download, ListPlus, Play, RotateCw, Search, Shuffle, WifiOff } from 'lucide-react';
 import { useEffect, type ReactNode } from 'react';
 import { isBlocked } from '../../../shared/blacklist';
 import { formatTotalDuration, formatTrackCount } from '../../../shared/format';
 import type { AlbumPage, Track } from '../../../shared/types';
 import { AddToPlaylistMenu } from '../../components/AddToPlaylistMenu/AddToPlaylistMenu';
+import { AlbumLikeButton } from '../../components/AlbumLikeButton/AlbumLikeButton';
 import { ArtistLinks } from '../../components/ArtistLinks/ArtistLinks';
 import { Button, IconButton } from '../../components/Button/Button';
 import { EmptyState } from '../../components/EmptyState/EmptyState';
@@ -81,6 +82,7 @@ function Header({ page }: { page: AlbumPage }) {
           <Button variant="outline" icon={Download} disabled={empty} onClick={() => downloadAll(page)}>
             Скачать альбом
           </Button>
+          <AlbumLikeButton release={release} size="large" />
         </div>
       </div>
     </section>

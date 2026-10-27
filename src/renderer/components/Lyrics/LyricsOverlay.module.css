@@ -1,0 +1,375 @@
+/* Текст песни на весь экран. Слой закрывает всё, включая панель плеера, кроме заголовка окна:
+   тот выше (z-index 40), кнопки окна остаются доступны, а под ними — подложка слоя. Непрозрачная подложка
+   гасит экран под слоем, саундвейв рисуется поверх неё и под текстом. */
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding-top: var(--titlebar-h);
+  color: var(--text);
+  --wave-opacity: 0.4;
+  animation: lyrics-in var(--dur-slow) var(--ease) both;
+}
+
+@keyframes lyrics-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Подложка — тот же градиент, что за карточкой окна, но без прозрачности */
+.shade {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(60% 70% at 12% 8%, var(--bg-glow) 0%, transparent 70%),
+    radial-gradient(55% 60% at 92% 30%, var(--accent-soft) 0%, transparent 70%),
+    linear-gradient(160deg, var(--bg) 0%, var(--bg-deep) 100%);
+}
+
+.head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 32px 8px;
+}
+
+.closeButton {
+  flex: none;
+  min-width: 100px;
+  padding: 9px 18px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-pill);
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 700;
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease);
+}
+
+.closeButton:hover {
+  background: var(--surface-hover);
+}
+
+.closeButton:focus-visible,
+.line:focus-visible,
+.play:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.headTitle {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.headTrack {
+  color: var(--accent-text);
+}
+
+/* Равновесие «Свернуть» слева: заголовок остаётся по центру */
+.headSpacer {
+  flex: none;
+  width: 100px;
+}
+
+.body {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+  gap: 64px;
+  padding: 8px 80px 0 96px;
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 0;
+  padding-bottom: 32px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+.cover {
+  display: grid;
+  place-items: center;
+  width: min(100%, 280px);
+  aspect-ratio: 1;
+  max-height: 34vh;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--surface-2);
+  color: var(--text-muted);
+  box-shadow: 0 18px 48px var(--shadow);
+}
+
+.cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.names {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.artist {
+  color: var(--text-muted);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.progress {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.times {
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.transport {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.play {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin: 0 4px;
+  border-radius: 50%;
+  background: var(--play-bg);
+  color: var(--play-icon);
+  box-shadow: 0 6px 18px var(--shadow);
+  transition: transform var(--dur-fast) var(--ease);
+}
+
+.play:hover:not(:disabled) {
+  transform: scale(1.06);
+}
+
+.play:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.play:disabled {
+  opacity: 0.75;
+}
+
+.playIcon {
+  margin-left: 2px;
+}
+
+/* Правая часть — сам текст */
+.text {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+}
+
+.textWrap {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+}
+
+.empty {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  color: var(--text-muted);
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* Синхронный текст: окно с полями в полокна сверху и снизу — крайние строки доходят до центральной отметки.
+   Прокручивают код и жесты (колёсико, перетаскивание), полосы прокрутки нет. */
+.synced {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-right: 8px;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 14%, #000 86%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 14%, #000 86%, transparent 100%);
+}
+
+.scrubbing {
+  cursor: grabbing;
+}
+
+.line {
+  flex: none;
+  align-self: flex-start;
+  max-width: 92%;
+  padding: 6px 0;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: clamp(20px, 2.3vw, 30px);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  line-height: 1.25;
+  text-align: left;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+  transform-origin: left center;
+  transition:
+    transform var(--dur-slow) var(--ease),
+    color var(--dur-slow) var(--ease),
+    opacity var(--dur-slow) var(--ease);
+}
+
+.scrubbing .line {
+  cursor: inherit;
+}
+
+.line[data-state='played'] {
+  color: var(--text-faint);
+}
+
+.line[data-state='future'] {
+  opacity: 0.82;
+}
+
+.line[data-state='current'] {
+  color: var(--accent-text);
+  transform: scale(1.14);
+}
+
+.line:hover:not([data-state='current']) {
+  opacity: 1;
+  color: var(--text);
+}
+
+.gap {
+  flex: none;
+  height: 22px;
+}
+
+/* Центральная отметка и время строки-цели: видны, пока текст мотают */
+.mark {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 0;
+  border-top: 1px dashed var(--accent);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur) var(--ease);
+}
+
+.markOn {
+  opacity: 0.9;
+}
+
+.markTime {
+  position: absolute;
+  right: 0;
+  bottom: 6px;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  color: var(--accent-contrast);
+  font-size: 13px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Простой текст: обычная прокрутка */
+.plain {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  padding: 24px 12px 48px 0;
+}
+
+.paragraph {
+  margin: 0 0 28px;
+}
+
+.plainLine {
+  display: block;
+  font-size: clamp(18px, 1.9vw, 24px);
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+@media (max-width: 1250px) {
+  .body {
+    gap: 40px;
+    padding: 8px 40px 0 48px;
+  }
+
+  .head {
+    padding-inline: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .line {
+    transition: none;
+  }
+}
