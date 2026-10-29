@@ -3,7 +3,7 @@
 import { Check, LoaderCircle, RotateCw, Search, X } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import { pluralRu } from '../../../shared/format';
-import { GENRES } from '../../../shared/genres';
+import { POPULAR_GENRES } from '../../../shared/genres';
 import type { ArtistRef } from '../../../shared/types';
 import { usePopularArtists, useArtistSearch } from '../../screens/artist/artistData';
 import { ArtistAvatar } from '../../screens/artist/ArtistAvatar';
@@ -132,7 +132,7 @@ export function Onboarding() {
           <section className={styles.section} aria-label="Жанры">
             <h2>Жанры</h2>
             <div className={styles.genres}>
-              {GENRES.map((g) => {
+              {POPULAR_GENRES.map((g) => {
                 const Icon = genreIcon(g.tag);
                 const on = genres.includes(g.tag);
                 return (

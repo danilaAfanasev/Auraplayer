@@ -15,7 +15,15 @@ interface LyricsState {
   lyrics: Lyrics | null;
   /** Слой с текстом открыт (рисует таск 24). */
   open: boolean;
-  setOpen(open: boolean): void;
+  /** Откуда раскрывать слой (центр кнопки «Текст», координаты окна); `null` — из центра окна. */
+  origin: LyricsOrigin | null;
+  /** Открыть / свернуть слой; `origin` — точка, из которой он раскрывается кругом (и куда сворачивается). */
+  setOpen(open: boolean, origin?: LyricsOrigin): void;
+}
+
+export interface LyricsOrigin {
+  x: number;
+  y: number;
 }
 
 export const useLyrics = create<LyricsState>((set) => ({
@@ -23,8 +31,12 @@ export const useLyrics = create<LyricsState>((set) => ({
   status: 'idle',
   lyrics: null,
   open: false,
-  setOpen: (open) => set({ open }),
+  origin: null,
+  setOpen: (open, origin) => set(origin ? { open, origin } : { open }),
 }));
+
+/** База текстов иногда не отвечает (503): повторяем через столько мс после каждой неудачи, пока трек тот же. */
+export const LYRICS_RETRY_MS = [5_000, 15_000, 45_000] as const;
 
 /** Очередь меняется пачками (листание, волна): запрос «заранее» уходит после паузы — как подготовка звука. */
 const PREFETCH_DEBOUNCE_MS = 300;
@@ -33,8 +45,16 @@ let started = false;
 let prefetchTimer: ReturnType<typeof setTimeout> | null = null;
 /** Что в последний раз просили у main (ключ — id через запятую): тот же набор повторно не просим. */
 let prefetchedKey = '';
+let retryTimer: ReturnType<typeof setTimeout> | null = null;
 
-function load(track: Track): void {
+function cancelRetry(): void {
+  if (retryTimer) clearTimeout(retryTimer);
+  retryTimer = null;
+}
+
+/** `attempt` — номер повтора после ошибки (0 — первый запрос трека). */
+function load(track: Track, attempt = 0): void {
+  cancelRetry();
   useLyrics.setState({ trackId: track.id, status: 'loading', lyrics: null });
   let request: Promise<Lyrics>;
   try {
@@ -50,6 +70,12 @@ function load(track: Track): void {
     () => {
       if (useLyrics.getState().trackId !== track.id) return;
       useLyrics.setState({ status: 'error', lyrics: null });
+      const pause = LYRICS_RETRY_MS[attempt];
+      if (pause === undefined) return;
+      retryTimer = setTimeout(() => {
+        retryTimer = null;
+        if (useLyrics.getState().trackId === track.id) load(track, attempt + 1);
+      }, pause);
     },
   );
 }
@@ -74,6 +100,7 @@ function schedulePrefetch(): void {
 function sync(): void {
   const current = selectCurrentTrack(usePlayer.getState());
   if (!current) {
+    cancelRetry();
     if (useLyrics.getState().trackId !== null) useLyrics.setState({ trackId: null, status: 'idle', lyrics: null, open: false });
     return;
   }

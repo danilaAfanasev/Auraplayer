@@ -1,8 +1,10 @@
 import { Check, Palette, RotateCcw } from 'lucide-react';
 import { useEffect, useId, useState, type MouseEvent } from 'react';
 import { DEFAULT_THEME, THEME_PRESETS, type ThemePreset } from '../../../shared/palette';
-import type { ThemeSettings } from '../../../shared/types';
+import { SOUNDWAVE_STYLE_NAMES } from '../../../shared/soundwave';
+import { SOUNDWAVE_STYLES, type SoundwaveStyle, type ThemeSettings } from '../../../shared/types';
 import { Button } from '../../components/Button/Button';
+import { SoundwavePreview } from '../../components/Soundwave/SoundwavePreview';
 import { useSettings } from '../../stores/useSettings';
 import type { ThemeOrigin } from '../../theme/themeTransition';
 import styles from './AppearanceSection.module.css';
@@ -28,7 +30,51 @@ function themeFromColors(accent: string, background: string): ThemeSettings {
   return { presetId: preset?.id ?? null, accent, background };
 }
 
-/** Секция «Оформление»: готовые темы карточками, свои цвета (акцент + фон) и «Саундвейв на фоне». */
+/**
+ * «Вид» саундвейва (макет `SettingsPicker`): сетка живых мини-превью шести видов и крупный предпросмотр выбранного.
+ * Выбор сразу меняет фон окна и сохраняется; превью рисуют, только пока их видно.
+ */
+function SoundwaveStylePicker() {
+  const current = useSettings((s) => s.settings.soundwaveStyle);
+  const update = useSettings((s) => s.update);
+  const pick = (soundwaveStyle: SoundwaveStyle) => update({ soundwaveStyle });
+  return (
+    <div className={styles.wave}>
+      <div className={styles.waveKinds}>
+        <h3 className={styles.waveHead}>Вид</h3>
+        <div className={styles.waveGrid} role="radiogroup" aria-label="Вид саундвейва">
+          {SOUNDWAVE_STYLES.map((kind) => {
+            const selected = kind === current;
+            return (
+              <button
+                key={kind}
+                type="button"
+                role="radio"
+                aria-checked={selected}
+                className={[styles.waveKind, selected ? styles.selected : ''].filter(Boolean).join(' ')}
+                onClick={() => pick(kind)}
+              >
+                <span className={styles.waveMini}>
+                  <SoundwavePreview style={kind} />
+                </span>
+                <span className={styles.waveName}>{SOUNDWAVE_STYLE_NAMES[kind]}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+      <div className={styles.waveLive}>
+        <h3 className={styles.waveHead}>Предпросмотр</h3>
+        <div className={styles.waveBig}>
+          <SoundwavePreview style={current} />
+        </div>
+        <p className={styles.waveNote}>Вид меняется сразу на фоне окна. Цвет — из темы оформления.</p>
+      </div>
+    </div>
+  );
+}
+
+/** Секция «Оформление»: готовые темы карточками, свои цвета (акцент + фон), «Саундвейв на фоне» и его вид. */
 export function AppearanceSection() {
   const theme = useSettings((s) => s.settings.theme);
   const applyTheme = useSettings((s) => s.applyTheme);
@@ -130,6 +176,7 @@ export function AppearanceSection() {
           }}
         />
       </label>
+      {soundwave && <SoundwaveStylePicker />}
     </SettingsSection>
   );
 }

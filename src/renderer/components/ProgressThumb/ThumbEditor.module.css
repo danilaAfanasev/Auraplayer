@@ -1,0 +1,221 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: var(--overlay);
+  animation: fade var(--dur) var(--ease) both;
+}
+
+.dialog {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: min(760px, 100%);
+  max-height: 100%;
+  overflow: auto;
+  padding: 24px 26px;
+  border-radius: var(--radius-l);
+  background: var(--popover);
+  border: 1px solid var(--border-strong);
+  box-shadow: 0 30px 80px var(--shadow);
+  animation: pop var(--dur-slow) var(--ease) both;
+}
+
+.dialog h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 22px 28px;
+}
+
+.canvasBox {
+  flex: none;
+  padding: 6px;
+  border-radius: var(--radius-m);
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+/* Шахматка под холстом — «прозрачно»; клетка на экране — 14 px (холст рисуется 20 px и сжимается). */
+.canvas {
+  --cell: 14px;
+  display: block;
+  width: calc(24 * var(--cell));
+  height: calc(24 * var(--cell));
+  border-radius: 4px;
+  cursor: crosshair;
+  touch-action: none;
+  background: repeating-conic-gradient(var(--surface-2) 0 25%, transparent 0 50%) 0 0 / calc(2 * var(--cell)) calc(2 * var(--cell));
+}
+
+.side {
+  flex: 1 1 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tool,
+.small {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  font-size: 13px;
+  font-weight: 700;
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease);
+}
+
+.small {
+  padding: 6px 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.tool:hover,
+.small:hover:not(:disabled) {
+  background: var(--surface-hover);
+}
+
+.tool.on {
+  color: var(--accent-contrast);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.small:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.palette {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.swatch {
+  position: relative;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid var(--border-strong);
+  transition: transform var(--dur-fast) var(--ease);
+}
+
+.swatch:hover {
+  transform: scale(1.1);
+}
+
+.swatch.on {
+  border-color: var(--text);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+.add {
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: var(--text-muted);
+  background: var(--surface);
+  cursor: pointer;
+}
+
+/* Нативный выбор цвета лежит под плюсом на всю кнопку и невидим. */
+.add input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.add.disabled {
+  opacity: 0.45;
+}
+
+.add.disabled input {
+  cursor: default;
+}
+
+.preview {
+  padding: 14px 16px;
+  border-radius: var(--radius-m);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+
+.preview input {
+  width: 100%;
+}
+
+.name {
+  padding: 9px 12px;
+  border-radius: var(--radius-s);
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+  font-size: 14px;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.error {
+  flex: 1;
+  margin: 0;
+  min-height: 1.2em;
+  color: var(--danger);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+}

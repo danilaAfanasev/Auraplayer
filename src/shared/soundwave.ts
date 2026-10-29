@@ -4,6 +4,11 @@
 // «горбов» по ширине окна; поверх неё — пучок тонких синусоид с разной частотой и фазой (как на
 // референсе: много наложенных линий, ярче несколько «сердцевинных»). Тишина — едва заметный дрейф.
 
+// Виды (`SoundwaveStyle`): «Волны» — этот пучок; «Квадратики», «Точки», «Зеркальная волна», «Кольцо»,
+// «Осциллограф» — от тех же уровней и толчка (`waveShapes`).
+
+import type { SoundwaveStyle } from './types';
+
 /** Сколько полос частот ведут волну (по одному «горбу» огибающей на полосу). */
 export const WAVE_BANDS = 6;
 
@@ -262,5 +267,268 @@ export function waveLines(levels: number[], t: number, opts: WaveOptions): WaveL
       ys[i] = room > 0 ? mid + room * Math.tanh(off / room) : mid;
     }
     return { ys, width: shape.width, alpha: shape.alpha };
+  });
+}
+
+// --- Виды саундвейва: геометрия кадра ---
+// Все виды берут одно и то же: уровни полос и толчок удара (`stepWaveDynamics`) и время `t`. Кадр — несколько
+// групп примитивов; каждая группа рисуется одним вызовом (один штрих, одна заливка), поэтому вызовов на кадр
+// единицы, а не сотни. Тяжёлых эффектов (размытие, тени) нет: кадр рисуется на частоте экрана.
+
+export const SOUNDWAVE_STYLE_NAMES: Record<SoundwaveStyle, string> = {
+  waves: 'Волны',
+  blocks: 'Квадратики',
+  dots: 'Точки',
+  mirror: 'Зеркальная волна',
+  ring: 'Кольцо',
+  scope: 'Осциллограф',
+};
+
+/** Кольцо: центр и внутренний радиус в пикселях холста (на экране текста — вокруг обложки). */
+export interface WaveRing {
+  x: number;
+  y: number;
+  radius: number;
+}
+
+export interface WaveShapeOptions {
+  width: number;
+  height: number;
+  /** Толчок удара 0..1 (`WaveDynamics.punch`). */
+  punch?: number;
+  /** Шаг точек «Волн», px. */
+  step?: number;
+  /** «Кольцо»: где и какого размера; по умолчанию — по центру холста. */
+  ring?: WaveRing;
+}
+
+/**
+ * Одна группа кадра — один вызов рисования. Координаты — в пикселях холста (CSS).
+ * `stroke.paths` — ломаные `[x0, y0, x1, y1, …]`; `screen` — толщина в пикселях экрана, а не холста (волоски «Волн»);
+ * `fill.paths` — замкнутые многоугольники; `rects` — `[x, y, w, h, …]`; `dots` — `[x, y, r, …]`.
+ */
+export type WaveShape =
+  | { type: 'stroke'; paths: number[][]; width: number; alpha: number; screen?: boolean }
+  | { type: 'fill'; paths: number[][]; alpha: number }
+  | { type: 'rects'; rects: number[]; alpha: number }
+  | { type: 'dots'; dots: number[]; alpha: number };
+
+/** Уровень спектра в точке `u` (0 — бас, 1 — верх): плавно между соседними полосами. */
+export function spectrumAt(levels: number[], u: number): number {
+  const n = levels.length;
+  if (n === 0) return 0;
+  const f = clamp01(u) * n - 0.5;
+  const i = Math.floor(f);
+  const r = f - i;
+  const a = levels[Math.max(0, Math.min(n - 1, i))] ?? 0;
+  const b = levels[Math.max(0, Math.min(n - 1, i + 1))] ?? 0;
+  return a + (b - a) * r * r * (3 - 2 * r);
+}
+
+/** Непрозрачность — к одной из `steps` ступеней между `min` и `max`: одинаковые ступени рисуются одной группой. */
+function alphaStep(a: number, min: number, max: number, steps: number): number {
+  const k = Math.round(clamp01((a - min) / (max - min)) * (steps - 1));
+  return Math.round((min + ((max - min) * k) / (steps - 1)) * 1000) / 1000;
+}
+
+/** Мягкий предел: размах `v` не выходит за `room`, сильный удар упирается в край плавно. */
+const soft = (v: number, room: number): number => (room > 0 ? room * Math.tanh(v / room) : 0);
+
+function wavesShapes(levels: number[], t: number, o: WaveShapeOptions): WaveShape[] {
+  const lines = waveLines(levels, t, { width: o.width, height: o.height, step: o.step ?? (o.width > 1600 ? 10 : 8), punch: o.punch });
+  if (!lines.length) return [];
+  const dx = lines[0].ys.length > 1 ? o.width / (lines[0].ys.length - 1) : 0;
+  const groups = new Map<string, Extract<WaveShape, { type: 'stroke' }>>();
+  for (const line of lines) {
+    const key = `${line.width}|${line.alpha}`;
+    let group = groups.get(key);
+    if (!group) groups.set(key, (group = { type: 'stroke', paths: [], width: line.width, alpha: line.alpha, screen: true }));
+    const path = new Array<number>(line.ys.length * 2);
+    for (let i = 0; i < line.ys.length; i++) {
+      path[2 * i] = i * dx;
+      path[2 * i + 1] = line.ys[i];
+    }
+    group.paths.push(path);
+  }
+  return [...groups.values()];
+}
+
+/** Квадратики: столбики из квадратных клеток снизу вверх, бас слева; верхние клетки ярче. */
+function blocksShapes(levels: number[], t: number, o: WaveShapeOptions): WaveShape[] {
+  const { width, height } = o;
+  const punch = clamp01(o.punch ?? 0);
+  const pitch = Math.max(12, Math.min(28, width / 40));
+  const gap = Math.max(2, Math.round(pitch * 0.2));
+  const cell = pitch - gap;
+  const cols = Math.floor((width + gap) / pitch);
+  const rows = Math.floor((height + gap) / pitch);
+  if (cols < 1 || rows < 1) return [];
+  const left = (width - (cols * pitch - gap)) / 2;
+  const bottom = height - (height - (rows * pitch - gap)) / 2;
+  const groups = new Map<number, number[]>();
+  for (let c = 0; c < cols; c++) {
+    const u = (c + 0.5) / cols;
+    const kick = u < 0.35 ? punch * 0.35 * (1 - u / 0.35) : 0;
+    const level = clamp01(spectrumAt(levels, u) * (0.88 + 0.12 * Math.sin(t * 3.1 + c * 1.7)) + kick);
+    const lit = Math.max(1, Math.round(level * rows));
+    const x = left + c * pitch;
+    for (let r = 0; r < lit; r++) {
+      const alpha = alphaStep(0.3 + 0.65 * (rows > 1 ? r / (rows - 1) : 1), 0.3, 0.95, 4);
+      let rects = groups.get(alpha);
+      if (!rects) groups.set(alpha, (rects = []));
+      rects.push(x, bottom - (r + 1) * pitch + gap, cell, cell);
+    }
+  }
+  return [...groups.entries()].map(([alpha, rects]) => ({ type: 'rects', rects, alpha }));
+}
+
+/** Точки: столбцы точек от середины; громче — точки крупнее, ярче и дальше от середины. */
+function dotsShapes(levels: number[], t: number, o: WaveShapeOptions): WaveShape[] {
+  const { width, height } = o;
+  const punch = clamp01(o.punch ?? 0);
+  const cols = Math.max(16, Math.min(120, Math.round(width / 16)));
+  const PER_COL = 6;
+  const grow = Math.max(1, height / 240);
+  const margin = 12 * grow;
+  const mid = height / 2;
+  const groups = new Map<number, number[]>();
+  for (let c = 0; c < cols; c++) {
+    const u = c / (cols - 1);
+    const level = spectrumAt(levels, u);
+    const x = margin + u * (width - 2 * margin);
+    const alpha = alphaStep(0.25 + level * 0.75, 0.25, 1, 4);
+    let dots = groups.get(alpha);
+    if (!dots) groups.set(alpha, (dots = []));
+    for (let k = 0; k < PER_COL; k++) {
+      const side = k - (PER_COL - 1) / 2;
+      const r = (1 + level * 2.6 * (1 - Math.abs(side) / PER_COL)) * grow;
+      const off = side * height * 0.09 * (0.3 + level * 1.4 + punch * 0.4) + Math.sin(t * 2 + c * 0.4 + k) * 2 * grow;
+      const y = Math.max(r, Math.min(height - r, mid + off));
+      dots.push(x, y, r);
+    }
+  }
+  return [...groups.entries()].map(([alpha, dots]) => ({ type: 'dots', dots, alpha }));
+}
+
+/** Зеркальная волна: спектр от середины вверх и вниз (бас в центре ширины), лёгкая заливка и контур. */
+function mirrorShapes(levels: number[], t: number, o: WaveShapeOptions): WaveShape[] {
+  const { width, height } = o;
+  const punch = clamp01(o.punch ?? 0);
+  const mid = height / 2;
+  const room = Math.max(0, mid - 1);
+  const step = 6;
+  const n = Math.floor(width / step) + 1;
+  const dx = n > 1 ? width / (n - 1) : 0;
+  const top: number[] = [];
+  const bottom: number[] = [];
+  for (let i = 0; i < n; i++) {
+    const x = i * dx;
+    const u = x / width;
+    const d = Math.abs(2 * u - 1);
+    const env = Math.cos((d * Math.PI) / 2);
+    const s = spectrumAt(levels, d) * (0.9 + 0.1 * Math.sin(t * 2.2 + u * 9));
+    const amp = soft(height * 0.42 * env * (0.1 + s * 0.95 + punch * 0.25), room);
+    top.push(x, mid - amp);
+    bottom.push(x, mid + amp);
+  }
+  const outline: number[] = [...top];
+  for (let i = bottom.length - 2; i >= 0; i -= 2) outline.push(bottom[i], bottom[i + 1]);
+  return [
+    { type: 'fill', paths: [outline], alpha: 0.16 },
+    { type: 'stroke', paths: [top, bottom], width: 1.2, alpha: 0.9 },
+  ];
+}
+
+/** Кольцо: три контура вокруг центра; бас — по бокам, верх — сверху и снизу; удар раздувает кольцо. */
+function ringShapes(levels: number[], t: number, o: WaveShapeOptions): WaveShape[] {
+  const { width, height } = o;
+  const punch = clamp01(o.punch ?? 0);
+  const ring = o.ring ?? { x: width / 2, y: height / 2, radius: Math.min(width, height) * 0.24 };
+  const r0 = ring.radius * (1 + punch * 0.1);
+  const amp = ring.radius * 0.9 * (1 + punch * 0.3);
+  const gap = ring.radius * 0.06;
+  // Не выходит за холст, если центр внутри него (иначе — без предела).
+  const edge = Math.min(ring.x, ring.y, width - ring.x, height - ring.y) - 1;
+  const room = edge - ring.radius;
+  const POINTS = 128;
+  const shapes: WaveShape[] = [];
+  for (let k = 0; k < 3; k++) {
+    const path = new Array<number>((POINTS + 1) * 2);
+    for (let i = 0; i <= POINTS; i++) {
+      const ang = (i / POINTS) * Math.PI * 2;
+      const s = Math.sin(ang);
+      const u = s * s;
+      const extra = r0 - ring.radius + k * gap + spectrumAt(levels, u) * amp * (1 - k * 0.22) * (0.6 + 0.4 * Math.sin(t * 2 + i * 0.3 + k));
+      const rr = ring.radius + (room > 0 ? soft(extra, room) : extra);
+      path[2 * i] = ring.x + Math.cos(ang) * rr;
+      path[2 * i + 1] = ring.y + s * rr;
+    }
+    shapes.push({ type: 'stroke', paths: [path], width: k === 0 ? 1.2 : 0.8, alpha: 0.9 - k * 0.28 });
+  }
+  return shapes;
+}
+
+/** Осциллограф: одна яркая живая линия (и мягкий ореол той же линией потолще и бледнее). */
+function scopeShapes(levels: number[], t: number, o: WaveShapeOptions): WaveShape[] {
+  const { width, height } = o;
+  const punch = clamp01(o.punch ?? 0);
+  const mid = height / 2;
+  const room = Math.max(0, mid - 3);
+  const energy = levels.length ? levels.reduce((s, v) => s + v, 0) / levels.length : 0;
+  const amp = height * 0.38 * (0.04 + energy * 0.8 + punch * 0.5);
+  const bass = levels[1] ?? 0;
+  const high = levels[4] ?? 0;
+  const step = 3;
+  const n = Math.floor(width / step) + 1;
+  const dx = n > 1 ? width / (n - 1) : 0;
+  const path = new Array<number>(n * 2);
+  for (let i = 0; i < n; i++) {
+    const u = (i * dx) / width;
+    const wave =
+      Math.sin(u * 22 + t * 9) * 0.5 + Math.sin(u * 57 + t * 13) * (0.15 + bass) * 0.4 + Math.sin(u * 131 + t * 21) * (0.15 + high) * 0.3;
+    path[2 * i] = i * dx;
+    path[2 * i + 1] = mid + soft(amp * wave, room);
+  }
+  return [
+    { type: 'stroke', paths: [path], width: 5, alpha: 0.16 },
+    { type: 'stroke', paths: [path], width: 1.4, alpha: 0.95 },
+  ];
+}
+
+const STYLE_SHAPES: Record<SoundwaveStyle, (levels: number[], t: number, o: WaveShapeOptions) => WaveShape[]> = {
+  waves: wavesShapes,
+  blocks: blocksShapes,
+  dots: dotsShapes,
+  mirror: mirrorShapes,
+  ring: ringShapes,
+  scope: scopeShapes,
+};
+
+/** Кадр вида `style`: зависит только от уровней полос, толчка, времени `t` (секунды) и размеров. */
+export function waveShapes(style: SoundwaveStyle, levels: number[], t: number, opts: WaveShapeOptions): WaveShape[] {
+  if (opts.width <= 0 || opts.height <= 0) return [];
+  return (STYLE_SHAPES[style] ?? wavesShapes)(levels, t, opts);
+}
+
+// --- Звук для превью в настройках, когда ничего не играет ---
+
+/** Ровный спектр демо-бита, дБ по полосам: бас громче всего, верх тише. */
+const DEMO_DB = [-34, -36, -40, -44, -50, -56];
+const DEMO_BEAT_SEC = 60 / 140;
+
+/**
+ * Сырые уровни полос (как `bandLevels`) выдуманного бита 140 BPM: бочка на каждую долю, малый на 2 и 4,
+ * хэт между долями. Превью видов прогоняют их через ту же `stepWaveDynamics`, что и настоящий звук.
+ */
+export function demoBands(t: number): number[] {
+  const ph = (((t % DEMO_BEAT_SEC) + DEMO_BEAT_SEC) % DEMO_BEAT_SEC) / DEMO_BEAT_SEC;
+  const half = (ph + 0.5) % 1;
+  const beat = Math.floor(t / DEMO_BEAT_SEC);
+  const kick = 12 * Math.exp(-ph * 9);
+  const snare = beat % 2 === 1 ? 10 * Math.exp(-ph * 7) : 0;
+  const hat = 8 * Math.exp(-half * 14);
+  return DEMO_DB.map((db, k) => {
+    const v = db + 3 * Math.sin(t * 0.7 + k * 1.3) + (k < 2 ? kick : 0) + (k === 2 || k === 3 ? snare : 0) + (k === 5 ? hat : 0);
+    return clamp01((v - ANALYSER_MIN_DB) / (ANALYSER_MAX_DB - ANALYSER_MIN_DB));
   });
 }

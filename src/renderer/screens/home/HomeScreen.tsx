@@ -1,6 +1,6 @@
 import { ChevronRight } from 'lucide-react';
 import { useEffect, useMemo } from 'react';
-import { GENRES } from '../../../shared/genres';
+import { POPULAR_GENRES } from '../../../shared/genres';
 import { genreIcon } from '../../components/GenreIcon/genreIcon';
 import { ScreenHeader } from '../../components/ScreenHeader/ScreenHeader';
 import { Skeleton } from '../../components/Skeleton/Skeleton';
@@ -47,7 +47,7 @@ function GenreRow() {
         </button>
       </header>
       <div className={styles.genres}>
-        {GENRES.slice(0, 10).map((g) => {
+        {POPULAR_GENRES.slice(0, 12).map((g) => {
           const Icon = genreIcon(g.tag);
           return (
             <button key={g.tag} type="button" className={styles.genre} onClick={() => navigate({ name: 'tag', param: g.tag })}>

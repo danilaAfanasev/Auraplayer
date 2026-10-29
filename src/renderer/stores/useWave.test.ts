@@ -257,7 +257,8 @@ describe('useWave: выключение и «Не нравится»', () => {
   it('«Не нравится» — трек в чёрный список навсегда: следующий трек, та же песня не вернётся ни в порцию, ни в новую волну', async () => {
     const { useLibrary } = await import('./useLibrary');
     void w().start({ title: 'Фонк', queries: ['phonk'] });
-    const list = [track('a1', 'Плохой'), track('b1'), track('a2', 'Плохой'), track('b2')];
+    // Второй трек «Плохого» в 10 подряд не встал бы (окно исполнителей) — здесь другой исполнитель.
+    const list = [track('a1', 'Плохой'), track('b1'), track('a2'), track('b2')];
     startCalls[0].resolve(list);
     await tick();
     await current();
@@ -269,7 +270,8 @@ describe('useWave: выключение и «Не нравится»', () => {
     await current();
     w().dislike();
     expect(useLibrary.getState().lib.blacklist.tracks.map((b) => b.track.id)).toEqual(['archive:a1']);
-    // Скрыт только трек: другие песни исполнителя остаются.
+    // Скрыт только трек: исполнитель в чёрный список не уходит.
+    expect(useLibrary.getState().lib.blacklist.artists).toEqual([]);
     expect(ids(p().queue)).toEqual(['archive:a1', 'archive:b1', 'archive:a2', 'archive:b2']);
     expect(p().queue[p().index].id).toBe('archive:b1');
     expect(w().active).toEqual({ title: 'Фонк' });
@@ -550,5 +552,81 @@ describe('useWave: волна SoundCloud', () => {
     engine.handlers.ended?.();
     expect(startCalls).toHaveLength(1);
     expect(ids(startCalls[0].seed.tracks ?? [])).toEqual([sc('1').id]);
+  });
+});
+
+describe('useWave: разнообразие — 10 разных исполнителей, лайки реже', () => {
+  /** Исполнители очереди: первая пара позиций, где один исполнитель ближе `window` треков; нет — null. */
+  async function repeatWithin(list: readonly Track[], window: number): Promise<[number, number] | null> {
+    const { artistKeys } = await import('../../shared/wave');
+    const keys = list.map((x) => artistKeys(x.artist, x.title));
+    for (let i = 0; i < keys.length; i++) {
+      for (let j = i + 1; j < Math.min(keys.length, i + window); j++) if (keys[i].some((k) => keys[j].includes(k))) return [i, j];
+    }
+    return null;
+  }
+
+  it('песни из «Мне нравится» — не больше одной на 10 подряд (вкус из лайков), остальное — не из лайков', async () => {
+    const { useLibrary } = await import('./useLibrary');
+    const liked = Array.from({ length: 15 }, (_, i) => track(`l${i}`, `Любимый ${i}`));
+    for (const t of liked) useLibrary.getState().toggleLike(t);
+    const lead = liked[0];
+    void w().start({ title: 'Песня l0', lead: [lead], tracks: [lead] });
+    await current();
+    const other = Array.from({ length: 15 }, (_, i) => track(`n${i}`, `Новый ${i}`));
+    // Похожие — вперемешку лайкнутые и новые, лайкнутые первыми.
+    startCalls[0].resolve(liked.slice(1).flatMap((t, i) => [t, other[i]]));
+    await tick();
+    const queue = p().queue;
+    expect(queue.length).toBeGreaterThanOrEqual(10);
+    const likedIds = new Set(ids(liked));
+    for (let i = 0; i + 10 <= queue.length; i++) expect(queue.slice(i, i + 10).filter((t) => likedIds.has(t.id)).length).toBeLessThanOrEqual(1);
+  });
+
+  it('мало кандидатов: строгое окно ничего не дало — догрузка, затем окно 5; волна играет, повтор не ближе 5', async () => {
+    const lead = track('A1', 'A');
+    void w().start({ title: 'Песня A1', lead: [lead], tracks: [lead] });
+    await current();
+    startCalls[0].resolve(['B', 'C', 'D', 'E', 'F'].map((a) => track(`${a}1`, a)));
+    await tick();
+    expect(p().queue.map((t) => t.artist)).toEqual(['A', 'B', 'C', 'D', 'E', 'F']);
+    for (let i = 0; i < 3; i++) p().next();
+    await tick();
+    // Строгое окно: все шесть исполнителей ещё в окне — кандидатов нет, догрузка.
+    moreCalls.shift()!.resolve(['A', 'B', 'C'].map((a) => track(`${a}2`, a)));
+    await tick();
+    expect(p().queue).toHaveLength(6);
+    moreCalls.shift()!.resolve(['A', 'B'].map((a) => track(`${a}3`, a)));
+    await tick();
+    expect(p().queue).toHaveLength(6);
+    // Последняя попытка — окно 5: A и B (дальше 4 последних) встают, F (только что играл) — нет.
+    moreCalls.shift()!.resolve([track('F4', 'F'), track('A4', 'A'), track('B4', 'B')]);
+    await tick();
+    expect(p().queue.map((t) => t.artist)).toEqual(['A', 'B', 'C', 'D', 'E', 'F', 'A', 'B']);
+    expect(await repeatWithin(p().queue, 5)).toBeNull();
+  });
+
+  it('трек без звука выпал — следующий за ним не встаёт ближе окна к тому же исполнителю', async () => {
+    const cat = (id: string, artist: string): Track => ({ id: `catalog:${id}`, source: 'catalog', sourceId: id, title: `Песня ${id}`, artist, downloadable: true });
+    const lead = track('x0', 'X');
+    void w().start({ title: 'Песня x0', lead: [lead], tracks: [lead] });
+    await current();
+    // План: X, P1…P9, X — ровно через 10. P5 без звука выпадет — второй X оказался бы через 9.
+    const plan = [...Array.from({ length: 9 }, (_, i) => cat(`p${i + 1}`, `P${i + 1}`)), cat('x1', 'X'), cat('q1', 'Q'), cat('q2', 'R')];
+    startCalls[0].resolve(plan);
+    for (let step = 0; step < 40; step++) {
+      await tick();
+      for (const [id, d] of streams) {
+        if (resolved.has(id) || !id.startsWith('catalog:')) continue;
+        resolved.add(id);
+        if (id === 'catalog:p5') d.reject(new Error('Не удалось найти звук для этого трека'));
+        else d.resolve(`url-${id}`);
+      }
+      if (p().index < p().queue.length - 1) p().next();
+      for (const c of moreCalls.splice(0)) c.resolve([]);
+    }
+    const queue = p().queue;
+    expect(ids(queue)).not.toContain('catalog:p5');
+    expect(await repeatWithin(queue, 10)).toBeNull();
   });
 });

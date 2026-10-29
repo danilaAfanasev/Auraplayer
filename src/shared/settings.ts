@@ -1,7 +1,8 @@
 // Настройки по умолчанию и проверка настроек, прочитанных с диска.
 import { defaultEqualizer, normalizeEqualizer } from './equalizer';
 import { DEFAULT_THEME, parseHex, toHex } from './palette';
-import { CHART_COUNTRIES, type RepeatMode, type Settings, type ThemeSettings } from './types';
+import { DEFAULT_THUMB_CHOICE, normalizeCustomThumbs, normalizeThumbChoice } from './progressThumb';
+import { CHART_COUNTRIES, SOUNDWAVE_STYLES, type RepeatMode, type Settings, type SoundwaveStyle, type ThemeSettings } from './types';
 
 export const DEFAULT_VOLUME = 0.8;
 
@@ -23,6 +24,9 @@ export function defaultSettings(downloadDir: string): Settings {
     onboarded: false,
     equalizer: defaultEqualizer(),
     soundwave: true,
+    soundwaveStyle: 'waves',
+    progressThumb: { ...DEFAULT_THUMB_CHOICE },
+    customThumbs: [],
   };
 }
 
@@ -59,6 +63,7 @@ function normalizeSession(raw: unknown): Settings['lastSession'] {
 export function normalizeSettings(raw: unknown, downloadDir: string): Settings {
   const d = defaultSettings(downloadDir);
   if (!isObject(raw)) return d;
+  const customThumbs = normalizeCustomThumbs(raw.customThumbs);
   return {
     version: 1,
     theme: normalizeTheme(raw.theme),
@@ -78,5 +83,10 @@ export function normalizeSettings(raw: unknown, downloadDir: string): Settings {
     equalizer: normalizeEqualizer(raw.equalizer),
     // Саундвейв включён по умолчанию — и у старого файла без поля.
     soundwave: typeof raw.soundwave === 'boolean' ? raw.soundwave : d.soundwave,
+    // Вид волны: у старого файла без поля и при чужом значении — «Волны», как было до выбора видов.
+    soundwaveStyle: SOUNDWAVE_STYLES.includes(raw.soundwaveStyle as SoundwaveStyle) ? (raw.soundwaveStyle as SoundwaveStyle) : d.soundwaveStyle,
+    // Значок полосы: нет поля, чужое значение или выбран удалённый свой — кружок.
+    progressThumb: normalizeThumbChoice(raw.progressThumb, customThumbs),
+    customThumbs,
   };
 }

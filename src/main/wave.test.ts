@@ -10,6 +10,7 @@ import ytMix from './sources/__fixtures__/youtube-mix-shadowraze.json';
 import scRelated from './sources/__fixtures__/soundcloud-related.json';
 import ytSearchMadk1d from './sources/__fixtures__/youtube-search-madk1d.json';
 import { SourceError } from './sources/types';
+import { emptyWaveMemory, pickWaveTracks, primaryArtist, rememberTracks, scriptOf } from '../shared/wave';
 import { createWaveService, isSongLike, mixUrl, parseDeezerTracks, parseYtMix } from './wave';
 
 const SEED_VIDEO = '89yDiQ8WkNg'; // shadowraze — astral step
@@ -151,7 +152,7 @@ describe('createWaveService', () => {
     expect(args).toContain('--playlist-end');
     expect(args[args.length - 1]).toBe(mixUrl(SEED_VIDEO));
     expect(mixUrl(SEED_VIDEO)).toBe(`https://www.youtube.com/watch?v=${SEED_VIDEO}&list=RD${SEED_VIDEO}`);
-    expect(tracks.length).toBeGreaterThan(20);
+    expect(tracks.length).toBeGreaterThanOrEqual(20); // не больше 3 треков одного исполнителя
     expect(tracks.some((t) => t.sourceId === SEED_VIDEO)).toBe(false);
   });
 
@@ -166,7 +167,7 @@ describe('createWaveService', () => {
     const tracks = await wave.start({ title: 'astral step', lead: [seed], tracks: [seed] }, settings);
     expect(run).toHaveBeenCalledTimes(1);
     expect(run.mock.calls[0][0].at(-1)).toBe(mixUrl(SEED_VIDEO));
-    expect(tracks.length).toBeGreaterThan(20);
+    expect(tracks.length).toBeGreaterThanOrEqual(20);
   });
 
   it('волна по треку каталога: сопоставление нового формата (с пометкой источника) — его видео; звук с SoundCloud — поиск видео', async () => {
@@ -260,8 +261,132 @@ describe('createWaveService', () => {
   });
 });
 
+describe('похожие артисты источника и зарубежное похожее', () => {
+  const NOW_2026 = () => Date.UTC(2026, 9, 29);
+  const dzTrack = (id: number, artist: string, title: string, albumId = 900 + id) => ({
+    id,
+    type: 'track',
+    title,
+    duration: 180,
+    artist: { id: 5000 + id, name: artist },
+    album: { id: albumId, title },
+  });
+  /** Похожие артисты Платины — разные сцены, без фильтра языка. */
+  const related = { data: [{ id: 101, name: 'Travis Scott', nb_fan: 3000000 }, { id: 102, name: 'Pharaoh', nb_fan: 90000 }] };
+  const platinaRoutes = {
+    '/search/artist?q=%D0%9F%D0%BB%D0%B0%D1%82%D0%B8%D0%BD%D0%B0': { data: [{ id: 14097523, name: 'Платина', nb_fan: 36405 }] },
+    '/artist/14097523/top': { data: [dzTrack(1, 'Платина', 'Иней!', 865683242), dzTrack(2, 'Платина', 'Бассок'), dzTrack(3, 'Платина', 'Хенни'), dzTrack(4, 'Платина', 'Групи')] },
+    '/artist/14097523/radio': {
+      data: [
+        dzTrack(10, 'Платина', 'Санта Клаус'),
+        dzTrack(11, 'Платина', 'Сердце'),
+        dzTrack(12, 'Платина', 'Бро'),
+        ...Array.from({ length: 12 }, (_, i) => dzTrack(20 + i, `Русский ${i}`, `Песня ${i}`)),
+      ],
+    },
+    '/artist/14097523/related': related,
+    '/artist/101/top': { data: [dzTrack(40, 'Travis Scott', 'FE!N'), dzTrack(41, 'Travis Scott', 'SICKO MODE')] },
+    '/artist/102/top': { data: [dzTrack(42, 'Pharaoh', 'Дико, например'), dzTrack(43, 'Pharaoh', 'Black Siemens')] },
+    '/album/865683242': { id: 865683242, genre_id: 116, genres: { data: [{ id: 116, name: 'Rap/Hip Hop' }] } },
+    '/search/playlist?q=hip%20hop%202026': dzPlaylistSearch,
+    '/playlist/': dzPlaylistTracks,
+  };
+
+  it('волна по артисту — и топы его «похожих артистов» источника (без фильтра языка)', async () => {
+    const wave = createWaveService({ run: vi.fn(), fetchJson: fakeFetch(platinaRoutes), random: () => 0, now: NOW_2026 });
+    const tracks = await wave.start({ title: 'Платина', artists: ['Платина'] }, settings);
+    const artists = tracks.map((t) => t.artist);
+    expect(artists).toEqual(expect.arrayContaining(['Travis Scott', 'Pharaoh', 'Русский 0']));
+  });
+
+  it('за порцию — не больше 3 кандидатов от одного исполнителя', async () => {
+    const wave = createWaveService({ run: vi.fn(), fetchJson: fakeFetch(platinaRoutes), random: () => 0, now: NOW_2026 });
+    const tracks = await wave.start({ title: 'Платина', artists: ['Платина'] }, settings);
+    expect(tracks.filter((t) => primaryArtist(t) === 'платина').length).toBeLessThanOrEqual(3);
+    expect(tracks.filter((t) => primaryArtist(t) === 'платина').length).toBeGreaterThan(0);
+  });
+
+  it('жанр артиста по-английски («Rap/Hip Hop» → подборки «hip hop 2026») — зарубежные кандидаты', async () => {
+    const fetchJson = fakeFetch(platinaRoutes);
+    const wave = createWaveService({ run: vi.fn(), fetchJson, random: () => 0, now: NOW_2026 });
+    const tracks = await wave.start({ title: 'Платина', artists: ['Платина'] }, settings);
+    expect(fetchJson.mock.calls.some(([url]) => String(url).includes('/search/playlist?q=hip%20hop%202026'))).toBe(true);
+    expect(tracks.map((t) => t.artist)).toEqual(expect.arrayContaining(['100 gecs']));
+  });
+
+  it('подмешанное зарубежное — приправа, а не сид: дополнение не ищет похожих на него (волна не уплывает в чужую сцену)', async () => {
+    const fetchJson = fakeFetch(platinaRoutes);
+    const wave = createWaveService({ run: vi.fn(), fetchJson, random: () => 0, now: NOW_2026 });
+    const first = await wave.start({ title: 'Платина', artists: ['Платина'] }, settings);
+    const spice = first.find((t) => t.artist === '100 gecs')!;
+    const own = first.find((t) => t.artist === 'Платина')!;
+    expect(spice && own).toBeTruthy();
+    fetchJson.mockClear();
+    // Раунд 2 — радио исполнителя недавнего трека; недавние — подмешанный зарубежный и свой.
+    await wave.more({ seed: { title: 'Платина', artists: ['Платина'] }, recent: [spice, own], round: 2 }, settings);
+    const urls = fetchJson.mock.calls.map(([url]) => decodeURIComponent(String(url)));
+    expect(urls.some((u) => u.includes('search/artist?q=100 gecs'))).toBe(false);
+  });
+
+  it('подборка жанра: сначала с запросом в названии, подборки-настроения (lofi, chill, sleep) для жанра не берутся', async () => {
+    const search = {
+      data: [
+        { id: 7917934722, type: 'playlist', title: 'Late Night Vibes - Chillhop / Ambient / Lofi Hip Hop', user: { name: 'Chillhop Music' } },
+        { id: 1579491945, type: 'playlist', title: 'Hip Hop 2026', user: { name: 'Filtr Sweden' } },
+        { id: 1677006641, type: 'playlist', title: 'Hot Urban', user: { name: 'Ayoub - Deezer Rap Editor' } },
+      ],
+    };
+    const fetchJson = fakeFetch({ '/search/playlist?q=hip%20hop%202026': search, '/playlist/': dzPlaylistTracks });
+    const wave = createWaveService({ run: vi.fn(), fetchJson, random: () => 0 });
+    await wave.start({ title: 'Хип-хоп', queries: ['hip hop 2026'] }, settings);
+    const playlistCalls = fetchJson.mock.calls.map(([url]) => String(url)).filter((u) => u.includes('/playlist/'));
+    expect(playlistCalls).toHaveLength(1);
+    // «Hip Hop 2026» — весь запрос в названии; редакторская «Hot Urban» — следом.
+    expect(playlistCalls[0]).toContain('/playlist/1579491945/');
+    expect(playlistCalls.some((u) => u.includes('7917934722'))).toBe(false);
+  });
+
+  it('подборка редкого жанра: сначала те, где в названии весь запрос («Witch House»), а не редакторская «House Party»', async () => {
+    const search = {
+      data: [
+        { id: 7497148344, type: 'playlist', title: 'House Party with Tiësto', user: { name: 'Deezer By Artists' } },
+        { id: 9815830762, type: 'playlist', title: 'Witch House', user: { name: 'Kayleigh-Jade West' } },
+        { id: 1111111111, type: 'playlist', title: 'Witch-House Essentials', user: { name: 'Georges - Deezer Electronic Editor' } },
+      ],
+    };
+    const fetchJson = fakeFetch({ '/search/playlist?q=witch%20house': search, '/playlist/': dzPlaylistTracks });
+    const wave = createWaveService({ run: vi.fn(), fetchJson, random: () => 0 });
+    await wave.start({ title: 'Витч-хаус', queries: ['witch house'] }, settings);
+    const playlistCalls = fetchJson.mock.calls.map(([url]) => String(url)).filter((u) => u.includes('/playlist/'));
+    expect(playlistCalls[0]).toContain('/playlist/1111111111/');
+  });
+
+  it('волна по русскому треку: Mix трека и зарубежное похожее — в 30 треках волны хотя бы 20 % другой письменности', async () => {
+    const run = vi.fn(async (_args: readonly string[]) => ok(ytMixMadk1d));
+    const wave = createWaveService({ run, fetchJson: fakeFetch(platinaRoutes), random: () => 0, now: NOW_2026 });
+    const lead = ytTrack('aaaaaaaaaaa', 'Платина', 'Иней!');
+    const candidates = await wave.start({ title: 'Иней!', lead: [lead], tracks: [lead] }, settings);
+    let memory = rememberTracks(emptyWaveMemory(), [lead]);
+    const picked: Track[] = [];
+    for (const batch of [15, 14]) {
+      const r = pickWaveTracks(candidates, memory, batch);
+      picked.push(...r.picked);
+      memory = r.memory;
+    }
+    const waveTracks = [lead, ...picked];
+    expect(waveTracks).toHaveLength(30);
+    expect(waveTracks.filter((t) => scriptOf(t) !== 'cyrillic').length).toBeGreaterThanOrEqual(6);
+    expect(candidates.some((t) => t.artist === '100 gecs')).toBe(true);
+    // Зарубежные вкраплены в список (каждый пятый), а не в хвост: русские исполнители с латинскими названиями
+    // письменностью не отличить от зарубежных, и хвост мог бы не дойти до очереди.
+    const playlistArtists = new Set((dzPlaylistTracks as { data: { artist: { name: string } }[] }).data.map((t) => t.artist.name));
+    expect(candidates.slice(0, 10).filter((t) => playlistArtists.has(t.artist)).length).toBeGreaterThanOrEqual(2);
+    expect(waveTracks.filter((t) => playlistArtists.has(t.artist)).length).toBeGreaterThanOrEqual(5);
+  });
+});
+
 describe('выбор артистов сида (артисты «Моей волны» — по убыванию рейтинга)', () => {
-  const ARTISTS = ['A1', 'B2', 'C3', 'D4', 'E5', 'F6'];
+  const ARTISTS = ['A1', 'B2', 'C3', 'D4', 'E5', 'F6', 'G7', 'H8', 'I9', 'J10', 'K11', 'L12'];
 
   /** Каких артистов волна взяла в первую порцию: по запросам поиска артиста. */
   async function chosen(random: () => number): Promise<string[]> {
@@ -274,11 +399,11 @@ describe('выбор артистов сида (артисты «Моей вол
       .map(decodeURIComponent);
   }
 
-  it('random всегда 0 — три первых по рейтингу', async () => {
-    expect((await chosen(() => 0)).sort()).toEqual(['A1', 'B2', 'C3']);
+  it('random всегда 0 — пять первых по рейтингу (шире, чем раньше: больше разных исполнителей за порцию)', async () => {
+    expect((await chosen(() => 0)).sort()).toEqual(['A1', 'B2', 'C3', 'D4', 'E5']);
   });
 
-  it('раньше в списке — выбирается чаще; три разных артиста за раз', async () => {
+  it('раньше в списке — выбирается чаще; пять разных артистов за раз', async () => {
     let state = 12345;
     const lcg = () => {
       state = (state * 1103515245 + 12345) % 2147483648;
@@ -287,14 +412,14 @@ describe('выбор артистов сида (артисты «Моей вол
     const count = new Map<string, number>();
     for (let i = 0; i < 300; i++) {
       const names = await chosen(lcg);
-      expect(new Set(names).size).toBe(3);
+      expect(new Set(names).size).toBe(5);
       for (const n of names) count.set(n, (count.get(n) ?? 0) + 1);
     }
     const c = (n: string) => count.get(n) ?? 0;
     expect(c('A1')).toBeGreaterThan(c('C3'));
-    expect(c('C3')).toBeGreaterThan(c('F6'));
-    expect(c('A1')).toBeGreaterThan(2 * c('F6'));
-    expect(c('F6')).toBeGreaterThan(0); // и последний иногда попадает
+    expect(c('C3')).toBeGreaterThan(c('L12'));
+    expect(c('A1')).toBeGreaterThan(2 * c('L12'));
+    expect(c('L12')).toBeGreaterThan(0); // и последний иногда попадает
   });
 });
 

@@ -108,12 +108,21 @@ export function createUpdater(deps: UpdaterDeps): Updater {
     await Promise.all(names.map((n) => removeFile(join(deps.tempDir, n))));
   }
 
+  /** Идущий запрос релиза: вызовы `check` подряд (запуск и кнопка) ждут один ответ, а не шлют второй. */
+  let fetching: Promise<unknown> | null = null;
+  function fetchRelease(): Promise<unknown> {
+    fetching ??= deps.fetchJson(releaseUrl, UPDATE_CHECK_TIMEOUT_MS).finally(() => {
+      fetching = null;
+    });
+    return fetching;
+  }
+
   async function check(manual: boolean): Promise<UpdateCheck> {
     if (!deps.isPackaged && !override) return { kind: 'none' };
     await sweep();
     let json: unknown;
     try {
-      json = await deps.fetchJson(releaseUrl, UPDATE_CHECK_TIMEOUT_MS);
+      json = await fetchRelease();
     } catch (err) {
       // При запуске — молчим и работаем дальше; по кнопке — сказать, что не удалось.
       return manual ? { kind: 'error', offline: classifyFetchError(err).kind === 'offline' } : { kind: 'none' };

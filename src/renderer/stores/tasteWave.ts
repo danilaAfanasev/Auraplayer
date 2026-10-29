@@ -3,10 +3,10 @@
 import type { WaveSeed } from '../../shared/api';
 import { artistKey, splitArtists } from '../../shared/artistNames';
 import { isArtistBlocked, isBlocked } from '../../shared/blacklist';
-import { GENRES, genreName } from '../../shared/genres';
+import { genreByTag, genreName, POPULAR_GENRES } from '../../shared/genres';
 import { artistScores } from '../../shared/taste';
 import type { LibraryData, Track } from '../../shared/types';
-import { genreWaveSeed } from '../screens/tag/genreQueries';
+import { genreSearchQueries, genreWaveSeed } from '../screens/tag/genreQueries';
 
 export interface WaveChip {
   /** Ключ кнопки (индикатор загрузки): `artist:<ключ>` или `genre:<тег>`. */
@@ -20,10 +20,8 @@ export interface WaveChip {
 }
 
 export const MY_WAVE_TITLE = 'Моя волна';
-/** Нейтральные жанры (теги `GENRES`) — пока вкуса нет. */
-export const NEUTRAL_GENRES: readonly string[] = ['pop', 'hiphop', 'electronic', 'rock', 'indie'].filter((tag) =>
-  GENRES.some((g) => g.tag === tag),
-);
+/** Нейтральные жанры — первые популярные (`POPULAR_GENRES`), пока вкуса нет. */
+export const NEUTRAL_GENRES: readonly string[] = POPULAR_GENRES.slice(0, 5).map((g) => g.tag);
 
 const MY_WAVE_ARTISTS = 12;
 const MY_WAVE_TRACKS = 10;
@@ -113,13 +111,11 @@ function seedTracks(lib: LibraryData): Track[] {
   return out;
 }
 
-/** Запрос жанра для волны: первый из запросов «Волны: <жанр>» («рэп 2026»). */
-function genreQuery(tag: string, year: number): string | null {
-  return genreWaveSeed(tag, year, []).queries?.[0] ?? null;
-}
-
-const queriesOf = (tags: readonly string[], year: number): string[] =>
-  [...new Set(tags.map((tag) => genreQuery(tag, year)).filter((q): q is string => !!q))];
+/**
+ * Запросы жанра для волны — по-русски и по-английски со свежим годом («рэп 2026», «hip hop 2026»): подборки на английском
+ * дают и зарубежное похожее (G77).
+ */
+const queriesOf = (tags: readonly string[], year: number): string[] => [...new Set(tags.flatMap((tag) => genreSearchQueries(tag, year)))];
 
 /**
  * «Моя волна» из вкуса: до 12 артистов с наибольшим рейтингом (выше рейтинг — раньше), лайки и недавние —
@@ -169,7 +165,7 @@ export function tasteChips(lib: LibraryData, now: number): WaveChip[] {
     seed: { title: a.name, artists: [a.name] },
   }));
   const genreSlots = Math.max(CHIP_GENRES, CHIP_TOTAL - chips.length);
-  const tags = lib.taste.genres.filter((tag) => GENRES.some((g) => g.tag === tag)).slice(0, genreSlots);
+  const tags = lib.taste.genres.filter((tag) => genreByTag(tag)).slice(0, genreSlots);
   for (const tag of tags) chips.push(genreChip(tag, year));
   for (const tag of NEUTRAL_GENRES) {
     if (chips.length >= CHIP_TOTAL) break;

@@ -33,6 +33,9 @@ const track = (id: string): Track => ({
   downloadable: true,
 });
 const tracks = (n: number): Track[] => Array.from({ length: n }, (_, i) => track(`t${i}`));
+/** Треки YouTube плеер ждёт без таймера (WAIT_SOURCES): за минуты ожидания повтора он не уйдёт к следующему. */
+const waitTracks = (n: number): Track[] =>
+  Array.from({ length: n }, (_, i) => ({ ...track(`y${i}`), id: `youtube:y${i}`, source: 'youtube' as const, sourceId: `y${i}` }));
 const ids = (list: readonly Track[]) => list.map((t) => t.id);
 
 interface Call {
@@ -134,6 +137,51 @@ describe('useLyrics: текст текущего трека', () => {
     p().next();
     p().prev();
     expect(getCalls.map((c) => c.track.id)).toEqual(['archive:t0', 'archive:t1', 'archive:t0']);
+  });
+
+  it('ошибка — сам повторяет через 5, 15 и 45 с, пока трек тот же; после третьей неудачи — больше не просит', async () => {
+    p().playList(waitTracks(3), 0);
+    const failLast = async () => {
+      getCalls[getCalls.length - 1].reject(new Error('503'));
+      await vi.advanceTimersByTimeAsync(0);
+    };
+    await failLast();
+    expect(l().status).toBe('error');
+    for (const pause of [5000, 15000, 45000]) {
+      const before = getCalls.length;
+      await vi.advanceTimersByTimeAsync(pause - 1);
+      expect(getCalls, `до ${pause} мс — тихо`).toHaveLength(before);
+      await vi.advanceTimersByTimeAsync(1);
+      expect(getCalls, `через ${pause} мс — повтор`).toHaveLength(before + 1);
+      expect(getCalls[before].track.id).toBe('youtube:y0');
+      await failLast();
+      expect(l()).toMatchObject({ trackId: 'youtube:y0', status: 'error' });
+    }
+    await vi.advanceTimersByTimeAsync(10 * 60_000);
+    expect(getCalls).toHaveLength(4);
+  });
+
+  it('повтор принёс текст — кнопка оживает (ready)', async () => {
+    p().playList(waitTracks(3), 0);
+    getCalls[0].reject(new Error('503'));
+    await vi.advanceTimersByTimeAsync(5000);
+    expect(getCalls).toHaveLength(2);
+    getCalls[1].resolve(SYNCED);
+    await vi.advanceTimersByTimeAsync(0);
+    expect(l()).toMatchObject({ trackId: 'youtube:y0', status: 'ready', lyrics: SYNCED });
+    await vi.advanceTimersByTimeAsync(120_000);
+    expect(getCalls).toHaveLength(2);
+  });
+
+  it('трек сменился, пока ждали повтора, — повтора про прошлый трек нет; у нового — свои повторы', async () => {
+    p().playList(waitTracks(3), 0);
+    getCalls[0].reject(new Error('503'));
+    await vi.advanceTimersByTimeAsync(2000);
+    p().next();
+    getCalls[1].resolve(SYNCED);
+    await vi.advanceTimersByTimeAsync(120_000);
+    expect(getCalls.map((c) => c.track.id)).toEqual(['youtube:y0', 'youtube:y1']);
+    expect(l()).toMatchObject({ trackId: 'youtube:y1', status: 'ready' });
   });
 
   it('тот же трек остаётся текущим (очередь переложили) — запроса заново нет', async () => {

@@ -4,6 +4,10 @@ import {
   ANALYSER_MIN_DB,
   bandLevels,
   createWaveDynamics,
+  demoBands,
+  SOUNDWAVE_STYLE_NAMES,
+  waveShapes,
+  type WaveShape,
   stepWaveDynamics,
   WAVE_BANDS,
   waveLines,
@@ -179,5 +183,159 @@ describe('waveLines', () => {
 
   it('пустой холст — ни одной точки', () => {
     expect(waveLines([1, 1, 1, 1, 1, 1], 1, { ...opts, width: 0 })).toEqual([]);
+  });
+});
+
+// --- Виды саундвейва: геометрия кадра ---
+
+const STYLES = ['waves', 'blocks', 'dots', 'mirror', 'ring', 'scope'] as const;
+const SW = 900;
+const SH = 360;
+const shapeOpts = { width: SW, height: SH };
+const LOUD = [1, 1, 1, 1, 1, 1];
+const QUIET = [0, 0, 0, 0, 0, 0];
+const MID = [0.6, 0.5, 0.4, 0.4, 0.3, 0.3];
+
+/** Все точки кадра: [x, y] (у квадратиков — два угла, у точек — центр ± радиус). */
+function points(shapes: WaveShape[]): [number, number][] {
+  const out: [number, number][] = [];
+  for (const s of shapes) {
+    if (s.type === 'stroke' || s.type === 'fill') {
+      for (const path of s.paths) for (let i = 0; i + 1 < path.length; i += 2) out.push([path[i], path[i + 1]]);
+    } else if (s.type === 'rects') {
+      for (let i = 0; i + 3 < s.rects.length; i += 4) {
+        const [x, y, w, h] = s.rects.slice(i, i + 4);
+        out.push([x, y], [x + w, y + h]);
+      }
+    } else {
+      for (let i = 0; i + 2 < s.dots.length; i += 3) {
+        const [x, y, r] = s.dots.slice(i, i + 3);
+        out.push([x - r, y - r], [x + r, y + r]);
+      }
+    }
+  }
+  return out;
+}
+
+/** «Размах» кадра: квадратики — их общая площадь; кольцо — наибольший радиус от центра; остальные — отклонение от середины. */
+function extent(style: (typeof STYLES)[number], shapes: WaveShape[], cx = SW / 2, cy = SH / 2): number {
+  if (style === 'blocks') {
+    let area = 0;
+    for (const s of shapes) if (s.type === 'rects') for (let i = 0; i + 3 < s.rects.length; i += 4) area += s.rects[i + 2] * s.rects[i + 3];
+    return area;
+  }
+  let max = 0;
+  for (const [x, y] of points(shapes)) max = Math.max(max, style === 'ring' ? Math.hypot(x - cx, y - cy) : Math.abs(y - SH / 2));
+  return max;
+}
+
+describe('waveShapes: шесть видов от одних уровней', () => {
+  it('у каждого вида есть имя по-русски', () => {
+    expect(STYLES.map((s) => SOUNDWAVE_STYLE_NAMES[s])).toEqual(['Волны', 'Квадратики', 'Точки', 'Зеркальная волна', 'Кольцо', 'Осциллограф']);
+  });
+
+  it('громко — кадр внутри холста, без NaN; немного штрихов на кадр (не больше 8 групп), линии не толще 5 px', () => {
+    for (const style of STYLES) {
+      const shapes = waveShapes(style, LOUD, 3.3, { ...shapeOpts, punch: 1 });
+      expect(shapes.length, style).toBeGreaterThan(0);
+      expect(shapes.length, style).toBeLessThanOrEqual(8);
+      const pts = points(shapes);
+      expect(pts.length, style).toBeGreaterThan(10);
+      for (const [x, y] of pts) {
+        expect(Number.isFinite(x) && Number.isFinite(y), style).toBe(true);
+        expect(x, style).toBeGreaterThanOrEqual(-0.5);
+        expect(x, style).toBeLessThanOrEqual(SW + 0.5);
+        expect(y, style).toBeGreaterThanOrEqual(-0.5);
+        expect(y, style).toBeLessThanOrEqual(SH + 0.5);
+      }
+      for (const s of shapes) {
+        expect(s.alpha, style).toBeGreaterThan(0);
+        expect(s.alpha, style).toBeLessThanOrEqual(1);
+        if (s.type === 'stroke') expect(s.width, style).toBeLessThanOrEqual(5);
+      }
+    }
+  });
+
+  it('громче — крупнее: громкий кадр заметно больше тихого, а тишина всё равно видна (пауза — едва живой вид)', () => {
+    // У кольца неподвижна внутренняя окружность — сравниваем то, что вокруг неё.
+    const ring = { x: SW / 2, y: SH / 2, radius: 80 };
+    for (const style of STYLES) {
+      const base = style === 'ring' ? ring.radius : 0;
+      const quiet = extent(style, waveShapes(style, QUIET, 2, { ...shapeOpts, ring })) - base;
+      const loud = extent(style, waveShapes(style, LOUD, 2, { ...shapeOpts, ring })) - base;
+      expect(quiet, `${style}: тишина видна`).toBeGreaterThan(0);
+      expect(loud, `${style}: громко больше тихого`).toBeGreaterThan(quiet * 1.8);
+    }
+  });
+
+  it('удар (punch) при тех же уровнях — кадр крупнее, в тот же кадр', () => {
+    for (const style of STYLES) {
+      const calm = extent(style, waveShapes(style, MID, 4.2, { ...shapeOpts, punch: 0 }));
+      const kicked = extent(style, waveShapes(style, MID, 4.2, { ...shapeOpts, punch: 1 }));
+      expect(kicked, style).toBeGreaterThan(calm * 1.05);
+    }
+  });
+
+  it('кадр зависит только от входов; время идёт — движется', () => {
+    for (const style of STYLES) {
+      const a = waveShapes(style, MID, 5, shapeOpts);
+      expect(waveShapes(style, MID, 5, shapeOpts), style).toEqual(a);
+      expect(waveShapes(style, MID, 5.7, shapeOpts), style).not.toEqual(a);
+    }
+  });
+
+  it('пустой холст — пусто', () => {
+    for (const style of STYLES) expect(waveShapes(style, LOUD, 1, { width: 0, height: SH })).toEqual([]);
+  });
+
+  it('квадратики: квадратные клетки, бас слева — громкий бас поднимает левые столбики, а не правые', () => {
+    const shapes = waveShapes('blocks', [1, 1, 0, 0, 0, 0], 1, shapeOpts);
+    let left = 0;
+    let right = 0;
+    for (const s of shapes) {
+      if (s.type !== 'rects') continue;
+      for (let i = 0; i + 3 < s.rects.length; i += 4) {
+        expect(s.rects[i + 2]).toBeCloseTo(s.rects[i + 3], 5);
+        if (s.rects[i] < SW / 3) left++;
+        else if (s.rects[i] > (SW * 2) / 3) right++;
+      }
+    }
+    expect(left).toBeGreaterThan(right * 3);
+  });
+
+  it('кольцо — вокруг заданного центра и не заходит внутрь радиуса (обложку на экране текста не перекрывает)', () => {
+    const ring = { x: 300, y: 170, radius: 90 };
+    for (const levels of [QUIET, LOUD]) {
+      const pts = points(waveShapes('ring', levels, 2.5, { ...shapeOpts, ring }));
+      const cx = pts.reduce((s, [x]) => s + x, 0) / pts.length;
+      const cy = pts.reduce((s, [, y]) => s + y, 0) / pts.length;
+      expect(Math.abs(cx - ring.x)).toBeLessThan(12);
+      expect(Math.abs(cy - ring.y)).toBeLessThan(12);
+      for (const [x, y] of pts) expect(Math.hypot(x - ring.x, y - ring.y)).toBeGreaterThanOrEqual(ring.radius - 0.5);
+    }
+    const quiet = extent('ring', waveShapes('ring', QUIET, 2.5, { ...shapeOpts, ring }), ring.x, ring.y);
+    const loud = extent('ring', waveShapes('ring', LOUD, 2.5, { ...shapeOpts, ring }), ring.x, ring.y);
+    expect(loud - ring.radius).toBeGreaterThan((quiet - ring.radius) * 3);
+  });
+
+  it('по умолчанию кольцо — по центру холста', () => {
+    const pts = points(waveShapes('ring', MID, 1, shapeOpts));
+    expect(Math.abs(pts.reduce((s, [x]) => s + x, 0) / pts.length - SW / 2)).toBeLessThan(12);
+    expect(Math.abs(pts.reduce((s, [, y]) => s + y, 0) / pts.length - SH / 2)).toBeLessThan(12);
+  });
+});
+
+describe('demoBands: звук для превью, когда ничего не играет', () => {
+  it('уровни в шкале анализатора, бит меняет их со временем', () => {
+    const frames = Array.from({ length: 60 }, (_, i) => demoBands(i / 30));
+    for (const f of frames) {
+      expect(f).toHaveLength(WAVE_BANDS);
+      for (const v of f) {
+        expect(v).toBeGreaterThanOrEqual(0);
+        expect(v).toBeLessThanOrEqual(1);
+      }
+    }
+    const bass = frames.map((f) => f[0]);
+    expect(Math.max(...bass) - Math.min(...bass)).toBeGreaterThan(0.05);
   });
 });

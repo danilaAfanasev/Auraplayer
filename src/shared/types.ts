@@ -1,6 +1,7 @@
 // Модель данных Aura — общая для main и renderer (без импорта electron/DOM).
 import type { EqualizerSettings } from './equalizer';
 import type { Blacklist } from './blacklist';
+import type { CustomThumb, ThumbChoice } from './progressThumb';
 import type { Taste } from './taste';
 
 /**
@@ -162,6 +163,10 @@ export const CHART_COUNTRIES: readonly { code: CountryCode; name: string }[] = [
   { code: 'by', name: 'Беларусь' },
 ];
 
+/** Виды саундвейва: волны, квадратики, точки, зеркальная волна, кольцо, осциллограф. */
+export const SOUNDWAVE_STYLES = ['waves', 'blocks', 'dots', 'mirror', 'ring', 'scope'] as const;
+export type SoundwaveStyle = (typeof SOUNDWAVE_STYLES)[number];
+
 export interface Settings {
   version: 1;
   theme: ThemeSettings;
@@ -184,6 +189,12 @@ export interface Settings {
   equalizer: EqualizerSettings;
   /** Саундвейв на фоне окна. По умолчанию true (и у старого файла без поля). */
   soundwave: boolean;
+  /** Вид саундвейва. По умолчанию `'waves'` (и у старого файла без поля). */
+  soundwaveStyle: SoundwaveStyle;
+  /** Значок на полосе трека (панель плеера и экран текста); громкость — всегда кружок. По умолчанию кружок. */
+  progressThumb: ThumbChoice;
+  /** Нарисованные пользователем значки, до 12. */
+  customThumbs: CustomThumb[];
 }
 
 export interface DownloadRecord {

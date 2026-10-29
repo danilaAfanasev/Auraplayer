@@ -21,8 +21,8 @@ import os from 'node:os';
 import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
-/** Что не идёт в копию: служебное рабочего репозитория (переписка сборки, правила агентов, ADR с цитатами). */
-export const EXCLUDED = ['.autopilot/', 'AGENTS.md', 'CLAUDE.md', 'docs/adr/'];
+/** Что не идёт в копию: служебное рабочего репозитория (переписка сборки, правила агентов, ADR с цитатами, выпуск версии). */
+export const EXCLUDED = ['.autopilot/', 'AGENTS.md', 'CLAUDE.md', 'RELEASING.md', 'docs/adr/'];
 
 /** Папки копии, которые синхронизация не трогает: свой git и то, что человек собрал в копии. */
 export const KEEP_IN_COPY = ['.git/', 'node_modules/', 'out/', 'release/'];

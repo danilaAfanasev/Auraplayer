@@ -178,7 +178,8 @@ input[type='range']::-webkit-slider-runnable-track {
   );
 }
 
-input[type='range']::-webkit-slider-thumb {
+/* Кружок — у громкости и у полосы трека без значка; со значком (data-thumb) его рисует ProgressThumb. */
+input[type='range']:not([data-thumb])::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 12px;
@@ -190,7 +191,7 @@ input[type='range']::-webkit-slider-thumb {
   transition: transform var(--dur-fast) var(--ease);
 }
 
-input[type='range']:hover::-webkit-slider-thumb {
+input[type='range']:not([data-thumb]):hover::-webkit-slider-thumb {
   transform: scale(1.2);
 }
 

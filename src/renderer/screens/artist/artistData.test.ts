@@ -170,3 +170,81 @@ describe('тёзки на странице артиста', () => {
     expect(data.visibleNamesakes(undefined, [])).toEqual([]);
   });
 });
+
+describe('поиск артистов после подписки', () => {
+  const card = (id: string, name: string) => ({ id, name });
+  let saved: string[];
+  let searches: string[];
+
+  // Как main: свои (подписанные) артисты первыми, остальные — по популярности.
+  const mainSearch = (q: string) => {
+    searches.push(`${q}|saved:${saved.join(',')}`);
+    const all = [card('1', 'mad'), card('2', 'madk1d')];
+    return Promise.resolve(saved.includes('madk1d') ? [all[1], all[0]] : all);
+  };
+
+  beforeEach(async () => {
+    saved = [];
+    searches = [];
+    vi.stubGlobal('window', {
+      aura: {
+        library: {
+          load: async () => (await import('../../../shared/library')).emptyLibrary(),
+          save: async (lib: { followedArtists: { name: string }[] }) => void (saved = lib.followedArtists.map((a) => a.name)),
+        },
+        artists: { page: () => Promise.resolve(PAGE), search: mainSearch },
+      },
+    });
+    vi.resetModules();
+    data = await import('./artistData');
+    const library = await import('../../stores/useLibrary');
+    await library.useLibrary.getState().load();
+  });
+
+  const names = (key: string) => {
+    const e = data.useArtistSearch.getState().entries[key];
+    return e?.status === 'done' ? e.value.map((a) => a.name) : null;
+  };
+  const settle = () => new Promise((r) => setTimeout(r, 0));
+
+  it('подписка делает готовую выдачу устаревшей: поиск «mad» — madk1d первым, без перезапуска', async () => {
+    const search = data.useArtistSearch.getState();
+    search.ensure('mad', 'mad');
+    await settle();
+    expect(names('mad')).toEqual(['mad', 'madk1d']);
+
+    const { useLibrary } = await import('../../stores/useLibrary');
+    useLibrary.getState().follow({ id: '2', name: 'madk1d' });
+    // Выдача остаётся на экране, пока идёт повторный запрос.
+    expect(names('mad')).toEqual(['mad', 'madk1d']);
+    data.useArtistSearch.getState().ensure('mad', 'mad');
+    await settle();
+    expect(names('mad')).toEqual(['madk1d', 'mad']);
+  });
+
+  it('перед запросом поиска library.json дописан: main видит подписку, сделанную только что', async () => {
+    const { useLibrary } = await import('../../stores/useLibrary');
+    useLibrary.getState().follow({ id: '2', name: 'madk1d' });
+    data.useArtistSearch.getState().ensure('mad', 'mad');
+    await settle();
+    expect(searches).toEqual(['mad|saved:madk1d']);
+    expect(names('mad')).toEqual(['madk1d', 'mad']);
+  });
+
+  it('лайк трека выдачу не устаревает; отписка — устаревает', async () => {
+    const { useLibrary } = await import('../../stores/useLibrary');
+    useLibrary.getState().follow({ id: '2', name: 'madk1d' });
+    data.useArtistSearch.getState().ensure('mad', 'mad');
+    await settle();
+    searches.length = 0;
+    useLibrary.getState().pushHistory({ id: 'x', source: 'youtube', title: 't', artist: 'a', duration: 1 } as never);
+    data.useArtistSearch.getState().ensure('mad', 'mad');
+    await settle();
+    expect(searches).toEqual([]);
+    useLibrary.getState().unfollow('2');
+    data.useArtistSearch.getState().ensure('mad', 'mad');
+    await settle();
+    expect(searches).toHaveLength(1);
+    expect(names('mad')).toEqual(['mad', 'madk1d']);
+  });
+});

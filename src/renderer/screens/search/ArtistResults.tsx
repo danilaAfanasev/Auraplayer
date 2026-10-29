@@ -17,12 +17,14 @@ import styles from './ArtistResults.module.css';
 
 export function ArtistResults({ query }: { query: string }) {
   const entry = useArtistSearch((s) => s.entries[query]);
+  // Подписка меняет порядок «свои первыми»: смена `version` перезапускает эффект, и устаревшая выдача грузится заново.
+  const version = useArtistSearch((s) => s.version);
   const blacklist = useBlacklist();
   const [opening, setOpening] = useState<string | null>(null);
 
   useEffect(() => {
     if (query) useArtistSearch.getState().ensure(query, query);
-  }, [query]);
+  }, [query, version]);
 
   if (!query || entry?.status !== 'done' || entry.value.length === 0) return null;
 

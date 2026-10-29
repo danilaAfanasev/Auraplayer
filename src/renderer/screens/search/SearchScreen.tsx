@@ -1,6 +1,6 @@
 import { LoaderCircle, Search } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
-import { GENRES } from '../../../shared/genres';
+import { POPULAR_GENRES } from '../../../shared/genres';
 import { SOURCE_IDS, SOURCE_NAMES, type SourceId } from '../../../shared/types';
 import { EmptyState } from '../../components/EmptyState/EmptyState';
 import { genreIcon } from '../../components/GenreIcon/genreIcon';
@@ -42,7 +42,7 @@ function GenreSuggestions() {
     <div className={styles.suggest}>
       <div className={styles.suggestTitle}>Или выбери жанр</div>
       <div className={styles.chips}>
-        {GENRES.slice(0, 10).map((g) => {
+        {POPULAR_GENRES.slice(0, 12).map((g) => {
           const Icon = genreIcon(g.tag);
           return (
             <button key={g.tag} type="button" className={styles.chip} onClick={() => navigate({ name: 'tag', param: g.tag })}>

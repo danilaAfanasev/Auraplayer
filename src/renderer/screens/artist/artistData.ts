@@ -8,7 +8,7 @@ import { isArtistBlocked, withoutBlocked, type Blacklist } from '../../../shared
 import type { AlbumPage, ArtistCard, ArtistPage, ArtistRef, ArtistRelease, FollowedArtist, NamesakeRef, PopularArtist, Track } from '../../../shared/types';
 import { errorMessage } from '../../app/errors';
 import { useBlacklist } from '../../stores/blacklistActions';
-import { useLibrary } from '../../stores/useLibrary';
+import { flushLibrary, useLibrary } from '../../stores/useLibrary';
 import { usePlayer } from '../../stores/usePlayer';
 import { useUi } from '../../stores/useUi';
 import { artistParam, openArtist } from './artistNav';
@@ -20,24 +20,39 @@ const MAX_KEYS = 40;
 
 interface LoadableStore<A, T> {
   entries: Record<string, Loadable<T>>;
-  /** Загрузить, если ещё нет (или была ошибка). */
+  /** Ключи с готовым, но устаревшим значением: `ensure` загрузит их заново (старое остаётся на экране до ответа). */
+  stale: Record<string, true>;
+  /** Растёт при каждой `invalidate` — компонент, зависящий от него, повторно зовёт `ensure`. */
+  version: number;
+  /** Загрузить, если ещё нет (или была ошибка, или значение устарело). */
   ensure(key: string, arg: A): void;
   retry(key: string, arg: A): void;
+  /** Пометить готовые значения устаревшими; заново грузится только то, что снова понадобится (`ensure`). */
+  invalidate(): void;
 }
 
 function createLoadableStore<A, T>(fetcher: (arg: A) => Promise<T>) {
   return create<LoadableStore<A, T>>((set, get) => {
+    /** Номер последней загрузки по ключу: поздний ответ более ранней загрузки не затирает свежий. */
+    const runs: Record<string, number> = {};
     const put = (key: string, value: Loadable<T>) => {
       const entries = { ...get().entries, [key]: value };
       const keys = Object.keys(entries);
       if (keys.length > MAX_KEYS) delete entries[keys[0]];
-      set({ entries });
+      const stale = { ...get().stale };
+      delete stale[key];
+      set({ entries, stale });
     };
     const run = (key: string, arg: A) => {
-      put(key, { status: 'loading' });
+      const id = (runs[key] = (runs[key] ?? 0) + 1);
+      // Устаревшее значение остаётся на экране, пока идёт повторная загрузка.
+      if (!(get().entries[key]?.status === 'done' && get().stale[key])) put(key, { status: 'loading' });
       fetcher(arg).then(
-        (value) => put(key, { status: 'done', value }),
+        (value) => {
+          if (runs[key] === id) put(key, { status: 'done', value });
+        },
         (err: unknown) => {
+          if (runs[key] !== id) return;
           const message = errorMessage(err, 'Сервис недоступен');
           put(key, { status: 'error', message, offline: message === OFFLINE_TEXT });
         },
@@ -45,21 +60,42 @@ function createLoadableStore<A, T>(fetcher: (arg: A) => Promise<T>) {
     };
     return {
       entries: {},
+      stale: {},
+      version: 0,
       ensure(key, arg) {
         const st = get().entries[key];
-        if (!st || st.status === 'error') run(key, arg);
+        if (!st || st.status === 'error' || (st.status === 'done' && get().stale[key])) run(key, arg);
       },
       retry: run,
+      invalidate() {
+        const stale: Record<string, true> = {};
+        for (const [key, e] of Object.entries(get().entries)) if (e.status === 'done') stale[key] = true;
+        set({ stale, version: get().version + 1 });
+      },
     };
   });
 }
 
 export const useArtistPages = createLoadableStore<ArtistQuery, ArtistPage>((q) => window.aura.artists.page(q));
-export const useArtistSearch = createLoadableStore<string, ArtistCard[]>((q) => window.aura.artists.search(q));
+/** Main ставит своих артистов первыми по `library.json` — перед запросом дописываем отложенное сохранение (подписка могла быть только что). */
+export const useArtistSearch = createLoadableStore<string, ArtistCard[]>(async (q) => {
+  await flushLibrary();
+  return window.aura.artists.search(q);
+});
 export const usePopularArtists = createLoadableStore<void, PopularArtist[]>(() => window.aura.artists.popular());
 export const useReleaseTracks = createLoadableStore<string, Track[]>((id) => window.aura.artists.release(id));
 /** Страницы альбомов по id релиза (экран `album`). */
 export const useAlbumPages = createLoadableStore<string, AlbumPage>((id) => window.aura.artists.album(id));
+
+/** Подписка или отписка меняют порядок «свои первыми»: готовая выдача поиска артистов устаревает («mad» → madk1d первым). */
+const followKey = (): string => useLibrary.getState().lib.followedArtists.map((a) => a.id).sort().join(',');
+let followed = followKey();
+useLibrary.subscribe(() => {
+  const next = followKey();
+  if (next === followed) return;
+  followed = next;
+  useArtistSearch.getState().invalidate();
+});
 
 export const pageKey = (q: ArtistQuery): string => artistParam(q);
 

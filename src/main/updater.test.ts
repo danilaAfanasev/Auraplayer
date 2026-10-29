@@ -112,6 +112,36 @@ describe('createUpdater — проверка', () => {
     const { updater } = setup({ fetchJson: vi.fn(async () => releaseJson({ browser_download_url: 'http://evil.example/Aura-Setup-0.3.0.exe' })) });
     expect(await updater.check(true)).toEqual({ kind: 'none' });
   });
+
+  it('повторный вызов во время идущей проверки ждёт тот же запрос релиза, а не шлёт второй', async () => {
+    let answer: (v: unknown) => void = () => undefined;
+    const fetchJson = vi.fn<() => Promise<unknown>>(() => new Promise<unknown>((resolve) => (answer = resolve)));
+    const { updater } = setup({ fetchJson });
+    const first = updater.check(false);
+    const second = updater.check(false);
+    await vi.waitFor(() => expect(fetchJson).toHaveBeenCalled());
+    answer(releaseJson());
+    expect((await first).kind).toBe('available');
+    expect((await second).kind).toBe('available');
+    expect(fetchJson).toHaveBeenCalledTimes(1);
+    // Проверка кончилась — следующая снова идёт в сеть.
+    fetchJson.mockImplementation(async () => releaseJson());
+    await updater.check(false);
+    expect(fetchJson).toHaveBeenCalledTimes(2);
+  });
+
+  it('кнопка «Проверить» во время тихой проверки при запуске получает ошибку по-своему, а запрос один', async () => {
+    let fail: (e: unknown) => void = () => undefined;
+    const fetchJson = vi.fn(() => new Promise<unknown>((_, reject) => (fail = reject)));
+    const { updater } = setup({ fetchJson });
+    const silent = updater.check(false);
+    const manual = updater.check(true);
+    await vi.waitFor(() => expect(fetchJson).toHaveBeenCalled());
+    fail(new SourceError('offline'));
+    expect(await silent).toEqual({ kind: 'none' });
+    expect(await manual).toEqual({ kind: 'error', offline: true });
+    expect(fetchJson).toHaveBeenCalledTimes(1);
+  });
 });
 
 describe('createUpdater — скачивание', () => {

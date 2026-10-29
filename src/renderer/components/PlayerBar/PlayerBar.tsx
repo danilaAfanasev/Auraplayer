@@ -26,6 +26,7 @@ import { ArtistLinks } from '../ArtistLinks/ArtistLinks';
 import { IconButton } from '../Button/Button';
 import { DownloadButton } from '../DownloadButton/DownloadButton';
 import { EqButton } from '../Equalizer/EqButton';
+import { ThumbRange } from '../ProgressThumb/ThumbRange';
 import { LikeButton } from '../LikeButton/LikeButton';
 import { LyricsButton } from '../Lyrics/LyricsButton';
 import { SourceBadge } from '../SourceBadge/SourceBadge';
@@ -195,15 +196,14 @@ function Progress() {
   return (
     <div className={styles.progress}>
       <span className={styles.time}>{formatDuration(hasTrack ? shown : 0)}</span>
-      <input
-        type="range"
+      <ThumbRange
+        fill={fill}
         min={0}
         max={max || 1}
         step={0.1}
         value={max > 0 ? Math.min(shown, max) : 0}
         aria-label="Позиция трека"
         className={styles.progressSlider}
-        style={{ '--fill': `${fill}%` } as CSSProperties}
         disabled={!hasTrack || max === 0}
         onPointerDown={() => setDrag(position)}
         onChange={(e) => {
@@ -220,6 +220,9 @@ function Progress() {
   );
 }
 
+/** Атрибут панели плеера: по нему её находят «Кольцо» саундвейва (`App.tsx`) и анимация экрана текста. */
+export const PLAYER_BAR_ATTR = 'data-player-bar';
+
 /** Нижняя панель плеера: трек, действия, транспорт, громкость, прогресс. Подключает плеер к окну. */
 export function PlayerBar() {
   useEffect(() => {
@@ -227,7 +230,7 @@ export function PlayerBar() {
   }, []);
 
   return (
-    <section className={styles.bar} aria-label="Плеер">
+    <section className={styles.bar} aria-label="Плеер" {...{ [PLAYER_BAR_ATTR]: '' }}>
       {/* Обёртка — чтобы раскладку можно было менять по ширине панели (container query на .bar). */}
       <div className={styles.layout}>
         <div className={styles.top}>

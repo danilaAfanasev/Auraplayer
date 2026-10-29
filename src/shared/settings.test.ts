@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { defaultEqualizer, savePreset, setBandGain } from './equalizer';
+import { emptyPixels, setPixel, type CustomThumb } from './progressThumb';
 import { defaultSettings, normalizeSettings } from './settings';
 
 const DIR = 'C:\\Users\\me\\Music\\Aura';
@@ -110,5 +111,42 @@ describe('normalizeSettings', () => {
     expect(s.equalizer).toEqual(r.eq);
     expect(s.soundwave).toBe(false);
     expect(normalizeSettings({ soundwave: 'нет', equalizer: 5 }, DIR)).toMatchObject({ soundwave: true, equalizer: defaultEqualizer() });
+  });
+
+  it('вид саундвейва: по умолчанию и у старого файла без поля — «Волны»; выбранный вид переживает перезапуск; чужое значение — «Волны»', () => {
+    expect(defaultSettings(DIR).soundwaveStyle).toBe('waves');
+    expect(normalizeSettings({ version: 1, soundwave: true }, DIR).soundwaveStyle).toBe('waves');
+    for (const style of ['waves', 'blocks', 'dots', 'mirror', 'ring', 'scope'] as const) {
+      const saved = JSON.parse(JSON.stringify({ ...defaultSettings(DIR), soundwaveStyle: style }));
+      expect(normalizeSettings(saved, DIR).soundwaveStyle).toBe(style);
+    }
+    for (const bad of ['spiral', 5, null, { kind: 'ring' }]) expect(normalizeSettings({ soundwaveStyle: bad }, DIR).soundwaveStyle).toBe('waves');
+  });
+  describe('значок ползунка', () => {
+    const mine: CustomThumb = { id: 'c1', name: 'Мой', palette: ['#ff0000'], pixels: setPixel(emptyPixels(), 30, '0') };
+
+    it('по умолчанию и у старого файла без полей — кружок, своих нет', () => {
+      expect(defaultSettings(DIR).progressThumb).toEqual({ kind: 'builtin', id: 'dot' });
+      expect(defaultSettings(DIR).customThumbs).toEqual([]);
+      const old = normalizeSettings({ version: 1, volume: 0.5 }, DIR);
+      expect(old.progressThumb).toEqual({ kind: 'builtin', id: 'dot' });
+      expect(old.customThumbs).toEqual([]);
+    });
+    it('выбранный встроенный и свои значки переживают перезапуск', () => {
+      const saved = JSON.parse(JSON.stringify({ ...defaultSettings(DIR), progressThumb: { kind: 'builtin', id: 'skull' } }));
+      expect(normalizeSettings(saved, DIR).progressThumb).toEqual({ kind: 'builtin', id: 'skull' });
+      const withCustom = JSON.parse(JSON.stringify({ ...defaultSettings(DIR), customThumbs: [mine], progressThumb: { kind: 'custom', id: 'c1' } }));
+      const s = normalizeSettings(withCustom, DIR);
+      expect(s.customThumbs).toEqual([mine]);
+      expect(s.progressThumb).toEqual({ kind: 'custom', id: 'c1' });
+    });
+    it('выбран свой значок, которого нет (или он битый) — кружок; битые записи отбрасываются', () => {
+      const gone = normalizeSettings({ progressThumb: { kind: 'custom', id: 'c1' }, customThumbs: [] }, DIR);
+      expect(gone.progressThumb).toEqual({ kind: 'builtin', id: 'dot' });
+      const broken = normalizeSettings({ progressThumb: { kind: 'custom', id: 'c1' }, customThumbs: [{ ...mine, pixels: 'oops' }, mine, 7] }, DIR);
+      expect(broken.customThumbs).toEqual([mine]);
+      expect(broken.progressThumb).toEqual({ kind: 'custom', id: 'c1' });
+      expect(normalizeSettings({ progressThumb: 'skull', customThumbs: 'нет' }, DIR)).toMatchObject({ progressThumb: { kind: 'builtin', id: 'dot' }, customThumbs: [] });
+    });
   });
 });

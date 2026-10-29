@@ -1,11 +1,11 @@
-import { useEffect } from 'react';
-import { LyricsOverlay } from '../components/Lyrics/LyricsOverlay';
+import { useEffect, useRef, useState, type RefObject } from 'react';
+import { LyricsOverlay, type LyricsPhase } from '../components/Lyrics/LyricsOverlay';
 import { Onboarding } from '../components/Onboarding/Onboarding';
 import { needsOnboarding } from '../components/Onboarding/onboardingFlow';
-import { PlayerBar } from '../components/PlayerBar/PlayerBar';
+import { PLAYER_BAR_ATTR, PlayerBar } from '../components/PlayerBar/PlayerBar';
 import { RightPanel } from '../components/RightPanel/RightPanel';
 import { Sidebar } from '../components/Sidebar/Sidebar';
-import { Soundwave } from '../components/Soundwave/Soundwave';
+import { Soundwave, type SoundwaveCenter } from '../components/Soundwave/Soundwave';
 import { useSidebarCollapsed } from '../components/Sidebar/useSidebar';
 import { TitleBar } from '../components/TitleBar/TitleBar';
 import { Toasts } from '../components/Toast/Toast';
@@ -15,11 +15,41 @@ import { UpdateDialog } from '../components/Update/UpdateDialog';
 import { initHistoryTracking } from '../screens/history/historyTracking';
 import { initTasteTracking } from '../stores/tasteTracking';
 import { useLibrary } from '../stores/useLibrary';
-import { useLyrics } from '../stores/useLyrics';
 import { useSettings } from '../stores/useSettings';
 import { startUpdateCheck, useUpdateBannerShown } from '../stores/useUpdate';
 import styles from './App.module.css';
 import { ScreenHost } from './ScreenHost';
+
+/**
+ * Центр области содержимого — экран над панелью плеера, между сайдбаром и правой колонкой: там стоит «Кольцо».
+ * Следит, только пока `enabled` (выбран вид «Кольцо»).
+ */
+function useContentCenter(mainRef: RefObject<HTMLElement | null>, enabled: boolean): SoundwaveCenter | null {
+  const [center, setCenter] = useState<SoundwaveCenter | null>(null);
+  useEffect(() => {
+    const main = mainRef.current;
+    if (!enabled || !main) {
+      setCenter(null);
+      return;
+    }
+    const measure = (): void => {
+      const box = main.getBoundingClientRect();
+      const bar = main.querySelector(`[${PLAYER_BAR_ATTR}]`)?.getBoundingClientRect();
+      const bottom = bar && bar.top > box.top ? bar.top : box.bottom;
+      const next = { x: Math.round(box.left + box.width / 2), y: Math.round((box.top + bottom) / 2) };
+      setCenter((prev) => (prev && prev.x === next.x && prev.y === next.y ? prev : next));
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(main);
+    window.addEventListener('resize', measure);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('resize', measure);
+    };
+  }, [mainRef, enabled]);
+  return center;
+}
 
 /**
  * Каркас окна: мягкий градиентный фон темы и стеклянная карточка с тремя колонками —
@@ -34,7 +64,10 @@ export function App() {
   const lib = useLibrary((s) => s.lib);
   const onboarding = needsOnboarding(settings, lib);
   const updateBanner = useUpdateBannerShown();
-  const lyricsOpen = useLyrics((s) => s.open);
+  // Слой текста на экране (открыт, раскрывается или сворачивается) и его фаза.
+  const [lyricsPhase, setLyricsPhase] = useState<LyricsPhase | null>(null);
+  const mainRef = useRef<HTMLElement>(null);
+  const ringCenter = useContentCenter(mainRef, settings.soundwave && settings.soundwaveStyle === 'ring');
   // Трек попадает в историю после 10 секунд звучания; дослушал/пропустил/лайк/подписка — во вкус.
   useEffect(() => {
     initHistoryTracking();
@@ -43,14 +76,15 @@ export function App() {
     startUpdateCheck();
   }, []);
   return (
-    <div className={styles.window} data-lyrics={lyricsOpen ? 'open' : undefined}>
+    <div className={styles.window} data-lyrics={lyricsPhase ? 'open' : undefined}>
       <div className={styles.backdrop} aria-hidden="true" />
-      {/* Пока открыт текст, волну рисует его слой (поверх непрозрачной подложки) — второй холст не нужен. */}
-      {settings.soundwave && !lyricsOpen && <Soundwave />}
+      {/* Пока текст открыт целиком, волну рисует его слой (поверх непрозрачной подложки) — второй холст не нужен;
+          пока слой раскрывается или сворачивается кругом, вокруг круга видно окно — с волной. */}
+      {settings.soundwave && lyricsPhase !== 'open' && <Soundwave center={ringCenter} />}
       <div className={styles.card} data-sidebar={collapsed ? 'collapsed' : 'expanded'}>
         <TitleBar />
         <Sidebar />
-        <main className={styles.main} data-update-banner={updateBanner ? 'shown' : undefined}>
+        <main ref={mainRef} className={styles.main} data-update-banner={updateBanner ? 'shown' : undefined}>
           <UpdateBanner />
           <ScreenHost />
           <PlayerBar />
@@ -62,7 +96,7 @@ export function App() {
         </div>
         {onboarding && <Onboarding />}
       </div>
-      <LyricsOverlay />
+      <LyricsOverlay onPhaseChange={setLyricsPhase} />
       <UpdateDialog />
     </div>
   );

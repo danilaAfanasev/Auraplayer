@@ -20,6 +20,8 @@ describe('isExcluded — что не идёт в публичную копию',
     expect(isExcluded('AGENTS.md')).toBe(true);
     expect(isExcluded('CLAUDE.md')).toBe(true);
     expect(isExcluded('docs/adr/0001-track-sources.md')).toBe(true);
+    // Выпуск версии — дело мейнтейнера: в копию для людей он не идёт.
+    expect(isExcluded('RELEASING.md')).toBe(true);
   });
 
   it('код, документы и сам скрипт остаются', () => {
@@ -27,6 +29,8 @@ describe('isExcluded — что не идёт в публичную копию',
     expect(isExcluded('docs/architecture.md')).toBe(false);
     expect(isExcluded('docs/screenshots/home.png')).toBe(false);
     expect(isExcluded('CONTEXT.md')).toBe(false);
+    expect(isExcluded('README.md')).toBe(false);
+    expect(isExcluded('docs/RELEASING.md')).toBe(false);
     expect(isExcluded('scripts/make-public.mjs')).toBe(false);
     expect(isExcluded('src/docs/adr.ts')).toBe(false);
   });

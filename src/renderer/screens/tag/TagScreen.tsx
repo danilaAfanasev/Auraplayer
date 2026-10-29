@@ -9,13 +9,19 @@ import { useBlacklist } from '../../stores/blacklistActions';
 import { useLibrary } from '../../stores/useLibrary';
 import { usePlayer } from '../../stores/usePlayer';
 import { useWave } from '../../stores/useWave';
-import { tracksOf, useSearchQueries, withoutBlockedStatus } from '../search/sourceQueries';
+import { tracksOf, useSearchQueries, withoutBlockedStatus, type SourceStatus } from '../search/sourceQueries';
 import { SourceSection } from '../search/SourceSection';
+import { useGenreCatalog } from './genreCatalog';
 import { genreSearchQueries, genreWaveSeed, mergeGenreStatuses } from './genreQueries';
 import styles from './TagScreen.module.css';
 
-/** Свежая музыка жанра: YouTube первым, SoundCloud — дополнительно. Internet Archive (старые записи) здесь не ищется. */
+/**
+ * Свежая музыка жанра: YouTube первым, SoundCloud — дополнительно, затем подборки жанра в каталоге (`genreCatalog.ts`:
+ * у редких сцен поиск видео — почти одни миксы). Internet Archive (старые записи) здесь не ищется.
+ */
 const SOURCES: SourceId[] = ['youtube', 'soundcloud'];
+const ALL_SECTIONS: SourceId[] = [...SOURCES, 'catalog'];
+const CATALOG_SHOWN = 50;
 
 /** «Волна: <жанр>» — свежие подборки жанра и похожие на свежие треки страницы. */
 function GenreWaveButton({ tag, year, fresh }: { tag: string; year: number; fresh: ReturnType<typeof tracksOf> }) {
@@ -45,6 +51,7 @@ export function TagScreen({ param = '' }: { param?: string }) {
   const year = new Date().getFullYear();
   const queries = useMemo(() => genreSearchQueries(tag, year), [tag, year]);
   const entries = useSearchQueries((s) => s.entries);
+  const catalog = useGenreCatalog((s) => s.entries[tag]);
   const blacklist = useBlacklist();
   const Icon = genreIcon(tag);
 
@@ -56,18 +63,18 @@ export function TagScreen({ param = '' }: { param?: string }) {
   useEffect(() => {
     if (!tag) return;
     for (const q of queries) useSearchQueries.getState().ensure(q, SOURCES, true);
+    useGenreCatalog.getState().ensure(tag, true);
   }, [tag, queries]);
 
   // Скрытые треки на странице жанра не показываются: таблицы, «Слушать» и волна получают один и тот же список.
-  const statuses = useMemo(
-    () =>
-      Object.fromEntries(
-        SOURCES.map((s) => [s, withoutBlockedStatus(mergeGenreStatuses(s, queries.map((q) => entries[q]?.[s]), year), blacklist)]),
-      ),
-    [entries, queries, year, blacklist],
-  );
+  const statuses = useMemo(() => {
+    const out: Partial<Record<SourceId, SourceStatus | undefined>> = {};
+    for (const s of SOURCES) out[s] = withoutBlockedStatus(mergeGenreStatuses(s, queries.map((q) => entries[q]?.[s]), year), blacklist);
+    out.catalog = withoutBlockedStatus(catalog, blacklist);
+    return out;
+  }, [entries, catalog, queries, year, blacklist]);
   const fresh = tracksOf(statuses.youtube);
-  const firstList = SOURCES.map((s) => tracksOf(statuses[s])).find((list) => list.length > 0) ?? [];
+  const firstList = ALL_SECTIONS.map((s) => tracksOf(statuses[s])).find((list) => list.length > 0) ?? [];
 
   return (
     <>
@@ -91,15 +98,18 @@ export function TagScreen({ param = '' }: { param?: string }) {
         </div>
       </div>
 
-      {SOURCES.map((s) => (
+      {ALL_SECTIONS.map((s) => (
         <SourceSection
           key={s}
           source={s}
           status={statuses[s]}
-          emptyText="Свежего в этом жанре пока не нашлось"
+          emptyText={s === 'catalog' ? 'Подборок этого жанра не нашлось' : 'Свежего в этом жанре пока не нашлось'}
           onRetry={() => {
-            for (const q of queries) useSearchQueries.getState().retry(q, s);
+            if (s === 'catalog') useGenreCatalog.getState().retry(tag);
+            else for (const q of queries) useSearchQueries.getState().retry(q, s);
           }}
+          // Подборки — сотни треков: на странице первые 50, «Слушать» и очередь — весь список.
+          limit={s === 'catalog' ? CATALOG_SHOWN : undefined}
           withTitle
           queueTitle={genreName(tag)}
         />

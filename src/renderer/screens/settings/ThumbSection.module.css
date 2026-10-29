@@ -1,0 +1,171 @@
+.live {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 620px;
+  padding: 16px 18px;
+  border-radius: var(--radius-m);
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.liveLabel {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.live input {
+  width: 100%;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 880px;
+}
+
+.head {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.count {
+  margin-left: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(118px, 1fr));
+  gap: 10px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cardMain {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 6px 10px;
+  border-radius: var(--radius-m);
+  text-align: center;
+  background: var(--surface);
+  border: 2px solid transparent;
+  box-shadow: 0 0 0 1px var(--border) inset;
+  transition:
+    transform var(--dur) var(--ease),
+    background-color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+
+button.cardMain:hover {
+  background: var(--surface-2);
+  transform: translateY(-2px);
+}
+
+button.cardMain:active {
+  transform: scale(0.98);
+}
+
+.selected,
+.selected:hover {
+  border-color: var(--accent);
+  box-shadow: 0 8px 26px var(--accent-soft);
+}
+
+.glyphBox {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+}
+
+.name {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.rename {
+  width: 100%;
+  padding: 3px 6px;
+  border-radius: var(--radius-s);
+  background: var(--surface-2);
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.tools {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+
+.tool {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: var(--text-muted);
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease);
+}
+
+.tool:hover {
+  color: var(--text);
+  background: var(--surface-hover);
+}
+
+.add {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 104px;
+  padding: 10px 6px;
+  border-radius: var(--radius-m);
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 700;
+  border: 2px dashed var(--border-strong);
+  transition:
+    background-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.add:hover:not(:disabled) {
+  color: var(--text);
+  background: var(--surface-2);
+}
+
+.add:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.hint {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}

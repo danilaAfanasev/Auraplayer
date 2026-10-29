@@ -1,0 +1,100 @@
+/*
+ * Значок на полосе трека вместо кружка. Полоса — настоящий <input type="range"> (перемотка мышью и стрелками —
+ * родная); значок рисует его ::-webkit-slider-thumb: одноцветная маска (цвет — из темы) или готовая картинка.
+ * Для обычного кружка атрибута data-thumb нет — работают общие стили из global.css (их же получает громкость).
+ */
+.range[data-thumb] {
+  /* Область захвата не меньше значка; поля возвращают раскладке прежнюю высоту полосы (16 px). */
+  height: calc(var(--thumb-size) + 6px);
+  margin-block: calc((10px - var(--thumb-size)) / 2);
+  /* Закрашенная часть дорожки кончается под центром значка, а не под краем его хода. */
+  --fill-at: calc(var(--fill, 0%) + (0.5 - var(--p, 0)) * var(--thumb-size));
+}
+
+.range[data-thumb]::-webkit-slider-runnable-track {
+  background: linear-gradient(
+    to right,
+    var(--text) 0%,
+    var(--text) var(--fill-at),
+    var(--surface-hover) var(--fill-at),
+    var(--surface-hover) 100%
+  );
+}
+
+.range[data-thumb]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: var(--thumb-size);
+  height: var(--thumb-size);
+  margin-top: calc((4px - var(--thumb-size)) / 2);
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: none;
+  transition: transform var(--dur-fast) var(--ease);
+}
+
+.range[data-thumb='mask']::-webkit-slider-thumb {
+  background: var(--text);
+  -webkit-mask: var(--thumb-url) center / contain no-repeat;
+  mask: var(--thumb-url) center / contain no-repeat;
+}
+
+.range[data-thumb='image']::-webkit-slider-thumb {
+  background: var(--thumb-url) center / contain no-repeat;
+  image-rendering: pixelated;
+}
+
+.range[data-thumb]:not(:disabled):hover::-webkit-slider-thumb {
+  transform: scale(1.15);
+}
+
+.range[data-thumb]:not(:disabled):active::-webkit-slider-thumb {
+  transform: scale(1.25);
+}
+
+/* Пластинка: угол --thumb-rot крутит ThumbRange (Web Animations); сам значок только поворачивается на него. */
+.range[data-thumb]::-webkit-slider-thumb {
+  rotate: var(--thumb-rot, 0deg);
+}
+
+/* Значок сам по себе (сетка настроек, окно рисования): тот же рисунок, что на полосе. */
+.glyph {
+  display: inline-block;
+  flex: none;
+  width: var(--glyph-size);
+  height: var(--glyph-size);
+}
+
+.glyph[data-thumb='dot'] {
+  border-radius: 50%;
+  background: var(--text);
+  box-shadow: 0 2px 6px var(--shadow);
+}
+
+.glyph[data-thumb='mask'] {
+  background: var(--text);
+  -webkit-mask: var(--thumb-url) center / contain no-repeat;
+  mask: var(--thumb-url) center / contain no-repeat;
+}
+
+.glyph[data-thumb='image'] {
+  background: var(--thumb-url) center / contain no-repeat;
+  image-rendering: pixelated;
+}
+
+.glyph[data-spin='on'] {
+  animation: glyphSpin 2.6s linear infinite;
+}
+
+@keyframes glyphSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glyph[data-spin='on'] {
+    animation: none;
+  }
+}

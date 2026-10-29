@@ -1,5 +1,6 @@
 // Волна: бесконечные похожие треки. Очередь плеера сама дополняется, когда до конца остаётся ~3 трека;
-// без дублей, один исполнитель не больше 2 раз подряд, «Не нравится» исключает трек и исполнителя
+// без дублей, в любых 10 подряд — 10 разных исполнителей (с фитами), песни из «Мне нравится» — не больше одной на 10,
+// «Не нравится» исключает трек и исполнителя
 // (отбор — shared/wave.ts, кандидаты — main через aura.wave). Волна — обычная очередь плеера:
 // заменил очередь другим списком — волна выключилась. В «Мои плейлисты» она сама не попадает.
 // В очередь трек встаёт, только когда его звук найден (проверка наперёд — `feed`); без звука — тихо выкидывается.
@@ -9,13 +10,16 @@ import { artistKey } from '../../shared/artistNames';
 import { isBlocked, withoutBlocked, type Blacklist } from '../../shared/blacklist';
 import type { LibraryData, Track } from '../../shared/types';
 import {
+  canFollow,
   emptyWaveMemory,
   isBanned,
   pickWaveTracks,
-  artistsKey,
   rememberTracks,
   songKey,
+  syncWaveTail,
+  WAVE_MIN_ARTIST_GAP,
   type WaveMemory,
+  type WavePickOptions,
 } from '../../shared/wave';
 import { errorMessage } from '../app/errors';
 import { dislikeTrack } from './blacklistActions';
@@ -28,7 +32,10 @@ import { useUi } from './useUi';
 export const WAVE_REFILL_AT = 3;
 /** Треков в одной порции. */
 const BATCH = 15;
-/** Столько попыток подряд дают только повторы — порция пропускается. */
+/**
+ * Столько попыток подряд дают только повторы — порция пропускается. Последняя попытка — с ослабленным окном
+ * исполнителей (`WAVE_MIN_ARTIST_GAP`): кандидатов на 10 разных не хватило и после догрузки.
+ */
 const ATTEMPTS = 3;
 /** Сколько последних треков очереди — сиды дополнения. */
 const RECENT = 3;
@@ -109,8 +116,10 @@ let declinedQueue: Track[] | null = null;
 /** Отобранные треки, ещё не проверенные на звук (по порядку). */
 let pool: Track[] = [];
 /** Идущие проверки по порядку очереди: в очередь трек встаёт, когда проверены все до него. */
-let checks: { track: Track; ok: Promise<boolean> }[] = [];
+let checks: { track: Track; ok: Promise<boolean>; deferred?: true }[] = [];
 let draining = false;
+/** Треки, отобранные с ослабленным окном: на стыке очереди они проверяются тем же окном. */
+const relaxedPicks = new WeakSet<Track>();
 /** Волна без лид-треков ещё не в плеере: первый проверенный трек заменит очередь. */
 let firstPending = false;
 /** Название волны, которая включится с первым проверенным треком. */
@@ -118,6 +127,22 @@ let pendingTitle = '';
 
 function player(): PlayerState {
   return usePlayer.getState();
+}
+
+/** Песни из «Мне нравится» (`songKey`): в волне — не больше одной на 10 подряд. */
+function likedSongs(): ReadonlySet<string> {
+  const { lib } = useLibrary.getState();
+  const out = new Set<string>();
+  for (const id of lib.likes) {
+    const t = lib.tracks[id];
+    if (t) out.add(songKey(t));
+  }
+  return out;
+}
+
+/** Правила отбора волны сейчас: лайки пользователя и окно исполнителей (`gap` — ослабленное). */
+function pickOptions(gap?: number): WavePickOptions {
+  return gap ? { liked: likedSongs(), gap } : { liked: likedSongs() };
 }
 
 /** Постоянный чёрный список пользователя. */
@@ -201,9 +226,12 @@ function pendingTracks(): Track[] {
   return [...checks.map((c) => c.track), ...pool];
 }
 
-/** Память волны о «хвосте» — по фактической очереди и ждущим проверки (после «Не нравится» она могла измениться). */
+/**
+ * Память волны о «хвосте» — последние 9 треков очереди (от начала, с уже сыгранными) и ждущих проверки: после
+ * «Не нравится» и выпавших без звука она могла измениться.
+ */
 function syncTail(queue: readonly Track[]): void {
-  memory = { ...memory, tail: [...queue, ...pendingTracks()].slice(-2).map(artistsKey) };
+  memory = syncWaveTail(memory, [...queue, ...pendingTracks()]);
 }
 
 /** Звук этих треков ищет yt-dlp (каталог, YouTube, SoundCloud) — он может не найтись; остальные играют по ссылке. */
@@ -268,7 +296,14 @@ export const useWave = create<WaveState>((set, get) => {
         if (gen !== generation) return;
         checks.shift();
         changed = true;
-        if (ok && !isOut(head.track)) deliver(head.track);
+        if (ok && !isOut(head.track)) {
+          // Перед ним выпал трек без звука — он мог оказаться ближе окна к тому же исполнителю (или второй лайк в 10):
+          // пропускает вперёд следующего один раз, не помогло — не встаёт.
+          const before = firstPending ? [] : player().queue;
+          const gap = relaxedPicks.has(head.track) ? WAVE_MIN_ARTIST_GAP : undefined;
+          if (canFollow(head.track, before, pickOptions(gap))) deliver(head.track);
+          else if (!head.deferred && checks.length > 0) checks.splice(1, 0, { ...head, deferred: true });
+        }
         feed();
       }
     } finally {
@@ -318,15 +353,19 @@ export const useWave = create<WaveState>((set, get) => {
     let lastError: unknown = null;
     let picked: Track[] = [];
     try {
+      // Подмешанное зарубежное сидом не станет: его отличает main (`spice` в `main/wave.ts`), письменность — ненадёжно.
       const recent = s.queue.slice(Math.max(0, s.index - RECENT + 1), s.index + 1).filter((t) => !isBanned(t, memory));
       for (let attempt = 0; attempt < ATTEMPTS && picked.length === 0; attempt++) {
         try {
           const candidates = await window.aura.wave.more({ seed, recent, round: round++ });
           if (gen !== generation) return;
           syncTail(player().queue);
-          const result = pickWaveTracks(candidates, memory, BATCH);
+          // Кандидатов на 10 разных исполнителей не хватило и после догрузки — окно 5 (подряд — никогда).
+          const relaxed = attempt === ATTEMPTS - 1;
+          const result = pickWaveTracks(candidates, memory, BATCH, pickOptions(relaxed ? WAVE_MIN_ARTIST_GAP : undefined));
           memory = result.memory;
           picked = result.picked;
+          if (relaxed) for (const t of picked) relaxedPicks.add(t);
         } catch (err) {
           if (gen !== generation) return;
           lastError = err;
@@ -433,7 +472,7 @@ export const useWave = create<WaveState>((set, get) => {
         const candidates = await window.aura.wave.start(continued);
         if (gen !== generation) return;
         syncTail(player().queue);
-        const result = pickWaveTracks(candidates, memory, BATCH * 2);
+        const result = pickWaveTracks(candidates, memory, BATCH * 2, pickOptions());
         memory = result.memory;
         picked = result.picked;
       } catch (err) {
@@ -506,7 +545,7 @@ export const useWave = create<WaveState>((set, get) => {
         const candidates = await window.aura.wave.start(nextSeed);
         if (gen !== generation) return;
         syncTail(lead.length > 0 ? player().queue : []);
-        const result = pickWaveTracks(candidates, memory, BATCH * 2);
+        const result = pickWaveTracks(candidates, memory, BATCH * 2, pickOptions());
         memory = result.memory;
         picked = result.picked;
       } catch (err) {

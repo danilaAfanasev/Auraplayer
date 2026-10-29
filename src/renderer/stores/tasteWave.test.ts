@@ -73,6 +73,18 @@ describe('«Моя волна» из вкуса', () => {
     expect(queries.some((q) => q.includes('рок') || q.includes('rock'))).toBe(true);
   });
 
+  it('жанр вкуса ищется и по-английски — в волну попадает и зарубежное похожее', () => {
+    let lib = listen(emptyLibrary(), 'Alpha', 3);
+    lib = setTasteGenres(lib, ['emorap']);
+    const queries = myWaveSeed(lib, NOW).queries ?? [];
+    expect(queries).toEqual(expect.arrayContaining(['эмо рэп 2026', 'emo rap 2026']));
+  });
+
+  it('нейтральная волна и чипы без вкуса — из популярных жанров', () => {
+    const chips = tasteChips(emptyLibrary(), NOW).map((c) => c.genre);
+    expect(chips).toEqual(['pop', 'hiphop', 'electronic', 'rock', 'indie']);
+  });
+
   it('старая библиотека без журнала вкуса — подписки и исполнители лайков, как раньше', () => {
     let lib = followArtist(emptyLibrary(), { id: '1', name: 'Followed' }, NOW);
     lib = { ...lib, taste: { events: [], genres: [] } };
